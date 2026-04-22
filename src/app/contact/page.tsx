@@ -33,7 +33,7 @@ export default function ContactPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050810] via-[#050810]/70 to-[#050810]/20" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#050810]/80 to-transparent" />
-          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#c49a2a]/60 to-transparent" />
+          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#cc1111]/60 to-transparent" />
 
           <div className="relative z-10 container-wide pb-16 pt-32">
             <p className="label-overline mb-5">Contact Stratton</p>
@@ -43,7 +43,7 @@ export default function ContactPage() {
             >
               Request a Free
               <br />
-              <span className="gradient-gold">Security Assessment</span>
+              <span className="gradient-red">Security Assessment</span>
             </h1>
             <p className="text-[#a0b0c0] text-[1rem] leading-relaxed max-w-xl">
               Tell us about your property and security needs. A senior Stratton
@@ -72,8 +72,8 @@ export default function ContactPage() {
                       href={`tel:${SITE_CONFIG.phoneE164}`}
                       className="flex items-center gap-4 p-4 card-anduril group"
                     >
-                      <div className="w-10 h-10 border border-[#1a2030] flex items-center justify-center group-hover:border-[#c49a2a]/40 transition-colors shrink-0">
-                        <Phone size={16} className="text-[#c49a2a]" strokeWidth={1.5} />
+                      <div className="w-10 h-10 border border-[#1a2030] flex items-center justify-center group-hover:border-[#cc1111]/40 transition-colors shrink-0">
+                        <Phone size={16} className="text-[#cc1111]" strokeWidth={1.5} />
                       </div>
                       <div>
                         <p className="text-[0.6875rem] text-[#606878] tracking-widest uppercase mb-0.5">
@@ -89,8 +89,8 @@ export default function ContactPage() {
                       href={`mailto:${SITE_CONFIG.email}`}
                       className="flex items-center gap-4 p-4 card-anduril group"
                     >
-                      <div className="w-10 h-10 border border-[#1a2030] flex items-center justify-center group-hover:border-[#c49a2a]/40 transition-colors shrink-0">
-                        <Mail size={16} className="text-[#c49a2a]" strokeWidth={1.5} />
+                      <div className="w-10 h-10 border border-[#1a2030] flex items-center justify-center group-hover:border-[#cc1111]/40 transition-colors shrink-0">
+                        <Mail size={16} className="text-[#cc1111]" strokeWidth={1.5} />
                       </div>
                       <div>
                         <p className="text-[0.6875rem] text-[#606878] tracking-widest uppercase mb-0.5">
@@ -108,8 +108,8 @@ export default function ContactPage() {
                       rel="noopener noreferrer"
                       className="flex items-center gap-4 p-4 card-anduril group"
                     >
-                      <div className="w-10 h-10 border border-[#1a2030] flex items-center justify-center shrink-0 group-hover:border-[#c49a2a]/40 transition-colors">
-                        <MapPin size={16} className="text-[#c49a2a]" strokeWidth={1.5} />
+                      <div className="w-10 h-10 border border-[#1a2030] flex items-center justify-center shrink-0 group-hover:border-[#cc1111]/40 transition-colors">
+                        <MapPin size={16} className="text-[#cc1111]" strokeWidth={1.5} />
                       </div>
                       <div>
                         <p className="text-[0.6875rem] text-[#606878] tracking-widest uppercase mb-0.5">
@@ -151,11 +151,11 @@ export default function ContactPage() {
                   <div className="card-anduril p-5">
                     <div className="flex items-center gap-1 mb-2">
                       {Array.from({ length: 5 }).map((_, i) => (
-                        <svg key={i} width="13" height="13" viewBox="0 0 24 24" fill="#c49a2a" stroke="none">
+                        <svg key={i} width="13" height="13" viewBox="0 0 24 24" fill="#cc1111" stroke="none">
                           <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                         </svg>
                       ))}
-                      <span className="ml-1.5 text-[0.75rem] text-[#c49a2a] font-medium">5.0</span>
+                      <span className="ml-1.5 text-[0.75rem] text-[#cc1111] font-medium">5.0</span>
                     </div>
                     <p className="text-[0.8125rem] text-[#a0b0c0] italic leading-relaxed mb-3">
                       &ldquo;Their team has truly set the bar when it comes to providing security services.&rdquo;
@@ -171,7 +171,7 @@ export default function ContactPage() {
                   <p className="label-overline mb-4">Credentials</p>
                   <div className="card-anduril p-5">
                     <div className="flex items-start gap-3 mb-4">
-                      <Shield size={16} className="text-[#c49a2a] mt-0.5 shrink-0" strokeWidth={1.5} />
+                      <Shield size={16} className="text-[#cc1111] mt-0.5 shrink-0" strokeWidth={1.5} />
                       <div>
                         <p className="text-white text-sm font-medium mb-1">
                           California Private Patrol Operator

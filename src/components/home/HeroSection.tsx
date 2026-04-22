@@ -174,7 +174,7 @@ export default function HeroSection() {
             style={{
               overflow: "hidden",
               paddingBottom: "0.08em",
-              WebkitTextStroke: "1.5px rgba(196,154,42,0.65)",
+              WebkitTextStroke: "1.5px rgba(204,17,17,0.65)",
               color: "transparent",
             }}
             variants={{
@@ -209,7 +209,7 @@ export default function HeroSection() {
           transition={{ delay: 2.0, duration: 0.5 }}
         >
           <motion.div
-            className="h-px bg-[#c49a2a]"
+            className="h-px bg-[#cc1111]"
             initial={prefersReduced ? {} : { width: 0 }}
             animate={{ width: 52 }}
             transition={{ delay: 2.0, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}

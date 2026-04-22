@@ -28,7 +28,7 @@ export default function ApplyPage() {
           <div className="container-wide py-4">
             <Link
               href="/careers"
-              className="inline-flex items-center gap-2 text-[0.75rem] text-[#4a6880] hover:text-[#c49a2a] uppercase tracking-wide transition-colors"
+              className="inline-flex items-center gap-2 text-[0.75rem] text-[#4a6880] hover:text-[#cc1111] uppercase tracking-wide transition-colors"
             >
               <ArrowLeft size={12} />
               Back to Careers
@@ -43,7 +43,7 @@ export default function ApplyPage() {
             <h1 className="display-title text-[clamp(2rem,5vw,3rem)] text-[#edf2f7] mb-4">
               Apply to
               <br />
-              <span className="gradient-gold">Stratton Security</span>
+              <span className="gradient-red">Stratton Security</span>
             </h1>
             <p className="text-[#7a9ab8] text-[0.9375rem] leading-relaxed">
               Fill out the form below. Have your California Guard Card number ready.

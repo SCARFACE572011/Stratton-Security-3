@@ -56,17 +56,17 @@ export default function ServicesSection() {
                   {/* Red left-reveal on hover */}
                   <span className="absolute left-0 top-0 bottom-0 w-[2px] bg-[#cc1111] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 ease-out origin-bottom" aria-hidden="true" />
                   {/* Number */}
-                  <span className="font-[var(--font-display)] text-[0.75rem] text-[#3a4a58] tracking-widest w-8 shrink-0 group-hover:text-[#c49a2a]/60 transition-colors">
+                  <span className="font-[var(--font-display)] text-[0.75rem] text-[#3a4a58] tracking-widest w-8 shrink-0 group-hover:text-[#cc1111]/60 transition-colors">
                     {String(i + 1).padStart(2, "0")}
                   </span>
 
                   {/* Icon */}
-                  <div className="w-9 h-9 border border-[#1a2030] flex items-center justify-center shrink-0 group-hover:border-[#c49a2a]/40 transition-colors">
-                    <IconComponent size={16} className="text-[#c49a2a]" strokeWidth={1.5} />
+                  <div className="w-9 h-9 border border-[#1a2030] flex items-center justify-center shrink-0 group-hover:border-[#cc1111]/40 transition-colors">
+                    <IconComponent size={16} className="text-[#cc1111]" strokeWidth={1.5} />
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-[var(--font-display)] text-[1.0625rem] md:text-[1.25rem] text-white uppercase tracking-wide group-hover:text-[#c49a2a] transition-colors w-56 shrink-0">
+                  <h3 className="font-[var(--font-display)] text-[1.0625rem] md:text-[1.25rem] text-white uppercase tracking-wide group-hover:text-[#cc1111] transition-colors w-56 shrink-0">
                     {service.title}
                   </h3>
 
@@ -78,7 +78,7 @@ export default function ServicesSection() {
                   {/* Arrow */}
                   <ArrowRight
                     size={18}
-                    className="text-[#3a4a58] group-hover:text-[#c49a2a] group-hover:translate-x-2 transition-all shrink-0 ml-auto"
+                    className="text-[#3a4a58] group-hover:text-[#cc1111] group-hover:translate-x-2 transition-all shrink-0 ml-auto"
                   />
                 </Link>
               </motion.div>

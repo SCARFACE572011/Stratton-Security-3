@@ -130,7 +130,7 @@ export default function CareersPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050810] via-[#050810]/70 to-[#050810]/15" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#050810]/80 to-transparent" />
-          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#c49a2a]/60 to-transparent" />
+          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#cc1111]/60 to-transparent" />
 
           <div className="relative z-10 container-wide pb-20 pt-32">
             <p className="label-overline mb-5">Join Our Team</p>
@@ -140,7 +140,7 @@ export default function CareersPage() {
             >
               Careers at
               <br />
-              <span className="gradient-gold">Stratton Security</span>
+              <span className="gradient-red">Stratton Security</span>
             </h1>
             <p className="text-[#a0b0c0] text-[1rem] leading-relaxed max-w-xl">
               We&apos;re looking for disciplined, professional security officers to join
@@ -167,7 +167,7 @@ export default function CareersPage() {
               {OPEN_POSITIONS.map((position, i) => (
                 <div
                   key={i}
-                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-5 border-b border-[#1a2030] hover:border-[#c49a2a]/30 transition-colors last:border-0"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 py-5 border-b border-[#1a2030] hover:border-[#cc1111]/30 transition-colors last:border-0"
                 >
                   <div>
                     <h3 className="font-[var(--font-display)] text-[1rem] text-white uppercase tracking-wide mb-1.5">
@@ -175,9 +175,9 @@ export default function CareersPage() {
                     </h3>
                     <div className="flex flex-wrap gap-x-4 gap-y-1 text-[0.75rem] text-[#606878]">
                       <span>{position.type}</span>
-                      <span className="text-[#c49a2a]/30">·</span>
+                      <span className="text-[#cc1111]/30">·</span>
                       <span>{position.location}</span>
-                      <span className="text-[#c49a2a]/30">·</span>
+                      <span className="text-[#cc1111]/30">·</span>
                       <span>{position.area}</span>
                     </div>
                   </div>
@@ -208,7 +208,7 @@ export default function CareersPage() {
                 <div className="space-y-3">
                   {REQUIREMENTS.map((req, i) => (
                     <div key={i} className="flex items-start gap-3">
-                      <Shield size={14} className="text-[#c49a2a] mt-0.5 shrink-0" strokeWidth={1.5} />
+                      <Shield size={14} className="text-[#cc1111] mt-0.5 shrink-0" strokeWidth={1.5} />
                       <span className="text-[0.875rem] text-[#a0b0c0]">{req}</span>
                     </div>
                   ))}

@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
       subject: `New Job Application — ${position}`,
       html: `
         <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#1a1a1a">
-          <div style="background:#06101e;padding:24px 32px;border-bottom:3px solid #c49a2a">
+          <div style="background:#06101e;padding:24px 32px;border-bottom:3px solid #cc1111">
             <h1 style="color:#edf2f7;margin:0;font-size:20px;letter-spacing:1px">STRATTON SECURITY GROUP</h1>
             <p style="color:#7a9ab8;margin:4px 0 0;font-size:13px">New Job Application</p>
           </div>
@@ -49,8 +49,8 @@ export async function POST(req: NextRequest) {
             <table style="width:100%;border-collapse:collapse;font-size:14px">
               <tr><td style="padding:8px 0;color:#666;width:140px">Position</td><td style="padding:8px 0;font-weight:600">${position}</td></tr>
               <tr><td style="padding:8px 0;color:#666">Name</td><td style="padding:8px 0;font-weight:600">${name}</td></tr>
-              <tr><td style="padding:8px 0;color:#666">Email</td><td style="padding:8px 0"><a href="mailto:${email}" style="color:#c49a2a">${email}</a></td></tr>
-              <tr><td style="padding:8px 0;color:#666">Phone</td><td style="padding:8px 0"><a href="tel:${phone}" style="color:#c49a2a">${phone}</a></td></tr>
+              <tr><td style="padding:8px 0;color:#666">Email</td><td style="padding:8px 0"><a href="mailto:${email}" style="color:#cc1111">${email}</a></td></tr>
+              <tr><td style="padding:8px 0;color:#666">Phone</td><td style="padding:8px 0"><a href="tel:${phone}" style="color:#cc1111">${phone}</a></td></tr>
               <tr><td style="padding:8px 0;color:#666">Guard Card #</td><td style="padding:8px 0;font-weight:600">${guardCard}</td></tr>
               ${experience ? `<tr><td style="padding:8px 0;color:#666">Experience</td><td style="padding:8px 0">${experience}</td></tr>` : ""}
               ${message ? `<tr><td style="padding:8px 0;color:#666;vertical-align:top">Notes</td><td style="padding:8px 0">${message.replace(/\n/g, "<br>")}</td></tr>` : ""}

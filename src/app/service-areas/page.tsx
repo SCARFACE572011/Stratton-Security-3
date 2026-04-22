@@ -111,7 +111,7 @@ export default function ServiceAreasPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050810] via-[#050810]/65 to-[#050810]/15" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#050810]/75 to-transparent" />
-          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#c49a2a]/60 to-transparent" />
+          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#cc1111]/60 to-transparent" />
 
           <div className="relative z-10 container-wide pb-20 pt-32">
             <p className="label-overline mb-5">Where We Operate</p>
@@ -121,7 +121,7 @@ export default function ServiceAreasPage() {
             >
               Service Areas
               <br />
-              <span className="gradient-gold">Los Angeles &amp; Beyond</span>
+              <span className="gradient-red">Los Angeles &amp; Beyond</span>
             </h1>
             <p className="text-[#a0b0c0] text-[1rem] leading-relaxed max-w-xl">
               Stratton Security Group is headquartered in Century City and deploys
@@ -146,7 +146,7 @@ export default function ServiceAreasPage() {
               {PRIMARY_AREAS.map((area) => (
                 <div key={area.name} className="card-anduril p-6">
                   <div className="flex items-center gap-2.5 mb-3">
-                    <MapPin size={14} className="text-[#c49a2a] shrink-0" strokeWidth={1.5} />
+                    <MapPin size={14} className="text-[#cc1111] shrink-0" strokeWidth={1.5} />
                     <h3 className="font-[var(--font-display)] text-[0.9375rem] text-white uppercase tracking-wide">
                       {area.name}
                     </h3>
@@ -188,7 +188,7 @@ export default function ServiceAreasPage() {
                 >
                   Every Property
                   <br />
-                  <span className="gradient-gold">In Our Coverage Area</span>
+                  <span className="gradient-red">In Our Coverage Area</span>
                 </h2>
                 <p className="text-[#a0b0c0] text-[0.9375rem] leading-relaxed mb-8">
                   Within our service areas, Stratton deploys programs for every
@@ -198,7 +198,7 @@ export default function ServiceAreasPage() {
                 <div>
                   {PROPERTY_TYPES_SERVED.map((type) => (
                     <div key={type} className="flex items-center gap-4 py-3 border-b border-[#1a2030] last:border-0">
-                      <div className="w-1 h-5 bg-[#c49a2a]/40 shrink-0" />
+                      <div className="w-1 h-5 bg-[#cc1111]/40 shrink-0" />
                       <span className="text-[0.875rem] text-[#a0b0c0]">{type}</span>
                     </div>
                   ))}

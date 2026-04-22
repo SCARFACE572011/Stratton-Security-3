@@ -91,18 +91,18 @@ export default async function ServiceDetailPage({
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050810] via-[#050810]/70 to-[#050810]/20" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#050810]/80 to-transparent" />
-          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#c49a2a]/60 to-transparent" />
+          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#cc1111]/60 to-transparent" />
 
           <div className="relative z-10 container-wide pb-16 pt-32 w-full">
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 text-[0.75rem] text-[#606878] hover:text-[#c49a2a] uppercase tracking-wide transition-colors mb-8"
+              className="inline-flex items-center gap-2 text-[0.75rem] text-[#606878] hover:text-[#cc1111] uppercase tracking-wide transition-colors mb-8"
             >
               <ArrowLeft size={12} />
               All Services
             </Link>
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-12 h-12 border border-[#c49a2a]/40 flex items-center justify-center text-[#c49a2a]">
+              <div className="w-12 h-12 border border-[#cc1111]/40 flex items-center justify-center text-[#cc1111]">
                 <IconComponent size={22} strokeWidth={1.5} />
               </div>
               <p className="label-overline">Service Line</p>
@@ -146,7 +146,7 @@ export default async function ServiceDetailPage({
                     Or call us directly
                     <a
                       href={`tel:${SITE_CONFIG.phoneE164}`}
-                      className="block font-[var(--font-display)] text-[#c49a2a] text-[1rem] mt-1 tracking-wide"
+                      className="block font-[var(--font-display)] text-[#cc1111] text-[1rem] mt-1 tracking-wide"
                     >
                       {SITE_CONFIG.phone}
                     </a>
@@ -172,8 +172,8 @@ export default async function ServiceDetailPage({
               {service.benefits.map((benefit) => (
                 <div key={benefit.title} className="card-anduril p-6">
                   <div className="flex items-center gap-2.5 mb-3">
-                    <div className="w-5 h-5 border border-[#c49a2a]/40 flex items-center justify-center">
-                      <Check size={11} className="text-[#c49a2a]" strokeWidth={2.5} />
+                    <div className="w-5 h-5 border border-[#cc1111]/40 flex items-center justify-center">
+                      <Check size={11} className="text-[#cc1111]" strokeWidth={2.5} />
                     </div>
                     <h3 className="font-[var(--font-display)] text-[0.9375rem] text-white uppercase tracking-wide">
                       {benefit.title}
@@ -201,7 +201,7 @@ export default async function ServiceDetailPage({
                 >
                   Program
                   <br />
-                  <span className="gradient-gold">Components</span>
+                  <span className="gradient-red">Components</span>
                 </h2>
                 <p className="text-[#a0b0c0] text-[0.9375rem] leading-relaxed">
                   Stratton programs are modular — combine the components that match
@@ -212,9 +212,9 @@ export default async function ServiceDetailPage({
                 {service.capabilities.map((capability) => (
                   <div
                     key={capability}
-                    className="flex items-center gap-4 px-4 py-3.5 border-b border-[#1a2030] hover:border-[#c49a2a]/30 transition-colors"
+                    className="flex items-center gap-4 px-4 py-3.5 border-b border-[#1a2030] hover:border-[#cc1111]/30 transition-colors"
                   >
-                    <div className="w-1 h-5 bg-[#c49a2a]/40 shrink-0" />
+                    <div className="w-1 h-5 bg-[#cc1111]/40 shrink-0" />
                     <span className="text-[0.8125rem] text-[#a0b0c0]">{capability}</span>
                   </div>
                 ))}
@@ -247,7 +247,7 @@ export default async function ServiceDetailPage({
                     </h3>
                     <ArrowRight
                       size={14}
-                      className="text-[#3a4a58] group-hover:text-[#c49a2a] group-hover:translate-x-1 transition-all shrink-0"
+                      className="text-[#3a4a58] group-hover:text-[#cc1111] group-hover:translate-x-1 transition-all shrink-0"
                     />
                   </Link>
                 ))}
@@ -272,13 +272,13 @@ export default async function ServiceDetailPage({
                 const Icon = ICON_MAP[s.icon as keyof typeof ICON_MAP] ?? Shield;
                 return (
                   <Link key={s.slug} href={`/services/${s.slug}`} className="card-anduril group block p-5">
-                    <div className="w-9 h-9 border border-[#c49a2a]/20 flex items-center justify-center mb-4 text-[#c49a2a] group-hover:border-[#c49a2a]/50 transition-colors">
+                    <div className="w-9 h-9 border border-[#cc1111]/20 flex items-center justify-center mb-4 text-[#cc1111] group-hover:border-[#cc1111]/50 transition-colors">
                       <Icon size={16} strokeWidth={1.5} />
                     </div>
                     <h3 className="font-[var(--font-display)] text-[0.875rem] text-white uppercase tracking-wide mb-2">
                       {s.title}
                     </h3>
-                    <span className="flex items-center gap-1.5 text-[0.6875rem] text-[#606878] group-hover:text-[#c49a2a] transition-colors uppercase tracking-wide">
+                    <span className="flex items-center gap-1.5 text-[0.6875rem] text-[#606878] group-hover:text-[#cc1111] transition-colors uppercase tracking-wide">
                       View
                       <ArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
                     </span>

@@ -22,7 +22,7 @@ export default function GlobalError({
         <div className="max-w-xl w-full text-center">
           <div
             className="inline-block text-[0.6875rem] tracking-[0.2em] uppercase mb-6 px-3 py-1.5 border"
-            style={{ color: "#c49a2a", borderColor: "rgba(196,154,42,0.3)" }}
+            style={{ color: "#cc1111", borderColor: "rgba(204,17,17,0.3)" }}
           >
             Error · Something went wrong
           </div>
@@ -33,7 +33,7 @@ export default function GlobalError({
           >
             Service
             <br />
-            <span style={{ WebkitTextStroke: "1px rgba(196,154,42,0.6)", color: "transparent" }}>
+            <span style={{ WebkitTextStroke: "1px rgba(204,17,17,0.6)", color: "transparent" }}>
               Interrupted
             </span>
           </h1>
@@ -45,7 +45,7 @@ export default function GlobalError({
           <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", justifyContent: "center", marginBottom: "2.5rem" }}>
             <button
               onClick={reset}
-              style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1.5rem", background: "#c49a2a", color: "#06101e", fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", border: "none", cursor: "pointer" }}
+              style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.75rem 1.5rem", background: "#cc1111", color: "#06101e", fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", border: "none", cursor: "pointer" }}
             >
               <RefreshCw size={13} />
               Try Again

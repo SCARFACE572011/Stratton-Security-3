@@ -80,7 +80,7 @@ export default function TermsPage() {
               {SECTIONS.map((section, i) => (
                 <div key={i} className="grid sm:grid-cols-12 gap-4 sm:gap-8">
                   <div className="sm:col-span-4">
-                    <h2 className="font-[var(--font-display)] text-[0.875rem] text-[#c49a2a] uppercase tracking-widest">
+                    <h2 className="font-[var(--font-display)] text-[0.875rem] text-[#cc1111] uppercase tracking-widest">
                       {section.title}
                     </h2>
                   </div>

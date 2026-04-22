@@ -52,9 +52,9 @@ export default function ValuesSection() {
                   key={i}
                   className="card-anduril relative flex items-center gap-4 p-4 group overflow-hidden"
                 >
-                  <div className="absolute left-0 top-0 bottom-0 w-0 group-hover:w-1 bg-[#c49a2a] transition-all duration-300" />
-                  <div className="w-8 h-8 border border-[#1a2030] flex items-center justify-center group-hover:border-[#c49a2a]/40 transition-colors shrink-0">
-                    <span className="font-[var(--font-display)] text-xs text-[#c49a2a] font-700">
+                  <div className="absolute left-0 top-0 bottom-0 w-0 group-hover:w-1 bg-[#cc1111] transition-all duration-300" />
+                  <div className="w-8 h-8 border border-[#1a2030] flex items-center justify-center group-hover:border-[#cc1111]/40 transition-colors shrink-0">
+                    <span className="font-[var(--font-display)] text-xs text-[#cc1111] font-700">
                       0{i + 1}
                     </span>
                   </div>
@@ -64,7 +64,7 @@ export default function ValuesSection() {
                 </div>
               ))}
             </div>
-            <div className="mt-6 p-5 card-anduril border-[#c49a2a]/20">
+            <div className="mt-6 p-5 card-anduril border-[#cc1111]/20">
               <p className="text-[0.8125rem] text-[#a0b0c0] leading-relaxed italic">
                 &ldquo;{SITE_CONFIG.vision}&rdquo;
               </p>
@@ -86,10 +86,10 @@ export default function ValuesSection() {
               {CERTIFICATIONS.map((cert, i) => (
                 <div
                   key={i}
-                  className="card-anduril border-t-2 border-t-[#c49a2a]/30 p-5"
+                  className="card-anduril border-t-2 border-t-[#cc1111]/30 p-5"
                 >
                   <p className="text-[0.6875rem] text-[#606878] tracking-widest uppercase mb-1">{cert.title}</p>
-                  <p className="font-[var(--font-display)] text-lg text-[#c49a2a] uppercase mb-1">{cert.value}</p>
+                  <p className="font-[var(--font-display)] text-lg text-[#cc1111] uppercase mb-1">{cert.value}</p>
                   <p className="text-[0.6875rem] text-[#606878] leading-snug">{cert.sub}</p>
                 </div>
               ))}

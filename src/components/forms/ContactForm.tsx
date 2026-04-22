@@ -36,7 +36,7 @@ const PROPERTY_TYPES = [
 const STEP_LABELS = ["Property & Service", "Your Information", "Details & Submit"];
 
 const inputClass =
-  "w-full bg-[#050810] border border-[#1a2030] text-white text-sm px-4 py-3 focus:border-[#c49a2a]/50 focus:outline-none transition-colors placeholder:text-[#3a4a58]";
+  "w-full bg-[#050810] border border-[#1a2030] text-white text-sm px-4 py-3 focus:border-[#cc1111]/50 focus:outline-none transition-colors placeholder:text-[#3a4a58]";
 const labelClass =
   "block text-[0.75rem] text-[#606878] tracking-widest uppercase mb-2";
 const errorClass =
@@ -98,7 +98,7 @@ export default function ContactForm() {
           <p className="text-[0.75rem] text-[#606878] mb-3">For immediate assistance:</p>
           <a
             href={`tel:${SITE_CONFIG.phoneE164}`}
-            className="inline-flex items-center gap-2 text-[#c49a2a] font-medium text-sm hover:text-[#e0b84a] transition-colors"
+            className="inline-flex items-center gap-2 text-[#cc1111] font-medium text-sm hover:text-[#ef4444] transition-colors"
           >
             <Phone size={14} />
             {SITE_CONFIG.phone}
@@ -123,12 +123,12 @@ export default function ContactForm() {
               <div key={i} className="flex-1 px-4 py-3 relative">
                 <div
                   className={`absolute bottom-0 left-0 right-0 h-0.5 transition-colors duration-300 ${
-                    isActive ? "bg-[#c49a2a]" : isComplete ? "bg-[#c49a2a]/40" : "bg-transparent"
+                    isActive ? "bg-[#cc1111]" : isComplete ? "bg-[#cc1111]/40" : "bg-transparent"
                   }`}
                 />
                 <span
                   className={`text-[0.6875rem] tracking-widest uppercase transition-colors ${
-                    isActive ? "text-[#c49a2a]" : isComplete ? "text-[#606878]" : "text-[#3a4a58]"
+                    isActive ? "text-[#cc1111]" : isComplete ? "text-[#606878]" : "text-[#3a4a58]"
                   }`}
                 >
                   {i + 1}. {label}
@@ -146,7 +146,7 @@ export default function ContactForm() {
             <div className="space-y-5">
               <div>
                 <label htmlFor="propertyType" className={labelClass}>
-                  Property Type <span className="text-[#c49a2a]">*</span>
+                  Property Type <span className="text-[#cc1111]">*</span>
                 </label>
                 <select
                   id="propertyType"
@@ -165,7 +165,7 @@ export default function ContactForm() {
               </div>
               <div>
                 <label htmlFor="serviceType" className={labelClass}>
-                  Service Needed <span className="text-[#c49a2a]">*</span>
+                  Service Needed <span className="text-[#cc1111]">*</span>
                 </label>
                 <select
                   id="serviceType"
@@ -192,7 +192,7 @@ export default function ContactForm() {
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="name" className={labelClass}>
-                    Full Name <span className="text-[#c49a2a]">*</span>
+                    Full Name <span className="text-[#cc1111]">*</span>
                   </label>
                   <input
                     id="name"
@@ -219,7 +219,7 @@ export default function ContactForm() {
               </div>
               <div>
                 <label htmlFor="email" className={labelClass}>
-                  Email Address <span className="text-[#c49a2a]">*</span>
+                  Email Address <span className="text-[#cc1111]">*</span>
                 </label>
                 <input
                   id="email"
@@ -234,7 +234,7 @@ export default function ContactForm() {
               </div>
               <div>
                 <label htmlFor="phone" className={labelClass}>
-                  Phone Number <span className="text-[#c49a2a]">*</span>
+                  Phone Number <span className="text-[#cc1111]">*</span>
                 </label>
                 <input
                   id="phone"

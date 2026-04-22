@@ -27,12 +27,12 @@ export default function MobileStickyBar() {
           href={`tel:${SITE_CONFIG.phoneE164}`}
           className="flex-1 flex items-center justify-center gap-2 py-3.5 text-[0.75rem] font-600 uppercase tracking-wide text-[#edf2f7] border-r border-[#1a3050] hover:bg-[#0b1a2e] transition-colors"
         >
-          <Phone size={15} className="text-[#c49a2a]" />
+          <Phone size={15} className="text-[#cc1111]" />
           Call Now
         </a>
         <Link
           href="/contact"
-          className="flex-1 flex items-center justify-center gap-2 py-3.5 text-[0.75rem] font-600 uppercase tracking-wide bg-[#c49a2a] text-[#040c1a] hover:bg-[#e0b84a] transition-colors"
+          className="flex-1 flex items-center justify-center gap-2 py-3.5 text-[0.75rem] font-600 uppercase tracking-wide bg-[#cc1111] text-white hover:bg-[#ef4444] transition-colors"
         >
           <MessageSquare size={15} />
           Get a Quote

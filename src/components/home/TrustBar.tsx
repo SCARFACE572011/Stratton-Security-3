@@ -58,7 +58,7 @@ export default function TrustBar() {
             >
               <item.icon
                 size={16}
-                className="text-[#c49a2a] group-hover:text-[#cc1111] transition-colors duration-300 shrink-0"
+                className="text-[#cc1111] group-hover:text-[#cc1111] transition-colors duration-300 shrink-0"
                 strokeWidth={1.5}
               />
               <div className="min-w-0">

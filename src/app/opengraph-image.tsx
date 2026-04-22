@@ -30,7 +30,7 @@ export default function OGImage() {
             left: 0,
             right: 0,
             height: "3px",
-            background: "linear-gradient(to right, transparent, #c49a2a 20%, #c49a2a 80%, transparent)",
+            background: "linear-gradient(to right, transparent, #cc1111 20%, #cc1111 80%, transparent)",
           }}
         />
 
@@ -54,7 +54,7 @@ export default function OGImage() {
             width: "600px",
             height: "600px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(196,154,42,0.08) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(204,17,17,0.08) 0%, transparent 70%)",
           }}
         />
 
@@ -65,13 +65,13 @@ export default function OGImage() {
             style={{
               width: "44px",
               height: "44px",
-              border: "1px solid #c49a2a",
+              border: "1px solid #cc1111",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
             }}
           >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c49a2a" strokeWidth="1.5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#cc1111" strokeWidth="1.5">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
             </svg>
           </div>
@@ -87,13 +87,13 @@ export default function OGImage() {
 
         {/* Main headline */}
         <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-          <div style={{ fontSize: "11px", color: "#c49a2a", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+          <div style={{ fontSize: "11px", color: "#cc1111", letterSpacing: "0.2em", textTransform: "uppercase" }}>
             PROFESSIONAL SECURITY SERVICES · LOS ANGELES
           </div>
           <div style={{ fontSize: "72px", fontWeight: 800, color: "#edf2f7", lineHeight: 0.9, textTransform: "uppercase", letterSpacing: "-0.01em" }}>
             Excellence
           </div>
-          <div style={{ fontSize: "72px", fontWeight: 800, color: "transparent", lineHeight: 0.9, textTransform: "uppercase", letterSpacing: "-0.01em", WebkitTextStroke: "1.5px rgba(196, 154, 42, 0.7)" }}>
+          <div style={{ fontSize: "72px", fontWeight: 800, color: "transparent", lineHeight: 0.9, textTransform: "uppercase", letterSpacing: "-0.01em", WebkitTextStroke: "1.5px rgba(204, 17, 17, 0.7)" }}>
             In Protection
           </div>
         </div>
@@ -120,7 +120,7 @@ export default function OGImage() {
             left: 0,
             right: 0,
             height: "2px",
-            background: "linear-gradient(to right, transparent, #c49a2a 20%, #c49a2a 80%, transparent)",
+            background: "linear-gradient(to right, transparent, #cc1111 20%, #cc1111 80%, transparent)",
             opacity: 0.5,
           }}
         />

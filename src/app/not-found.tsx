@@ -16,7 +16,7 @@ export default function NotFound() {
               <h1 className="display-title text-[clamp(3rem,8vw,6rem)] text-[#edf2f7] leading-[0.95] mb-6">
                 Page Not
                 <br />
-                <span className="gradient-gold">In Service</span>
+                <span className="gradient-red">In Service</span>
               </h1>
               <p className="text-[#9fb5cb] text-[1.0625rem] leading-relaxed max-w-xl mb-8">
                 The page you were looking for isn't here — it may have moved or never
@@ -53,14 +53,14 @@ export default function NotFound() {
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="group flex items-center justify-between py-3 border-b border-[#1a3050] last:border-0 hover:border-[#c49a2a]/40 transition-colors"
+                        className="group flex items-center justify-between py-3 border-b border-[#1a3050] last:border-0 hover:border-[#cc1111]/40 transition-colors"
                       >
                         <span className="text-[0.875rem] text-[#9fb5cb] group-hover:text-[#edf2f7] transition-colors">
                           {link.label}
                         </span>
                         <ArrowRight
                           size={13}
-                          className="text-[#2a3d50] group-hover:text-[#c49a2a] group-hover:translate-x-1 transition-all"
+                          className="text-[#2a3d50] group-hover:text-[#cc1111] group-hover:translate-x-1 transition-all"
                         />
                       </Link>
                     </li>

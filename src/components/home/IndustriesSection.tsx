@@ -27,7 +27,7 @@ export default function IndustriesSection() {
             >
               Protecting Every
               <br />
-              <span className="gradient-gold">Industry Sector</span>
+              <span className="gradient-red">Industry Sector</span>
             </h2>
             <p className="text-[#a0b0c0] text-[0.9375rem] leading-relaxed mb-8 font-[var(--font-sans)]">
               Stratton&apos;s security programs span 14+ industry verticals — from
@@ -58,9 +58,9 @@ export default function IndustriesSection() {
                 >
                   <Link
                     href={`/industries/${industry.slug}`}
-                    className="group flex items-center gap-3 p-3 border border-[#1a2030] hover:border-[#c49a2a]/40 hover:bg-[#0a0f1a] transition-all duration-200"
+                    className="group flex items-center gap-3 p-3 border border-[#1a2030] hover:border-[#cc1111]/40 hover:bg-[#0a0f1a] transition-all duration-200"
                   >
-                    <span className="text-[#3a4a58] group-hover:text-[#c49a2a] transition-colors text-sm shrink-0 select-none font-[var(--font-sans)]">
+                    <span className="text-[#3a4a58] group-hover:text-[#cc1111] transition-colors text-sm shrink-0 select-none font-[var(--font-sans)]">
                       →
                     </span>
                     <span className="text-[0.8125rem] text-[#606878] group-hover:text-[#a0b0c0] transition-colors font-[var(--font-sans)]">

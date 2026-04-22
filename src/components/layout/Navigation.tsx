@@ -61,8 +61,8 @@ export default function Navigation() {
               className="flex items-center gap-2.5 group"
               aria-label="Stratton Security Group — Home"
             >
-              <div className="w-8 h-8 flex items-center justify-center border border-[#c49a2a]/60 transition-all duration-200 group-hover:bg-[#c49a2a]/10">
-                <Shield size={16} className="text-[#c49a2a]" strokeWidth={2} />
+              <div className="w-8 h-8 flex items-center justify-center border border-[#cc1111]/60 transition-all duration-200 group-hover:bg-[#cc1111]/10">
+                <Shield size={16} className="text-[#cc1111]" strokeWidth={2} />
               </div>
               <div className="flex flex-col leading-none">
                 <span className="font-[var(--font-display)] text-[0.95rem] font-700 tracking-[0.06em] text-white uppercase">
@@ -188,7 +188,7 @@ export default function Navigation() {
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center gap-2.5"
               >
-                <Shield size={16} className="text-[#c49a2a]" />
+                <Shield size={16} className="text-[#cc1111]" />
                 <span className="font-[var(--font-display)] text-sm font-700 tracking-[0.06em] text-white uppercase">
                   Stratton Security Group
                 </span>
@@ -217,7 +217,7 @@ export default function Navigation() {
                     className={cn(
                       "flex items-center justify-between px-5 py-4 text-[1rem] font-medium hover:bg-[#0a0f1a] transition-colors border-b border-[#1a2030]/40 uppercase tracking-wide",
                       isActive(item.href)
-                        ? "text-[#c49a2a] border-l-2 border-l-[#c49a2a] pl-[calc(1.25rem-2px)]"
+                        ? "text-[#cc1111] border-l-2 border-l-[#cc1111] pl-[calc(1.25rem-2px)]"
                         : "text-[#c8d4e0] hover:text-white"
                     )}
                     aria-current={isActive(item.href) ? "page" : undefined}
@@ -246,7 +246,7 @@ export default function Navigation() {
             <div className="p-5 border-t border-[#1a2030] space-y-3">
               <a
                 href={`tel:${SITE_CONFIG.phoneE164}`}
-                className="flex items-center justify-center gap-2 w-full py-3.5 border border-[#1a2030] text-[#a0b0c0] text-sm font-medium uppercase tracking-wide hover:border-[#c49a2a] hover:text-[#c49a2a] transition-colors"
+                className="flex items-center justify-center gap-2 w-full py-3.5 border border-[#1a2030] text-[#a0b0c0] text-sm font-medium uppercase tracking-wide hover:border-[#cc1111] hover:text-[#cc1111] transition-colors"
               >
                 <Phone size={15} />
                 {SITE_CONFIG.phone}

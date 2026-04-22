@@ -114,8 +114,8 @@ export default function StatsSection() {
 
               {/* Gold + red accent */}
               <div className="flex items-center justify-center gap-1.5 mb-3">
-                <div className="w-6 h-px bg-[#c49a2a] group-hover:bg-[#cc1111] transition-colors duration-300" />
-                <div className="w-1.5 h-1.5 rounded-full bg-[#c49a2a]/40 group-hover:bg-[#cc1111]/60 transition-colors duration-300" />
+                <div className="w-6 h-px bg-[#cc1111] group-hover:bg-[#cc1111] transition-colors duration-300" />
+                <div className="w-1.5 h-1.5 rounded-full bg-[#cc1111]/40 group-hover:bg-[#cc1111]/60 transition-colors duration-300" />
               </div>
 
               <p className="text-[0.625rem] text-[#606878] group-hover:text-[#a0b0c0] tracking-[0.2em] uppercase transition-colors duration-300">

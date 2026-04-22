@@ -64,12 +64,12 @@ export default async function IndustryDetailPage({
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050810] via-[#050810]/70 to-[#050810]/20" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#050810]/80 to-transparent" />
-          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#c49a2a]/60 to-transparent" />
+          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#cc1111]/60 to-transparent" />
 
           <div className="relative z-10 container-wide pb-16 pt-32 w-full">
             <Link
               href="/industries"
-              className="inline-flex items-center gap-2 text-[0.75rem] text-[#606878] hover:text-[#c49a2a] uppercase tracking-wide transition-colors mb-8"
+              className="inline-flex items-center gap-2 text-[0.75rem] text-[#606878] hover:text-[#cc1111] uppercase tracking-wide transition-colors mb-8"
             >
               <ArrowLeft size={12} />
               All Industries
@@ -81,7 +81,7 @@ export default async function IndustryDetailPage({
             >
               {industry.label}
               <br />
-              <span className="gradient-gold">Security Programs</span>
+              <span className="gradient-red">Security Programs</span>
             </h1>
             {industry.summary && (
               <p className="text-[#a0b0c0] text-[1.0625rem] leading-relaxed max-w-2xl">
@@ -102,7 +102,7 @@ export default async function IndustryDetailPage({
                   {industry.threats && industry.threats.length > 0 && (
                     <div>
                       <div className="flex items-center gap-2.5 mb-5">
-                        <div className="w-9 h-9 border border-[#c49a2a]/30 flex items-center justify-center text-[#c49a2a]">
+                        <div className="w-9 h-9 border border-[#cc1111]/30 flex items-center justify-center text-[#cc1111]">
                           <AlertTriangle size={16} strokeWidth={1.5} />
                         </div>
                         <p className="label-overline">Risk Exposure</p>
@@ -119,7 +119,7 @@ export default async function IndustryDetailPage({
                             key={threat}
                             className="flex items-start gap-3 px-4 py-3 border-b border-[#1a2030]"
                           >
-                            <div className="w-1 h-5 bg-[#c49a2a]/40 shrink-0 mt-0.5" />
+                            <div className="w-1 h-5 bg-[#cc1111]/40 shrink-0 mt-0.5" />
                             <span className="text-[0.875rem] text-[#a0b0c0] leading-relaxed">
                               {threat}
                             </span>
@@ -132,7 +132,7 @@ export default async function IndustryDetailPage({
                   {industry.approach && (
                     <div>
                       <div className="flex items-center gap-2.5 mb-5">
-                        <div className="w-9 h-9 border border-[#c49a2a]/30 flex items-center justify-center text-[#c49a2a]">
+                        <div className="w-9 h-9 border border-[#cc1111]/30 flex items-center justify-center text-[#cc1111]">
                           <Target size={16} strokeWidth={1.5} />
                         </div>
                         <p className="label-overline">Our Approach</p>
@@ -198,7 +198,7 @@ export default async function IndustryDetailPage({
                     <p className="text-[0.8125rem] text-[#606878] leading-relaxed mb-4">
                       {service.shortDescription}
                     </p>
-                    <span className="flex items-center gap-1.5 text-[0.6875rem] text-[#606878] group-hover:text-[#c49a2a] transition-colors uppercase tracking-wide">
+                    <span className="flex items-center gap-1.5 text-[0.6875rem] text-[#606878] group-hover:text-[#cc1111] transition-colors uppercase tracking-wide">
                       Learn more
                       <ArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
                     </span>
@@ -225,9 +225,9 @@ export default async function IndustryDetailPage({
                 <Link
                   key={ind.slug}
                   href={`/industries/${ind.slug}`}
-                  className="group flex items-center gap-3 p-3 border border-[#1a2030] hover:border-[#c49a2a]/40 transition-all duration-200"
+                  className="group flex items-center gap-3 p-3 border border-[#1a2030] hover:border-[#cc1111]/40 transition-all duration-200"
                 >
-                  <div className="w-1 h-5 bg-[#1a2030] group-hover:bg-[#c49a2a]/40 transition-colors shrink-0" />
+                  <div className="w-1 h-5 bg-[#1a2030] group-hover:bg-[#cc1111]/40 transition-colors shrink-0" />
                   <span className="text-[0.8125rem] text-[#606878] group-hover:text-[#a0b0c0] transition-colors">
                     {ind.label}
                   </span>

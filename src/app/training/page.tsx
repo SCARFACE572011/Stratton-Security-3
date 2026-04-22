@@ -72,7 +72,7 @@ export default function TrainingPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050810] via-[#050810]/70 to-[#050810]/20" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#050810]/80 to-transparent" />
-          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#c49a2a]/60 to-transparent" />
+          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#cc1111]/60 to-transparent" />
 
           <div className="relative z-10 container-wide pb-20 pt-32">
             <p className="label-overline mb-5">Professional Development</p>
@@ -82,7 +82,7 @@ export default function TrainingPage() {
             >
               Training &amp;
               <br />
-              <span className="gradient-gold">Certification Programs</span>
+              <span className="gradient-red">Certification Programs</span>
             </h1>
             <p className="text-[#a0b0c0] text-[1rem] leading-relaxed max-w-xl">
               Stratton Security Group offers professional security training workshops
@@ -106,8 +106,8 @@ export default function TrainingPage() {
               {TRAINING_TOPICS.map((topic, i) => (
                 <div key={i} className="card-anduril p-6">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-10 h-10 border border-[#c49a2a]/25 flex items-center justify-center shrink-0">
-                      <Award size={18} className="text-[#c49a2a]" strokeWidth={1.5} />
+                    <div className="w-10 h-10 border border-[#cc1111]/25 flex items-center justify-center shrink-0">
+                      <Award size={18} className="text-[#cc1111]" strokeWidth={1.5} />
                     </div>
                     <div>
                       <h3 className="font-[var(--font-sans)] text-[0.9375rem] font-600 text-white mb-0.5">
@@ -154,9 +154,9 @@ export default function TrainingPage() {
                 {WORKSHOP_AREAS.map((area) => (
                   <div
                     key={area}
-                    className="flex items-center gap-4 py-3.5 border-b border-[#1a2030] hover:border-[#c49a2a]/30 transition-colors last:border-0"
+                    className="flex items-center gap-4 py-3.5 border-b border-[#1a2030] hover:border-[#cc1111]/30 transition-colors last:border-0"
                   >
-                    <div className="w-1 h-5 bg-[#c49a2a]/40 shrink-0" />
+                    <div className="w-1 h-5 bg-[#cc1111]/40 shrink-0" />
                     <span className="text-[0.8125rem] text-[#a0b0c0]">{area}</span>
                   </div>
                 ))}

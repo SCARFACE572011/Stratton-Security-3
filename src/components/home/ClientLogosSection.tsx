@@ -26,7 +26,7 @@ export default function ClientLogosSection() {
             >
               Relied On Across
               <br />
-              <span className="gradient-gold">Los Angeles</span>
+              <span className="gradient-red">Los Angeles</span>
             </h2>
             <p className="text-[#a0b0c0] text-[0.875rem] leading-relaxed font-[var(--font-sans)]">
               From Beverly Hills residential communities to Century City
@@ -54,10 +54,10 @@ export default function ClientLogosSection() {
                     className="bg-[#050810] group flex flex-col items-center justify-center aspect-[4/3] px-4 py-6 text-center hover:bg-[#0a0f1a] transition-colors duration-200"
                     title={client.name}
                   >
-                    <div className="font-[var(--font-display)] text-[1.625rem] md:text-[1.875rem] tracking-[0.05em] text-[#606878] group-hover:text-[#c49a2a] transition-colors leading-none">
+                    <div className="font-[var(--font-display)] text-[1.625rem] md:text-[1.875rem] tracking-[0.05em] text-[#606878] group-hover:text-[#cc1111] transition-colors leading-none">
                       {initials}
                     </div>
-                    <div className="mt-3 h-px w-6 bg-[#1a2030] group-hover:bg-[#c49a2a]/50 transition-colors" />
+                    <div className="mt-3 h-px w-6 bg-[#1a2030] group-hover:bg-[#cc1111]/50 transition-colors" />
                     <div className="mt-3 text-[0.625rem] text-[#606878] uppercase tracking-[0.15em]">
                       {client.industry}
                     </div>

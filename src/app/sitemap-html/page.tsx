@@ -61,7 +61,7 @@ export default function SitemapPage() {
                       <li key={link.href}>
                         <Link
                           href={link.href}
-                          className="text-[0.875rem] text-[#7a9ab8] hover:text-[#c49a2a] transition-colors"
+                          className="text-[0.875rem] text-[#7a9ab8] hover:text-[#cc1111] transition-colors"
                         >
                           {link.label}
                         </Link>
@@ -79,7 +79,7 @@ export default function SitemapPage() {
                     <li key={s.slug}>
                       <Link
                         href={`/services/${s.slug}`}
-                        className="text-[0.875rem] text-[#7a9ab8] hover:text-[#c49a2a] transition-colors"
+                        className="text-[0.875rem] text-[#7a9ab8] hover:text-[#cc1111] transition-colors"
                       >
                         {s.title}
                       </Link>
@@ -96,7 +96,7 @@ export default function SitemapPage() {
                     <li key={ind.slug}>
                       <Link
                         href={`/industries/${ind.slug}`}
-                        className="text-[0.875rem] text-[#7a9ab8] hover:text-[#c49a2a] transition-colors"
+                        className="text-[0.875rem] text-[#7a9ab8] hover:text-[#cc1111] transition-colors"
                       >
                         {ind.label}
                       </Link>

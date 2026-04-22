@@ -50,7 +50,7 @@ export default function WhyStratton() {
             >
               The Standard of
               <br />
-              <span className="gradient-gold">Protective Excellence</span>
+              <span className="gradient-red">Protective Excellence</span>
             </h2>
             <p className="text-[#a0b0c0] text-[0.9375rem] leading-relaxed mb-8">
               We don&apos;t offer generic security templates. Every Stratton program
@@ -77,7 +77,7 @@ export default function WhyStratton() {
                   className="flex items-start gap-6 py-7 border-b border-[#1a2030] last:border-0"
                 >
                   <div className="w-10 h-10 border border-[#1a2030] flex items-center justify-center shrink-0 mt-0.5">
-                    <IconComponent size={17} className="text-[#c49a2a]" strokeWidth={1.5} />
+                    <IconComponent size={17} className="text-[#cc1111]" strokeWidth={1.5} />
                   </div>
                   <div>
                     <h3 className="font-[var(--font-sans)] text-[1rem] font-600 text-white mb-2">

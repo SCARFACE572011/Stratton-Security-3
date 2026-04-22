@@ -8,7 +8,7 @@ function StarRating({ count = 5 }: { count?: number }) {
   return (
     <div className="flex gap-0.5" aria-label={`${count} out of 5 stars`}>
       {Array.from({ length: count }).map((_, i) => (
-        <Star key={i} size={12} className="text-[#c49a2a] fill-[#c49a2a]" />
+        <Star key={i} size={12} className="text-[#cc1111] fill-[#cc1111]" />
       ))}
     </div>
   );
@@ -33,21 +33,21 @@ export default function TestimonialsSection() {
             <h2 id="testimonials-heading" className="display-title text-[clamp(2rem,4.5vw,3rem)] text-white">
               Trusted by Clients
               <br />
-              <span className="gradient-gold">Across Los Angeles</span>
+              <span className="gradient-red">Across Los Angeles</span>
             </h2>
           </div>
           <div className="flex items-center gap-3 shrink-0">
             <div className="text-right">
               <div className="flex items-center justify-end gap-1 mb-0.5">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} size={14} className="text-[#c49a2a] fill-[#c49a2a]" />
+                  <Star key={i} size={14} className="text-[#cc1111] fill-[#cc1111]" />
                 ))}
               </div>
               <p className="text-[0.75rem] text-[#a0b0c0]">5.0 on Bark.com</p>
               <p className="text-[0.6875rem] text-[#606878]">Verified reviews</p>
             </div>
-            <div className="w-12 h-12 border border-[#c49a2a]/30 flex items-center justify-center">
-              <span className="font-[var(--font-display)] text-xl text-[#c49a2a] font-700">5★</span>
+            <div className="w-12 h-12 border border-[#cc1111]/30 flex items-center justify-center">
+              <span className="font-[var(--font-display)] text-xl text-[#cc1111] font-700">5★</span>
             </div>
           </div>
         </motion.div>
@@ -65,7 +65,7 @@ export default function TestimonialsSection() {
             >
               <div
                 className="font-[var(--font-display)] leading-none select-none -mb-2"
-                style={{ fontSize: "3.5rem", color: "rgba(196,154,42,0.1)" }}
+                style={{ fontSize: "3.5rem", color: "rgba(204,17,17,0.1)" }}
                 aria-hidden="true"
               >
                 &ldquo;
@@ -75,7 +75,7 @@ export default function TestimonialsSection() {
                 &ldquo;{item.quote}&rdquo;
               </p>
               <footer className="flex items-center gap-3 pt-2 border-t border-[#1a2030]">
-                <div className="w-8 h-8 bg-[rgba(255,255,255,0.05)] flex items-center justify-center shrink-0 text-[0.6875rem] font-600 text-[#c49a2a] font-[var(--font-sans)]">
+                <div className="w-8 h-8 bg-[rgba(255,255,255,0.05)] flex items-center justify-center shrink-0 text-[0.6875rem] font-600 text-[#cc1111] font-[var(--font-sans)]">
                   {item.initials}
                 </div>
                 <div>
@@ -96,7 +96,7 @@ export default function TestimonialsSection() {
           className="card-anduril p-6"
         >
           <div className="flex items-center gap-3 mb-5">
-            <div className="w-1 h-6 bg-[#c49a2a]" />
+            <div className="w-1 h-6 bg-[#cc1111]" />
             <p className="text-[0.75rem] text-[#a0b0c0] tracking-widest uppercase">Verified on Bark.com</p>
           </div>
           <div className="grid md:grid-cols-3 gap-5">

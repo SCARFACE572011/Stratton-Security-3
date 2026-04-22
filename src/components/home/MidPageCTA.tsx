@@ -9,11 +9,11 @@ export default function MidPageCTA() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="relative bg-[#080c14] border-y border-[#c49a2a]/30 overflow-hidden">
+    <div className="relative bg-[#080c14] border-y border-[#cc1111]/30 overflow-hidden">
       {/* Left vertical gold accent */}
       <div
         className="absolute left-0 top-0 bottom-0 w-0.5 pointer-events-none"
-        style={{ background: "linear-gradient(to bottom, transparent, rgba(196,154,42,0.7) 40%, rgba(196,154,42,0.7) 60%, transparent)" }}
+        style={{ background: "linear-gradient(to bottom, transparent, rgba(204,17,17,0.7) 40%, rgba(204,17,17,0.7) 60%, transparent)" }}
         aria-hidden="true"
       />
 

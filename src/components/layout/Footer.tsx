@@ -6,15 +6,15 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#050810] border-t border-[#c49a2a]/20">
+    <footer className="bg-[#050810] border-t border-[#cc1111]/20">
       <div className="container-wide py-16 md:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8">
 
           {/* Brand column */}
           <div className="lg:col-span-5">
             <Link href="/" className="flex items-center gap-2.5 group mb-6">
-              <div className="w-8 h-8 flex items-center justify-center border border-[#c49a2a]/60">
-                <Shield size={15} className="text-[#c49a2a]" />
+              <div className="w-8 h-8 flex items-center justify-center border border-[#cc1111]/60">
+                <Shield size={15} className="text-[#cc1111]" />
               </div>
               <div className="flex flex-col leading-none">
                 <span className="font-[var(--font-display)] text-[0.95rem] font-700 tracking-[0.06em] text-white uppercase">
@@ -34,18 +34,18 @@ export default function Footer() {
             <div className="space-y-3">
               <a
                 href={`tel:${SITE_CONFIG.phoneE164}`}
-                className="flex items-center gap-3 text-[0.875rem] text-[#a0b0c0] hover:text-[#c49a2a] transition-colors group"
+                className="flex items-center gap-3 text-[0.875rem] text-[#a0b0c0] hover:text-[#cc1111] transition-colors group"
               >
-                <div className="w-7 h-7 border border-[#1a2030] flex items-center justify-center group-hover:border-[#c49a2a]/40 transition-colors">
+                <div className="w-7 h-7 border border-[#1a2030] flex items-center justify-center group-hover:border-[#cc1111]/40 transition-colors">
                   <Phone size={12} />
                 </div>
                 {SITE_CONFIG.phone}
               </a>
               <a
                 href={`mailto:${SITE_CONFIG.email}`}
-                className="flex items-center gap-3 text-[0.875rem] text-[#a0b0c0] hover:text-[#c49a2a] transition-colors group"
+                className="flex items-center gap-3 text-[0.875rem] text-[#a0b0c0] hover:text-[#cc1111] transition-colors group"
               >
-                <div className="w-7 h-7 border border-[#1a2030] flex items-center justify-center group-hover:border-[#c49a2a]/40 transition-colors">
+                <div className="w-7 h-7 border border-[#1a2030] flex items-center justify-center group-hover:border-[#cc1111]/40 transition-colors">
                   <Mail size={12} />
                 </div>
                 {SITE_CONFIG.email}

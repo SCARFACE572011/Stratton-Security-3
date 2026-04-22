@@ -42,7 +42,7 @@ export default function FaqPage() {
         />
 
         {/* Minimal text hero — no photo, pure black */}
-        <div className="bg-[#050810] border-b border-[#c49a2a]/15 pt-32 pb-16 md:pb-20">
+        <div className="bg-[#050810] border-b border-[#cc1111]/15 pt-32 pb-16 md:pb-20">
           <div className="container-wide">
             <div className="max-w-2xl">
               <p className="label-overline mb-5">Answers</p>
@@ -52,7 +52,7 @@ export default function FaqPage() {
               >
                 Frequently Asked
                 <br />
-                <span className="gradient-gold">Questions</span>
+                <span className="gradient-red">Questions</span>
               </h1>
               <p className="text-[#a0b0c0] text-[1rem] leading-relaxed">
                 Straight answers about how Stratton is licensed, how our officers
@@ -81,7 +81,7 @@ export default function FaqPage() {
                       </div>
                       <span
                         aria-hidden="true"
-                        className="shrink-0 w-6 h-6 border border-[#1a2030] group-hover:border-[#c49a2a]/50 flex items-center justify-center text-[#c49a2a] transition-all relative"
+                        className="shrink-0 w-6 h-6 border border-[#1a2030] group-hover:border-[#cc1111]/50 flex items-center justify-center text-[#cc1111] transition-all relative"
                       >
                         <span className="block w-2.5 h-px bg-current" />
                         <span className="block w-px h-2.5 bg-current absolute group-open:opacity-0 transition-opacity" />

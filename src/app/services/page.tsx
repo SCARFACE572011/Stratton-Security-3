@@ -61,7 +61,7 @@ export default function ServicesPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050810] via-[#050810]/65 to-[#050810]/15" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#050810]/70 to-transparent" />
-          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#c49a2a]/60 to-transparent" />
+          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#cc1111]/60 to-transparent" />
 
           <div className="relative z-10 container-wide pb-20 pt-32">
             <p className="label-overline mb-5">What We Provide</p>
@@ -71,7 +71,7 @@ export default function ServicesPage() {
             >
               Security Services
               <br />
-              <span className="gradient-gold">Across Every Sector</span>
+              <span className="gradient-red">Across Every Sector</span>
             </h1>
             <p className="text-[#a0b0c0] text-[1rem] leading-relaxed max-w-xl">
               From mobile patrol and armed guard services to specialized executive
@@ -101,7 +101,7 @@ export default function ServicesPage() {
                     href={`/services/${service.slug}`}
                     className="card-anduril group block p-6"
                   >
-                    <div className="w-10 h-10 border border-[#c49a2a]/25 flex items-center justify-center mb-5 text-[#c49a2a] group-hover:border-[#c49a2a]/50 transition-colors">
+                    <div className="w-10 h-10 border border-[#cc1111]/25 flex items-center justify-center mb-5 text-[#cc1111] group-hover:border-[#cc1111]/50 transition-colors">
                       <IconComponent size={18} strokeWidth={1.5} />
                     </div>
                     <h3 className="font-[var(--font-display)] text-[0.9375rem] text-white uppercase tracking-wide mb-3">
@@ -110,7 +110,7 @@ export default function ServicesPage() {
                     <p className="text-[0.8125rem] text-[#606878] leading-relaxed mb-5">
                       {service.shortDescription}
                     </p>
-                    <span className="flex items-center gap-1.5 text-[0.75rem] text-[#606878] group-hover:text-[#c49a2a] transition-colors uppercase tracking-wide">
+                    <span className="flex items-center gap-1.5 text-[0.75rem] text-[#606878] group-hover:text-[#cc1111] transition-colors uppercase tracking-wide">
                       Learn more
                       <ArrowRight size={12} className="transition-transform group-hover:translate-x-1" />
                     </span>
@@ -134,7 +134,7 @@ export default function ServicesPage() {
                 >
                   Beyond the
                   <br />
-                  <span className="gradient-gold">Standard Program</span>
+                  <span className="gradient-red">Standard Program</span>
                 </h2>
                 <p className="text-[#a0b0c0] text-[0.9375rem] leading-relaxed mb-8">
                   Stratton&apos;s specialized services address complex, high-value, and
@@ -150,9 +150,9 @@ export default function ServicesPage() {
                 {SPECIALIZED_SERVICES.map((service) => (
                   <div
                     key={service}
-                    className="flex items-center gap-4 px-4 py-3.5 border-b border-[#1a2030] hover:border-[#c49a2a]/30 transition-colors"
+                    className="flex items-center gap-4 px-4 py-3.5 border-b border-[#1a2030] hover:border-[#cc1111]/30 transition-colors"
                   >
-                    <div className="w-1 h-5 bg-[#c49a2a]/40 shrink-0" />
+                    <div className="w-1 h-5 bg-[#cc1111]/40 shrink-0" />
                     <span className="text-[0.8125rem] text-[#a0b0c0]">{service}</span>
                   </div>
                 ))}

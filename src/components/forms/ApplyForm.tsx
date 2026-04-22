@@ -29,7 +29,7 @@ const POSITIONS = [
 ];
 
 const inputClass =
-  "w-full bg-[#050810] border border-[#1a2030] focus:border-[#c49a2a]/60 text-white text-[0.875rem] px-4 py-3 outline-none transition-colors placeholder:text-[#3a4a58]";
+  "w-full bg-[#050810] border border-[#1a2030] focus:border-[#cc1111]/60 text-white text-[0.875rem] px-4 py-3 outline-none transition-colors placeholder:text-[#3a4a58]";
 const labelClass =
   "block text-[0.6875rem] text-[#606878] tracking-widest uppercase mb-2";
 const errorClass =
@@ -92,7 +92,7 @@ export default function ApplyForm() {
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="apply-name" className={labelClass}>
-                  Full Name <span className="text-[#c49a2a]">*</span>
+                  Full Name <span className="text-[#cc1111]">*</span>
                 </label>
                 <input
                   id="apply-name"
@@ -107,7 +107,7 @@ export default function ApplyForm() {
               </div>
               <div>
                 <label htmlFor="apply-phone" className={labelClass}>
-                  Phone <span className="text-[#c49a2a]">*</span>
+                  Phone <span className="text-[#cc1111]">*</span>
                 </label>
                 <input
                   id="apply-phone"
@@ -124,7 +124,7 @@ export default function ApplyForm() {
 
             <div>
               <label htmlFor="apply-email" className={labelClass}>
-                Email Address <span className="text-[#c49a2a]">*</span>
+                Email Address <span className="text-[#cc1111]">*</span>
               </label>
               <input
                 id="apply-email"
@@ -140,7 +140,7 @@ export default function ApplyForm() {
 
             <div>
               <label htmlFor="apply-position" className={labelClass}>
-                Position Applying For <span className="text-[#c49a2a]">*</span>
+                Position Applying For <span className="text-[#cc1111]">*</span>
               </label>
               <select
                 id="apply-position"
@@ -159,7 +159,7 @@ export default function ApplyForm() {
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="apply-guard-card" className={labelClass}>
-                  CA Guard Card # <span className="text-[#c49a2a]">*</span>
+                  CA Guard Card # <span className="text-[#cc1111]">*</span>
                 </label>
                 <input
                   id="apply-guard-card"
@@ -191,12 +191,12 @@ export default function ApplyForm() {
             </div>
 
             <div className="border border-dashed border-[#1a2030] p-4 flex items-center gap-3 text-[0.8125rem] text-[#606878]">
-              <Upload size={15} className="text-[#c49a2a] shrink-0" strokeWidth={1.5} />
+              <Upload size={15} className="text-[#cc1111] shrink-0" strokeWidth={1.5} />
               <span>
                 Attach your resume by emailing it to{" "}
                 <a
                   href={`mailto:${SITE_CONFIG.email}?subject=Resume - Security Officer Application`}
-                  className="text-[#c49a2a] hover:underline"
+                  className="text-[#cc1111] hover:underline"
                 >
                   {SITE_CONFIG.email}
                 </a>
@@ -260,7 +260,7 @@ export default function ApplyForm() {
             <div className="card-anduril p-5 text-[0.8125rem] text-[#a0b0c0]">
               <p className="text-white font-medium mb-1">Questions about the role?</p>
               <p className="mb-3">Call our operations team directly — we&apos;re available 24/7.</p>
-              <a href={`tel:${SITE_CONFIG.phoneE164}`} className="text-[#c49a2a] font-[var(--font-display)] tracking-wide">
+              <a href={`tel:${SITE_CONFIG.phoneE164}`} className="text-[#cc1111] font-[var(--font-display)] tracking-wide">
                 {SITE_CONFIG.phone}
               </a>
             </div>

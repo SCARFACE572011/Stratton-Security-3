@@ -30,7 +30,7 @@ export default function CTASection() {
       <div className="absolute inset-0 z-[1]" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 40%, rgba(0,0,0,0.6) 100%)" }} />
 
       {/* Thin gold top border */}
-      <div className="absolute top-0 left-0 right-0 h-px z-[2]" style={{ background: "linear-gradient(to right, transparent, rgba(196,154,42,0.5) 30%, rgba(196,154,42,0.5) 70%, transparent)" }} />
+      <div className="absolute top-0 left-0 right-0 h-px z-[2]" style={{ background: "linear-gradient(to right, transparent, rgba(204,17,17,0.5) 30%, rgba(204,17,17,0.5) 70%, transparent)" }} />
 
       <div className="relative z-10 container-wide py-24 md:py-32">
         <motion.div
@@ -48,10 +48,10 @@ export default function CTASection() {
           >
             Ready to Secure
             <br />
-            <span className="gradient-gold">Your Property?</span>
+            <span className="gradient-red">Your Property?</span>
           </h2>
 
-          <div className="w-16 h-px bg-[#c49a2a] mb-8" />
+          <div className="w-16 h-px bg-[#cc1111] mb-8" />
 
           <p className="text-[1rem] text-[#a0b0c0] leading-relaxed mb-10 max-w-xl">
             Request a complimentary security assessment and speak with a
@@ -72,9 +72,9 @@ export default function CTASection() {
 
           <div className="flex flex-wrap gap-6 text-[0.6875rem] text-[#606878] tracking-wide">
             <span>CA PPO License #{SITE_CONFIG.licenseNumber}</span>
-            <span className="text-[#c49a2a]/30">·</span>
+            <span className="text-[#cc1111]/30">·</span>
             <span>24/7 · 365 Availability</span>
-            <span className="text-[#c49a2a]/30">·</span>
+            <span className="text-[#cc1111]/30">·</span>
             <span>Licensed · Bonded · Insured</span>
           </div>
         </motion.div>

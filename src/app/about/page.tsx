@@ -48,7 +48,7 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#050810] via-[#050810]/70 to-[#050810]/20" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#050810]/80 to-transparent" />
           {/* Left gold accent */}
-          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#c49a2a]/60 to-transparent" />
+          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#cc1111]/60 to-transparent" />
 
           <div className="relative z-10 container-wide pb-20 pt-32">
             <p className="label-overline mb-5">About Stratton</p>
@@ -58,16 +58,16 @@ export default function AboutPage() {
             >
               The Standard of
               <br />
-              <span className="gradient-gold">Protective Excellence</span>
+              <span className="gradient-red">Protective Excellence</span>
             </h1>
             <p className="text-[#a0b0c0] text-[1.0625rem] leading-relaxed max-w-xl mb-8">
               {SITE_CONFIG.brand_promise}
             </p>
             <div className="flex flex-wrap gap-6 text-[0.75rem] text-[#606878] tracking-wide">
               <span>CA PPO License #{SITE_CONFIG.licenseNumber}</span>
-              <span className="text-[#c49a2a]/40">·</span>
+              <span className="text-[#cc1111]/40">·</span>
               <span>Licensed · Bonded · Insured</span>
-              <span className="text-[#c49a2a]/40">·</span>
+              <span className="text-[#cc1111]/40">·</span>
               <span>Serving Los Angeles &amp; Southern California</span>
             </div>
           </div>
@@ -105,7 +105,7 @@ export default function AboutPage() {
                 <p className="text-[#a0b0c0] text-[0.9375rem] leading-relaxed mb-6">
                   {SITE_CONFIG.vision}
                 </p>
-                <blockquote className="border-l-2 border-[#c49a2a] pl-5">
+                <blockquote className="border-l-2 border-[#cc1111] pl-5">
                   <p className="text-[0.875rem] text-[#606878] italic leading-relaxed">
                     Excellence isn&apos;t just a tagline — it&apos;s a standard we hold ourselves
                     to in every assignment, every patrol, every interaction.
@@ -133,13 +133,13 @@ export default function AboutPage() {
                   key={i}
                   className="card-anduril p-7"
                 >
-                  <div className="w-10 h-10 border border-[#c49a2a]/25 flex items-center justify-center mb-5">
-                    <Shield size={18} className="text-[#c49a2a]" strokeWidth={1.5} />
+                  <div className="w-10 h-10 border border-[#cc1111]/25 flex items-center justify-center mb-5">
+                    <Shield size={18} className="text-[#cc1111]" strokeWidth={1.5} />
                   </div>
                   <h3 className="font-[var(--font-display)] text-xl text-white uppercase tracking-wide mb-3">
                     {value}
                   </h3>
-                  <div className="w-8 h-px bg-[#c49a2a]/40" />
+                  <div className="w-8 h-px bg-[#cc1111]/40" />
                 </div>
               ))}
             </div>
@@ -187,7 +187,7 @@ export default function AboutPage() {
               >
                 Law Enforcement Roots.
                 <br />
-                <span className="gradient-gold">Professional Standards.</span>
+                <span className="gradient-red">Professional Standards.</span>
               </h2>
               <div className="space-y-4 text-[#a0b0c0] text-[0.9375rem] leading-relaxed mb-10">
                 <p>
@@ -229,14 +229,14 @@ export default function AboutPage() {
               style={{ fontSize: "clamp(2rem, 4vw, 2.75rem)" }}
             >
               Verified on{" "}
-              <span className="gradient-gold">Bark.com</span>
+              <span className="gradient-red">Bark.com</span>
             </h2>
             <div className="grid md:grid-cols-3 gap-4">
               {BARK_REVIEWS.map((review, i) => (
                 <div key={i} className="card-anduril p-6">
                   <div className="flex gap-0.5 mb-4">
                     {Array.from({ length: review.stars }).map((_, s) => (
-                      <svg key={s} width="12" height="12" viewBox="0 0 24 24" fill="#c49a2a" stroke="none">
+                      <svg key={s} width="12" height="12" viewBox="0 0 24 24" fill="#cc1111" stroke="none">
                         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                       </svg>
                     ))}
