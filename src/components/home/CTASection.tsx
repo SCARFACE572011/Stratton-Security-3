@@ -7,7 +7,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { SITE_CONFIG } from "@/lib/constants";
 
 const CTA_BG =
-  "https://images.unsplash.com/photo-1562701226-f0cfe6d6a68c?auto=format&fit=crop&w=1920&q=80";
+  "https://images.unsplash.com/photo-1595079676601-f1adf5be5dee?auto=format&fit=crop&w=1920&q=80";
 
 export default function CTASection() {
   const shouldReduceMotion = useReducedMotion();

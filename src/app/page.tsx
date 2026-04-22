@@ -11,6 +11,7 @@ import IndustriesSection from "@/components/home/IndustriesSection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import ValuesSection from "@/components/home/ValuesSection";
 import CTASection from "@/components/home/CTASection";
+import ImageStrip from "@/components/home/ImageStrip";
 import { SITE_CONFIG } from "@/lib/constants";
 import type { Metadata } from "next";
 
@@ -62,6 +63,9 @@ export default function HomePage() {
 
         {/* 4. Services overview */}
         <ServicesSection />
+
+        {/* 4b. Cinematic photo strip */}
+        <ImageStrip />
 
         {/* 4. Stats/social proof numbers */}
         <StatsSection />

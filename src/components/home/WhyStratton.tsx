@@ -7,7 +7,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { DIFFERENTIATORS } from "@/lib/constants";
 
 const ACCENT_PHOTO =
-  "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80";
+  "https://images.unsplash.com/photo-1521747116042-5a810fda9664?auto=format&fit=crop&w=800&q=80";
 
 const ICON_MAP = { BadgeCheck, Clock, Shield, Settings2, Award, FileText } as const;
 
