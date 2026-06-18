@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowRight, Shield, Eye, Scale, ShieldCheck, Star } from "lucide-react";
+import { Shield, Eye, Scale, ShieldCheck, Star } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { SITE_CONFIG, DIFFERENTIATORS, BARK_REVIEWS } from "@/lib/constants";
 
@@ -150,56 +149,6 @@ export default function AboutContent() {
                 </p>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Leadership — two-column split, bigger serif + motion */}
-      <section id="team" className="section-padding bg-platinum-50" aria-labelledby="team-heading">
-        <div className="container-wide">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-            <motion.div {...reveal()}>
-              <p className="label-overline mb-6">Our People</p>
-              <span className="accent-line mb-8" aria-hidden="true" />
-              <h2
-                id="team-heading"
-                className="display-title text-[#040d1e]"
-                style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}
-              >
-                Law Enforcement Roots.
-                <br />
-                <span className="text-accent">Professional Standards.</span>
-              </h2>
-            </motion.div>
-
-            <motion.div {...reveal(0.1)}>
-              <div className="space-y-5 text-[#4b5563] text-lg leading-relaxed mb-10">
-                <p>
-                  The Stratton Security Group leadership team brings together backgrounds
-                  in law enforcement, military service, and private security management —
-                  with a combined 50+ years of protective service experience.
-                </p>
-                <p>
-                  Our team includes officers with current and former LAPD experience,
-                  bringing real law enforcement discipline, situational judgment, and
-                  operational professionalism to every assignment.
-                </p>
-                <p>
-                  All Stratton officers complete rigorous internal training — including
-                  TEAM certification, CPR/First Aid, Power to Arrest, and ongoing
-                  professional development — before being deployed on any client property.
-                </p>
-              </div>
-              <div className="card border-dashed bg-white p-6 mb-10">
-                <p className="text-[0.8125rem] text-steel text-center">
-                  Leadership team photos and individual bios — to be added with client assets
-                </p>
-              </div>
-              <Link href="/contact" className="btn-primary group">
-                Speak with Our Team
-                <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-              </Link>
-            </motion.div>
           </div>
         </div>
       </section>

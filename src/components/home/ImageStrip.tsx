@@ -14,8 +14,8 @@ const STRIP_IMAGES = [
     tag: "Feed 01",
   },
   {
-    src: "https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=900&q=80",
-    alt: "Urban night patrol operations",
+    src: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=900&q=80",
+    alt: "Security professional on duty at night",
     overlay:
       "bg-gradient-to-t from-[#040d1e]/85 via-[#040d1e]/30 to-[#040d1e]/30",
     position: "object-center",

@@ -14,16 +14,6 @@ export const metadata: Metadata = {
     "Learn about Stratton Security Group — our mission, values, and commitment to protecting people, assets, and peace of mind across Los Angeles and California.",
 };
 
-const TEAM_BIOS = [
-  {
-    name: "Leadership Team",
-    role: "Operations Leadership",
-    background:
-      "Combined experience of 18+ years in law enforcement, 18+ years military service, and 15+ years private security — building a command team with unmatched operational depth.",
-    initials: "SSG",
-  },
-];
-
 export default function AboutPage() {
   return (
     <>
