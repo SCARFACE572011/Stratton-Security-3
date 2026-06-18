@@ -602,14 +602,21 @@ body {
 
 /* tunable surface tones */
 :root {
-  --surface-a: #0c1c33; /* was white / section-light  */
-  --surface-b: #08152a; /* was platinum-50 / tint     */
-  --surface-card: #122847;
+  --surface-a: #0e2138; /* was white / section-light — lifted navy        */
+  --surface-b: #070f1d; /* was platinum-50 / tint    — deep, for contrast */
+  --surface-card: #16294a; /* lifts off both section tones                */
   --surface-hairline: rgba(192, 200, 212, 0.14);
+  --section-seam: rgba(192, 200, 212, 0.09);
   --on-dark-heading: #f1f4f8;
   --on-dark-body: #b7c2d1;
   --on-dark-muted: #93a0b3;
   --on-dark-accent: #6f9bd8;
+}
+
+/* Crisp seam between top-level page sections so the dark bands read as
+   distinct surfaces (the hero / page-hero divs are unaffected). */
+main > section {
+  border-top: 1px solid var(--section-seam);
 }
 
 /* surfaces */

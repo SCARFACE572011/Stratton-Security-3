@@ -5,6 +5,7 @@ import TrustBar from "@/components/home/TrustBar";
 import ClientLogosSection from "@/components/home/ClientLogosSection";
 import ServicesSection from "@/components/home/ServicesSection";
 import WhyStratton from "@/components/home/WhyStratton";
+import DeploymentProtocol from "@/components/home/DeploymentProtocol";
 import MidPageCTA from "@/components/home/MidPageCTA";
 import StatsSection from "@/components/home/StatsSection";
 import IndustriesSection from "@/components/home/IndustriesSection";
@@ -72,6 +73,9 @@ export default function HomePage() {
 
         {/* 5. Why Stratton — differentiators */}
         <WhyStratton />
+
+        {/* 5b. Deployment protocol — operational process */}
+        <DeploymentProtocol />
 
         {/* 6. Mid-page CTA strip */}
         <MidPageCTA />
