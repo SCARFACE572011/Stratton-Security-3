@@ -2,21 +2,11 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight } from "lucide-react";
-import { motion, useReducedMotion, useScroll, useTransform, type Variants } from "framer-motion";
+import { ArrowRight, Phone } from "lucide-react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { SITE_CONFIG } from "@/lib/constants";
 
-const HERO_BG =
-  "https://images.unsplash.com/photo-1617802690992-15d93263d3a9?auto=format&fit=crop&w=1920&q=80";
-
-const HERO_INSET =
-  "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&w=800&q=80";
-
-const charVariants: Variants = {
-  hidden: { opacity: 0, y: 55 },
-  visible: { opacity: 1, y: 0 },
-};
+const HEADLINE = ["Strength.", "Vigilance.", "Integrity."];
 
 export default function HeroSection() {
   const prefersReduced = useReducedMotion();
@@ -26,258 +16,153 @@ export default function HeroSection() {
     target: containerRef,
     offset: ["start start", "end start"],
   });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-
-  const line1 = "EXCELLENCE".split("");
-  const line2 = "IN PROTECTION".split("");
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   return (
     <section
       ref={containerRef}
-      className="relative min-h-dvh flex flex-col justify-end overflow-hidden"
-      style={{ backgroundColor: "#000000" }}
+      className="relative min-h-dvh flex flex-col items-center justify-center overflow-hidden bg-[#040d1e] text-center"
       aria-label="Hero — Stratton Security Group"
     >
-      {/* Parallax background */}
+      {/* Atmosphere */}
       <motion.div
         className="absolute inset-0 z-0"
         style={prefersReduced ? {} : { y: bgY }}
+        aria-hidden="true"
       >
-        <Image
-          src={HERO_BG}
-          alt=""
-          fill
-          priority
-          quality={90}
-          className="object-cover object-center"
-          sizes="100vw"
-          aria-hidden="true"
+        <div
+          className="absolute inset-0"
+          style={{ background: "radial-gradient(125% 90% at 50% 0%, #0a1c3c 0%, #040d1e 45%, #060708 100%)" }}
         />
-      </motion.div>
-
-      {/* Gradient overlays */}
-      <div
-        className="absolute inset-0 z-[1] pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.35) 30%, rgba(0,0,0,0.97) 100%)",
-        }}
-        aria-hidden="true"
-      />
-      <div
-        className="absolute inset-0 z-[1] pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.15) 100%)",
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Blood-red left-edge accent */}
-      <motion.div
-        className="absolute left-0 top-0 h-full w-[2px] z-20 pointer-events-none"
-        initial={{ scaleY: 0, opacity: 0 }}
-        animate={{ scaleY: 1, opacity: 1 }}
-        transition={{ delay: 2.1, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        style={{
-          background:
-            "linear-gradient(to bottom, transparent 5%, #cc1111 25%, #ff2222 55%, #cc1111 80%, transparent 95%)",
-          transformOrigin: "top",
-          boxShadow: "0 0 16px rgba(204,17,17,0.5), 0 0 40px rgba(204,17,17,0.15)",
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Top-right active indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2.4, duration: 0.6 }}
-        className="absolute top-28 right-8 z-20 hidden lg:flex items-center gap-2"
-        aria-hidden="true"
-      >
-        <span
-          className="block w-1.5 h-1.5 rounded-full bg-[#cc1111]"
-          style={{ animation: "pulse-red 2s ease-in-out infinite" }}
+        <div
+          className="absolute inset-0 opacity-[0.45]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(192,200,212,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(192,200,212,0.045) 1px, transparent 1px)",
+            backgroundSize: "72px 72px",
+            maskImage: "radial-gradient(circle at 50% 38%, #000 0%, transparent 70%)",
+            WebkitMaskImage: "radial-gradient(circle at 50% 38%, #000 0%, transparent 70%)",
+          }}
         />
-        <span className="text-[0.5rem] text-[#cc1111]/80 tracking-[0.3em] uppercase font-[var(--font-sans)]">
-          Active Protection
-        </span>
-      </motion.div>
-
-      {/* Right-edge vertical label */}
-      <motion.div
-        initial={{ opacity: 0, x: 16 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 2.5, duration: 0.8 }}
-        className="absolute right-8 bottom-36 z-20 hidden xl:flex flex-col items-center gap-3"
-        aria-hidden="true"
-      >
-        <div className="w-px h-12 bg-gradient-to-b from-transparent to-[#1a2030]" />
-        <span
-          className="text-[0.5rem] text-[#3a4a58] tracking-[0.4em] uppercase font-[var(--font-sans)]"
-          style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
-        >
-          PPO #{SITE_CONFIG.licenseNumber} · Licensed · Insured · Bonded
-        </span>
-        <div className="w-px h-12 bg-gradient-to-t from-transparent to-[#1a2030]" />
+        <div
+          className="absolute left-1/2 top-[34%] -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[1100px] max-h-[1100px] rounded-full opacity-50"
+          style={{ background: "radial-gradient(circle, rgba(26,58,107,0.45) 0%, transparent 62%)" }}
+        />
       </motion.div>
 
       {/* Content */}
-      <div
-        className="relative z-10 pb-24 md:pb-32 pt-40 w-full max-w-[1440px] mx-auto"
-        style={{ paddingLeft: "clamp(2rem, 10vw, 14rem)", paddingRight: "clamp(2rem, 10vw, 14rem)" }}
+      <motion.div
+        className="relative z-10 container-wide w-full pt-32 pb-28 flex flex-col items-center"
+        style={prefersReduced ? {} : { y: contentY, opacity: contentOpacity }}
       >
-        <div className="grid lg:grid-cols-12 gap-10 items-end">
+        {/* Seal in HUD targeting frame */}
+        <motion.div
+          className="hud-corners-4 p-5 mb-9"
+          initial={prefersReduced ? {} : { opacity: 0, scale: 0.82, y: 12 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/brand/seal-white.png"
+            alt="Stratton Security Group seal"
+            width={120}
+            height={120}
+            className="w-24 h-24 md:w-28 md:h-28"
+          />
+        </motion.div>
 
-          {/* Text column */}
-          <div className="lg:col-span-7">
-            <motion.p
-              initial={prefersReduced ? {} : { opacity: 0, x: -12 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="label-overline mb-5"
-            >
-              Los Angeles Security Professionals
-            </motion.p>
+        {/* Eyebrow */}
+        <motion.p
+          initial={prefersReduced ? {} : { opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          className="label-overline-light mb-8 flex items-center justify-center gap-3"
+        >
+          <span className="inline-block w-8 h-px bg-[#3f6bb0]" />
+          California&apos;s Premier Private Security
+          <span className="inline-block w-8 h-px bg-[#3f6bb0]" />
+        </motion.p>
 
-            <h1
-              className="display-hero text-white mb-0"
-              style={{ fontSize: "clamp(3.75rem, 10.5vw, 9rem)", lineHeight: 0.88 }}
-              aria-label="Excellence In Protection"
-            >
+        {/* Headline */}
+        <h1
+          className="display-hero text-white"
+          style={{ fontSize: "clamp(3.25rem, 8.5vw, 7rem)" }}
+        >
+          {HEADLINE.map((word, i) => (
+            <span key={word} className="block overflow-hidden py-[0.04em]">
               <motion.span
                 className="block"
-                style={{ overflow: "hidden", paddingBottom: "0.08em" }}
-                variants={{
-                  hidden: {},
-                  visible: {
-                    transition: {
-                      staggerChildren: prefersReduced ? 0 : 0.042,
-                      delayChildren: prefersReduced ? 0 : 0.35,
-                    },
-                  },
-                }}
-                initial="hidden"
-                animate="visible"
+                initial={prefersReduced ? {} : { y: "115%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.95, delay: prefersReduced ? 0 : 0.35 + i * 0.13, ease: [0.22, 1, 0.36, 1] }}
               >
-                {line1.map((char, i) => (
-                  <motion.span key={i} variants={charVariants} style={{ display: "inline-block" }}>
-                    {char}
-                  </motion.span>
-                ))}
+                {word}
               </motion.span>
+            </span>
+          ))}
+        </h1>
 
-              <motion.span
-                className="block"
-                style={{
-                  overflow: "hidden",
-                  paddingBottom: "0.08em",
-                  WebkitTextStroke: "1.5px rgba(204,17,17,0.65)",
-                  color: "transparent",
-                }}
-                variants={{
-                  hidden: {},
-                  visible: {
-                    transition: {
-                      staggerChildren: prefersReduced ? 0 : 0.042,
-                      delayChildren: prefersReduced ? 0 : 1.05,
-                    },
-                  },
-                }}
-                initial="hidden"
-                animate="visible"
-              >
-                {line2.map((char, i) => (
-                  <motion.span key={i} variants={charVariants} style={{ display: "inline-block" }}>
-                    {char}
-                  </motion.span>
-                ))}
-              </motion.span>
-            </h1>
+        {/* Sub */}
+        <motion.p
+          className="text-silver max-w-2xl text-[1.15rem] leading-relaxed mt-9 mx-auto"
+          initial={prefersReduced ? {} : { opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
+        >
+          We place only qualified, background-checked, rigorously trained
+          professionals at your property — carrying the discipline of military and
+          law-enforcement service, personalized to your needs.
+        </motion.p>
 
-            <motion.div
-              className="flex items-center gap-2 mt-7 mb-7"
-              initial={prefersReduced ? {} : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 2.0, duration: 0.5 }}
-            >
-              <motion.div
-                className="h-px bg-[#cc1111]"
-                initial={prefersReduced ? {} : { width: 0 }}
-                animate={{ width: 52 }}
-                transition={{ delay: 2.0, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              />
-              <motion.div
-                className="h-px bg-[#cc1111]"
-                initial={prefersReduced ? {} : { width: 0 }}
-                animate={{ width: 18 }}
-                transition={{ delay: 2.2, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              />
-            </motion.div>
+        {/* CTAs */}
+        <motion.div
+          className="flex flex-col sm:flex-row gap-4 mt-11 justify-center"
+          initial={prefersReduced ? {} : { opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 1, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <Link href="/contact" className="btn-light group">
+            Request a Security Assessment
+            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+          </Link>
+          <a href={`tel:${SITE_CONFIG.phoneE164}`} className="btn-on-dark">
+            <Phone size={16} />
+            {SITE_CONFIG.phone}
+          </a>
+        </motion.div>
+      </motion.div>
 
-            <motion.p
-              className="text-[#a0b0c0] max-w-xl text-[1rem] leading-relaxed mb-10"
-              style={{ fontWeight: 300 }}
-              initial={prefersReduced ? {} : { opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 2.1, ease: [0.22, 1, 0.36, 1] }}
-            >
-              Stratton Security Group protects people, assets, and peace of mind
-              across Southern California — 24 hours a day, 365 days a year.
-            </motion.p>
+      {/* Command-center status readout (HUD corner) */}
+      <motion.div
+        initial={prefersReduced ? {} : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.5 }}
+        className="absolute bottom-8 left-8 z-10 hidden md:flex items-center gap-2.5 mono-tag text-silver/80"
+        aria-hidden="true"
+      >
+        <span className="status-dot" />
+        System Operational · 24/7/365 · PPO {SITE_CONFIG.licenseNumber}
+      </motion.div>
 
-            <motion.div
-              className="flex flex-col sm:flex-row gap-3"
-              initial={prefersReduced ? {} : { opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 2.25, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <Link href="/contact" className="btn-primary group text-sm px-7 py-4">
-                Request a Free Assessment
-                <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-              </Link>
-              <a href={`tel:${SITE_CONFIG.phoneE164}`} className="btn-secondary text-sm px-7 py-4">
-                {SITE_CONFIG.phone}
-              </a>
-            </motion.div>
-          </div>
-
-          {/* Inset image panel — desktop only */}
-          <motion.div
-            className="hidden lg:block lg:col-span-5 pb-2"
-            initial={prefersReduced ? {} : { opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.3, duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-            aria-hidden="true"
-          >
-            <div
-              className="relative overflow-hidden"
-              style={{
-                height: "clamp(220px, 28vh, 380px)",
-                border: "1px solid rgba(204,17,17,0.3)",
-              }}
-            >
-              <Image
-                src={HERO_INSET}
-                alt=""
-                fill
-                className="object-cover object-center"
-                sizes="(max-width: 1024px) 0px, 40vw"
-              />
-              <div className="absolute inset-0 bg-black/20" />
-              {/* Corner accents */}
-              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#cc1111]" />
-              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#cc1111]" />
-              {/* Caption */}
-              <div className="absolute bottom-0 left-0 right-0 bg-black/65 px-4 py-2.5">
-                <p className="text-[0.5625rem] text-[#606878] uppercase tracking-[0.25em]">24/7 Field Operations</p>
-              </div>
-            </div>
-          </motion.div>
-
-        </div>
-      </div>
+      {/* Scroll cue */}
+      <motion.div
+        initial={prefersReduced ? {} : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.4 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+        aria-hidden="true"
+      >
+        <span className="text-[0.6rem] tracking-[0.3em] uppercase text-silver/70">Scroll</span>
+        <motion.span
+          className="block w-px h-10 bg-gradient-to-b from-[#3f6bb0] to-transparent"
+          animate={prefersReduced ? {} : { scaleY: [0.4, 1, 0.4], opacity: [0.4, 1, 0.4] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+          style={{ transformOrigin: "top" }}
+        />
+      </motion.div>
     </section>
   );
 }

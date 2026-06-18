@@ -1,5 +1,6 @@
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
+import PrivacyContent from "./PrivacyContent";
 import { SITE_CONFIG } from "@/lib/constants";
 import type { Metadata } from "next";
 
@@ -8,6 +9,8 @@ export const metadata: Metadata = {
   title: "Privacy Policy | Stratton Security Group",
   description: "Privacy Policy for Stratton Security Group — how we collect, use, and protect your information.",
 };
+
+const INTRO = `Stratton Security Group ("we," "us," or "our") operates the website at strattonsecuritygroup.com. This Privacy Policy explains how we handle information collected through this site. By using this site, you agree to the practices described below.`;
 
 const SECTIONS = [
   {
@@ -52,46 +55,57 @@ export default function PrivacyPage() {
   return (
     <>
       <Navigation />
-      <main className="pt-24">
-        <div className="bg-[#040c1a] border-b border-[#1a3050] py-12 md:py-16">
-          <div className="container-wide max-w-3xl">
-            <p className="label-overline mb-4">Legal</p>
-            <h1 className="display-title text-[clamp(2rem,5vw,3rem)] text-[#edf2f7] mb-4">
-              Privacy Policy
-            </h1>
-            <p className="text-[#4a6880] text-[0.8125rem] tracking-wide">
-              Effective Date: January 1, 2025
-            </p>
+      <main>
+        {/* Page hero — deep-navy band with subtle atmosphere */}
+        <section
+          className="page-hero border-b border-[rgba(192,200,212,0.16)]"
+          aria-label="Privacy Policy"
+        >
+          {/* Atmosphere — navy gradient + faint grid (navy/black only) */}
+          <div className="absolute inset-0 z-0" aria-hidden="true">
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(120% 100% at 50% 0%, #0a1c3c 0%, #040d1e 50%, #060708 100%)",
+              }}
+            />
+            <div
+              className="absolute inset-0 opacity-[0.4]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(192,200,212,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(192,200,212,0.045) 1px, transparent 1px)",
+                backgroundSize: "72px 72px",
+                maskImage:
+                  "radial-gradient(circle at 30% 30%, #000 0%, transparent 72%)",
+                WebkitMaskImage:
+                  "radial-gradient(circle at 30% 30%, #000 0%, transparent 72%)",
+              }}
+            />
           </div>
-        </div>
 
-        <section className="section-padding bg-[#06101e]">
-          <div className="container-wide max-w-3xl">
-            <p className="text-[#9fb5cb] text-[0.9375rem] leading-relaxed mb-10 pb-10 border-b border-[#1a3050]">
-              Stratton Security Group ("we," "us," or "our") operates the website at
-              strattonsecuritygroup.com. This Privacy Policy explains how we handle
-              information collected through this site. By using this site, you agree
-              to the practices described below.
-            </p>
-
-            <div className="space-y-10">
-              {SECTIONS.map((section, i) => (
-                <div key={i} className="grid sm:grid-cols-12 gap-4 sm:gap-8">
-                  <div className="sm:col-span-4">
-                    <h2 className="font-[var(--font-display)] text-[0.875rem] text-[#cc1111] uppercase tracking-widest">
-                      {section.title}
-                    </h2>
-                  </div>
-                  <div className="sm:col-span-8">
-                    <p className="text-[0.9375rem] text-[#9fb5cb] leading-relaxed">
-                      {section.body}
-                    </p>
-                  </div>
-                </div>
-              ))}
+          <div className="relative z-10 w-full pt-40 pb-16 md:pb-20">
+            <div className="container-wide max-w-3xl">
+              <p className="label-overline-light mb-6">Legal</p>
+              <h1
+                className="display-hero text-white mb-6"
+                style={{ fontSize: "clamp(2.75rem, 6vw, 4.5rem)" }}
+              >
+                Privacy Policy
+              </h1>
+              <span className="accent-line mb-8" aria-hidden="true" />
+              <p className="text-silver text-[1.0625rem] leading-relaxed max-w-xl">
+                How Stratton Security Group collects, uses, and protects the
+                information you share with us.
+              </p>
+              <p className="text-silver/70 text-[0.8125rem] tracking-wide mt-7">
+                Effective Date: January 1, 2025
+              </p>
             </div>
           </div>
         </section>
+
+        <PrivacyContent intro={INTRO} sections={SECTIONS} />
       </main>
       <Footer />
     </>

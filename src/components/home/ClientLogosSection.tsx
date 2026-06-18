@@ -11,65 +11,80 @@ function getInitials(name: string): string {
   return source.slice(0, 3).map((w) => w[0]).join("").toUpperCase();
 }
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+
 export default function ClientLogosSection() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="bg-[#050810] border-b border-[#1a2030] py-16 md:py-20" aria-labelledby="clients-heading">
+    <section
+      className="section-tint section-padding"
+      aria-labelledby="clients-heading"
+    >
       <div className="container-wide">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-          <div className="lg:col-span-4">
-            <p className="label-overline mb-4">Trusted By</p>
-            <h2
-              id="clients-heading"
-              className="display-title text-[clamp(1.5rem,3vw,2rem)] text-white mb-4"
-            >
-              Relied On Across
-              <br />
-              <span className="gradient-red">Los Angeles</span>
-            </h2>
-            <p className="text-[#a0b0c0] text-[0.875rem] leading-relaxed font-[var(--font-sans)]">
-              From Beverly Hills residential communities to Century City
-              corporate campuses, Stratton protects properties trusted by
-              property managers, HOA boards, and executives across Southern
-              California.
-            </p>
-          </div>
+        {/* Centered editorial header */}
+        <motion.div
+          className="mx-auto max-w-2xl text-center"
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: EASE }}
+        >
+          <p className="label-overline mb-6">Trusted By</p>
+          <span className="accent-line mx-auto mb-7" />
+          <h2
+            id="clients-heading"
+            className="display-title text-[#040d1e]"
+            style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)" }}
+          >
+            Relied On Across Los Angeles
+          </h2>
+          <p className="mt-7 text-[1.0625rem] leading-relaxed text-[#4b5563] font-[var(--font-sans)]">
+            From Beverly Hills residential communities to Century City corporate
+            campuses, Stratton protects properties trusted by property managers,
+            HOA boards, and executives across Southern California.
+          </p>
+        </motion.div>
 
-          <div className="lg:col-span-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[#1a2030]">
-              {CLIENT_LOGOS.map((client, i) => {
-                const initials = getInitials(client.name);
-                return (
-                  <motion.div
-                    key={client.name}
-                    initial={shouldReduceMotion ? {} : { opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-40px" }}
-                    transition={{
-                      delay: (i % 4) * 0.05 + Math.floor(i / 4) * 0.1,
-                      duration: 0.5,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
-                    className="bg-[#050810] group flex flex-col items-center justify-center aspect-[4/3] px-4 py-6 text-center hover:bg-[#0a0f1a] transition-colors duration-200"
-                    title={client.name}
-                  >
-                    <div className="font-[var(--font-display)] text-[1.625rem] md:text-[1.875rem] tracking-[0.05em] text-[#606878] group-hover:text-[#cc1111] transition-colors leading-none">
-                      {initials}
-                    </div>
-                    <div className="mt-3 h-px w-6 bg-[#1a2030] group-hover:bg-[#cc1111]/50 transition-colors" />
-                    <div className="mt-3 text-[0.625rem] text-[#606878] uppercase tracking-[0.15em]">
-                      {client.industry}
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-            <p className="mt-5 text-[0.6875rem] text-[#606878] tracking-wide uppercase font-[var(--font-sans)]">
-              Client identities withheld for confidentiality · Representative sectors shown
-            </p>
-          </div>
+        {/* Modern responsive grid of monogram tiles */}
+        <div className="mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-8">
+          {CLIENT_LOGOS.map((client, i) => {
+            const initials = getInitials(client.name);
+            return (
+              <motion.div
+                key={client.name}
+                initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{
+                  delay: (i % 4) * 0.06 + Math.floor(i / 4) * 0.08,
+                  duration: 0.6,
+                  ease: EASE,
+                }}
+                className="card group flex flex-col items-center justify-center aspect-[4/3] px-6 py-8 text-center"
+                title={client.name}
+              >
+                <div className="font-[var(--font-display)] text-[1.875rem] md:text-[2.125rem] tracking-[0.04em] leading-none text-[#11264a] transition-colors duration-300 group-hover:text-accent">
+                  {initials}
+                </div>
+                <div className="mt-4 h-px w-7 bg-platinum transition-colors duration-300 group-hover:bg-accent/50" />
+                <div className="mt-4 text-[0.6875rem] uppercase tracking-[0.18em] text-[#6b7280]">
+                  {client.industry}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
+
+        <motion.p
+          className="mt-12 text-center text-[0.6875rem] uppercase tracking-[0.2em] text-[#6b7280] font-[var(--font-sans)]"
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: EASE }}
+        >
+          Client identities withheld for confidentiality · Representative sectors shown
+        </motion.p>
       </div>
     </section>
   );

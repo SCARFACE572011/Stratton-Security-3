@@ -7,84 +7,95 @@ import { SERVICES } from "@/lib/constants";
 
 const ICON_MAP = { Shield, ShieldCheck, Building2, Home, ShoppingBag, HardHat, Briefcase, Star } as const;
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+
 export default function ServicesSection() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="bg-[#050810]" aria-labelledby="services-heading">
-      <div className="container-wide py-24 md:py-32">
-        {/* Header */}
+    <section className="bg-white" aria-labelledby="services-heading">
+      <div className="container-wide section-padding">
+        {/* Centered editorial header */}
         <motion.div
-          initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: EASE }}
+          className="max-w-3xl mx-auto text-center mb-16 md:mb-20"
         >
-          <div>
-            <p className="label-overline mb-4">What We Do</p>
-            <h2
-              id="services-heading"
-              className="display-title text-white"
-              style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}
-            >
-              Protection Programs
-            </h2>
-          </div>
-          <Link href="/services" className="btn-secondary text-xs shrink-0">
-            View All Services
-            <ArrowRight size={13} />
-          </Link>
+          <p className="label-overline mb-6">What We Do</p>
+          <span className="accent-line mx-auto mb-8" aria-hidden="true" />
+          <h2
+            id="services-heading"
+            className="display-title text-[#040d1e]"
+            style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)" }}
+          >
+            Protection Programs
+          </h2>
+          <p className="text-[#4b5563] text-lg leading-relaxed mt-7 max-w-2xl mx-auto">
+            Specialized security solutions engineered for the people, properties,
+            and operations that demand uncompromising protection.
+          </p>
         </motion.div>
 
-        {/* Anduril-style full-width service rows */}
-        <div>
+        {/* Service cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {SERVICES.map((service, i) => {
             const IconComponent = ICON_MAP[service.icon as keyof typeof ICON_MAP] ?? Shield;
             return (
               <motion.div
                 key={service.id}
-                initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
+                initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ delay: i * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ delay: i * 0.08, duration: 0.6, ease: EASE }}
               >
                 <Link
                   href={`/services/${service.slug}`}
-                  className="group relative flex items-center gap-6 md:gap-10 py-7 border-b border-[#1a2030] hover:border-[#cc1111]/20 transition-colors overflow-hidden"
+                  className="card group relative flex flex-col h-full rounded-xl p-8 md:p-10"
                 >
-                  {/* Red left-reveal on hover */}
-                  <span className="absolute left-0 top-0 bottom-0 w-[2px] bg-[#cc1111] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 ease-out origin-bottom" aria-hidden="true" />
-                  {/* Number */}
-                  <span className="font-[var(--font-display)] text-[0.75rem] text-[#3a4a58] tracking-widest w-8 shrink-0 group-hover:text-[#cc1111]/60 transition-colors">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-
-                  {/* Icon */}
-                  <div className="w-9 h-9 border border-[#1a2030] flex items-center justify-center shrink-0 group-hover:border-[#cc1111]/40 transition-colors">
-                    <IconComponent size={16} className="text-[#cc1111]" strokeWidth={1.5} />
+                  {/* Icon chip */}
+                  <div className="w-14 h-14 rounded-xl border border-platinum bg-[#f4f6f9] flex items-center justify-center shrink-0 transition-colors group-hover:border-[#1a3a6b]/40 mb-7">
+                    <IconComponent size={24} className="text-[#1a3a6b]" strokeWidth={1.5} />
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-[var(--font-display)] text-[1.0625rem] md:text-[1.25rem] text-white uppercase tracking-wide group-hover:text-[#cc1111] transition-colors w-56 shrink-0">
+                  <h3 className="display-sm text-[1.375rem] text-[#0a0a0a] mb-3">
                     {service.title}
                   </h3>
 
-                  {/* Description — hidden on mobile */}
-                  <p className="hidden md:block text-[0.875rem] text-[#606878] leading-relaxed flex-1">
+                  {/* Description */}
+                  <p className="text-[0.9375rem] text-[#4b5563] leading-relaxed flex-1">
                     {service.shortDescription}
                   </p>
 
-                  {/* Arrow */}
-                  <ArrowRight
-                    size={18}
-                    className="text-[#3a4a58] group-hover:text-[#cc1111] group-hover:translate-x-2 transition-all shrink-0 ml-auto"
-                  />
+                  {/* Link cue */}
+                  <span className="mt-8 inline-flex items-center gap-2 text-[0.75rem] font-bold uppercase tracking-[0.16em] text-[#1a3a6b]">
+                    Learn More
+                    <ArrowRight
+                      size={16}
+                      className="transition-transform group-hover:translate-x-1.5"
+                    />
+                  </span>
                 </Link>
               </motion.div>
             );
           })}
         </div>
+
+        {/* Footer CTA */}
+        <motion.div
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: EASE }}
+          className="flex justify-center mt-16 md:mt-20"
+        >
+          <Link href="/services" className="btn-secondary group">
+            View All Services
+            <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

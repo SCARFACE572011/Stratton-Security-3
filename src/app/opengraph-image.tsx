@@ -16,7 +16,7 @@ export default function OGImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#06101e",
+          background: "linear-gradient(135deg, #040d1e, #0d1f3c)",
           padding: "60px 72px",
           fontFamily: "sans-serif",
           position: "relative",
@@ -30,7 +30,7 @@ export default function OGImage() {
             left: 0,
             right: 0,
             height: "3px",
-            background: "linear-gradient(to right, transparent, #cc1111 20%, #cc1111 80%, transparent)",
+            background: "linear-gradient(to right, transparent, #1a3a6b 20%, #1a3a6b 80%, transparent)",
           }}
         />
 
@@ -54,7 +54,7 @@ export default function OGImage() {
             width: "600px",
             height: "600px",
             borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(204,17,17,0.08) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(63,107,176,0.12) 0%, transparent 70%)",
           }}
         />
 
@@ -65,21 +65,21 @@ export default function OGImage() {
             style={{
               width: "44px",
               height: "44px",
-              border: "1px solid #cc1111",
+              border: "1px solid #3f6bb0",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
             }}
           >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#cc1111" strokeWidth="1.5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3f6bb0" strokeWidth="1.5">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
             </svg>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-            <span style={{ fontSize: "18px", fontWeight: 700, color: "#edf2f7", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            <span style={{ fontSize: "18px", fontWeight: 700, color: "#ffffff", letterSpacing: "0.1em", textTransform: "uppercase" }}>
               STRATTON
             </span>
-            <span style={{ fontSize: "11px", color: "#7a9ab8", letterSpacing: "0.22em", textTransform: "uppercase" }}>
+            <span style={{ fontSize: "11px", color: "#c0c8d4", letterSpacing: "0.22em", textTransform: "uppercase" }}>
               SECURITY GROUP
             </span>
           </div>
@@ -87,13 +87,13 @@ export default function OGImage() {
 
         {/* Main headline */}
         <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-          <div style={{ fontSize: "11px", color: "#cc1111", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+          <div style={{ fontSize: "11px", color: "#3f6bb0", letterSpacing: "0.2em", textTransform: "uppercase" }}>
             PROFESSIONAL SECURITY SERVICES · LOS ANGELES
           </div>
-          <div style={{ fontSize: "72px", fontWeight: 800, color: "#edf2f7", lineHeight: 0.9, textTransform: "uppercase", letterSpacing: "-0.01em" }}>
+          <div style={{ fontSize: "72px", fontWeight: 800, color: "#ffffff", lineHeight: 0.9, textTransform: "uppercase", letterSpacing: "-0.01em" }}>
             Excellence
           </div>
-          <div style={{ fontSize: "72px", fontWeight: 800, color: "transparent", lineHeight: 0.9, textTransform: "uppercase", letterSpacing: "-0.01em", WebkitTextStroke: "1.5px rgba(204, 17, 17, 0.7)" }}>
+          <div style={{ fontSize: "72px", fontWeight: 800, color: "transparent", lineHeight: 0.9, textTransform: "uppercase", letterSpacing: "-0.01em", WebkitTextStroke: "1.5px rgba(192, 200, 212, 0.5)" }}>
             In Protection
           </div>
         </div>
@@ -102,12 +102,12 @@ export default function OGImage() {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <div style={{ display: "flex", gap: "32px" }}>
             {[`CA PPO #${SITE_CONFIG.licenseNumber}`, "24/7 · 365", "Licensed · Bonded · Insured"].map((item) => (
-              <span key={item} style={{ fontSize: "12px", color: "#4a6880", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+              <span key={item} style={{ fontSize: "12px", color: "#6b7280", letterSpacing: "0.08em", textTransform: "uppercase" }}>
                 {item}
               </span>
             ))}
           </div>
-          <span style={{ fontSize: "13px", color: "#7a9ab8" }}>
+          <span style={{ fontSize: "13px", color: "#c0c8d4" }}>
             strattonsecuritygroup.com
           </span>
         </div>
@@ -120,7 +120,7 @@ export default function OGImage() {
             left: 0,
             right: 0,
             height: "2px",
-            background: "linear-gradient(to right, transparent, #cc1111 20%, #cc1111 80%, transparent)",
+            background: "linear-gradient(to right, transparent, #1a3a6b 20%, #1a3a6b 80%, transparent)",
             opacity: 0.5,
           }}
         />

@@ -5,22 +5,22 @@
 
 export const SITE_CONFIG = {
   name: "Stratton Security Group",
-  tagline: "Excellence In Protection",
-  shortTagline: "Always Vigilant",
-  heroBrand: "Excellence In Protection",
+  tagline: "Strength. Vigilance. Integrity.",
+  shortTagline: "California's Premier Private Security",
+  heroBrand: "Strength. Vigilance. Integrity.",
   brand_promise:
-    "In a world where risk is constantly changing, we are the most reliable corporate service partner.",
+    "We place only qualified, background-checked, rigorously trained professionals at your property — carrying the discipline of military and law-enforcement service, personalized to your needs.",
   mission: "Protect People, Assets, and Peace of Mind",
-  vision: "Set the gold standard for security services across California.",
+  vision: "Set the standard for private security across California.",
   phone: "(424) 440-5554",
   phoneRaw: "4244405554",
   phoneE164: "+14244405554",
   email: "Info@StrattonSecurityGroup.com",
-  address: "2029 Century Park E, Suite 400",
+  address: "10940 Wilshire Blvd, Suite 1720",
   city: "Los Angeles",
   state: "CA",
-  zip: "90067",
-  fullAddress: "2029 Century Park E, Suite 400, Los Angeles, CA 90067",
+  zip: "90024",
+  fullAddress: "10940 Wilshire Blvd, Suite 1720, Los Angeles, CA 90024",
   serviceAreas: ["Los Angeles", "Beverly Hills", "Southern California", "California"],
   hours: "24 Hours / 7 Days a Week / 365 Days a Year",
   licenseNumber: "122163", // CA PPO License #122163
@@ -30,7 +30,7 @@ export const SITE_CONFIG = {
     twitter: "https://x.com/STRATTONSCGROUP",
     linkedin: "", // TODO: confirm LinkedIn URL
   },
-  values: ["Integrity", "Vigilance", "Helpfulness"],
+  values: ["Strength", "Vigilance", "Integrity"],
   heroVideoSrc: "", // TODO: obtain direct video URL from Squarespace CDN or client
   heroPosterImage: "/images/hero-poster.svg", // TODO: replace with high-res photographic poster
 };
@@ -789,7 +789,7 @@ export const BARK_REVIEWS = [
 export const FAQS = [
   {
     q: "What areas does Stratton Security Group serve?",
-    a: "Stratton Security Group is headquartered in Century City and serves all of Los Angeles, Beverly Hills, and Southern California. We deploy patrol, guard, and specialized security services across LA County and adjacent markets.",
+    a: "Stratton Security Group is headquartered in Los Angeles and operates statewide across California. We deploy patrol, guard, and specialized security services across LA County, Beverly Hills, Southern California, and adjacent markets.",
   },
   {
     q: "Is Stratton Security Group licensed and insured?",

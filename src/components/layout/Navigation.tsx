@@ -3,10 +3,37 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone, ChevronDown, Shield } from "lucide-react";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SITE_CONFIG, NAV_ITEMS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+
+function SealMark({ className = "" }: { className?: string }) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src="/brand/seal-white.png"
+      alt="Stratton Security Group seal"
+      className={className}
+      width={44}
+      height={44}
+      decoding="async"
+    />
+  );
+}
+
+function Wordmark() {
+  return (
+    <span className="flex flex-col leading-none">
+      <span className="display-sm text-white text-[1.05rem] tracking-[0.005em] whitespace-nowrap">
+        Stratton Security Group
+      </span>
+      <span className="font-[var(--font-sans)] text-[0.5rem] text-silver tracking-[0.34em] uppercase mt-[5px] whitespace-nowrap">
+        Private Security
+      </span>
+    </span>
+  );
+}
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,44 +67,42 @@ export default function Navigation() {
     } else {
       document.body.style.overflow = "";
     }
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
   return (
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          "fixed top-0 left-0 right-0 z-50 bg-[#040d1e] transition-all duration-300",
           isScrolled
-            ? "bg-[#050810]/95 backdrop-blur-md border-b border-[#1a2030]"
-            : "bg-transparent"
+            ? "border-b border-[rgba(192,200,212,0.16)] shadow-[0_8px_30px_rgba(0,0,0,0.45)]"
+            : "border-b border-[rgba(192,200,212,0.08)]"
         )}
       >
         <div className="container-wide">
-          <div className={cn("flex items-center justify-between transition-all duration-300", isScrolled ? "h-14" : "h-20")}>
-            {/* Logo */}
+          <div
+            className={cn(
+              "flex items-center justify-between transition-all duration-300",
+              isScrolled ? "h-[4.75rem]" : "h-[5.75rem]"
+            )}
+          >
+            {/* Logo lockup */}
             <Link
               href="/"
-              className="flex items-center gap-2.5 group"
+              className="flex items-center gap-3 group shrink-0"
               aria-label="Stratton Security Group — Home"
             >
-              <div className="w-8 h-8 flex items-center justify-center border border-[#cc1111]/60 transition-all duration-200 group-hover:bg-[#cc1111]/10">
-                <Shield size={16} className="text-[#cc1111]" strokeWidth={2} />
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className="font-[var(--font-display)] text-[0.95rem] font-700 tracking-[0.06em] text-white uppercase">
-                  Stratton
-                </span>
-                <span className="font-[var(--font-sans)] text-[0.5625rem] text-[#a0b0c0] tracking-[0.2em] uppercase">
-                  Security Group
-                </span>
-              </div>
+              <SealMark className="w-11 h-11 transition-transform duration-300 group-hover:scale-105" />
+              <Wordmark />
             </Link>
 
             {/* Desktop Nav */}
             <nav
               ref={dropdownRef}
-              className="hidden lg:flex items-center gap-1"
+              className="hidden lg:flex items-center gap-0.5"
               aria-label="Main navigation"
             >
               {NAV_ITEMS.map((item) => (
@@ -88,8 +113,8 @@ export default function Navigation() {
                         setActiveDropdown(activeDropdown === item.label ? null : item.label)
                       }
                       className={cn(
-                        "flex items-center gap-1 px-3.5 py-2 text-[0.8125rem] font-medium tracking-wide transition-colors uppercase",
-                        isActive(item.href) ? "text-white" : "text-[#c8d4e0] hover:text-white"
+                        "flex items-center gap-1 px-3.5 py-2 text-[0.78rem] font-semibold tracking-[0.06em] uppercase transition-colors",
+                        isActive(item.href) ? "text-white" : "text-silver hover:text-white"
                       )}
                       aria-expanded={activeDropdown === item.label}
                       aria-current={isActive(item.href) ? "page" : undefined}
@@ -107,34 +132,33 @@ export default function Navigation() {
                     <Link
                       href={item.href}
                       className={cn(
-                        "px-3.5 py-2 text-[0.8125rem] font-medium tracking-wide transition-colors uppercase block relative",
-                        isActive(item.href) ? "text-white" : "text-[#c8d4e0] hover:text-[#cc1111]"
+                        "px-3 py-2 text-[0.82rem] font-medium tracking-[0.02em] whitespace-nowrap block relative transition-colors",
+                        isActive(item.href) ? "text-white" : "text-silver hover:text-white"
                       )}
                       aria-current={isActive(item.href) ? "page" : undefined}
                     >
                       {item.label}
                       {isActive(item.href) && (
-                        <span className="absolute bottom-0 left-3.5 right-3.5 h-px bg-[#cc1111]" />
+                        <span className="absolute bottom-0 left-3.5 right-3.5 h-px bg-[#3f6bb0]" />
                       )}
                     </Link>
                   )}
 
-                  {/* Dropdown */}
                   <AnimatePresence>
                     {item.children && activeDropdown === item.label && (
                       <motion.div
-                        initial={{ opacity: 0, y: 6, scale: 0.98 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 6 }}
                         transition={{ duration: 0.15, ease: "easeOut" }}
-                        className="absolute top-full left-0 mt-1 w-64 bg-[#050810] border border-[#1a2030] shadow-[0_16px_40px_rgba(0,0,0,0.7)] overflow-hidden"
+                        className="absolute top-full left-0 mt-1 w-64 bg-[#0d1f3c] border border-[rgba(192,200,212,0.16)] shadow-[0_16px_40px_rgba(0,0,0,0.6)] overflow-hidden"
                       >
                         {item.children.map((child) => (
                           <Link
                             key={child.label}
                             href={child.href}
                             onClick={() => setActiveDropdown(null)}
-                            className="block px-4 py-2.5 text-[0.8125rem] text-[#a0b0c0] hover:text-white hover:bg-[#0a0f1a] transition-colors border-b border-[#1a2030]/50 last:border-0"
+                            className="block px-4 py-2.5 text-[0.8125rem] text-silver hover:text-white hover:bg-[#11264a] transition-colors border-b border-[rgba(192,200,212,0.1)] last:border-0"
                           >
                             {child.label}
                           </Link>
@@ -150,17 +174,20 @@ export default function Navigation() {
             <div className="flex items-center gap-3">
               <a
                 href={`tel:${SITE_CONFIG.phoneE164}`}
-                className="hidden md:flex items-center gap-2 btn-secondary text-xs px-3 py-2"
+                className="hidden xl:flex items-center gap-2 text-silver hover:text-white text-[0.82rem] font-medium tracking-[0.01em] whitespace-nowrap transition-colors"
               >
-                <Phone size={13} />
+                <Phone size={15} />
                 {SITE_CONFIG.phone}
               </a>
-              <Link href="/contact" className="hidden md:inline-flex btn-primary text-xs px-4 py-2.5">
-                Get a Quote
+              <Link
+                href="/contact"
+                className="hidden md:inline-flex btn-light text-[0.75rem] px-5 py-3"
+              >
+                Request Assessment
               </Link>
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="lg:hidden p-2 text-[#c8d4e0] hover:text-white transition-colors"
+                className="lg:hidden p-2 text-silver hover:text-white transition-colors"
                 aria-label={mobileOpen ? "Close menu" : "Open menu"}
                 aria-expanded={mobileOpen}
               >
@@ -179,30 +206,28 @@ export default function Navigation() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-50 bg-[#050810] flex flex-col overflow-y-auto"
+            className="fixed inset-0 z-50 bg-[#040d1e] flex flex-col overflow-y-auto"
           >
-            {/* Mobile header */}
-            <div className="flex items-center justify-between p-4 border-b border-[#1a2030]">
+            <div className="flex items-center justify-between p-4 border-b border-[rgba(192,200,212,0.16)]">
               <Link
                 href="/"
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center gap-2.5"
               >
-                <Shield size={16} className="text-[#cc1111]" />
-                <span className="font-[var(--font-display)] text-sm font-700 tracking-[0.06em] text-white uppercase">
+                <SealMark className="w-9 h-9" />
+                <span className="display-sm text-white text-sm tracking-[0.04em]">
                   Stratton Security Group
                 </span>
               </Link>
               <button
                 onClick={() => setMobileOpen(false)}
-                className="p-2 text-[#a0b0c0]"
+                className="p-2 text-silver"
                 aria-label="Close menu"
               >
                 <X size={22} />
               </button>
             </div>
 
-            {/* Mobile links */}
             <nav className="flex-1 py-4" aria-label="Mobile navigation">
               {NAV_ITEMS.map((item, i) => (
                 <motion.div
@@ -215,23 +240,23 @@ export default function Navigation() {
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
                     className={cn(
-                      "flex items-center justify-between px-5 py-4 text-[1rem] font-medium hover:bg-[#0a0f1a] transition-colors border-b border-[#1a2030]/40 uppercase tracking-wide",
+                      "flex items-center justify-between px-5 py-4 text-[1rem] font-semibold uppercase tracking-[0.04em] border-b border-[rgba(192,200,212,0.1)] transition-colors",
                       isActive(item.href)
-                        ? "text-[#cc1111] border-l-2 border-l-[#cc1111] pl-[calc(1.25rem-2px)]"
-                        : "text-[#c8d4e0] hover:text-white"
+                        ? "text-white border-l-2 border-l-[#3f6bb0] pl-[calc(1.25rem-2px)]"
+                        : "text-silver hover:text-white hover:bg-[#0d1f3c]"
                     )}
                     aria-current={isActive(item.href) ? "page" : undefined}
                   >
                     {item.label}
                   </Link>
                   {item.children && (
-                    <div className="bg-[#050810]">
+                    <div className="bg-[#040d1e]">
                       {item.children.map((child) => (
                         <Link
                           key={child.label}
                           href={child.href}
                           onClick={() => setMobileOpen(false)}
-                          className="flex items-center px-8 py-3 text-[0.875rem] text-[#606878] hover:text-[#a0b0c0] transition-colors border-b border-[#1a2030]/30 last:border-0"
+                          className="flex items-center px-8 py-3 text-[0.875rem] text-steel hover:text-silver transition-colors border-b border-[rgba(192,200,212,0.06)] last:border-0"
                         >
                           {child.label}
                         </Link>
@@ -242,11 +267,10 @@ export default function Navigation() {
               ))}
             </nav>
 
-            {/* Mobile CTAs */}
-            <div className="p-5 border-t border-[#1a2030] space-y-3">
+            <div className="p-5 border-t border-[rgba(192,200,212,0.16)] space-y-3">
               <a
                 href={`tel:${SITE_CONFIG.phoneE164}`}
-                className="flex items-center justify-center gap-2 w-full py-3.5 border border-[#1a2030] text-[#a0b0c0] text-sm font-medium uppercase tracking-wide hover:border-[#cc1111] hover:text-[#cc1111] transition-colors"
+                className="btn-on-dark w-full"
               >
                 <Phone size={15} />
                 {SITE_CONFIG.phone}
@@ -254,9 +278,9 @@ export default function Navigation() {
               <Link
                 href="/contact"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center w-full btn-primary"
+                className="btn-light w-full"
               >
-                Request a Quote
+                Request Assessment
               </Link>
             </div>
           </motion.div>

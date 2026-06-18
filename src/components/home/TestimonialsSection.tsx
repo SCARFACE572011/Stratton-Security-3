@@ -4,11 +4,13 @@ import { Star } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { TESTIMONIALS, BARK_REVIEWS } from "@/lib/constants";
 
-function StarRating({ count = 5 }: { count?: number }) {
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+function StarRating({ count = 5, size = 14 }: { count?: number; size?: number }) {
   return (
-    <div className="flex gap-0.5" aria-label={`${count} out of 5 stars`}>
+    <div className="flex gap-1" aria-label={`${count} out of 5 stars`}>
       {Array.from({ length: count }).map((_, i) => (
-        <Star key={i} size={12} className="text-[#cc1111] fill-[#cc1111]" />
+        <Star key={i} size={size} className="text-[#1a3a6b] fill-[#1a3a6b]" />
       ))}
     </div>
   );
@@ -18,69 +20,61 @@ export default function TestimonialsSection() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="section-padding bg-[#080c14]" aria-labelledby="testimonials-heading">
+    <section className="section-padding bg-white" aria-labelledby="testimonials-heading">
       <div className="container-wide">
-        {/* Header */}
+        {/* Centered editorial header */}
         <motion.div
-          initial={shouldReduceMotion ? {} : { opacity: 0, y: 24 }}
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: EASE }}
+          className="mx-auto max-w-3xl text-center mb-16 md:mb-20"
         >
-          <div>
-            <p className="label-overline mb-4">Client Testimonials</p>
-            <h2 id="testimonials-heading" className="display-title text-[clamp(2rem,4.5vw,3rem)] text-white">
-              Trusted by Clients
-              <br />
-              <span className="gradient-red">Across Los Angeles</span>
-            </h2>
-          </div>
-          <div className="flex items-center gap-3 shrink-0">
-            <div className="text-right">
-              <div className="flex items-center justify-end gap-1 mb-0.5">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} size={14} className="text-[#cc1111] fill-[#cc1111]" />
-                ))}
-              </div>
-              <p className="text-[0.75rem] text-[#a0b0c0]">5.0 on Bark.com</p>
-              <p className="text-[0.6875rem] text-[#606878]">Verified reviews</p>
-            </div>
-            <div className="w-12 h-12 border border-[#cc1111]/30 flex items-center justify-center">
-              <span className="font-[var(--font-display)] text-xl text-[#cc1111] font-700">5★</span>
-            </div>
-          </div>
+          <p className="label-overline mb-6">Client Testimonials</p>
+          <span className="accent-line mx-auto mb-7" />
+          <h2
+            id="testimonials-heading"
+            className="display-title text-[#040d1e]"
+            style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)" }}
+          >
+            Trusted by clients across Los Angeles
+          </h2>
+          <p className="mt-7 text-[1.0625rem] leading-relaxed text-[#4b5563]">
+            From private estates to corporate campuses, clients rely on Stratton for
+            disciplined, dependable protection — and rate us 5.0 on Bark.com across
+            verified reviews.
+          </p>
         </motion.div>
 
         {/* Testimonials grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {TESTIMONIALS.map((item, i) => (
             <motion.blockquote
               key={i}
-              initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+              initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ delay: (i % 3) * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="card-anduril p-6 flex flex-col gap-3"
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ delay: (i % 3) * 0.08, duration: 0.65, ease: EASE }}
+              className="card p-8 lg:p-10 flex flex-col gap-5"
             >
               <div
-                className="font-[var(--font-display)] leading-none select-none -mb-2"
-                style={{ fontSize: "3.5rem", color: "rgba(204,17,17,0.1)" }}
+                className="font-[var(--font-display)] leading-none select-none -mb-4"
+                style={{ fontSize: "4rem", color: "rgba(26,58,107,0.12)" }}
                 aria-hidden="true"
               >
                 &ldquo;
               </div>
               <StarRating count={item.stars} />
-              <p className="text-[0.9375rem] text-[#a0b0c0] leading-relaxed flex-1 italic">
+              <p className="text-[1.0625rem] text-[#4b5563] leading-relaxed flex-1">
                 &ldquo;{item.quote}&rdquo;
               </p>
-              <footer className="flex items-center gap-3 pt-2 border-t border-[#1a2030]">
-                <div className="w-8 h-8 bg-[rgba(255,255,255,0.05)] flex items-center justify-center shrink-0 text-[0.6875rem] font-600 text-[#cc1111] font-[var(--font-sans)]">
+              <footer className="flex items-center gap-4 pt-5 border-t border-platinum">
+                <div className="w-11 h-11 rounded-full bg-platinum-50 flex items-center justify-center shrink-0 text-[0.8125rem] font-600 text-[#1a3a6b] font-[var(--font-sans)]">
                   {item.initials}
                 </div>
                 <div>
-                  <cite className="text-[0.8125rem] text-white not-italic font-medium block">{item.author}</cite>
-                  <span className="text-[0.6875rem] text-[#606878]">{item.company}</span>
+                  <cite className="text-[0.9375rem] text-[#040d1e] not-italic font-medium block">{item.author}</cite>
+                  <span className="text-[0.8125rem] text-[#6b7280]">{item.company}</span>
                 </div>
               </footer>
             </motion.blockquote>
@@ -89,27 +83,37 @@ export default function TestimonialsSection() {
 
         {/* Bark.com verified strip */}
         <motion.div
-          initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="card-anduril p-6"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ delay: 0.12, duration: 0.65, ease: EASE }}
+          className="card p-8 lg:p-10"
         >
-          <div className="flex items-center gap-3 mb-5">
-            <div className="w-1 h-6 bg-[#cc1111]" />
-            <p className="text-[0.75rem] text-[#a0b0c0] tracking-widest uppercase">Verified on Bark.com</p>
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <span className="accent-line" />
+            <p className="text-[0.6875rem] font-700 text-[#1a3a6b] tracking-[0.24em] uppercase">
+              Verified on Bark.com
+            </p>
+            <span className="accent-line" />
           </div>
-          <div className="grid md:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
             {BARK_REVIEWS.map((review, i) => (
-              <div key={i} className="space-y-2">
+              <motion.div
+                key={i}
+                initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ delay: 0.18 + i * 0.08, duration: 0.6, ease: EASE }}
+                className="space-y-3"
+              >
                 <StarRating count={review.stars} />
-                <p className="text-[0.8125rem] text-[#a0b0c0] leading-relaxed italic">&ldquo;{review.quote}&rdquo;</p>
-                <div>
-                  <p className="text-[0.8125rem] text-white font-medium">{review.author}</p>
-                  <p className="text-[0.6875rem] text-[#606878]">{review.role}</p>
-                  <p className="text-[0.625rem] text-[#3a4a58] mt-0.5">{review.date}</p>
+                <p className="text-[0.9375rem] text-[#4b5563] leading-relaxed">&ldquo;{review.quote}&rdquo;</p>
+                <div className="pt-1">
+                  <p className="text-[0.9375rem] text-[#040d1e] font-medium">{review.author}</p>
+                  <p className="text-[0.8125rem] text-[#6b7280]">{review.role}</p>
+                  <p className="text-[0.75rem] text-[#c0c8d4] mt-0.5">{review.date}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </motion.div>

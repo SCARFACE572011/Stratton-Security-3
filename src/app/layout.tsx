@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Barlow_Semi_Condensed, IBM_Plex_Sans, Barlow } from "next/font/google";
+import { Rajdhani, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { OrganizationSchema } from "./schema";
 import MobileStickyBar from "@/components/layout/MobileStickyBar";
@@ -7,31 +7,34 @@ import BackToTop from "@/components/layout/BackToTop";
 import LenisProvider from "@/components/layout/LenisProvider";
 import { Analytics } from "@vercel/analytics/react";
 
-const barlowSemiCondensed = Barlow_Semi_Condensed({
-  weight: ["600", "700", "800"],
+// Display: Rajdhani — a squared, technical, defense-tech / HUD-style face used
+// for all (uppercase) headlines, giving a tactical-military character that pairs
+// with the lion seal. Body/UI: Hanken Grotesk — a clean, modern grotesque.
+const rajdhani = Rajdhani({
   subsets: ["latin"],
-  variable: "--font-barlow-sc",
+  weight: ["500", "600", "700"],
   display: "swap",
+  variable: "--font-rajdhani",
 });
 
-const barlowReg = Barlow({
-  weight: ["400", "500", "600"],
+const hanken = Hanken_Grotesk({
   subsets: ["latin"],
-  variable: "--font-barlow-reg",
   display: "swap",
+  variable: "--font-hanken",
 });
 
-const ibmPlexSans = IBM_Plex_Sans({
-  weight: ["300", "400", "500", "600"],
+// Mono — for small tactical "data/registry" labels (eyebrows, credentials, ticks).
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-ibm-plex",
+  weight: ["500", "600"],
   display: "swap",
+  variable: "--font-mono-jb",
 });
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#06101e",
+  themeColor: "#040d1e",
 };
 
 export const metadata: Metadata = {
@@ -87,10 +90,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${barlowSemiCondensed.variable} ${barlowReg.variable} ${ibmPlexSans.variable}`}
-    >
+    <html lang="en" className={`${rajdhani.variable} ${hanken.variable} ${jetbrainsMono.variable}`}>
       <body className="min-h-screen flex flex-col antialiased">
         <LenisProvider>
           <OrganizationSchema />

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { Shield, Eye, Scale, ShieldCheck } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
 
 const CERTIFICATIONS = [
@@ -10,100 +11,111 @@ const CERTIFICATIONS = [
   { title: "Power to Arrest", value: "Certified", sub: "Full compliance program" },
 ];
 
+// Pair each core value with an icon + descriptor, keyed off SITE_CONFIG.values.
+const VALUE_META: Record<string, { Icon: typeof Shield; line: string }> = {
+  Strength: { Icon: Shield, line: "The presence and resolve of officers drawn from military and law-enforcement service." },
+  Vigilance: { Icon: Eye, line: "Always watchful, always ready — 24/7/365 awareness across every post we hold." },
+  Integrity: { Icon: Scale, line: "Disciplined conduct and full transparency, on duty and off." },
+};
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+
 export default function ValuesSection() {
   const shouldReduceMotion = useReducedMotion();
 
+  const reveal = (delay = 0) => ({
+    initial: shouldReduceMotion ? {} : { opacity: 0, y: 28 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-80px" },
+    transition: { duration: 0.7, delay, ease: EASE },
+  });
+
   return (
-    <section className="section-padding bg-[#080c14]" aria-label="Our values and certifications">
+    <section className="section-padding bg-platinum-50" aria-label="Our values and certifications">
       <div className="container-wide">
-        {/* Mission header */}
-        <motion.div
-          initial={shouldReduceMotion ? {} : { opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center mb-16"
-        >
-          <p className="label-overline mb-4">Our Foundation</p>
+        {/* Centered editorial header */}
+        <motion.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
+          <p className="label-overline mb-6">Our Foundation</p>
+          <span className="accent-line mx-auto mb-8" />
           <h2
-            className="display-title text-white mb-4"
-            style={{ fontSize: "clamp(2.25rem, 5.5vw, 3.75rem)" }}
+            className="display-title text-[#040d1e]"
+            style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)" }}
           >
             {SITE_CONFIG.mission}
           </h2>
-          <p className="text-[#a0b0c0] text-[0.9375rem] max-w-2xl mx-auto leading-relaxed font-[var(--font-sans)]">
+          <p className="text-[#4b5563] text-lg leading-relaxed mt-7 max-w-2xl mx-auto">
             {SITE_CONFIG.brand_promise}
           </p>
         </motion.div>
 
-        {/* Values + Certifications */}
-        <div className="grid lg:grid-cols-2 gap-10">
-          {/* Core Values */}
-          <motion.div
-            initial={shouldReduceMotion ? {} : { opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <p className="label-overline mb-6">Core Values</p>
-            <div className="space-y-3">
-              {SITE_CONFIG.values.map((value, i) => (
-                <div
-                  key={i}
-                  className="card-anduril relative flex items-center gap-4 p-4 group overflow-hidden"
-                >
-                  <div className="absolute left-0 top-0 bottom-0 w-0 group-hover:w-1 bg-[#cc1111] transition-all duration-300" />
-                  <div className="w-8 h-8 border border-[#1a2030] flex items-center justify-center group-hover:border-[#cc1111]/40 transition-colors shrink-0">
-                    <span className="font-[var(--font-display)] text-xs text-[#cc1111] font-700">
-                      0{i + 1}
-                    </span>
-                  </div>
-                  <span className="font-[var(--font-display)] text-base text-white uppercase tracking-wide">
-                    {value}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <div className="mt-6 p-5 card-anduril border-[#cc1111]/20">
-              <p className="text-[0.8125rem] text-[#a0b0c0] leading-relaxed italic">
-                &ldquo;{SITE_CONFIG.vision}&rdquo;
-              </p>
-              <p className="text-[0.6875rem] text-[#606878] mt-2 uppercase tracking-wide">
-                — Stratton Security Group Vision
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Certifications */}
-          <motion.div
-            initial={shouldReduceMotion ? {} : { opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <p className="label-overline mb-6">Credentials & Compliance</p>
-            <div className="grid grid-cols-2 gap-3">
-              {CERTIFICATIONS.map((cert, i) => (
-                <div
-                  key={i}
-                  className="card-anduril border-t-2 border-t-[#cc1111]/30 p-5"
-                >
-                  <p className="text-[0.6875rem] text-[#606878] tracking-widest uppercase mb-1">{cert.title}</p>
-                  <p className="font-[var(--font-display)] text-lg text-[#cc1111] uppercase mb-1">{cert.value}</p>
-                  <p className="text-[0.6875rem] text-[#606878] leading-snug">{cert.sub}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-3 card-anduril p-5">
-              <p className="text-[0.75rem] text-[#a0b0c0] leading-relaxed font-[var(--font-sans)]">
-                All Stratton officers are required to meet or exceed California state
-                licensing requirements under BSIS. We maintain comprehensive general
-                liability, commercial auto, and workers&apos; compensation insurance
-                coverage across all operations.
-              </p>
-            </div>
-          </motion.div>
+        {/* Core values — evenly spaced, elegant centered items */}
+        <div className="grid sm:grid-cols-3 gap-8 md:gap-10 mb-16 md:mb-20">
+          {SITE_CONFIG.values.map((value, i) => {
+            const meta = VALUE_META[value] ?? { Icon: Shield, line: "" };
+            const Icon = meta.Icon;
+            return (
+              <motion.div
+                key={value}
+                {...reveal(i * 0.08)}
+                className="card flex flex-col items-center text-center p-8 md:p-10"
+              >
+                <span className="inline-flex items-center justify-center w-14 h-14 rounded-xl border border-platinum bg-platinum-50 text-accent mb-7">
+                  <Icon size={26} strokeWidth={1.75} />
+                </span>
+                <span className="block font-[var(--font-display)] text-[0.6875rem] tracking-[0.24em] text-steel mb-3">
+                  0{i + 1}
+                </span>
+                <h3 className="font-[var(--font-display)] text-2xl text-[#0a0a0a] mb-3">
+                  {value}
+                </h3>
+                <p className="text-[#4b5563] text-[0.9375rem] leading-relaxed">
+                  {meta.line}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
+
+        {/* Vision line */}
+        <motion.p
+          {...reveal()}
+          className="max-w-2xl mx-auto text-center font-[var(--font-display)] text-xl md:text-2xl leading-snug text-[#040d1e] mb-16 md:mb-20"
+        >
+          &ldquo;{SITE_CONFIG.vision}&rdquo;
+        </motion.p>
+
+        {/* Credentials — centered subheader + modern white cards */}
+        <motion.div {...reveal()} className="max-w-2xl mx-auto text-center mb-12">
+          <p className="label-overline mb-6">Credentials &amp; Compliance</p>
+          <span className="accent-line mx-auto" />
+        </motion.div>
+
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+          {CERTIFICATIONS.map((cert, i) => (
+            <motion.div
+              key={cert.title}
+              {...reveal(i * 0.08)}
+              className="card flex flex-col p-8"
+            >
+              <span className="inline-flex items-center justify-center w-12 h-12 rounded-xl border border-platinum bg-platinum-50 text-accent mb-6">
+                <ShieldCheck size={22} strokeWidth={1.75} />
+              </span>
+              <p className="text-[0.6875rem] text-steel tracking-[0.18em] uppercase mb-2">{cert.title}</p>
+              <p className="font-[var(--font-display)] text-xl text-accent mb-3">{cert.value}</p>
+              <p className="text-[0.8125rem] text-[#4b5563] leading-relaxed">{cert.sub}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Insurance / compliance note */}
+        <motion.div {...reveal(0.1)} className="card max-w-3xl mx-auto mt-10 p-8 md:p-10 text-center">
+          <p className="text-[0.9375rem] text-[#4b5563] leading-relaxed">
+            All Stratton officers are required to meet or exceed California state
+            licensing requirements under BSIS. We maintain comprehensive general
+            liability, commercial auto, and workers&apos; compensation insurance
+            coverage across all operations.
+          </p>
+        </motion.div>
       </div>
     </section>
   );

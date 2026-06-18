@@ -1,10 +1,11 @@
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import CTASection from "@/components/home/CTASection";
+import IndustryDetailContent from "./IndustryDetailContent";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, AlertTriangle, Target } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { INDUSTRIES, SERVICES } from "@/lib/constants";
 import { BreadcrumbSchema } from "@/app/schema";
 import type { Metadata } from "next";
@@ -53,8 +54,8 @@ export default async function IndustryDetailPage({
       ]} />
       <Navigation />
       <main>
-        {/* Full-bleed hero */}
-        <div className="page-hero" style={{ minHeight: "55vh" }}>
+        {/* Page hero — deep-navy band, serif headline */}
+        <div className="page-hero" style={{ minHeight: "60vh" }}>
           <Image
             src="https://images.unsplash.com/photo-1563788850-bdd5b04e1832?auto=format&fit=crop&w=1920&q=80"
             alt={`${industry.label} security`}
@@ -62,180 +63,41 @@ export default async function IndustryDetailPage({
             className="object-cover object-center"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050810] via-[#050810]/70 to-[#050810]/20" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#050810]/80 to-transparent" />
-          <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-transparent via-[#cc1111]/60 to-transparent" />
+          {/* Navy / black overlays only */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#040d1e] via-[#040d1e]/75 to-[#040d1e]/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#040d1e]/85 to-transparent" />
+          <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[rgba(192,200,212,0.3)] to-transparent" />
 
-          <div className="relative z-10 container-wide pb-16 pt-32 w-full">
+          <div className="relative z-10 container-wide pb-20 pt-36 w-full">
             <Link
               href="/industries"
-              className="inline-flex items-center gap-2 text-[0.75rem] text-[#606878] hover:text-[#cc1111] uppercase tracking-wide transition-colors mb-8"
+              className="inline-flex items-center gap-2 text-[0.75rem] text-silver hover:text-[#3f6bb0] uppercase tracking-[0.16em] transition-colors mb-9"
             >
               <ArrowLeft size={12} />
               All Industries
             </Link>
-            <p className="label-overline mb-4">Industry Vertical</p>
+            <p className="label-overline-light mb-6">Industry Vertical</p>
+            <span className="accent-line mb-8" aria-hidden="true" />
             <h1
-              className="display-title text-white mb-5 max-w-3xl"
-              style={{ fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)" }}
+              className="display-hero text-white max-w-3xl"
+              style={{ fontSize: "clamp(2.75rem, 6vw, 5rem)" }}
             >
               {industry.label}
-              <br />
-              <span className="gradient-red">Security Programs</span>
             </h1>
             {industry.summary && (
-              <p className="text-[#a0b0c0] text-[1.0625rem] leading-relaxed max-w-2xl">
+              <p className="text-silver text-[1.15rem] leading-relaxed max-w-2xl mt-8">
                 {industry.summary}
               </p>
             )}
           </div>
         </div>
 
-        {/* CTA sidebar + content */}
-        <section className="section-padding bg-[#050810]">
-          <div className="container-wide">
-            <div className="section-divider mb-16" />
-            <div className="grid lg:grid-cols-12 gap-12">
-              <div className="lg:col-span-8">
-                {/* Threats + Approach */}
-                <div className="grid md:grid-cols-2 gap-8">
-                  {industry.threats && industry.threats.length > 0 && (
-                    <div>
-                      <div className="flex items-center gap-2.5 mb-5">
-                        <div className="w-9 h-9 border border-[#cc1111]/30 flex items-center justify-center text-[#cc1111]">
-                          <AlertTriangle size={16} strokeWidth={1.5} />
-                        </div>
-                        <p className="label-overline">Risk Exposure</p>
-                      </div>
-                      <h2
-                        className="display-title text-white mb-6"
-                        style={{ fontSize: "clamp(1.25rem, 2vw, 1.625rem)" }}
-                      >
-                        Threats We Mitigate
-                      </h2>
-                      <div className="space-y-2">
-                        {industry.threats.map((threat) => (
-                          <div
-                            key={threat}
-                            className="flex items-start gap-3 px-4 py-3 border-b border-[#1a2030]"
-                          >
-                            <div className="w-1 h-5 bg-[#cc1111]/40 shrink-0 mt-0.5" />
-                            <span className="text-[0.875rem] text-[#a0b0c0] leading-relaxed">
-                              {threat}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {industry.approach && (
-                    <div>
-                      <div className="flex items-center gap-2.5 mb-5">
-                        <div className="w-9 h-9 border border-[#cc1111]/30 flex items-center justify-center text-[#cc1111]">
-                          <Target size={16} strokeWidth={1.5} />
-                        </div>
-                        <p className="label-overline">Our Approach</p>
-                      </div>
-                      <h2
-                        className="display-title text-white mb-6"
-                        style={{ fontSize: "clamp(1.25rem, 2vw, 1.625rem)" }}
-                      >
-                        How Stratton Deploys
-                      </h2>
-                      <div className="card-anduril p-5">
-                        <p className="text-[0.9375rem] text-[#a0b0c0] leading-relaxed">
-                          {industry.approach}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <div className="lg:col-span-4">
-                <div className="card-anduril p-6 sticky top-24">
-                  <p className="label-overline mb-3">Tailored Program</p>
-                  <h3 className="font-[var(--font-display)] text-[1.125rem] text-white uppercase tracking-wide mb-3">
-                    Built For {industry.label}
-                  </h3>
-                  <p className="text-[0.8125rem] text-[#606878] leading-relaxed mb-5">
-                    Every deployment begins with a risk assessment specific to your
-                    industry&apos;s threat profile and operational requirements.
-                  </p>
-                  <Link href="/contact" className="btn-primary w-full justify-center text-xs">
-                    Request An Assessment
-                    <ArrowRight size={13} />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Applicable services */}
-        {relatedServices.length > 0 && (
-          <section className="section-padding bg-[#080c14]">
-            <div className="container-wide">
-              <div className="section-divider mb-16" />
-              <p className="label-overline mb-4">Applicable Services</p>
-              <h2
-                className="display-title text-white mb-10"
-                style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)" }}
-              >
-                Services For This Vertical
-              </h2>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {relatedServices.map((service) => (
-                  <Link
-                    key={service.slug}
-                    href={`/services/${service.slug}`}
-                    className="card-anduril group block p-6"
-                  >
-                    <h3 className="font-[var(--font-display)] text-[0.9375rem] text-white uppercase tracking-wide mb-2">
-                      {service.title}
-                    </h3>
-                    <p className="text-[0.8125rem] text-[#606878] leading-relaxed mb-4">
-                      {service.shortDescription}
-                    </p>
-                    <span className="flex items-center gap-1.5 text-[0.6875rem] text-[#606878] group-hover:text-[#cc1111] transition-colors uppercase tracking-wide">
-                      Learn more
-                      <ArrowRight size={11} className="transition-transform group-hover:translate-x-1" />
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* Other industries */}
-        <section className="section-padding bg-[#050810]">
-          <div className="container-wide">
-            <div className="section-divider mb-16" />
-            <p className="label-overline mb-4">Explore More</p>
-            <h2
-              className="display-title text-white mb-8"
-              style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)" }}
-            >
-              Other Industries We Protect
-            </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-              {otherIndustries.map((ind) => (
-                <Link
-                  key={ind.slug}
-                  href={`/industries/${ind.slug}`}
-                  className="group flex items-center gap-3 p-3 border border-[#1a2030] hover:border-[#cc1111]/40 transition-all duration-200"
-                >
-                  <div className="w-1 h-5 bg-[#1a2030] group-hover:bg-[#cc1111]/40 transition-colors shrink-0" />
-                  <span className="text-[0.8125rem] text-[#606878] group-hover:text-[#a0b0c0] transition-colors">
-                    {ind.label}
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* Threats / approach / related — modern animated body */}
+        <IndustryDetailContent
+          industry={industry}
+          relatedServices={relatedServices}
+          otherIndustries={otherIndustries}
+        />
 
         <CTASection />
       </main>

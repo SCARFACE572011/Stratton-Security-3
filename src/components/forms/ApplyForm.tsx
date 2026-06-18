@@ -29,11 +29,11 @@ const POSITIONS = [
 ];
 
 const inputClass =
-  "w-full bg-[#050810] border border-[#1a2030] focus:border-[#cc1111]/60 text-white text-[0.875rem] px-4 py-3 outline-none transition-colors placeholder:text-[#3a4a58]";
+  "w-full bg-platinum-50 border border-platinum focus:border-[#1a3a6b] focus:ring-1 focus:ring-[#1a3a6b] text-[#040d1e] text-[0.875rem] px-4 py-3 outline-none transition-colors placeholder:text-[#6b7280]";
 const labelClass =
-  "block text-[0.6875rem] text-[#606878] tracking-widest uppercase mb-2";
+  "block text-[0.6875rem] text-[#4b5563] tracking-widest uppercase mb-2";
 const errorClass =
-  "text-[0.6875rem] text-[#ef4444] mt-1.5";
+  "text-[0.6875rem] text-[#4b5563] mt-1.5";
 
 export default function ApplyForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -54,8 +54,10 @@ export default function ApplyForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error ?? "Submission failed.");
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || json?.ok === false) {
+        throw new Error(json?.error ?? "Submission failed.");
+      }
       setSubmitted(true);
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
@@ -66,13 +68,13 @@ export default function ApplyForm() {
     return (
       <div className="min-h-[50vh] flex items-center justify-center py-16">
         <div className="text-center max-w-xl">
-          <div className="w-16 h-16 border border-[#10b981]/40 flex items-center justify-center mx-auto mb-6">
-            <CheckCircle size={28} className="text-[#10b981]" strokeWidth={1.5} />
+          <div className="w-16 h-16 border border-[#1a3a6b]/40 flex items-center justify-center mx-auto mb-6">
+            <CheckCircle size={28} className="text-accent" strokeWidth={1.5} />
           </div>
-          <h2 className="display-title text-[2rem] text-white mb-4 uppercase tracking-wide">
+          <h2 className="display-title text-[2rem] text-[#040d1e] mb-4 uppercase tracking-wide">
             Application Received
           </h2>
-          <p className="text-[#a0b0c0] text-[0.9375rem] leading-relaxed mb-8">
+          <p className="text-[#4b5563] text-[0.9375rem] leading-relaxed mb-8">
             Thank you for your interest in joining Stratton Security Group. Our operations team will review your application and follow up within 2–3 business days.
           </p>
           <Link href="/careers" className="btn-secondary text-xs">
@@ -85,14 +87,14 @@ export default function ApplyForm() {
   }
 
   return (
-    <section className="section-padding bg-[#050810]">
+    <section className="section-padding bg-white">
       <div className="container-wide">
         <div className="grid lg:grid-cols-12 gap-12">
           <form onSubmit={handleSubmit(onSubmit)} className="lg:col-span-7 space-y-5" noValidate>
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="apply-name" className={labelClass}>
-                  Full Name <span className="text-[#cc1111]">*</span>
+                  Full Name <span className="text-accent">*</span>
                 </label>
                 <input
                   id="apply-name"
@@ -107,7 +109,7 @@ export default function ApplyForm() {
               </div>
               <div>
                 <label htmlFor="apply-phone" className={labelClass}>
-                  Phone <span className="text-[#cc1111]">*</span>
+                  Phone <span className="text-accent">*</span>
                 </label>
                 <input
                   id="apply-phone"
@@ -124,7 +126,7 @@ export default function ApplyForm() {
 
             <div>
               <label htmlFor="apply-email" className={labelClass}>
-                Email Address <span className="text-[#cc1111]">*</span>
+                Email Address <span className="text-accent">*</span>
               </label>
               <input
                 id="apply-email"
@@ -140,7 +142,7 @@ export default function ApplyForm() {
 
             <div>
               <label htmlFor="apply-position" className={labelClass}>
-                Position Applying For <span className="text-[#cc1111]">*</span>
+                Position Applying For <span className="text-accent">*</span>
               </label>
               <select
                 id="apply-position"
@@ -159,7 +161,7 @@ export default function ApplyForm() {
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="apply-guard-card" className={labelClass}>
-                  CA Guard Card # <span className="text-[#cc1111]">*</span>
+                  CA Guard Card # <span className="text-accent">*</span>
                 </label>
                 <input
                   id="apply-guard-card"
@@ -190,13 +192,13 @@ export default function ApplyForm() {
               </div>
             </div>
 
-            <div className="border border-dashed border-[#1a2030] p-4 flex items-center gap-3 text-[0.8125rem] text-[#606878]">
-              <Upload size={15} className="text-[#cc1111] shrink-0" strokeWidth={1.5} />
+            <div className="border border-dashed border-platinum p-4 flex items-center gap-3 text-[0.8125rem] text-[#4b5563]">
+              <Upload size={15} className="text-accent shrink-0" strokeWidth={1.5} />
               <span>
                 Attach your resume by emailing it to{" "}
                 <a
                   href={`mailto:${SITE_CONFIG.email}?subject=Resume - Security Officer Application`}
-                  className="text-[#cc1111] hover:underline"
+                  className="text-accent hover:underline"
                 >
                   {SITE_CONFIG.email}
                 </a>
@@ -216,7 +218,7 @@ export default function ApplyForm() {
             </div>
 
             {submitError && (
-              <p className="text-[0.75rem] text-[#ef4444]" role="alert">{submitError}</p>
+              <p className="text-[0.75rem] text-steel-700" role="alert">{submitError}</p>
             )}
 
             <button
@@ -239,7 +241,7 @@ export default function ApplyForm() {
           </form>
 
           <div className="lg:col-span-5 space-y-6">
-            <div className="card-anduril p-6">
+            <div className="card p-6">
               <p className="label-overline mb-4">What Happens Next</p>
               <ol className="space-y-4">
                 {[
@@ -249,18 +251,18 @@ export default function ApplyForm() {
                   "Background check and onboarding",
                 ].map((stepText, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="font-[var(--font-display)] text-[#606878] text-[0.8125rem] tracking-wide pt-px shrink-0">
+                    <span className="font-[var(--font-display)] text-accent text-[0.8125rem] tracking-wide pt-px shrink-0">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="text-[0.875rem] text-[#a0b0c0] leading-relaxed">{stepText}</span>
+                    <span className="text-[0.875rem] text-[#4b5563] leading-relaxed">{stepText}</span>
                   </li>
                 ))}
               </ol>
             </div>
-            <div className="card-anduril p-5 text-[0.8125rem] text-[#a0b0c0]">
-              <p className="text-white font-medium mb-1">Questions about the role?</p>
+            <div className="card p-5 text-[0.8125rem] text-[#4b5563]">
+              <p className="text-[#040d1e] font-medium mb-1">Questions about the role?</p>
               <p className="mb-3">Call our operations team directly — we&apos;re available 24/7.</p>
-              <a href={`tel:${SITE_CONFIG.phoneE164}`} className="text-[#cc1111] font-[var(--font-display)] tracking-wide">
+              <a href={`tel:${SITE_CONFIG.phoneE164}`} className="text-accent font-[var(--font-display)] tracking-wide">
                 {SITE_CONFIG.phone}
               </a>
             </div>

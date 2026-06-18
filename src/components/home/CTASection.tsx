@@ -9,11 +9,23 @@ import { SITE_CONFIG } from "@/lib/constants";
 const CTA_BG =
   "https://images.unsplash.com/photo-1595079676601-f1adf5be5dee?auto=format&fit=crop&w=1920&q=80";
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+
 export default function CTASection() {
   const shouldReduceMotion = useReducedMotion();
 
+  const reveal = (delay: number) => ({
+    initial: shouldReduceMotion ? {} : { opacity: 0, y: 28 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, margin: "-80px" },
+    transition: { duration: 0.8, delay: shouldReduceMotion ? 0 : delay, ease: EASE },
+  });
+
   return (
-    <section className="relative overflow-hidden min-h-[60vh] flex items-center" aria-label="Request a security assessment">
+    <section
+      className="relative overflow-hidden bg-deep-navy"
+      aria-label="Request a security assessment"
+    >
       {/* Background photo */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -25,59 +37,101 @@ export default function CTASection() {
           aria-hidden="true"
         />
       </div>
-      {/* Clean dark overlay */}
-      <div className="absolute inset-0 z-[1]" style={{ background: "linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.75) 50%, rgba(0,0,0,0.5) 100%)" }} />
-      <div className="absolute inset-0 z-[1]" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 40%, rgba(0,0,0,0.6) 100%)" }} />
 
-      {/* Thin gold top border */}
-      <div className="absolute top-0 left-0 right-0 h-px z-[2]" style={{ background: "linear-gradient(to right, transparent, rgba(204,17,17,0.5) 30%, rgba(204,17,17,0.5) 70%, transparent)" }} />
+      {/* Navy overlay — centered, slightly heavier in the middle for legibility */}
+      <div
+        className="absolute inset-0 z-[1]"
+        style={{
+          background:
+            "radial-gradient(120% 120% at 50% 50%, rgba(4,13,30,0.78) 0%, rgba(4,13,30,0.90) 55%, rgba(4,13,30,0.97) 100%)",
+        }}
+      />
+      <div
+        className="absolute inset-0 z-[1]"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(4,13,30,0.55) 0%, transparent 35%, transparent 65%, rgba(4,13,30,0.7) 100%)",
+        }}
+      />
 
-      <div className="relative z-10 container-wide py-24 md:py-32">
-        <motion.div
-          initial={shouldReduceMotion ? {} : { opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-2xl"
-        >
-          <p className="label-overline mb-6">Get Protected Today</p>
+      {/* Thin accent top border */}
+      <div
+        className="absolute top-0 left-0 right-0 h-px z-[2]"
+        style={{
+          background:
+            "linear-gradient(to right, transparent, rgba(63,107,176,0.45) 30%, rgba(63,107,176,0.45) 70%, transparent)",
+        }}
+      />
 
-          <h2
-            className="display-title text-white mb-6"
-            style={{ fontSize: "clamp(2.75rem, 6.5vw, 5rem)" }}
+      <div className="relative z-10 section-padding">
+        <div className="container-wide flex flex-col items-center text-center">
+          {/* Eyebrow */}
+          <motion.p
+            {...reveal(0)}
+            className="label-overline-light mb-8 flex items-center justify-center gap-3"
           >
-            Ready to Secure
-            <br />
-            <span className="gradient-red">Your Property?</span>
-          </h2>
+            <span className="inline-block w-8 h-px bg-[#3f6bb0]" />
+            Get Protected Today
+            <span className="inline-block w-8 h-px bg-[#3f6bb0]" />
+          </motion.p>
 
-          <div className="w-16 h-px bg-[#cc1111] mb-8" />
+          {/* Headline */}
+          <motion.h2
+            {...reveal(0.08)}
+            className="display-title text-white max-w-3xl mx-auto"
+            style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)" }}
+          >
+            Ready to secure your property?
+          </motion.h2>
 
-          <p className="text-[1rem] text-[#a0b0c0] leading-relaxed mb-10 max-w-xl">
+          {/* Accent line under title */}
+          <motion.span
+            {...reveal(0.14)}
+            className="accent-line mx-auto mt-8"
+            style={{ background: "#3f6bb0" }}
+            aria-hidden="true"
+          />
+
+          {/* Lede */}
+          <motion.p
+            {...reveal(0.2)}
+            className="text-silver text-[1.15rem] leading-relaxed mt-8 max-w-2xl mx-auto"
+          >
             Request a complimentary security assessment and speak with a
             Stratton senior advisor. We&apos;ll build a program that fits your
             property, risk profile, and budget.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-3 mb-12">
-            <Link href="/contact" className="btn-primary text-sm px-8 py-4 group">
+          {/* CTAs */}
+          <motion.div
+            {...reveal(0.28)}
+            className="flex flex-col sm:flex-row gap-4 mt-11 justify-center"
+          >
+            <Link href="/contact" className="btn-light group">
               Request a Free Assessment
-              <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+              <ArrowRight
+                size={16}
+                className="transition-transform group-hover:translate-x-1"
+              />
             </Link>
-            <a href={`tel:${SITE_CONFIG.phoneE164}`} className="btn-secondary text-sm px-8 py-4">
-              <Phone size={15} />
+            <a href={`tel:${SITE_CONFIG.phoneE164}`} className="btn-on-dark">
+              <Phone size={16} />
               {SITE_CONFIG.phone}
             </a>
-          </div>
+          </motion.div>
 
-          <div className="flex flex-wrap gap-6 text-[0.6875rem] text-[#606878] tracking-wide">
+          {/* Credential strip */}
+          <motion.div
+            {...reveal(0.36)}
+            className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-14 text-[0.6875rem] tracking-wide text-steel"
+          >
             <span>CA PPO License #{SITE_CONFIG.licenseNumber}</span>
-            <span className="text-[#cc1111]/30">·</span>
+            <span className="text-silver/30">·</span>
             <span>24/7 · 365 Availability</span>
-            <span className="text-[#cc1111]/30">·</span>
+            <span className="text-silver/30">·</span>
             <span>Licensed · Bonded · Insured</span>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

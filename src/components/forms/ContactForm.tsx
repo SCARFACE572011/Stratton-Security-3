@@ -36,11 +36,11 @@ const PROPERTY_TYPES = [
 const STEP_LABELS = ["Property & Service", "Your Information", "Details & Submit"];
 
 const inputClass =
-  "w-full bg-[#050810] border border-[#1a2030] text-white text-sm px-4 py-3 focus:border-[#cc1111]/50 focus:outline-none transition-colors placeholder:text-[#3a4a58]";
+  "w-full bg-platinum-50 border border-platinum text-[#040d1e] text-sm px-4 py-3 focus:border-[#1a3a6b] focus:ring-1 focus:ring-[#1a3a6b] focus:outline-none transition-colors placeholder:text-steel";
 const labelClass =
-  "block text-[0.75rem] text-[#606878] tracking-widest uppercase mb-2";
+  "block text-[0.75rem] text-[#4b5563] tracking-widest uppercase mb-2";
 const errorClass =
-  "text-[0.75rem] text-[#ef4444] mt-1.5";
+  "text-[0.75rem] text-steel-700 mt-1.5";
 
 export default function ContactForm() {
   const [step, setStep] = useState<FormStep>(1);
@@ -73,8 +73,10 @@ export default function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error ?? "Submission failed.");
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || json?.ok === false) {
+        throw new Error(json?.error ?? "Submission failed.");
+      }
       setSubmitted(true);
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
@@ -84,21 +86,21 @@ export default function ContactForm() {
   if (submitted) {
     const name = getValues("name");
     return (
-      <div className="card-anduril p-8 md:p-12 text-center">
-        <div className="w-14 h-14 border border-[#10b981]/40 flex items-center justify-center mx-auto mb-5">
-          <CheckCircle size={26} className="text-[#10b981]" />
+      <div className="card p-8 md:p-12 text-center">
+        <div className="w-14 h-14 border border-[#1a3a6b]/40 flex items-center justify-center mx-auto mb-5">
+          <CheckCircle size={26} className="text-accent" />
         </div>
-        <h3 className="font-[var(--font-display)] text-2xl text-white uppercase tracking-wide mb-3">
+        <h3 className="display-sm text-2xl text-[#040d1e] mb-3">
           Request Received
         </h3>
-        <p className="text-[#a0b0c0] text-[0.9375rem] max-w-sm mx-auto mb-8 leading-relaxed">
+        <p className="text-[#4b5563] text-[0.9375rem] max-w-sm mx-auto mb-8 leading-relaxed">
           Thank you, {name}. A Stratton security advisor will contact you within one business day to discuss your needs.
         </p>
-        <div className="border-t border-[#1a2030] pt-6">
-          <p className="text-[0.75rem] text-[#606878] mb-3">For immediate assistance:</p>
+        <div className="border-t border-platinum pt-6">
+          <p className="text-[0.75rem] text-steel mb-3">For immediate assistance:</p>
           <a
             href={`tel:${SITE_CONFIG.phoneE164}`}
-            className="inline-flex items-center gap-2 text-[#cc1111] font-medium text-sm hover:text-[#ef4444] transition-colors"
+            className="inline-flex items-center gap-2 text-accent font-medium text-sm hover:text-[#224a86] transition-colors"
           >
             <Phone size={14} />
             {SITE_CONFIG.phone}
@@ -111,9 +113,9 @@ export default function ContactForm() {
   const values = getValues();
 
   return (
-    <div className="card-anduril">
+    <div className="card">
       {/* Step progress */}
-      <div className="border-b border-[#1a2030]">
+      <div className="border-b border-platinum">
         <div className="flex">
           {STEP_LABELS.map((label, i) => {
             const stepNum = (i + 1) as FormStep;
@@ -123,12 +125,12 @@ export default function ContactForm() {
               <div key={i} className="flex-1 px-4 py-3 relative">
                 <div
                   className={`absolute bottom-0 left-0 right-0 h-0.5 transition-colors duration-300 ${
-                    isActive ? "bg-[#cc1111]" : isComplete ? "bg-[#cc1111]/40" : "bg-transparent"
+                    isActive ? "bg-[#1a3a6b]" : isComplete ? "bg-[#1a3a6b]/40" : "bg-transparent"
                   }`}
                 />
                 <span
                   className={`text-[0.6875rem] tracking-widest uppercase transition-colors ${
-                    isActive ? "text-[#cc1111]" : isComplete ? "text-[#606878]" : "text-[#3a4a58]"
+                    isActive ? "text-accent" : isComplete ? "text-steel" : "text-silver"
                   }`}
                 >
                   {i + 1}. {label}
@@ -146,7 +148,7 @@ export default function ContactForm() {
             <div className="space-y-5">
               <div>
                 <label htmlFor="propertyType" className={labelClass}>
-                  Property Type <span className="text-[#cc1111]">*</span>
+                  Property Type <span className="text-accent">*</span>
                 </label>
                 <select
                   id="propertyType"
@@ -165,7 +167,7 @@ export default function ContactForm() {
               </div>
               <div>
                 <label htmlFor="serviceType" className={labelClass}>
-                  Service Needed <span className="text-[#cc1111]">*</span>
+                  Service Needed <span className="text-accent">*</span>
                 </label>
                 <select
                   id="serviceType"
@@ -192,7 +194,7 @@ export default function ContactForm() {
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="name" className={labelClass}>
-                    Full Name <span className="text-[#cc1111]">*</span>
+                    Full Name <span className="text-accent">*</span>
                   </label>
                   <input
                     id="name"
@@ -219,7 +221,7 @@ export default function ContactForm() {
               </div>
               <div>
                 <label htmlFor="email" className={labelClass}>
-                  Email Address <span className="text-[#cc1111]">*</span>
+                  Email Address <span className="text-accent">*</span>
                 </label>
                 <input
                   id="email"
@@ -234,7 +236,7 @@ export default function ContactForm() {
               </div>
               <div>
                 <label htmlFor="phone" className={labelClass}>
-                  Phone Number <span className="text-[#cc1111]">*</span>
+                  Phone Number <span className="text-accent">*</span>
                 </label>
                 <input
                   id="phone"
@@ -253,18 +255,18 @@ export default function ContactForm() {
           {/* Step 3 */}
           {step === 3 && (
             <div className="space-y-5">
-              <div className="bg-[#050810] border border-[#1a2030] p-4 text-[0.8125rem]">
+              <div className="bg-platinum-50 border border-platinum p-4 text-[0.8125rem]">
                 <p>
-                  <span className="text-[#606878] uppercase tracking-wide text-[0.6875rem]">Property: </span>
-                  <span className="text-[#a0b0c0]">{values.propertyType}</span>
+                  <span className="text-steel uppercase tracking-wide text-[0.6875rem]">Property: </span>
+                  <span className="text-[#040d1e]">{values.propertyType}</span>
                 </p>
                 <p className="mt-1">
-                  <span className="text-[#606878] uppercase tracking-wide text-[0.6875rem]">Service: </span>
-                  <span className="text-[#a0b0c0]">{values.serviceType}</span>
+                  <span className="text-steel uppercase tracking-wide text-[0.6875rem]">Service: </span>
+                  <span className="text-[#040d1e]">{values.serviceType}</span>
                 </p>
                 <p className="mt-1">
-                  <span className="text-[#606878] uppercase tracking-wide text-[0.6875rem]">Contact: </span>
-                  <span className="text-[#a0b0c0]">{values.name} — {values.email}</span>
+                  <span className="text-steel uppercase tracking-wide text-[0.6875rem]">Contact: </span>
+                  <span className="text-[#040d1e]">{values.name} — {values.email}</span>
                 </p>
               </div>
               <div>
@@ -293,7 +295,7 @@ export default function ContactForm() {
                   <option>Other</option>
                 </select>
               </div>
-              <p className="text-[0.6875rem] text-[#3a4a58] leading-relaxed">
+              <p className="text-[0.6875rem] text-steel leading-relaxed">
                 Your information is kept confidential and will only be used to contact you regarding your security inquiry. We do not share client information with third parties.
               </p>
             </div>
@@ -301,7 +303,7 @@ export default function ContactForm() {
         </div>
 
         {submitError && (
-          <p className="mx-6 md:mx-8 mb-2 text-[0.75rem] text-[#ef4444]" role="alert">{submitError}</p>
+          <p className="mx-6 md:mx-8 mb-2 text-[0.75rem] text-steel-700" role="alert">{submitError}</p>
         )}
 
         <div className="px-6 md:px-8 pb-6 md:pb-8 flex items-center justify-between gap-4">
@@ -309,7 +311,7 @@ export default function ContactForm() {
             <button
               type="button"
               onClick={() => setStep((s) => (s - 1) as FormStep)}
-              className="text-[0.8125rem] text-[#a0b0c0] hover:text-white transition-colors uppercase tracking-wide"
+              className="text-[0.8125rem] text-steel hover:text-[#040d1e] transition-colors uppercase tracking-wide"
             >
               ← Back
             </button>

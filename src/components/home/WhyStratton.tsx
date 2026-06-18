@@ -14,79 +14,81 @@ const ICON_MAP = { BadgeCheck, Clock, Shield, Settings2, Award, FileText } as co
 export default function WhyStratton() {
   const shouldReduceMotion = useReducedMotion();
 
-  return (
-    <section
-      className="bg-[#050810]"
-      aria-labelledby="why-heading"
-    >
-      <div className="container-wide py-24 md:py-32">
-        <div className="grid lg:grid-cols-12 gap-16 items-start">
+  const EASE = [0.22, 1, 0.36, 1] as const;
 
-          {/* Left column */}
+  return (
+    <section className="section-tint" aria-labelledby="why-heading">
+      <div className="container-wide section-padding">
+        <div className="grid lg:grid-cols-12 gap-14 lg:gap-20 items-start">
+
+          {/* Left column — editorial intro + image, sticky */}
           <motion.div
-            initial={shouldReduceMotion ? {} : { opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:col-span-4 lg:sticky lg:top-28"
+            initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.8, ease: EASE }}
+            className="lg:col-span-5 lg:sticky lg:top-28"
           >
-            {/* Accent photo — clean, no brackets */}
-            <div className="relative w-full aspect-[4/3] mb-10 overflow-hidden">
+            <p className="label-overline mb-6">Why Stratton</p>
+            <span className="accent-line mb-8" />
+            <h2
+              id="why-heading"
+              className="display-title text-[#040d1e] mb-7"
+              style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)" }}
+            >
+              The Standard of Protective Excellence
+            </h2>
+            <p className="text-[#4b5563] text-lg leading-relaxed mb-10 max-w-md">
+              We don&apos;t offer generic security templates. Every Stratton program
+              is built around your property, your risk profile, and your
+              operational requirements.
+            </p>
+
+            {/* Accent photo — soft radius, modern */}
+            <div className="relative w-full aspect-[4/3] mb-10 overflow-hidden rounded-xl shadow-[0_24px_50px_rgba(4,13,30,0.12)]">
               <Image
                 src={ACCENT_PHOTO}
                 alt="Stratton Security officers on patrol"
                 fill
                 className="object-cover object-center"
-                sizes="(max-width: 1024px) 100vw, 400px"
+                sizes="(max-width: 1024px) 100vw, 460px"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#040d1e]/55 to-transparent" />
+              {/* Subtle HUD reticle — ops-feed cue */}
+              <span
+                className="hud-corners-4 pointer-events-none absolute inset-4"
+                style={{ ["--hud-c" as string]: "rgba(192,200,212,0.5)" }}
+              />
             </div>
 
-            <p className="label-overline mb-4">Why Stratton</p>
-            <h2
-              id="why-heading"
-              className="display-title text-white mb-6"
-              style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
-            >
-              The Standard of
-              <br />
-              <span className="gradient-red">Protective Excellence</span>
-            </h2>
-            <p className="text-[#a0b0c0] text-[0.9375rem] leading-relaxed mb-8">
-              We don&apos;t offer generic security templates. Every Stratton program
-              is built around your property, your risk profile, and your
-              operational requirements.
-            </p>
-            <Link href="/about" className="btn-primary text-xs">
+            <Link href="/about" className="btn-primary">
               About Our Team
-              <ArrowRight size={13} />
+              <ArrowRight size={14} />
             </Link>
           </motion.div>
 
-          {/* Right column — clean list, no TiltCards */}
-          <div className="lg:col-span-8">
+          {/* Right column — differentiators with accent-blue icon chips */}
+          <div className="lg:col-span-7 grid sm:grid-cols-2 gap-6 lg:gap-8">
             {DIFFERENTIATORS.map((item, i) => {
               const IconComponent = ICON_MAP[item.icon as keyof typeof ICON_MAP] ?? BadgeCheck;
               return (
                 <motion.div
                   key={i}
-                  initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
+                  initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex items-start gap-6 py-7 border-b border-[#1a2030] last:border-0"
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ delay: i * 0.08, duration: 0.6, ease: EASE }}
+                  className="card p-8 lg:p-9"
                 >
-                  <div className="w-10 h-10 border border-[#1a2030] flex items-center justify-center shrink-0 mt-0.5">
-                    <IconComponent size={17} className="text-[#cc1111]" strokeWidth={1.5} />
+                  <div className="w-12 h-12 rounded-xl border border-platinum bg-platinum-50 flex items-center justify-center mb-6">
+                    <IconComponent size={20} className="text-accent" strokeWidth={1.75} />
                   </div>
-                  <div>
-                    <h3 className="font-[var(--font-sans)] text-[1rem] font-600 text-white mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-[0.875rem] text-[#606878] leading-relaxed">
-                      {item.description}
-                    </p>
-                  </div>
+                  <h3 className="font-[var(--font-sans)] text-lg font-semibold text-[#0a0a0a] mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-[0.9375rem] text-[#4b5563] leading-relaxed">
+                    {item.description}
+                  </p>
                 </motion.div>
               );
             })}

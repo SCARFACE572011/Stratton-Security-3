@@ -1,8 +1,7 @@
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import CTASection from "@/components/home/CTASection";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import FaqAccordion from "@/components/faq/FaqAccordion";
 import { FAQS, SITE_CONFIG } from "@/lib/constants";
 import { BreadcrumbSchema } from "@/app/schema";
 import type { Metadata } from "next";
@@ -41,84 +40,47 @@ export default function FaqPage() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
         />
 
-        {/* Minimal text hero — no photo, pure black */}
-        <div className="bg-[#050810] border-b border-[#cc1111]/15 pt-32 pb-16 md:pb-20">
-          <div className="container-wide">
-            <div className="max-w-2xl">
-              <p className="label-overline mb-5">Answers</p>
+        {/* Page hero — deep-navy band, serif proper-case headline */}
+        <section className="relative bg-deep-navy overflow-hidden border-b border-[rgba(192,200,212,0.16)] pt-36 pb-20 md:pt-44 md:pb-28">
+          {/* Atmosphere — navy/black overlays only */}
+          <div className="absolute inset-0 z-0" aria-hidden="true">
+            <div
+              className="absolute inset-0"
+              style={{ background: "radial-gradient(120% 90% at 50% 0%, #0a1c3c 0%, #040d1e 50%, #060708 100%)" }}
+            />
+            <div
+              className="absolute inset-0 opacity-[0.4]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(192,200,212,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(192,200,212,0.045) 1px, transparent 1px)",
+                backgroundSize: "72px 72px",
+                maskImage: "radial-gradient(circle at 22% 30%, #000 0%, transparent 72%)",
+                WebkitMaskImage: "radial-gradient(circle at 22% 30%, #000 0%, transparent 72%)",
+              }}
+            />
+          </div>
+
+          <div className="relative z-10 container-wide">
+            <div className="max-w-3xl">
+              <p className="label-overline-light mb-6">Answers</p>
               <h1
-                className="display-title text-white mb-5"
-                style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}
+                className="display-hero text-white"
+                style={{ fontSize: "clamp(2.75rem, 6.5vw, 5rem)" }}
               >
-                Frequently Asked
-                <br />
-                <span className="gradient-red">Questions</span>
+                Frequently Asked Questions
               </h1>
-              <p className="text-[#a0b0c0] text-[1rem] leading-relaxed">
+              <span className="accent-line mt-8 mb-8" aria-hidden="true" />
+              <p className="text-silver text-[1.0625rem] md:text-[1.15rem] leading-relaxed max-w-2xl">
                 Straight answers about how Stratton is licensed, how our officers
                 are trained, and how we deploy. If your question isn&apos;t here, call{" "}
                 {SITE_CONFIG.phone} or contact us directly.
               </p>
             </div>
           </div>
-        </div>
-
-        {/* FAQs */}
-        <section className="section-padding bg-[#050810]">
-          <div className="container-wide">
-            <div className="max-w-4xl">
-              <div className="divide-y divide-[#1a2030]">
-                {FAQS.map((item, i) => (
-                  <details key={i} className="group">
-                    <summary className="list-none cursor-pointer flex items-start justify-between gap-6 py-6 px-1 transition-colors hover:bg-[rgba(255,255,255,0.02)]">
-                      <div className="flex items-start gap-5">
-                        <span className="font-[var(--font-display)] text-[#3a4a58] text-[0.875rem] tracking-wider pt-0.5 shrink-0">
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        <h3 className="font-[var(--font-display)] text-[1rem] md:text-[1.125rem] text-white uppercase tracking-wide leading-snug">
-                          {item.q}
-                        </h3>
-                      </div>
-                      <span
-                        aria-hidden="true"
-                        className="shrink-0 w-6 h-6 border border-[#1a2030] group-hover:border-[#cc1111]/50 flex items-center justify-center text-[#cc1111] transition-all relative"
-                      >
-                        <span className="block w-2.5 h-px bg-current" />
-                        <span className="block w-px h-2.5 bg-current absolute group-open:opacity-0 transition-opacity" />
-                      </span>
-                    </summary>
-                    <div className="pb-6 pl-[3.75rem] pr-10">
-                      <p className="text-[0.9375rem] text-[#a0b0c0] leading-relaxed">
-                        {item.a}
-                      </p>
-                    </div>
-                  </details>
-                ))}
-              </div>
-
-              <div className="mt-14 card-anduril p-6 md:p-8">
-                <p className="label-overline mb-3">Still Have Questions?</p>
-                <h3 className="font-[var(--font-display)] text-[1.25rem] text-white uppercase tracking-wide mb-3">
-                  Talk With A Security Advisor
-                </h3>
-                <p className="text-[0.875rem] text-[#606878] leading-relaxed mb-6">
-                  A Stratton advisor will answer your specific questions, walk
-                  through a risk assessment, and scope a program that fits your
-                  property.
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <Link href="/contact" className="btn-primary text-xs">
-                    Request A Consultation
-                    <ArrowRight size={13} />
-                  </Link>
-                  <a href={`tel:${SITE_CONFIG.phoneE164}`} className="btn-secondary text-xs">
-                    Call {SITE_CONFIG.phone}
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
         </section>
+
+        {/* FAQ accordion + advisor card */}
+        <FaqAccordion faqs={FAQS} phone={SITE_CONFIG.phone} phoneE164={SITE_CONFIG.phoneE164} />
 
         <CTASection />
       </main>

@@ -22,20 +22,20 @@ export default function MobileStickyBar() {
       }`}
       aria-label="Quick contact"
     >
-      <div className="flex border-t border-[#1a3050] bg-[#040c1a]">
+      <div className="flex border-t border-[rgba(192,200,212,0.16)] bg-[#040d1e]">
         <a
           href={`tel:${SITE_CONFIG.phoneE164}`}
-          className="flex-1 flex items-center justify-center gap-2 py-3.5 text-[0.75rem] font-600 uppercase tracking-wide text-[#edf2f7] border-r border-[#1a3050] hover:bg-[#0b1a2e] transition-colors"
+          className="flex-1 flex items-center justify-center gap-2 py-3.5 text-[0.75rem] font-bold uppercase tracking-[0.08em] text-white border-r border-[rgba(192,200,212,0.16)] hover:bg-[#11264a] transition-colors"
         >
-          <Phone size={15} className="text-[#cc1111]" />
+          <Phone size={15} className="text-[#3f6bb0]" />
           Call Now
         </a>
         <Link
           href="/contact"
-          className="flex-1 flex items-center justify-center gap-2 py-3.5 text-[0.75rem] font-600 uppercase tracking-wide bg-[#cc1111] text-white hover:bg-[#ef4444] transition-colors"
+          className="flex-1 flex items-center justify-center gap-2 py-3.5 text-[0.75rem] font-bold uppercase tracking-[0.08em] bg-[#1a3a6b] text-white hover:bg-[#224a86] transition-colors"
         >
           <MessageSquare size={15} />
-          Get a Quote
+          Request Assessment
         </Link>
       </div>
     </div>

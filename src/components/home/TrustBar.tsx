@@ -27,45 +27,38 @@ const TRUST_ITEMS = [
   },
 ];
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+
 export default function TrustBar() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="relative bg-[#050810] border-b border-[#1a2030] overflow-hidden">
-      {/* Subtle red left accent */}
-      <div
-        className="absolute left-0 top-0 bottom-0 w-px pointer-events-none"
-        style={{ background: "linear-gradient(to bottom, transparent, rgba(204,17,17,0.4) 50%, transparent)" }}
-        aria-hidden="true"
-      />
-
+    <div className="relative bg-white border-y border-platinum overflow-hidden">
       <div className="container-wide">
         <motion.div
-          className="flex flex-wrap lg:flex-nowrap items-stretch divide-y lg:divide-y-0 lg:divide-x divide-[#1a2030]"
+          className="grid grid-cols-2 lg:grid-cols-4 divide-y divide-platinum sm:divide-y-0 sm:[&>*:nth-child(odd)]:border-r sm:[&>*:nth-child(odd)]:border-platinum lg:divide-x lg:[&>*]:border-l lg:[&>*:first-child]:border-l-0 lg:[&>*]:border-platinum"
           initial={shouldReduceMotion ? {} : { opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: EASE }}
         >
           {TRUST_ITEMS.map((item, i) => (
             <motion.div
               key={i}
-              initial={shouldReduceMotion ? {} : { opacity: 0, y: 10 }}
+              initial={shouldReduceMotion ? {} : { opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.07, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="group flex items-center gap-4 px-6 py-5 flex-1 min-w-[50%] lg:min-w-0 hover:bg-[#0a0f1a] transition-colors duration-200"
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ delay: i * 0.08, duration: 0.6, ease: EASE }}
+              className="group flex items-center justify-center gap-4 px-6 py-8 md:py-10 text-center sm:text-left transition-colors duration-300 hover:bg-platinum-50"
             >
-              <item.icon
-                size={16}
-                className="text-[#cc1111] group-hover:text-[#cc1111] transition-colors duration-300 shrink-0"
-                strokeWidth={1.5}
-              />
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-platinum bg-platinum-50 text-[#1a3a6b] transition-colors duration-300 group-hover:border-silver">
+                <item.icon size={18} strokeWidth={1.75} />
+              </span>
               <div className="min-w-0">
-                <div className="font-[var(--font-display)] text-[0.875rem] text-white uppercase tracking-wider leading-none mb-0.5 truncate">
+                <div className="font-[var(--font-display)] text-[0.95rem] leading-none tracking-wide text-[#040d1e] mb-1 truncate">
                   {item.value}
                 </div>
-                <div className="text-[0.5875rem] text-[#606878] tracking-wide truncate">
+                <div className="text-[0.6875rem] leading-snug tracking-wide text-[#4b5563] truncate">
                   {item.sub}
                 </div>
               </div>

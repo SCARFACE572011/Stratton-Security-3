@@ -68,41 +68,51 @@ export default function StatsSection() {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#000000] border-y border-[#1a2030]"
+      className="section-light section-padding border-y border-platinum"
       aria-label="Company statistics"
     >
-      <div className="container-wide py-0">
-        <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-[#1a2030]">
+      <div className="container-wide">
+        {/* Centered editorial header */}
+        <motion.div
+          initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="mx-auto max-w-3xl text-center mb-16 lg:mb-20"
+        >
+          <p className="label-overline mb-6">By the Numbers</p>
+          <span className="accent-line mx-auto mb-8" />
+          <h2
+            className="display-title text-[#040d1e]"
+            style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)" }}
+          >
+            A record measured in trust
+          </h2>
+          <p className="mt-6 text-[1.125rem] leading-relaxed text-[#4b5563]">
+            Years of disciplined service, statewide coverage, and an unbroken
+            commitment to readiness — the figures behind Stratton&apos;s
+            reputation for protection.
+          </p>
+        </motion.div>
+
+        {/* Numerals */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-14 lg:gap-y-0 lg:divide-x lg:divide-platinum">
           {STATS.map((stat, i) => (
             <motion.div
               key={i}
-              initial={shouldReduceMotion ? {} : { opacity: 0, y: 24 }}
+              initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-80px" }}
               transition={{
-                delay: i * 0.1,
+                delay: i * 0.08,
                 duration: 0.7,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="group relative overflow-hidden text-center px-6 py-14 cursor-default"
+              className="group flex flex-col items-center text-center px-6 lg:px-10 cursor-default"
             >
-              {/* Red hover glow overlay */}
               <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
-                style={{
-                  background:
-                    "radial-gradient(ellipse at center, rgba(204,17,17,0.06) 0%, transparent 70%)",
-                  animation: "glow-red 3s ease-in-out infinite",
-                }}
-                aria-hidden="true"
-              />
-
-              {/* Thin top line that becomes red on hover */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-0 group-hover:w-full h-px bg-[#cc1111] transition-all duration-500 ease-out" />
-
-              <div
-                className="font-[var(--font-display)] font-800 leading-none mb-4 text-white group-hover:text-[#cc1111] transition-colors duration-300"
-                style={{ fontSize: "clamp(3rem, 6.5vw, 5rem)" }}
+                className="display-hero leading-none text-[#040d1e]"
+                style={{ fontSize: "clamp(3.25rem, 6.5vw, 5.25rem)" }}
                 aria-label={`${stat.value}${stat.suffix}`}
               >
                 <AnimatedCounter
@@ -112,13 +122,13 @@ export default function StatsSection() {
                 />
               </div>
 
-              {/* Gold + red accent */}
-              <div className="flex items-center justify-center gap-1.5 mb-3">
-                <div className="w-6 h-px bg-[#cc1111] group-hover:bg-[#cc1111] transition-colors duration-300" />
-                <div className="w-1.5 h-1.5 rounded-full bg-[#cc1111]/40 group-hover:bg-[#cc1111]/60 transition-colors duration-300" />
+              {/* Accent-blue divider mark */}
+              <div className="flex items-center justify-center gap-1.5 mt-6 mb-5">
+                <span className="w-8 h-px bg-[#1a3a6b]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#1a3a6b]" />
               </div>
 
-              <p className="text-[0.625rem] text-[#606878] group-hover:text-[#a0b0c0] tracking-[0.2em] uppercase transition-colors duration-300">
+              <p className="text-[0.6875rem] font-semibold tracking-[0.22em] uppercase text-[#6b7280] group-hover:text-[#4b5563] transition-colors duration-300">
                 {stat.label}
               </p>
             </motion.div>
