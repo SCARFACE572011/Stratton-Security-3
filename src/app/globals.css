@@ -653,6 +653,7 @@ main > section {
 .text-steel { color: var(--on-dark-muted) !important; }
 
 /* accent text + accent lines: brighten so they read on dark */
-.text-\[\#1a3a6b\] { color: var(--on-dark-accent) !important; }
+.text-\[\#1a3a6b\],
+.text-accent { color: var(--on-dark-accent) !important; }
 .label-overline { color: var(--on-dark-accent) !important; }
 .accent-line { background-color: #3f6bb0 !important; }

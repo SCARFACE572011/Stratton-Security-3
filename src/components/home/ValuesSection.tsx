@@ -101,20 +101,28 @@ export default function ValuesSection() {
                 <ShieldCheck size={22} strokeWidth={1.75} />
               </span>
               <p className="text-[0.6875rem] text-steel tracking-[0.18em] uppercase mb-2">{cert.title}</p>
-              <p className="font-[var(--font-display)] text-xl text-accent mb-3">{cert.value}</p>
+              <p className="font-[var(--font-display)] text-2xl text-white mb-3">{cert.value}</p>
               <p className="text-[0.8125rem] text-[#4b5563] leading-relaxed">{cert.sub}</p>
             </motion.div>
           ))}
         </div>
 
-        {/* Insurance / compliance note */}
-        <motion.div {...reveal(0.1)} className="card max-w-3xl mx-auto mt-10 p-8 md:p-10 text-center">
-          <p className="text-[0.9375rem] text-[#4b5563] leading-relaxed">
-            All Stratton officers are required to meet or exceed California state
-            licensing requirements under BSIS. We maintain comprehensive general
-            liability, commercial auto, and workers&apos; compensation insurance
-            coverage across all operations.
-          </p>
+        {/* Insurance / compliance note — compact bar with icon */}
+        <motion.div
+          {...reveal(0.1)}
+          className="card max-w-4xl mx-auto mt-8 p-6 md:p-7 flex items-start gap-4 md:gap-5 text-left border-l-2 border-l-[#3f6bb0]"
+        >
+          <span className="shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-xl border border-platinum bg-platinum-50 text-accent">
+            <ShieldCheck size={20} strokeWidth={1.75} />
+          </span>
+          <div>
+            <p className="text-[0.6875rem] text-steel tracking-[0.18em] uppercase mb-1.5">Licensed · Bonded · Insured</p>
+            <p className="text-[0.9375rem] text-[#b7c2d1] leading-relaxed">
+              All Stratton officers meet or exceed California state licensing requirements
+              under BSIS. We carry comprehensive general liability, commercial auto, and
+              workers&apos; compensation coverage across every operation.
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>
