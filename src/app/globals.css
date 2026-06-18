@@ -592,3 +592,60 @@ body {
   background: #3f6bb0;
   animation: status-pulse 2.4s ease-in-out infinite;
 }
+
+/* ─── DARK CONTENT SURFACES ───────────────────────────────────────────────────
+   The hero/page-hero bands stay deep-navy (untouched). Everything that was a
+   white / platinum "light" content surface is shifted to a softer dark navy so
+   the whole page reads dark. These rules are unlayered, so they win over the
+   Tailwind utility layer. To make the page lighter/darker, tune the values here.
+──────────────────────────────────────────────────────────────────────────── */
+
+/* tunable surface tones */
+:root {
+  --surface-a: #0c1c33; /* was white / section-light  */
+  --surface-b: #08152a; /* was platinum-50 / tint     */
+  --surface-card: #122847;
+  --surface-hairline: rgba(192, 200, 212, 0.14);
+  --on-dark-heading: #f1f4f8;
+  --on-dark-body: #b7c2d1;
+  --on-dark-muted: #93a0b3;
+  --on-dark-accent: #6f9bd8;
+}
+
+/* surfaces */
+.section-light,
+.bg-white { background-color: var(--surface-a) !important; }
+.section-tint,
+.bg-platinum-50 { background-color: var(--surface-b) !important; }
+
+/* cards */
+.card,
+.card-anduril {
+  background-color: var(--surface-card) !important;
+  border-color: var(--surface-hairline) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35) !important;
+}
+.card:hover,
+.card-anduril:hover {
+  border-color: rgba(192, 200, 212, 0.3) !important;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* borders / dividers */
+.border-platinum { border-color: var(--surface-hairline) !important; }
+
+/* headings (were near-black / deep-navy) -> near white */
+.text-\[\#0a0a0a\],
+.text-\[\#040d1e\] { color: var(--on-dark-heading) !important; }
+
+/* body copy (steel-700) -> readable light */
+.text-\[\#4b5563\] { color: var(--on-dark-body) !important; }
+
+/* secondary / muted */
+.text-\[\#6b7280\],
+.text-steel { color: var(--on-dark-muted) !important; }
+
+/* accent text + accent lines: brighten so they read on dark */
+.text-\[\#1a3a6b\] { color: var(--on-dark-accent) !important; }
+.label-overline { color: var(--on-dark-accent) !important; }
+.accent-line { background-color: #3f6bb0 !important; }
