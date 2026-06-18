@@ -40,44 +40,6 @@ export default function WhyStratton() {
               operational requirements.
             </p>
 
-            {/* Brand crest panel — on-brand visual (swap for client photography later) */}
-            <div className="relative w-full aspect-[4/3] mb-10 overflow-hidden rounded-xl border border-[rgba(192,200,212,0.16)] bg-[#040d1e] shadow-[0_24px_50px_rgba(4,13,30,0.4)]">
-              {/* ops grid */}
-              <div
-                className="absolute inset-0 opacity-[0.5]"
-                aria-hidden="true"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(rgba(192,200,212,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(192,200,212,0.06) 1px, transparent 1px)",
-                  backgroundSize: "40px 40px",
-                  maskImage: "radial-gradient(circle at 50% 42%, #000 0%, transparent 78%)",
-                  WebkitMaskImage: "radial-gradient(circle at 50% 42%, #000 0%, transparent 78%)",
-                }}
-              />
-              {/* accent glow */}
-              <div
-                className="absolute inset-0"
-                aria-hidden="true"
-                style={{ background: "radial-gradient(circle at 50% 40%, rgba(26,58,107,0.5) 0%, transparent 62%)" }}
-              />
-              {/* seal */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/brand/seal-white.png"
-                  alt="Stratton Security Group seal"
-                  width={132}
-                  height={132}
-                  className="w-28 h-28 opacity-90"
-                />
-                <p className="mono-tag text-silver mt-6">Strength · Vigilance · Integrity</p>
-              </div>
-              <span
-                className="hud-corners-4 pointer-events-none absolute inset-4"
-                style={{ ["--hud-c" as string]: "rgba(192,200,212,0.5)" }}
-              />
-            </div>
-
             <Link href="/about" className="btn-primary">
               About Stratton
               <ArrowRight size={14} />
