@@ -3,6 +3,7 @@ import { Rajdhani, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { OrganizationSchema } from "./schema";
 import Preloader from "@/components/layout/Preloader";
+import ScrollProgress from "@/components/layout/ScrollProgress";
 import MobileStickyBar from "@/components/layout/MobileStickyBar";
 import BackToTop from "@/components/layout/BackToTop";
 import LenisProvider from "@/components/layout/LenisProvider";
@@ -94,6 +95,7 @@ export default function RootLayout({
     <html lang="en" className={`${rajdhani.variable} ${hanken.variable} ${jetbrainsMono.variable}`}>
       <body className="min-h-screen flex flex-col antialiased">
         <Preloader />
+        <ScrollProgress />
         <LenisProvider>
           <OrganizationSchema />
           {children}

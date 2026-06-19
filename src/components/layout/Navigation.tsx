@@ -132,15 +132,19 @@ export default function Navigation() {
                     <Link
                       href={item.href}
                       className={cn(
-                        "px-3 py-2 text-[0.82rem] font-medium tracking-[0.02em] whitespace-nowrap block relative transition-colors",
+                        "group px-3 py-2 text-[0.82rem] font-medium tracking-[0.02em] whitespace-nowrap block relative transition-colors",
                         isActive(item.href) ? "text-white" : "text-silver hover:text-white"
                       )}
                       aria-current={isActive(item.href) ? "page" : undefined}
                     >
                       {item.label}
-                      {isActive(item.href) && (
-                        <span className="absolute bottom-0 left-3.5 right-3.5 h-px bg-[#3f6bb0]" />
-                      )}
+                      <span
+                        className={cn(
+                          "absolute bottom-0 left-3 right-3 h-px bg-[#3f6bb0] origin-center transition-transform duration-300 ease-out",
+                          isActive(item.href) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                        )}
+                        aria-hidden="true"
+                      />
                     </Link>
                   )}
 
