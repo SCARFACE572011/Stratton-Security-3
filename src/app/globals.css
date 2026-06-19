@@ -657,3 +657,14 @@ main > section {
 .text-accent { color: var(--on-dark-accent) !important; }
 .label-overline { color: var(--on-dark-accent) !important; }
 .accent-line { background-color: #3f6bb0 !important; }
+
+/* secondary (outline) buttons were built for light surfaces — make them read on dark */
+.btn-secondary {
+  color: var(--on-dark-heading) !important;
+  border-color: rgba(192, 200, 212, 0.4) !important;
+}
+.btn-secondary:hover {
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+}
