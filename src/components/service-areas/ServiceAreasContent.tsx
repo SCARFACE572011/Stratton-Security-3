@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MapPin, Building2, Check } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, SERVICE_AREAS } from "@/lib/constants";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -287,39 +287,57 @@ export default function ServiceAreasContent({
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {primaryAreas.map((area, i) => (
-              <motion.div
-                key={area.name}
-                {...reveal(i * 0.06)}
-                className="card group flex flex-col h-full rounded-xl p-8"
-              >
-                <div className="w-14 h-14 rounded-xl border border-platinum bg-[#f4f6f9] flex items-center justify-center shrink-0 transition-colors group-hover:border-[#1a3a6b]/40 mb-7">
-                  <MapPin size={24} className="text-[#1a3a6b]" strokeWidth={1.5} />
-                </div>
-                <h3 className="display-sm text-[1.375rem] text-[#0a0a0a] mb-3">
-                  {area.name}
-                </h3>
-                <p className="text-[0.9375rem] text-[#4b5563] leading-relaxed flex-1">
-                  {area.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mt-7">
-                  {area.neighborhoods.slice(0, 4).map((n) => (
-                    <span
-                      key={n}
-                      className="text-[0.6875rem] text-[#4b5563] border border-platinum rounded-full px-3 py-1 tracking-wide"
-                    >
-                      {n}
+            {SERVICE_AREAS.map((area, i) => (
+              <motion.div key={area.slug} {...reveal(i * 0.06)}>
+                <Link
+                  href={`/service-areas/${area.slug}`}
+                  className="card group flex flex-col h-full rounded-xl p-8"
+                >
+                  <div className="flex items-center justify-between mb-7">
+                    <span className="w-14 h-14 rounded-xl border border-platinum bg-[#f4f6f9] flex items-center justify-center transition-colors group-hover:border-[#1a3a6b]/40">
+                      <MapPin size={24} className="text-[#1a3a6b]" strokeWidth={1.5} />
                     </span>
-                  ))}
-                  {area.neighborhoods.length > 4 && (
-                    <span className="text-[0.6875rem] text-steel rounded-full px-2 py-1">
-                      +{area.neighborhoods.length - 4} more
-                    </span>
-                  )}
-                </div>
+                    <ArrowRight
+                      size={18}
+                      className="text-[#1a3a6b] transition-transform group-hover:translate-x-1.5"
+                    />
+                  </div>
+                  <h3 className="display-sm text-[1.375rem] text-[#0a0a0a] mb-1">{area.name}</h3>
+                  <p className="text-[0.6875rem] text-steel uppercase tracking-[0.14em] mb-4">
+                    {area.region}
+                  </p>
+                  <p className="text-[0.9375rem] text-[#4b5563] leading-relaxed flex-1">
+                    {area.summary.split(". ")[0]}.
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-7">
+                    {area.neighborhoods.slice(0, 3).map((n) => (
+                      <span
+                        key={n}
+                        className="text-[0.6875rem] text-[#4b5563] border border-platinum rounded-full px-3 py-1 tracking-wide"
+                      >
+                        {n}
+                      </span>
+                    ))}
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </div>
+
+          {/* Also serving — broader coverage beyond the dedicated area pages */}
+          {(() => {
+            const extra = primaryAreas.filter(
+              (p) => !SERVICE_AREAS.some((s) => s.name === p.name),
+            );
+            return extra.length ? (
+              <motion.div {...reveal(0.1)} className="mt-14 text-center max-w-3xl mx-auto">
+                <p className="label-overline mb-4">Also Serving</p>
+                <p className="text-[0.9375rem] text-[#4b5563] leading-relaxed">
+                  {extra.map((p) => p.name).join(" · ")} — and communities across Southern California.
+                </p>
+              </motion.div>
+            ) : null;
+          })()}
         </div>
       </section>
 
@@ -405,7 +423,7 @@ export default function ServiceAreasContent({
                     {SITE_CONFIG.city}, {SITE_CONFIG.state} {SITE_CONFIG.zip}
                   </p>
                   <p className="text-[0.8125rem] text-steel mt-2">
-                    Century City, Los Angeles
+                    Los Angeles, California
                   </p>
                 </address>
               </motion.div>

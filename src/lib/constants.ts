@@ -867,3 +867,89 @@ export const DIFFERENTIATORS = [
     icon: "FileText",
   },
 ];
+
+/* ─── SERVICE AREAS (local SEO landing pages) ─────────────────────────────── */
+export type ServiceArea = {
+  slug: string;
+  name: string;
+  region: string;
+  summary: string;
+  neighborhoods: string[];
+  concerns: string[];
+  services: string[]; // SERVICES slugs
+};
+
+export const SERVICE_AREAS: ServiceArea[] = [
+  {
+    slug: "beverly-hills",
+    name: "Beverly Hills",
+    region: "Westside Los Angeles",
+    summary: "Beverly Hills pairs gated estates north of Sunset with the flagship luxury retail of the Golden Triangle, a combination that draws both property crime and persistent privacy intrusions. Stratton protects high-net-worth residences against follow-home robberies and unwanted media attention while securing boutique storefronts against organized smash-and-grab crews. Discretion is the operating standard \u2014 visible enough to deter, low-profile enough to fit a five-star address.",
+    neighborhoods: ["Rodeo Drive", "The Golden Triangle", "Trousdale Estates", "Beverly Hills Flats", "Coldwater Canyon", "Sunset Boulevard"],
+    concerns: ["Follow-home and home-invasion robberies targeting high-net-worth residents", "Paparazzi, trespassers, and privacy intrusions at estates and event arrivals", "Organized smash-and-grab crews hitting Rodeo Drive luxury retail", "Estate access control during construction, staff turnover, and large gatherings"],
+    services: ["residential", "corporate", "retail"],
+  },
+  {
+    slug: "santa-monica",
+    name: "Santa Monica",
+    region: "Westside Los Angeles",
+    summary: "Santa Monica blends a major tourist economy along the Pier and Promenade with dense residential blocks, Silicon Beach offices, and a significant unhoused population that strains downtown retail and public spaces. Stratton delivers loss-prevention and ambassador-style coverage for Third Street and Main Street merchants, after-hours patrol for mixed-use buildings, and event teams for the beach and pier. Officers are trained to balance firm enforcement with the city's visitor-facing brand.",
+    neighborhoods: ["Third Street Promenade", "Santa Monica Pier", "Main Street", "Montana Avenue", "Ocean Avenue", "Downtown Santa Monica"],
+    concerns: ["Retail theft and aggressive panhandling along the Promenade and Main Street corridors", "Transient encampments and after-hours trespass at commercial and mixed-use properties", "Crowd management and asset protection at the Pier, beach, and outdoor events", "Vehicle break-ins and vandalism in tourist parking structures and lots"],
+    services: ["retail", "patrol", "events"],
+  },
+  {
+    slug: "century-city",
+    name: "Century City",
+    region: "Westside Los Angeles",
+    summary: "Century City is a vertical business district of Class-A office towers, the Westfield mall, and luxury high-rise condominiums clustered around Avenue of the Stars and Constellation Boulevard. Stratton provides lobby ambassador programs, tenant escort and access control for multi-tenant towers, and 24/7 residential coverage for high-rise communities. The priority is seamless integration with building engineering, parking operations, and corporate tenants who expect security to be present yet invisible.",
+    neighborhoods: ["Avenue of the Stars", "Constellation Boulevard", "Westfield Century City", "Century Park East", "Century Plaza Towers", "Olympic Boulevard"],
+    concerns: ["Access control and tenant screening across multi-tenant Class-A office towers", "Parking structure security and vehicle theft in large subterranean garages", "Loss prevention and crowd flow at Westfield Century City retail", "Lobby management and resident safety in luxury high-rise condominiums"],
+    services: ["commercial-real-estate", "corporate", "residential"],
+  },
+  {
+    slug: "west-hollywood",
+    name: "West Hollywood",
+    region: "Central Los Angeles",
+    summary: "West Hollywood runs from the nightlife density of the Sunset Strip and Santa Monica Boulevard to design-district showrooms and walkable residential blocks. The city's late-night bar, club, and restaurant scene drives demand for venue security, crowd management, and DUI-adjacent incident response, while design-district retail needs daytime loss prevention. Stratton fields TEAM-certified officers who keep venues safe and on-brand without dampening the guest experience.",
+    neighborhoods: ["Sunset Strip", "Santa Monica Boulevard", "Pacific Design Center", "Melrose Avenue", "Boystown", "West Hollywood Design District"],
+    concerns: ["Nightlife crowd control, intoxication, and altercations along the Sunset Strip", "Venue capacity, ID enforcement, and queue management for bars and clubs", "Loss prevention for design-district showrooms and Melrose retail", "After-hours protection for residential buildings near high-traffic corridors"],
+    services: ["hospitality", "events", "patrol"],
+  },
+  {
+    slug: "downtown-los-angeles",
+    name: "Downtown Los Angeles",
+    region: "Central Los Angeles",
+    summary: "Downtown LA is the region's densest mix of high-rise offices, converted residential lofts, the entertainment campus around L.A. Live, and active transit hubs \u2014 set against acute street-level challenges in and around Skid Row. Stratton secures office and mixed-use towers, manages loading docks and lobbies, and deploys scalable event teams for arenas and convention crowds. Programs are built to coordinate with LAPD, Metro, and building operations across a 24-hour urban environment.",
+    neighborhoods: ["Financial District", "Arts District", "L.A. Live", "Historic Core", "Little Tokyo", "South Park"],
+    concerns: ["Trespass, vagrancy, and encampments at building perimeters and loading docks", "Lobby and access control for high-rise offices and converted residential lofts", "Large-crowd and event security around Crypto.com Arena, the Convention Center, and L.A. Live", "Vehicle break-ins, transit-adjacent crime, and after-hours patrol in mixed-use blocks"],
+    services: ["commercial-real-estate", "events", "patrol"],
+  },
+  {
+    slug: "pasadena",
+    name: "Pasadena",
+    region: "San Gabriel Valley",
+    summary: "Pasadena combines the upscale shopping and dining of Old Pasadena and South Lake with historic estate neighborhoods, civic and cultural institutions, and marquee events like the Rose Parade and Rose Bowl games. Stratton supports retail loss prevention along Colorado Boulevard, estate and HOA patrol in the foothill neighborhoods, and large-scale event security for crowds that swell into the hundreds of thousands. Officers reflect the city's professional, community-oriented character.",
+    neighborhoods: ["Old Pasadena", "South Lake Avenue", "Colorado Boulevard", "Rose Bowl", "Bungalow Heaven", "Playhouse District"],
+    concerns: ["Retail theft and parking-structure incidents in Old Pasadena and South Lake", "Massive crowd and perimeter security for the Rose Parade and Rose Bowl events", "Estate and HOA protection in historic foothill residential neighborhoods", "Vandalism and after-hours trespass at civic, cultural, and commercial properties"],
+    services: ["retail", "events", "residential"],
+  },
+  {
+    slug: "malibu",
+    name: "Malibu",
+    region: "Coastal Los Angeles County",
+    summary: "Malibu is 21 miles of beachfront and canyon estates strung along PCH, where the security reality is defined by isolation, single-road access, and seasonal wildfire and storm threats. Stratton provides discreet estate details for high-profile residents, gated-community and access patrol along remote canyons, and surge coverage during evacuations and the summer tourist influx. Programs account for slow emergency response times and the long, exposed approaches that make these properties uniquely vulnerable.",
+    neighborhoods: ["Pacific Coast Highway", "Point Dume", "Malibu Colony", "Carbon Beach", "Malibu Canyon", "Zuma Beach"],
+    concerns: ["Estate burglary and trespass enabled by isolation and long property approaches", "Wildfire and evacuation security \u2014 access control and asset protection during closures", "Seasonal beach crowds, parking conflicts, and beachfront-property trespass", "Slow emergency response times along PCH requiring on-site first-line presence"],
+    services: ["residential", "patrol", "corporate"],
+  },
+  {
+    slug: "hollywood",
+    name: "Hollywood",
+    region: "Central Los Angeles",
+    summary: "Hollywood draws constant foot traffic to the Walk of Fame, the Boulevard's tourist corridor, and a dense nightlife and live-entertainment scene, while hillside homes sit just above the congestion. The mix of crowds, street vendors, and transient activity drives demand for retail and venue security, premiere and event teams, and residential patrol in the adjacent hills. Stratton officers manage high-volume crowds and protect guest-facing brands without disrupting the visitor experience.",
+    neighborhoods: ["Hollywood Walk of Fame", "Hollywood Boulevard", "Sunset & Vine", "Hollywood Hills", "TCL Chinese Theatre", "Dolby Theatre"],
+    concerns: ["Heavy tourist crowds, pickpocketing, and aggressive solicitation along the Boulevard", "Premiere, red-carpet, and live-venue crowd management and credentialing", "Retail theft and after-hours trespass in the tourist and nightlife corridor", "Residential burglary and access concerns in the adjacent Hollywood Hills"],
+    services: ["events", "retail", "residential"],
+  },
+];
