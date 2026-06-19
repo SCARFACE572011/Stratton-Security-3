@@ -16,9 +16,7 @@ export default function HeroSection() {
     target: containerRef,
     offset: ["start start", "end start"],
   });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
 
   return (
     <section
@@ -53,10 +51,7 @@ export default function HeroSection() {
       </motion.div>
 
       {/* Content */}
-      <motion.div
-        className="relative z-10 container-wide w-full pt-32 pb-28 flex flex-col items-center"
-        style={prefersReduced ? {} : { y: contentY, opacity: contentOpacity }}
-      >
+      <div className="relative z-10 container-wide w-full pt-32 pb-28 flex flex-col items-center">
         {/* Seal in HUD targeting frame */}
         <motion.div
           className="hud-corners-4 p-5 mb-9"
@@ -133,7 +128,7 @@ export default function HeroSection() {
             {SITE_CONFIG.phone}
           </a>
         </motion.div>
-      </motion.div>
+      </div>
 
       {/* Command-center status readout (HUD corner) */}
       <motion.div
