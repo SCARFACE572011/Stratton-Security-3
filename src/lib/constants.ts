@@ -66,6 +66,7 @@ export const NAV_ITEMS = [
   { label: "Industries", href: "/industries" },
   { label: "About", href: "/about" },
   { label: "Training", href: "/training" },
+  { label: "Guides", href: "/resources" },
   { label: "Careers", href: "/careers" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
@@ -827,7 +828,31 @@ export const FAQS = [
     q: "Can Stratton customize a program to my specific property?",
     a: "Yes — and we strongly recommend it. No two properties are identical. Stratton starts every engagement with a risk assessment and designs a tailored program based on your facility, risk profile, and operational requirements.",
   },
-];
+
+  {
+    q: "How does Stratton price its security services?",
+    a: "Pricing is built around the program, not a flat menu rate. The main drivers are coverage hours, the number of posts, armed versus unarmed posture, officer experience level, site complexity, and whether you need supervision, vehicles, or specialized equipment. After the risk assessment, your advisor provides a clear written proposal that itemizes what you are paying for, so there are no surprises on the invoice.",
+  },
+  {
+    q: "Is there a minimum contract or long-term commitment?",
+    a: "For ongoing patrol and guard programs we typically structure straightforward service agreements rather than locking clients into long multi-year terms. One-time events, vacation watches, and short-term coverage are handled as standalone engagements with no continuing obligation. We would rather earn renewal through performance than hold a client to a contract they have outgrown.",
+  },
+  {
+    q: "What does the onboarding process look like once I decide to start?",
+    a: "It begins with a consultation and an on-site risk assessment, after which we draft post orders, define reporting cadence, and assign and brief the officers who will cover your site. Standard programs can usually begin coverage within 72 hours of a signed agreement, and a supervisor walks the property with you before the first shift so expectations are aligned from day one.",
+  },
+  {
+    q: "We already have a guard company we are unhappy with. Is switching difficult?",
+    a: "No. Transitions are routine for us, and we handle them so coverage is continuous with no gap between the outgoing provider and our team. We map your current post orders, identify what has been falling short, and stand up our officers on your timeline. Most clients tell us the hardest part was deciding to make the call.",
+  },
+  {
+    q: "Can you check on a vacant home or property while the owner is away?",
+    a: "Yes. Vacation and vacant-property checks are a common request, especially for estates and second homes. We schedule documented exterior and interior patrols on a set or randomized cadence, verify entry points, watch for signs of intrusion or maintenance issues like water leaks, and send you a timestamped report after each visit so you have a record while you are away.",
+  },
+  {
+    q: "What technology and reporting tools do clients have access to?",
+    a: "Officers log activity, patrols, and incidents through digital tools that capture timestamps, GPS-verified checkpoints, photos, and written narratives. Clients receive reports on the cadence set during program design and can reach a live supervisor 24/7. The goal is simple: you should always be able to see what happened on your property and when, without having to ask.",
+  },];
 
 export const DIFFERENTIATORS = [
   {
@@ -951,5 +976,230 @@ export const SERVICE_AREAS: ServiceArea[] = [
     neighborhoods: ["Hollywood Walk of Fame", "Hollywood Boulevard", "Sunset & Vine", "Hollywood Hills", "TCL Chinese Theatre", "Dolby Theatre"],
     concerns: ["Heavy tourist crowds, pickpocketing, and aggressive solicitation along the Boulevard", "Premiere, red-carpet, and live-venue crowd management and credentialing", "Retail theft and after-hours trespass in the tourist and nightlife corridor", "Residential burglary and access concerns in the adjacent Hollywood Hills"],
     services: ["events", "retail", "residential"],
+  },
+];
+
+/* ─── RESOURCES / GUIDES (evergreen articles) ─────────────────────────────── */
+export type Resource = {
+  slug: string;
+  title: string;
+  category: string;
+  excerpt: string;
+  readTime: string;
+  sections: { heading: string; body: string[] }[];
+};
+
+export const RESOURCES: Resource[] = [
+  {
+    slug: "how-to-choose-a-private-security-company-in-los-angeles",
+    title: "How to Choose a Private Security Company in Los Angeles",
+    category: "Buyer's Guide",
+    excerpt: "A practical, no-nonsense framework for vetting Los Angeles security companies on licensing, insurance, training, and operational fit before you sign a contract.",
+    readTime: "8 min read",
+    sections: [
+      {
+        heading: "Start With the License \u2014 and Verify It Yourself",
+        body: [
+          "In California, no company can lawfully provide contract security guard services without a Private Patrol Operator (PPO) license issued by the Bureau of Security and Investigative Services (BSIS). This is the single most important credential, and it is the first thing you should confirm \u2014 not because a vendor told you they're licensed, but because you checked. BSIS maintains a public license verification lookup where you can enter a PPO number and confirm it is active, in good standing, and unencumbered by disciplinary action.",
+          "Ask any prospective company for its PPO number in writing and verify it before the first meeting ends. A legitimate operator will volunteer it without hesitation; Stratton, for example, operates under California PPO #122163. Be wary of any firm that is slow to produce a number, gives you a number that doesn't match the legal business name, or describes itself as 'in the process' of licensing. Operating guards without an active PPO is illegal in California, and a company willing to cut that corner will cut others.",
+          "Licensing is not a one-time hurdle, either. PPO licenses must be renewed, and a company that has lapsed, been suspended, or accrued citations is a liability you inherit the moment you sign. The lookup tool shows status and history. Five minutes here can save you from a vendor that looks polished in a pitch deck but is on thin ice with the state.",
+        ],
+      },
+      {
+        heading: "Confirm Insurance, Bonding, and Indemnification",
+        body: [
+          "A security incident is, by definition, a situation where something went wrong \u2014 and the question of who pays follows close behind. Before you contract anyone, request a Certificate of Insurance (COI) and read it. At minimum you want to see active general liability coverage and workers' compensation. If armed officers will be on your property, ask specifically whether the policy covers armed operations; some carriers exclude it, and a generic COI can paper over that gap.",
+          "Ask to be named as an additional insured on the policy. This is standard practice for serious commercial engagements and it is the mechanism that actually protects you if an officer's action \u2014 or inaction \u2014 leads to a claim. A company that resists naming you as additional insured, or that can't produce a current COI within a day, is telling you something. Confirm coverage limits are appropriate to your exposure: a luxury estate, a high-rise full of tenants, and a single retail storefront do not carry the same risk, and the policy should reflect that.",
+          "Finally, read the indemnification language in the proposed contract carefully. Who bears liability for an officer's conduct? What happens in the event of property damage, a use-of-force incident, or a claim by a third party? The cheapest bid often hides the thinnest protection. The right answer is a company that is fully licensed, bonded, and insured, and willing to put those protections in writing alongside clear indemnification.",
+        ],
+      },
+      {
+        heading: "Vet the People, Not Just the Company",
+        body: [
+          "A security program is only as good as the officer standing at your post at 2 a.m. The brand on the patrol car matters far less than how that individual was screened, trained, and supervised. Ask how the company recruits and vets: Do they run criminal background checks, verify work history, and drug-test before deployment? In California, every guard must hold a BSIS-issued guard card (a Security Guard Registration), which requires Power to Arrest training and a background check through the Department of Justice and FBI. That is the floor, not the ceiling.",
+          "The companies worth your money go beyond the state minimum. Ask what their internal training program covers and how often officers requalify. Strong operators add de-escalation, report writing, customer-service conduct, CPR and First Aid, and TEAM (Techniques for Effective Alcohol Management) certification for venues that serve alcohol. Stratton's officers, for instance, complete training that exceeds California's required hours and includes TEAM, CPR/First Aid, and Power to Arrest as standard. The difference shows up in how an incident is handled \u2014 and whether it becomes a lawsuit.",
+          "Ask about turnover and post consistency, too. The Los Angeles guard industry is notorious for churn, and a rotating cast of unfamiliar faces undermines exactly the recognition and trust that make a residential or commercial program work. A company that assigns consistent officers, pays them properly, and supervises them actively will deliver dramatically better outcomes than one that treats guards as interchangeable bodies.",
+        ],
+      },
+      {
+        heading: "Match the Company to Your Environment",
+        body: [
+          "Security is not a commodity, and the best firm for a construction site is rarely the best firm for a five-star hotel. Los Angeles spans gated estates in the hills, Class-A office towers in Century City, nightlife on the Sunset Strip, sprawling retail centers, active job sites, and HOAs \u2014 each with a distinct risk profile and a distinct definition of what good looks like. A guest-facing hotel needs officers who read the room and protect the brand experience; a job site needs officers who control access and deter copper theft at 3 a.m. Ask the company to describe relevant experience in your specific environment, with specifics.",
+          "Probe for fit beyond the sales pitch. Will they conduct a site assessment before quoting, or do they hand you a flat per-hour rate sight unseen? A serious operator wants to see your property, understand your operations, and design a program around your actual exposure \u2014 not drop a generic body at a post. The willingness to assess first is one of the clearest signals that a company will treat you as a tailored engagement rather than a line item.",
+          "Consider the surrounding details that separate professionals from the field: branded vehicles and clean uniforms, GPS-verified patrol logs, written post orders, and digital incident reporting. These are not luxuries \u2014 they are the accountability infrastructure that proves the service you're paying for is actually being delivered.",
+        ],
+      },
+      {
+        heading: "Test Their Operations Before You Need Them",
+        body: [
+          "Risk does not keep business hours, and the moment you'll most need your security company is precisely when most companies are hardest to reach. Before signing, find out who answers the phone at night. Is there a live, staffed operations center, or does an after-hours call route to voicemail? Ask for the supervisor escalation path and, frankly, test it \u2014 call after hours during the evaluation period and see who picks up and how fast.",
+          "Reachability is one of the most common complaints clients voice about their previous vendor, and one of the clearest differentiators among LA operators. A company that runs a genuine 24/7/365 operation can put a live supervisor on the line at 3 a.m. on a holiday. Stratton built its operation around exactly this standard because security failures cluster in the hours when weaker companies have gone quiet.",
+          "Finally, ask about reporting cadence and transparency. How will you know what happened on your property last night, last week, last quarter? The right partner gives you timestamped digital logs, incident documentation with photos where relevant, and a reporting rhythm matched to your operation \u2014 daily for high-security posts, periodic reviews for ongoing patrol. You should never have to wonder whether the service you're paying for is being delivered.",
+        ],
+      },
+      {
+        heading: "Talk to a Stratton Advisor",
+        body: [
+          "Choosing a security company is a decision you live with every day and notice most on your worst day. If you'd like a straightforward conversation about your property, your exposure, and what an appropriately scoped program looks like, Stratton is glad to help \u2014 starting with a site assessment, not a sales pitch. Reach us at (424) 440-5554 or through the Contact page to schedule a consultation.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "armed-vs-unarmed-security-officers-how-to-decide",
+    title: "Armed vs. Unarmed Security Officers: How to Decide",
+    category: "Buyer's Guide",
+    excerpt: "A clear-eyed guide to weighing armed and unarmed security against your real risk posture, environment, legal requirements, cost, and the perception you want to project.",
+    readTime: "7 min read",
+    sections: [
+      {
+        heading: "Start With Risk Posture, Not Preference",
+        body: [
+          "The decision between armed and unarmed officers should follow from an honest assessment of your threat environment \u2014 not from instinct, status, or the assumption that armed always means safer. The right question is not 'do I want armed guards?' but 'what specific threats am I defending against, and what response do those threats realistically require?' A jewelry retailer holding high-value inventory, a bank branch, or a cash-handling operation presents a categorically different exposure than a corporate lobby or an HOA gate.",
+          "Armed officers are appropriate where there is a credible risk of violent confrontation or where the assets being protected are the kind that draw armed, organized adversaries. The presence of a firearm changes the calculus for a potential aggressor \u2014 and it changes the calculus for liability and escalation in equal measure. An armed posture is a serious tool for serious threats, and deploying it where the threat doesn't warrant it adds risk rather than removing it.",
+          "Unarmed officers are not a downgrade. For the large majority of commercial, residential, and guest-facing environments, a professional, well-trained, visible unarmed officer delivers exactly the deterrence and response the situation calls for. The goal is to match the posture to the threat, which is why Stratton begins with a risk assessment rather than a default recommendation in either direction.",
+        ],
+      },
+      {
+        heading: "The Legal and Licensing Reality in California",
+        body: [
+          "California treats armed security as a distinctly higher regulatory category, and the requirements are not trivial. Every security officer must hold a BSIS guard card, but to carry a firearm on duty an officer must additionally hold a BSIS Exposed Firearm Permit. Earning that permit requires completing a state-approved firearms training course, passing both written and range qualification, and clearing background checks through the Department of Justice and FBI. The permit is firearm-caliber-specific and must be renewed, with periodic requalification on the range.",
+          "Officers carrying a baton or chemical agents need their own separate BSIS permits as well. This matters to you as a buyer because it defines who is actually qualified to do what on your property. When a company proposes armed officers, you are entitled to confirm that each assigned officer holds a current, valid Exposed Firearm Permit \u2014 not just a guard card. Stratton's armed officers carry the required Exposed Firearm Permit and complete live-fire requalification on a defined cadence, and you should expect that level of documentation from any reputable operator.",
+          "Be aware too that an armed deployment narrows your vendor pool and your insurance options. Not every PPO is set up to staff armed posts, and not every insurance policy covers armed operations. Confirm both before you assume an armed program is simply a matter of asking for it.",
+        ],
+      },
+      {
+        heading: "Match the Posture to the Environment",
+        body: [
+          "Environment is often the deciding factor. Guest-facing settings \u2014 hotels, restaurants, retail floors, residential communities, corporate lobbies \u2014 generally call for unarmed officers. In these spaces the officer is part of the experience, and a visible firearm can unsettle guests, residents, and customers in ways that work against the brand and the atmosphere you've built. A hotel that wants its arriving guests to feel welcomed is poorly served by an armed presence in the lobby.",
+          "Higher-risk and asset-heavy environments tilt the other way. Cash operations, high-value inventory, executive protection in elevated-threat situations, certain financial institutions, and properties with a documented history of violent incidents may warrant armed coverage. The key word is documented: base the decision on actual exposure, incident history, and credible threat \u2014 not on a vague sense that more firepower equals more safety.",
+          "Many properties land on a blended approach. A high-rise might pair unarmed lobby ambassadors who manage access and guest experience with an armed officer assigned to a specific high-risk function. A retail center might run uniformed unarmed officers for visible deterrence alongside plainclothes loss-prevention staff. The posture can \u2014 and often should \u2014 vary by post within a single program, which is exactly the kind of nuance a proper assessment surfaces.",
+        ],
+      },
+      {
+        heading: "Cost, Liability, and Perception",
+        body: [
+          "Armed coverage costs more, and the premium is justified by real factors: the additional licensing and training each officer carries, the higher insurance requirements, the smaller pool of qualified personnel, and the elevated liability the company assumes. If a company quotes armed officers at a price that looks close to unarmed, treat it as a red flag \u2014 either the officers aren't truly armed-qualified or the insurance behind them is thin.",
+          "Liability runs in both directions, and it deserves sober consideration. An armed officer can decisively stop a violent threat; an armed officer can also escalate a situation that a skilled unarmed officer would have de-escalated, and the consequences of a use-of-force incident \u2014 legal, financial, and reputational \u2014 are severe. Introducing a firearm into an environment that doesn't need one can increase your risk rather than reduce it. This is why training, judgment, and supervision matter as much as the weapon itself.",
+          "Perception is the third axis, and it cuts differently by context. In some settings an armed presence is reassuring and signals serious protection; in others it signals danger and undermines the very sense of safety you're trying to create. Think carefully about the message your officers send to the people you want to protect, attract, or retain \u2014 and let that inform, alongside risk and cost, where on the armed-unarmed spectrum your program belongs.",
+        ],
+      },
+      {
+        heading: "Let an Assessment Make the Call",
+        body: [
+          "The armed-versus-unarmed question rarely has a clean one-size answer, and it shouldn't be settled by guesswork or by whoever pitches hardest. Stratton helps clients select the right posture \u2014 armed, unarmed, plainclothes, or a blend \u2014 during a risk assessment that weighs your environment, threat profile, legal requirements, and the experience you want to deliver. If you'd like a grounded recommendation for your property, call (424) 440-5554 or reach out through the Contact page to start the conversation.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "california-ppo-licensing-and-bsis-requirements-explained",
+    title: "Understanding California PPO Licensing & BSIS Requirements",
+    category: "Licensing",
+    excerpt: "What PPO licensing and BSIS regulation actually mean in California, why guard cards and firearm permits matter, and how to verify a security company is operating legally.",
+    readTime: "7 min read",
+    sections: [
+      {
+        heading: "What BSIS Is and Why It Governs Your Security",
+        body: [
+          "California regulates the private security industry more tightly than most states, and the agency that does it is the Bureau of Security and Investigative Services, or BSIS. BSIS sits within the California Department of Consumer Affairs and licenses the companies, the individual officers, the firearm and baton permits, and the training instructors that make up the legal security industry. If you are buying security in California, BSIS is the framework that determines whether what you're buying is legitimate.",
+          "The reason this matters to you as a buyer is simple: BSIS licensing is the line between a professional, accountable security provider and an unregulated liability. A licensed PPO is bound by state standards for training, conduct, insurance, and recordkeeping, and is subject to citation, suspension, or revocation if it falls short. An unlicensed operator is bound by none of that \u2014 and any incident on your property involving unlicensed guards becomes your exposure.",
+          "Understanding the basics of how BSIS works puts you in a stronger position. You don't need to be an expert in the regulations, but knowing what credentials exist, what they require, and how to verify them turns a leap of faith into an informed decision.",
+        ],
+      },
+      {
+        heading: "The PPO License: The Company's Credential",
+        body: [
+          "A Private Patrol Operator (PPO) license is the credential a company must hold to lawfully provide contract security guard services in California. It is issued to the business, not to individual officers, and it is the foundational requirement \u2014 without it, a company cannot legally place a single guard at your property. Obtaining a PPO requires a qualified manager who has passed a licensing examination, undergone fingerprinting and background checks, and met the Bureau's experience and insurance requirements.",
+          "Every PPO is assigned a license number that appears on the company's contracts, uniforms, vehicles, and marketing, and that number is publicly verifiable. Stratton operates under California PPO #122163, and a reputable company will display its number openly rather than treat it as an afterthought. The number is your key to confirming the license is real, active, and clean.",
+          "PPO licenses carry ongoing obligations. They must be renewed on schedule, the company must maintain required insurance, and it must comply with BSIS regulations on recordkeeping and officer registration. A lapsed, suspended, or disciplined PPO is a serious problem \u2014 and one that a few minutes of verification can surface before you sign rather than after something goes wrong.",
+        ],
+      },
+      {
+        heading: "Guard Cards and Officer-Level Registration",
+        body: [
+          "Holding a PPO covers the company; it does not cover the individual officers. Every security officer working in California must separately hold a Security Guard Registration \u2014 universally known as a guard card \u2014 issued by BSIS to that individual. To earn a guard card, an applicant must complete state-mandated Power to Arrest training, submit fingerprints, and clear background checks through both the California Department of Justice and the FBI before being deployed.",
+          "California also requires ongoing training for registered guards beyond that initial step, with mandated training hours that must be completed within defined windows after registration. The intent is that officers are not just background-checked once but continually developed in the core competencies of the job. As a buyer, you are entitled to ask whether every officer assigned to your property holds a current guard card \u2014 and a professional operator will be able to confirm it without hesitation.",
+          "The strongest companies treat the guard card as the legal minimum and build well beyond it. Stratton's internal training program exceeds California's required hours and layers in TEAM (Techniques for Effective Alcohol Management) certification, CPR and First Aid, de-escalation, and report-writing standards. The state floor keeps unqualified people out; the additional training is what produces officers who actually handle incidents well.",
+        ],
+      },
+      {
+        heading: "Firearm and Baton Permits: Higher Bars",
+        body: [
+          "Carrying a weapon on duty triggers additional, separate BSIS credentials that go well beyond the guard card. To carry a firearm, an officer must hold an Exposed Firearm Permit, which requires completing a BSIS-approved firearms course, passing written and range qualification, and clearing the relevant background checks. The permit is tied to specific firearm calibers, must be renewed on schedule, and requires periodic requalification \u2014 an armed officer cannot simply qualify once and carry indefinitely.",
+          "Batons and chemical agents such as pepper spray each require their own distinct BSIS permits as well. The practical upshot is that an officer's authority to use any given tool is documented and verifiable, credential by credential. When a company proposes armed officers, you can and should confirm that each assigned officer carries a current Exposed Firearm Permit \u2014 not merely a guard card. Stratton's armed officers hold the required Exposed Firearm Permit and complete live-fire requalification on a defined cadence.",
+          "These higher bars exist for good reason: the consequences of an armed or baton-carrying officer acting improperly are severe. The permitting structure is California's mechanism for ensuring that the people authorized to use force have been trained, tested, and vetted to a standard that matches that authority.",
+        ],
+      },
+      {
+        heading: "How to Verify a Company Before You Sign",
+        body: [
+          "Verification is the part most buyers skip and the part that matters most. BSIS maintains a free public license lookup that lets anyone confirm the status of a PPO, a guard card, or a firearm permit. Ask any prospective company for its PPO number in writing, then run it through the lookup yourself to confirm the license is active, matches the legal business name, and carries no disciplinary action. Do not rely on a logo, a website, or a verbal assurance.",
+          "Pair the license check with the insurance check. Request a current Certificate of Insurance showing general liability and workers' compensation, confirm the coverage extends to armed operations if armed officers are involved, and ask to be named as an additional insured. A company that is genuinely licensed and properly insured will move through these requests easily; one that stalls or deflects is answering your question without meaning to.",
+          "Spend the ten minutes. Confirming a PPO number, checking insurance, and asking whether assigned officers hold current guard cards and any required firearm permits is the most efficient due diligence you can do. It separates the legitimate operators from the ones hoping you won't look \u2014 and it costs you nothing but a little time before a decision you'll live with daily.",
+        ],
+      },
+      {
+        heading: "Questions About Licensing? Ask Stratton",
+        body: [
+          "If you want a clear walkthrough of how California licensing applies to your situation \u2014 or simply want to verify what proper credentials look like before you evaluate vendors \u2014 Stratton is happy to help. We operate under California PPO #122163 and are glad to explain exactly what BSIS requires of a serious security provider. Call (424) 440-5554 or reach out through the Contact page to start a conversation.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "what-to-expect-from-a-professional-security-assessment",
+    title: "What to Expect From a Professional Security Assessment",
+    category: "Process",
+    excerpt: "A step-by-step look at how a professional security assessment works, what a thorough one covers, and the concrete outcomes you should expect to walk away with.",
+    readTime: "7 min read",
+    sections: [
+      {
+        heading: "Why the Assessment Comes First",
+        body: [
+          "A security program built without an assessment is a guess, and guesses are expensive in this field \u2014 you either overpay for coverage you don't need or, worse, leave the real vulnerabilities exposed. A professional security assessment is the diagnostic step that grounds the entire program in your property's actual conditions: its layout, its operations, its people, and its specific exposure. It is the difference between a tailored program and a body dropped at a post.",
+          "The willingness to assess before quoting is one of the clearest signals of a serious operator. A company that hands you a flat per-hour rate without seeing your property is selling you a commodity; a company that wants to walk your site, understand how it functions, and learn what keeps you up at night is preparing to design something that fits. Stratton begins every engagement with a risk assessment for exactly this reason \u2014 no two properties are identical, and the program should reflect that.",
+          "An assessment also protects you. It documents what was found, what was recommended, and why a given posture was chosen. That record matters operationally, and it matters if an incident ever invites scrutiny of whether reasonable precautions were taken.",
+        ],
+      },
+      {
+        heading: "The Walkthrough and Discovery Phase",
+        body: [
+          "A proper assessment starts on-site, on foot. An experienced assessor walks the property the way a potential adversary would \u2014 looking at perimeters, entry and exit points, lighting, blind spots, parking structures, loading docks, lobbies, and the natural paths of approach. In a Los Angeles context this means accounting for the specifics of your environment: the long, exposed approaches of a Malibu canyon estate, the multi-tenant access complexity of a Century City tower, the crowd dynamics of a Sunset Strip venue, or the after-hours vulnerability of an active job site.",
+          "Discovery is also a conversation. The assessor should be asking how your property actually operates: When are you busiest and most exposed? What incidents have you experienced, and what near-misses? Who needs access, when, and how is it currently controlled? What does a normal day look like, and what does a bad one look like? The answers shape the program as much as the physical walkthrough does, because risk lives at the intersection of place and routine.",
+          "Good assessors examine what already exists, too. Cameras, alarms, access control systems, gates, existing guard coverage, and emergency procedures all factor in. The goal is not to rip everything out and start over \u2014 it is to understand the full picture so the human security layer complements, rather than duplicates, the protections you already have.",
+        ],
+      },
+      {
+        heading: "What a Thorough Assessment Actually Covers",
+        body: [
+          "A complete assessment evaluates several dimensions together. Physical vulnerabilities come first: perimeter integrity, access points, lighting, sightlines, and the locations where incidents are most likely to originate. Operational patterns come next: shift changes, delivery and vendor flows, opening and closing routines, peak occupancy, and the hours when the property is least protected \u2014 which, in practice, is when most incidents happen.",
+          "The threat profile is assessed in context. A thorough assessor weighs your specific exposure \u2014 the crime patterns in your area, your asset profile, your visibility, your industry's particular risks, and any history of incidents or threats directed at you. A retail center's concern with organized retail crime is a different problem than an estate's concern with privacy intrusion or a financial institution's concern with robbery, and the assessment should name your threats specifically rather than generically.",
+          "Finally, the assessment considers people and procedures: how staff and visitors are credentialed, how emergencies would be handled, how incidents would be reported and escalated, and where the gaps in current practice lie. The output of all of this is not a vague sense that 'you need security' \u2014 it is a specific, prioritized understanding of where you are vulnerable and why.",
+        ],
+      },
+      {
+        heading: "From Findings to a Designed Program",
+        body: [
+          "An assessment is only valuable if it converts into a plan you can act on. A professional engagement turns findings into a concrete, prioritized program: the recommended posture (armed, unarmed, plainclothes, or a blend), the number and placement of posts, patrol routes and timing, access-control procedures, and the reporting and escalation structure. Recommendations should be ranked by importance so you can see clearly what addresses your highest-priority risks first.",
+          "The proposed program should fit your operations rather than fight them. Officers should be positioned and instructed in ways that support how your property actually runs \u2014 service-oriented in a guest-facing setting, firm and access-focused at a job site, discreet at a private estate. Written post orders, defined patrol intervals, and clear protocols translate the assessment's findings into the day-to-day behavior of the people protecting you.",
+          "A good program also builds in accountability from the start: GPS-verified patrol logs, digital incident reporting, a defined reporting cadence, and a supervisor escalation path you can actually reach. These are not extras \u2014 they are how you confirm, on an ongoing basis, that the program designed on paper is being delivered in practice on your property.",
+        ],
+      },
+      {
+        heading: "The Outcomes You Should Walk Away With",
+        body: [
+          "By the end of a professional assessment you should have more than a quote. You should have a clear understanding of your property's specific vulnerabilities, a prioritized view of the risks that matter most, and a proposed program that maps directly to those risks rather than to a generic template. You should understand why each recommendation was made and what threat it addresses.",
+          "You should also have clarity on the practical questions: what the program will cost and why, what the officers' qualifications and credentials are, how incidents will be reported and how often, and who you call \u2014 and who actually answers \u2014 when something happens at 3 a.m. If an assessment leaves you with a number and no understanding, it wasn't an assessment; it was a sales call.",
+          "The deeper outcome is confidence. A well-run assessment replaces the anxiety of not knowing your exposure with a grounded, specific plan to manage it. That clarity is the real product, and it is what allows you to make a security decision you can stand behind.",
+        ],
+      },
+      {
+        heading: "Schedule an Assessment With Stratton",
+        body: [
+          "Every Stratton engagement begins with a risk assessment because the right program can only be built on a real understanding of your property. If you'd like a professional, specific evaluation of your exposure and a program designed around it, we'd welcome the conversation \u2014 starting with a walkthrough, not a pitch. Call (424) 440-5554 or reach out through the Contact page to schedule your assessment.",
+        ],
+      },
+    ],
   },
 ];

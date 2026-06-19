@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { SERVICES, INDUSTRIES } from "@/lib/constants";
+import { SERVICES, INDUSTRIES, SERVICE_AREAS, RESOURCES } from "@/lib/constants";
 
 const BASE_URL = "https://strattonsecuritygroup.com";
 
@@ -20,6 +20,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const areaPages = SERVICE_AREAS.map((area) => ({
+    url: `${BASE_URL}/service-areas/${area.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  const resourcePages = RESOURCES.map((r) => ({
+    url: `${BASE_URL}/resources/${r.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
   return [
     { url: BASE_URL, lastModified: now, changeFrequency: "weekly", priority: 1.0 },
     { url: `${BASE_URL}/services`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
@@ -28,6 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/training`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${BASE_URL}/careers`, lastModified: now, changeFrequency: "weekly", priority: 0.6 },
     { url: `${BASE_URL}/faq`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE_URL}/resources`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
     { url: `${BASE_URL}/service-areas`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${BASE_URL}/careers/apply`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${BASE_URL}/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.2 },
@@ -35,5 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     ...servicePages,
     ...industryPages,
+    ...areaPages,
+    ...resourcePages,
   ];
 }
