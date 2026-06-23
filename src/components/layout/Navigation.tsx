@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { SITE_CONFIG, NAV_ITEMS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
@@ -39,8 +39,10 @@ export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  const prefersReduced = useReducedMotion();
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -71,6 +73,19 @@ export default function Navigation() {
       document.body.style.overflow = "";
     };
   }, [mobileOpen]);
+
+  // Collapse submenus when the drawer closes; auto-open the section for the
+  // current route when it opens (e.g. on a /services page).
+  useEffect(() => {
+    if (!mobileOpen) {
+      setMobileExpanded(null);
+      return;
+    }
+    const activeParent = NAV_ITEMS.find(
+      (n) => n.children && n.href !== "/" && pathname.startsWith(n.href)
+    );
+    setMobileExpanded(activeParent?.label ?? null);
+  }, [mobileOpen, pathname]);
 
   return (
     <>
@@ -232,43 +247,89 @@ export default function Navigation() {
               </button>
             </div>
 
-            <nav className="flex-1 py-4" aria-label="Mobile navigation">
-              {NAV_ITEMS.map((item, i) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 + 0.1 }}
-                >
-                  <Link
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className={cn(
-                      "flex items-center justify-between px-5 py-4 text-[1rem] font-semibold uppercase tracking-[0.04em] border-b border-[rgba(192,200,212,0.1)] transition-colors",
-                      isActive(item.href)
-                        ? "text-white border-l-2 border-l-[#3f6bb0] pl-[calc(1.25rem-2px)]"
-                        : "text-silver hover:text-white hover:bg-[#0d1f3c]"
-                    )}
-                    aria-current={isActive(item.href) ? "page" : undefined}
+            <nav className="flex-1 py-2" aria-label="Mobile navigation">
+              {NAV_ITEMS.map((item, i) => {
+                const hasChildren = !!item.children;
+                const isOpen = mobileExpanded === item.label;
+                return (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, x: 16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.04 + 0.08, ease: [0.22, 1, 0.36, 1] }}
+                    className="border-b border-[rgba(192,200,212,0.08)]"
                   >
-                    {item.label}
-                  </Link>
-                  {item.children && (
-                    <div className="bg-[#040d1e]">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.label}
-                          href={child.href}
-                          onClick={() => setMobileOpen(false)}
-                          className="flex items-center px-8 py-3 text-[0.875rem] text-steel hover:text-silver transition-colors border-b border-[rgba(192,200,212,0.06)] last:border-0"
+                    {hasChildren ? (
+                      <>
+                        <button
+                          type="button"
+                          onClick={() => setMobileExpanded(isOpen ? null : item.label)}
+                          aria-expanded={isOpen}
+                          className={cn(
+                            "flex w-full items-center justify-between px-5 py-[1.05rem] text-[0.95rem] font-semibold uppercase tracking-[0.05em] transition-colors",
+                            isOpen || isActive(item.href) ? "text-white" : "text-silver hover:text-white"
+                          )}
                         >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </motion.div>
-              ))}
+                          {item.label}
+                          <ChevronDown
+                            size={17}
+                            className={cn(
+                              "transition-all duration-300",
+                              isOpen ? "rotate-180 text-[#6f9bd8]" : "text-steel"
+                            )}
+                          />
+                        </button>
+                        <AnimatePresence initial={false}>
+                          {isOpen && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: prefersReduced ? 0 : 0.3, ease: [0.22, 1, 0.36, 1] }}
+                              className="overflow-hidden"
+                            >
+                              <div className="ml-5 mb-3 flex flex-col border-l border-[rgba(192,200,212,0.14)]">
+                                {item.children!.map((child) => {
+                                  const isViewAll = /view all/i.test(child.label);
+                                  return (
+                                    <Link
+                                      key={child.label}
+                                      href={child.href}
+                                      onClick={() => setMobileOpen(false)}
+                                      className={cn(
+                                        "py-2.5 pl-5 text-[0.875rem] transition-colors",
+                                        isViewAll
+                                          ? "font-medium text-[#6f9bd8] hover:text-white"
+                                          : "text-steel hover:text-white"
+                                      )}
+                                    >
+                                      {child.label}
+                                    </Link>
+                                  );
+                                })}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        onClick={() => setMobileOpen(false)}
+                        aria-current={isActive(item.href) ? "page" : undefined}
+                        className={cn(
+                          "flex items-center px-5 py-[1.05rem] text-[0.95rem] font-semibold uppercase tracking-[0.05em] transition-colors",
+                          isActive(item.href)
+                            ? "text-white border-l-2 border-l-[#3f6bb0] pl-[calc(1.25rem-2px)]"
+                            : "text-silver hover:text-white"
+                        )}
+                      >
+                        {item.label}
+                      </Link>
+                    )}
+                  </motion.div>
+                );
+              })}
             </nav>
 
             <div className="p-5 border-t border-[rgba(192,200,212,0.16)] space-y-3">
