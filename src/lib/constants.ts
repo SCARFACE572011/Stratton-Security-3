@@ -35,16 +35,28 @@ export const SITE_CONFIG = {
   heroPosterImage: "/images/hero-poster.svg", // TODO: replace with high-res photographic poster
 };
 
+// Real clients shown in the "Worked With & Trusted By" marquee. Logos sourced
+// from strattonsecuritygroup.com and hosted locally in /public/brand/clients.
 export const CLIENT_LOGOS = [
-  { name: "Beverly Hills Condominium Association", industry: "Residential HOA", placeholder: true },
-  { name: "Century City Commercial Plaza", industry: "Commercial Real Estate", placeholder: true },
-  { name: "Luminous Stays Hospitality Group", industry: "Hospitality", placeholder: true },
-  { name: "West Hollywood Retail Partners", industry: "Retail", placeholder: true },
-  { name: "Southland Construction Partners", industry: "Construction", placeholder: true },
-  { name: "Pacific Auto Group", industry: "Auto Dealership", placeholder: true },
-  { name: "Wilshire Corporate Offices", industry: "Corporate", placeholder: true },
-  { name: "Santa Monica Medical Campus", industry: "Healthcare", placeholder: true },
-];
+  { name: "LAX", file: "/brand/clients/lax.png" },
+  { name: "Los Angeles World Airports", file: "/brand/clients/los-angeles-world-airports.png" },
+  { name: "Lincoln Property Company", file: "/brand/clients/lincoln-property-company.png" },
+  { name: "Douglas Emmett", file: "/brand/clients/douglas-emmett.png" },
+  { name: "Cushman & Wakefield", file: "/brand/clients/cushman-wakefield.png" },
+  { name: "Caruso", file: "/brand/clients/caruso.jpg" },
+  { name: "Hilton", file: "/brand/clients/hilton.png" },
+  { name: "W Hotels", file: "/brand/clients/w-hotels.png" },
+  { name: "sbe", file: "/brand/clients/sbe.png" },
+  { name: "Rosewood Hotels & Resorts", file: "/brand/clients/rosewood.jpg" },
+  { name: "Loews Hotels", file: "/brand/clients/loews.jpeg" },
+  { name: "The Bicycle Hotel & Casino", file: "/brand/clients/bicycle-hotel-casino.png" },
+  { name: "McShane Construction", file: "/brand/clients/mcshane-construction.png" },
+  { name: "Mill Creek Residential", file: "/brand/clients/mill-creek.png" },
+  { name: "Optimus Properties", file: "/brand/clients/optimus-properties.png" },
+  { name: "Sierra Pacific", file: "/brand/clients/sierra-pacific.jpg" },
+  { name: "Glaser Property Management", file: "/brand/clients/glaser.jpg" },
+  { name: "Platinum Motorsport", file: "/brand/clients/platinum-motorsport.jpeg" },
+] as const;
 
 export const NAV_ITEMS = [
   {
