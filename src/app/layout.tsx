@@ -2,11 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Rajdhani, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { OrganizationSchema } from "./schema";
-import Preloader from "@/components/layout/Preloader";
-import ScrollProgress from "@/components/layout/ScrollProgress";
-import MobileStickyBar from "@/components/layout/MobileStickyBar";
-import BackToTop from "@/components/layout/BackToTop";
-import LenisProvider from "@/components/layout/LenisProvider";
+import SiteChrome from "@/components/layout/SiteChrome";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -98,16 +94,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${rajdhani.variable} ${hanken.variable} ${jetbrainsMono.variable}`}>
       <body className="min-h-screen flex flex-col antialiased">
-        <Preloader />
-        <ScrollProgress />
-        <LenisProvider>
-          <OrganizationSchema />
-          {children}
-          <MobileStickyBar />
-          <BackToTop />
-          <Analytics />
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
-        </LenisProvider>
+        <OrganizationSchema />
+        <SiteChrome>{children}</SiteChrome>
+        <Analytics />
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
       </body>
     </html>
   );

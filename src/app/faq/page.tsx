@@ -2,7 +2,8 @@ import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import CTASection from "@/components/home/CTASection";
 import FaqAccordion from "@/components/faq/FaqAccordion";
-import { FAQS, SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG } from "@/lib/constants";
+import { getFaqs } from "@/lib/content";
 import { BreadcrumbSchema } from "@/app/schema";
 import type { Metadata } from "next";
 
@@ -13,7 +14,9 @@ export const metadata: Metadata = {
     "Answers to common questions about Stratton Security Group — licensing, service areas, officer training, deployment timing, armed vs unarmed, and more.",
 };
 
-export default function FaqPage() {
+export default async function FaqPage() {
+  const FAQS = await getFaqs();
+
   const faqLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",

@@ -18,6 +18,7 @@ After changing env vars in Vercel you must **redeploy** for them to take effect.
 | `CONTACT_FROM_EMAIL` | Verified "from" sender. Defaults to Resend's test sender until set. | `Stratton Security <noreply@strattonsecuritygroup.com>` |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics 4 Measurement ID. GA is a no-op until set. | `G-XXXXXXXXXX` |
 | `GOOGLE_SITE_VERIFICATION` | Google Search Console verification token (emits the `<meta>` tag). | `abc123…` |
+| `KEYSTATIC_STORAGE_REPO` | Switches the `/keystatic` CMS to GitHub mode so edits persist in production. With its GitHub App vars (see §7). | `owner/stratton` |
 
 ---
 
@@ -111,10 +112,25 @@ remote URL). Inventory:
 
 ## 7. Employee / owner editing — CMS (Item #6)
 
-Future build. Content is currently hardcoded (mostly `src/lib/constants.ts`).
-Options to scope:
-- **Headless CMS** (Sanity / Contentful / Payload) — non-technical editing of services,
-  testimonials, FAQs, etc.
-- **Auth-gated editor** — simplest if only a few fields need editing.
+**In progress — Keystatic (git-based CMS).** The admin lives at **`/keystatic`** and is
+isolated from the site chrome (no preloader/smooth-scroll) and blocked from search engines.
 
-Needs a direction decision before building.
+**Migrated so far:** FAQs (`src/content/faqs/*.json`, edited at `/keystatic`, rendered on
+`/faq`). The page reads content via `src/lib/content.ts` (Keystatic Reader) at build time,
+so edits appear on the next deploy.
+
+**Remaining to migrate** (each: define a collection in `keystatic.config.ts`, seed
+`src/content/...`, add a reader in `src/lib/content.ts`, point the component at it):
+services, testimonials + Bark reviews, client logos, site info/contact (SITE_CONFIG),
+guides/articles, team/leadership, page images.
+
+**Activate editing in production (GitHub mode).** Local mode (current default) only
+persists edits on a developer's machine — on Vercel the filesystem is read-only, so the
+admin loads but can't save. To let owners edit the live site:
+1. Run the app locally and visit `/keystatic`; Keystatic walks you through creating a
+   **GitHub App** connected to the repo (or use Keystatic Cloud).
+2. Set the resulting env vars in Vercel: `KEYSTATIC_STORAGE_REPO` (e.g. `owner/stratton`),
+   `KEYSTATIC_GITHUB_CLIENT_ID`, `KEYSTATIC_GITHUB_CLIENT_SECRET`, `KEYSTATIC_SECRET`.
+3. Redeploy. Editors then sign in with GitHub at `/keystatic`; saving commits to the repo
+   and auto-triggers a redeploy (~1 min to go live).
+4. (Recommended) Restrict who can edit via the GitHub App's repo collaborators.
