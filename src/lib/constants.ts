@@ -758,6 +758,22 @@ export const TESTIMONIALS = [
     initials: "RJ",
     stars: 5,
   },
+  {
+    quote:
+      "I recently hired Stratton Security Group and couldn't be happier with their service — responsive, professional, and genuinely invested in protecting our property.",
+    author: "Cobalt Infinite",
+    company: "Commercial Client",
+    initials: "CI",
+    stars: 5,
+  },
+  {
+    quote:
+      "The Stratton team is constantly available and always prepared to help. That kind of reliability is exactly what you want in a security partner.",
+    author: "Nicholas Johansson",
+    company: "Los Angeles",
+    initials: "NJ",
+    stars: 5,
+  },
 ];
 
 export const BARK_REVIEWS = [
