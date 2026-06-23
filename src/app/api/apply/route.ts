@@ -7,6 +7,9 @@ export const dynamic = "force-dynamic";
 const TO = process.env.CONTACT_TO_EMAIL || process.env.CONTACT_EMAIL || "Info@StrattonSecurityGroup.com";
 const FROM = process.env.CONTACT_FROM_EMAIL || "Stratton Security <onboarding@resend.dev>";
 
+const MAX_RESUME_BYTES = 5 * 1024 * 1024; // 5 MB
+const ACCEPTED_EXT = [".pdf", ".doc", ".docx"];
+
 const schema = z.object({
   name: z.string().min(1, "Full name is required."),
   email: z.email("Valid email required."),
@@ -15,8 +18,6 @@ const schema = z.object({
   guardCard: z.string().min(1, "Guard Card number is required."),
   experience: z.string().optional(),
   message: z.string().optional(),
-  // Resume binary is never attached here — just the file name, if the form provides one.
-  resumeFileName: z.string().optional(),
 });
 
 // Escape user-supplied values before interpolating into the HTML email.
@@ -29,8 +30,8 @@ function esc(value: string): string {
     .replace(/'/g, "&#39;");
 }
 
-function applicationHtml(data: z.infer<typeof schema>): string {
-  const { name, email, phone, position, guardCard, experience, message, resumeFileName } = data;
+function applicationHtml(data: z.infer<typeof schema>, resumeNote: string): string {
+  const { name, email, phone, position, guardCard, experience, message } = data;
   return `
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#0a0a0a">
       <div style="background:#040d1e;padding:24px 32px;border-bottom:3px solid #1a3a6b">
@@ -45,10 +46,9 @@ function applicationHtml(data: z.infer<typeof schema>): string {
           <tr><td style="padding:8px 0;color:#6b7280">Phone</td><td style="padding:8px 0"><a href="tel:${esc(phone)}" style="color:#1a3a6b">${esc(phone)}</a></td></tr>
           <tr><td style="padding:8px 0;color:#6b7280">Guard Card #</td><td style="padding:8px 0;font-weight:600">${esc(guardCard)}</td></tr>
           ${experience ? `<tr><td style="padding:8px 0;color:#6b7280">Experience</td><td style="padding:8px 0">${esc(experience)}</td></tr>` : ""}
-          ${resumeFileName ? `<tr><td style="padding:8px 0;color:#6b7280">Resume File</td><td style="padding:8px 0">${esc(resumeFileName)}</td></tr>` : ""}
+          <tr><td style="padding:8px 0;color:#6b7280">Resume</td><td style="padding:8px 0;font-weight:600">${esc(resumeNote)}</td></tr>
           ${message ? `<tr><td style="padding:8px 0;color:#6b7280;vertical-align:top">Notes</td><td style="padding:8px 0">${esc(message).replace(/\n/g, "<br>")}</td></tr>` : ""}
         </table>
-        <p style="font-size:12px;color:#6b7280;margin-top:16px;padding-top:16px;border-top:1px solid #e2e6ec">The resume file is not attached to this email and will be requested separately. Applicant was instructed to email their resume to ${esc(TO)} with subject: <em>Resume &ndash; Security Officer Application</em></p>
       </div>
       <div style="background:#040d1e;padding:16px 32px;text-align:center">
         <p style="color:#c0c8d4;font-size:12px;margin:0">strattonsecuritygroup.com &middot; (424) 440-5554</p>
@@ -58,14 +58,25 @@ function applicationHtml(data: z.infer<typeof schema>): string {
 }
 
 export async function POST(req: NextRequest) {
-  let raw: unknown;
+  // Applications are sent as multipart/form-data so the resume file rides along.
+  let form: FormData;
   try {
-    raw = await req.json();
+    form = await req.formData();
   } catch {
-    return NextResponse.json({ ok: false, error: "Invalid JSON body." }, { status: 400 });
+    return NextResponse.json({ ok: false, error: "Invalid form submission." }, { status: 400 });
   }
 
-  const parsed = schema.safeParse(raw);
+  const fields = {
+    name: String(form.get("name") ?? ""),
+    email: String(form.get("email") ?? ""),
+    phone: String(form.get("phone") ?? ""),
+    position: String(form.get("position") ?? ""),
+    guardCard: String(form.get("guardCard") ?? ""),
+    experience: form.get("experience") ? String(form.get("experience")) : undefined,
+    message: form.get("message") ? String(form.get("message")) : undefined,
+  };
+
+  const parsed = schema.safeParse(fields);
   if (!parsed.success) {
     return NextResponse.json(
       { ok: false, error: "Please correct the highlighted fields.", fieldErrors: parsed.error.flatten().fieldErrors },
@@ -74,13 +85,37 @@ export async function POST(req: NextRequest) {
   }
   const data = parsed.data;
 
+  // Optional resume upload — validated then attached to the email.
+  let resumeBuffer: Buffer | null = null;
+  let resumeName = "";
+  const file = form.get("resume");
+  if (file && typeof file === "object" && "arrayBuffer" in file && (file as File).size > 0) {
+    const f = file as File;
+    const ext = f.name.slice(f.name.lastIndexOf(".")).toLowerCase();
+    if (!ACCEPTED_EXT.includes(ext)) {
+      return NextResponse.json({ ok: false, error: "Resume must be a PDF, DOC, or DOCX file." }, { status: 400 });
+    }
+    if (f.size > MAX_RESUME_BYTES) {
+      return NextResponse.json({ ok: false, error: "Resume file is too large (max 5 MB)." }, { status: 400 });
+    }
+    resumeBuffer = Buffer.from(await f.arrayBuffer());
+    resumeName = f.name;
+  }
+  const resumeNote = resumeName
+    ? `Attached — ${resumeName} (${Math.round((resumeBuffer?.length ?? 0) / 1024)} KB)`
+    : "No resume attached";
+
   // Graceful fallback: with no real API key (missing or placeholder), log the
   // application server-side so dev/demo still "works" instead of 500-ing.
   const resendKey = process.env.RESEND_API_KEY;
   const resendConfigured =
     !!resendKey && resendKey.startsWith("re_") && resendKey.length > 20 && !resendKey.includes("your_api_key");
   if (!resendConfigured) {
-    console.log("[apply route] RESEND_API_KEY not configured — application logged instead of emailed:", data);
+    console.log("[apply route] RESEND_API_KEY not configured — application logged instead of emailed:", {
+      ...data,
+      resume: resumeName || "(none)",
+      resumeBytes: resumeBuffer?.length ?? 0,
+    });
     return NextResponse.json({ ok: true });
   }
 
@@ -92,7 +127,8 @@ export async function POST(req: NextRequest) {
       to: TO,
       replyTo: data.email,
       subject: `New Job Application — ${data.position}`,
-      html: applicationHtml(data),
+      html: applicationHtml(data, resumeNote),
+      attachments: resumeBuffer ? [{ filename: resumeName, content: resumeBuffer }] : undefined,
     });
     if (res.error) {
       throw new Error(res.error.message);

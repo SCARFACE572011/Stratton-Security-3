@@ -18,7 +18,7 @@ const schema = z.object({
   message: z.string().optional(),
 });
 
-type FormData = z.infer<typeof schema>;
+type FormValues = z.infer<typeof schema>;
 
 const POSITIONS = [
   "Unarmed Security Officer",
@@ -27,6 +27,11 @@ const POSITIONS = [
   "Concierge / Lobby Officer",
   "Other / General Inquiry",
 ];
+
+const MAX_RESUME_BYTES = 5 * 1024 * 1024; // 5 MB
+const ACCEPTED_EXT = [".pdf", ".doc", ".docx"];
+const RESUME_ACCEPT =
+  ".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document";
 
 const inputClass =
   "w-full bg-platinum-50 border border-platinum focus:border-[#1a3a6b] focus:ring-1 focus:ring-[#1a3a6b] text-[#040d1e] text-[0.875rem] px-4 py-3 outline-none transition-colors placeholder:text-[#6b7280]";
@@ -38,22 +43,47 @@ const errorClass =
 export default function ApplyForm() {
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [fileError, setFileError] = useState("");
 
   const {
     register,
     handleSubmit,
-    getValues,
     formState: { errors, isSubmitting },
-  } = useForm<FormData>({ resolver: zodResolver(schema) });
+  } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
-  const onSubmit = async (data: FormData) => {
+  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFileError("");
+    const f = e.target.files?.[0];
+    if (!f) {
+      setResumeFile(null);
+      return;
+    }
+    const ext = f.name.slice(f.name.lastIndexOf(".")).toLowerCase();
+    if (!ACCEPTED_EXT.includes(ext)) {
+      setResumeFile(null);
+      setFileError("Please upload a PDF, DOC, or DOCX file.");
+      return;
+    }
+    if (f.size > MAX_RESUME_BYTES) {
+      setResumeFile(null);
+      setFileError("File is too large — maximum size is 5 MB.");
+      return;
+    }
+    setResumeFile(f);
+  };
+
+  const onSubmit = async (data: FormValues) => {
     setSubmitError("");
     try {
-      const res = await fetch("/api/apply", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+      const fd = new FormData();
+      Object.entries(data).forEach(([k, v]) => {
+        if (v != null && v !== "") fd.append(k, String(v));
       });
+      if (resumeFile) fd.append("resume", resumeFile);
+
+      // No Content-Type header — the browser sets the multipart boundary.
+      const res = await fetch("/api/apply", { method: "POST", body: fd });
       const json = await res.json().catch(() => ({}));
       if (!res.ok || json?.ok === false) {
         throw new Error(json?.error ?? "Submission failed.");
@@ -192,18 +222,37 @@ export default function ApplyForm() {
               </div>
             </div>
 
-            <div className="border border-dashed border-platinum p-4 flex items-center gap-3 text-[0.8125rem] text-[#4b5563]">
-              <Upload size={15} className="text-accent shrink-0" strokeWidth={1.5} />
-              <span>
-                Attach your resume by emailing it to{" "}
-                <a
-                  href={`mailto:${SITE_CONFIG.email}?subject=Resume - Security Officer Application`}
-                  className="text-accent hover:underline"
-                >
-                  {SITE_CONFIG.email}
-                </a>
-                {" "}with subject: <em>Resume – Security Officer Application</em>
-              </span>
+            <div>
+              <label htmlFor="apply-resume" className={labelClass}>
+                Resume{" "}
+                <span className="text-[#6b7280] normal-case tracking-normal">
+                  (PDF, DOC, or DOCX — max 5 MB)
+                </span>
+              </label>
+              <label
+                htmlFor="apply-resume"
+                className="flex cursor-pointer items-center gap-3 border border-dashed border-platinum bg-platinum-50 px-4 py-4 text-[0.8125rem] text-[#4b5563] transition-colors hover:border-[#1a3a6b]"
+              >
+                <Upload size={16} className="text-accent shrink-0" strokeWidth={1.5} />
+                {resumeFile ? (
+                  <span className="text-[#040d1e] font-medium">
+                    {resumeFile.name}{" "}
+                    <span className="font-normal text-[#6b7280]">
+                      ({Math.round(resumeFile.size / 1024)} KB) — click to replace
+                    </span>
+                  </span>
+                ) : (
+                  <span>Click to upload your resume</span>
+                )}
+                <input
+                  id="apply-resume"
+                  type="file"
+                  accept={RESUME_ACCEPT}
+                  onChange={onFileChange}
+                  className="sr-only"
+                />
+              </label>
+              {fileError && <p className={errorClass} role="alert">{fileError}</p>}
             </div>
 
             <div>

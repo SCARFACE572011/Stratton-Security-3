@@ -7,6 +7,7 @@ import ScrollProgress from "@/components/layout/ScrollProgress";
 import MobileStickyBar from "@/components/layout/MobileStickyBar";
 import BackToTop from "@/components/layout/BackToTop";
 import LenisProvider from "@/components/layout/LenisProvider";
+import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import { Analytics } from "@vercel/analytics/react";
 
 // Display: Rajdhani — a squared, technical, defense-tech / HUD-style face used
@@ -84,6 +85,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  // Google Search Console: set GOOGLE_SITE_VERIFICATION in the environment to
+  // emit the verification <meta> tag. Omitted automatically when unset.
+  verification: { google: process.env.GOOGLE_SITE_VERIFICATION },
 };
 
 export default function RootLayout({
@@ -102,6 +106,7 @@ export default function RootLayout({
           <MobileStickyBar />
           <BackToTop />
           <Analytics />
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         </LenisProvider>
       </body>
     </html>
