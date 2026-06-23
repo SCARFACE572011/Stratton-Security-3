@@ -8,7 +8,6 @@ import WhyStratton from "@/components/home/WhyStratton";
 import DeploymentProtocol from "@/components/home/DeploymentProtocol";
 import MidPageCTA from "@/components/home/MidPageCTA";
 import StatsSection from "@/components/home/StatsSection";
-import IndustriesSection from "@/components/home/IndustriesSection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import ValuesSection from "@/components/home/ValuesSection";
 import CTASection from "@/components/home/CTASection";
@@ -79,9 +78,6 @@ export default function HomePage() {
 
         {/* 6. Mid-page CTA strip */}
         <MidPageCTA />
-
-        {/* 7. Industries served */}
-        <IndustriesSection />
 
         {/* 7. Values, mission, certifications */}
         <ValuesSection />

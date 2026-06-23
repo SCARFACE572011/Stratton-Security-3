@@ -6,35 +6,48 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
   Home,
   Building2,
+  Building,
   BedDouble,
   ShoppingBag,
   HardHat,
   Car,
-  Briefcase,
   HeartPulse,
+  GraduationCap,
+  Factory,
+  Landmark,
+  Banknote,
+  Truck,
+  TrainFront,
   Shield,
   ArrowRight,
   type LucideIcon,
 } from "lucide-react";
-import { CLIENT_LOGOS } from "@/lib/constants";
+import { INDUSTRIES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
+// Icon + short readout blurb for every industry vertical (keyed by slug).
 const SECTOR_META: Record<string, { icon: LucideIcon; blurb: string }> = {
-  "Residential HOA": { icon: Home, blurb: "HOAs, gated communities & condo boards" },
-  "Commercial Real Estate": { icon: Building2, blurb: "Office towers, campuses & multi-tenant" },
-  Hospitality: { icon: BedDouble, blurb: "Hotels, resorts & entertainment venues" },
-  Retail: { icon: ShoppingBag, blurb: "Centers, stores & loss prevention" },
-  Construction: { icon: HardHat, blurb: "Active sites, equipment & materials" },
-  "Auto Dealership": { icon: Car, blurb: "Lots, showrooms & service bays" },
-  Corporate: { icon: Briefcase, blurb: "Headquarters, executives & lobbies" },
-  Healthcare: { icon: HeartPulse, blurb: "Hospitals, clinics & medical campuses" },
+  "commercial-real-estate": { icon: Building2, blurb: "Office towers, campuses & multi-tenant" },
+  retail: { icon: ShoppingBag, blurb: "Shopping centers, stores & loss prevention" },
+  hospitality: { icon: BedDouble, blurb: "Hotels, resorts & entertainment venues" },
+  healthcare: { icon: HeartPulse, blurb: "Hospitals, clinics & medical campuses" },
+  education: { icon: GraduationCap, blurb: "Universities, K–12 & campus events" },
+  industrial: { icon: Factory, blurb: "Plants, processing & industrial parks" },
+  government: { icon: Landmark, blurb: "Municipal buildings & civic infrastructure" },
+  financial: { icon: Banknote, blurb: "Banks, credit unions & data centers" },
+  "auto-dealership": { icon: Car, blurb: "Lots, showrooms & service bays" },
+  estates: { icon: Home, blurb: "Estates & high-net-worth residences" },
+  construction: { icon: HardHat, blurb: "Active sites, equipment & materials" },
+  logistics: { icon: Truck, blurb: "Warehouses, freight hubs & cargo" },
+  transit: { icon: TrainFront, blurb: "Transit hubs & high-traffic platforms" },
+  condominiums: { icon: Building, blurb: "Condos, high-rises & HOA boards" },
 };
 
-const SECTORS = CLIENT_LOGOS.map((c) => ({
-  name: c.industry,
-  ...(SECTOR_META[c.industry] ?? { icon: Shield, blurb: "Tailored protection programs" }),
+const SECTORS = INDUSTRIES.map((ind) => ({
+  name: ind.label,
+  ...(SECTOR_META[ind.slug] ?? { icon: Shield, blurb: "Tailored protection programs" }),
 }));
 
 export default function ClientLogosSection() {
@@ -61,23 +74,24 @@ export default function ClientLogosSection() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease: EASE }}
         >
-          <p className="label-overline mb-6">Sectors We Protect</p>
+          <p className="label-overline mb-6">Industries Served</p>
           <span className="accent-line mx-auto mb-7" />
           <h2
             id="clients-heading"
             className="display-title text-[#040d1e]"
             style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)" }}
           >
-            Relied On Across Los Angeles
+            Protecting Every Sector
           </h2>
           <p className="mt-7 text-[1.0625rem] leading-relaxed text-[#4b5563] font-[var(--font-sans)]">
-            From Beverly Hills residential communities to Century City corporate
-            campuses, Stratton protects properties trusted by property managers,
-            HOA boards, and executives across Southern California.
+            Stratton&apos;s programs span 14+ industry verticals — from luxury
+            residential and commercial real estate to healthcare, government, and
+            distribution. Whatever your sector, we build a program around its
+            specific risk landscape.
           </p>
         </motion.div>
 
-        {/* Industries Served — single animated card linking to all industries */}
+        {/* Industries Served — single animated card cycling all 14 verticals */}
         <motion.div
           className="mx-auto max-w-4xl mt-14 md:mt-20"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
@@ -93,17 +107,17 @@ export default function ClientLogosSection() {
             <div className="grid lg:grid-cols-2">
               {/* Left — title + copy + CTA */}
               <div className="flex flex-col justify-center p-8 md:p-12">
-                <p className="label-overline mb-5">Industries Served</p>
+                <p className="label-overline mb-5">14+ Verticals</p>
                 <h3
                   className="display-title text-white"
                   style={{ fontSize: "clamp(1.7rem, 3vw, 2.5rem)" }}
                 >
-                  Protection For Every Sector
+                  A Program For Every Sector
                 </h3>
                 <p className="mt-5 text-[1rem] leading-relaxed text-silver max-w-md">
                   From HOAs, estates, and corporate campuses to hospitality, retail,
-                  construction, and healthcare — Stratton designs a dedicated program
-                  for each environment.
+                  healthcare, construction, government, and logistics — Stratton
+                  designs a dedicated program for each environment.
                 </p>
                 <span className="mt-8 inline-flex items-center gap-2 text-[0.78rem] font-bold uppercase tracking-[0.16em] text-[#6f9bd8]">
                   View All Industries
@@ -142,7 +156,7 @@ export default function ClientLogosSection() {
                 </div>
 
                 {/* cycling icon + name + blurb */}
-                <div className="relative flex h-[96px] items-center gap-5">
+                <div className="relative flex h-[104px] items-center gap-5">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={idx}
@@ -156,10 +170,10 @@ export default function ClientLogosSection() {
                         <ActiveIcon size={26} strokeWidth={1.6} />
                       </span>
                       <div className="min-w-0">
-                        <div className="display-sm text-white text-[1.3rem] tracking-[0.01em]">
+                        <div className="display-sm text-white text-[1.25rem] leading-tight tracking-[0.01em]">
                           {active.name}
                         </div>
-                        <div className="text-[0.85rem] leading-snug text-silver mt-1">
+                        <div className="text-[0.85rem] leading-snug text-silver mt-1.5">
                           {active.blurb}
                         </div>
                       </div>
@@ -168,7 +182,7 @@ export default function ClientLogosSection() {
                 </div>
 
                 {/* progress dots */}
-                <div className="relative mt-8 flex items-center gap-1.5">
+                <div className="relative mt-7 flex flex-wrap items-center gap-1.5">
                   {SECTORS.map((s, i) => (
                     <span
                       key={s.name}
