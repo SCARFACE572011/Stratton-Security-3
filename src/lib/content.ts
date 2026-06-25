@@ -22,3 +22,49 @@ export async function getFaqs(): Promise<Faq[]> {
     .sort((a, b) => a.order - b.order)
     .map(({ q, a }) => ({ q, a }));
 }
+
+export type Testimonial = {
+  quote: string;
+  author: string;
+  company: string;
+  initials: string;
+  stars: number;
+};
+
+export async function getTestimonials(): Promise<Testimonial[]> {
+  const entries = await reader.collections.testimonials.all();
+  return entries
+    .map((e) => ({
+      author: e.entry.author,
+      quote: e.entry.quote,
+      company: e.entry.company,
+      initials: e.entry.initials,
+      stars: e.entry.stars ?? 5,
+      order: e.entry.order ?? 0,
+    }))
+    .sort((a, b) => a.order - b.order)
+    .map(({ order: _order, ...r }) => r);
+}
+
+export type BarkReview = {
+  quote: string;
+  author: string;
+  role: string;
+  date: string;
+  stars: number;
+};
+
+export async function getBarkReviews(): Promise<BarkReview[]> {
+  const entries = await reader.collections.barkReviews.all();
+  return entries
+    .map((e) => ({
+      author: e.entry.author,
+      quote: e.entry.quote,
+      role: e.entry.role,
+      date: e.entry.date,
+      stars: e.entry.stars ?? 5,
+      order: e.entry.order ?? 0,
+    }))
+    .sort((a, b) => a.order - b.order)
+    .map(({ order: _order, ...r }) => r);
+}

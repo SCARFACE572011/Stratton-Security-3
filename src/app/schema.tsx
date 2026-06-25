@@ -1,6 +1,4 @@
-import { SITE_CONFIG, TESTIMONIALS, BARK_REVIEWS } from "@/lib/constants";
-
-const REVIEW_COUNT = TESTIMONIALS.length + BARK_REVIEWS.length;
+import { SITE_CONFIG, REVIEW_COUNT } from "@/lib/constants";
 
 export function OrganizationSchema() {
   const schema = {

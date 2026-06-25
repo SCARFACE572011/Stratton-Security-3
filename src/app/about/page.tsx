@@ -3,7 +3,8 @@ import Footer from "@/components/layout/Footer";
 import CTASection from "@/components/home/CTASection";
 import AboutContent from "@/components/about/AboutContent";
 import Image from "next/image";
-import { SITE_CONFIG, BARK_REVIEWS } from "@/lib/constants";
+import { SITE_CONFIG } from "@/lib/constants";
+import { getBarkReviews } from "@/lib/content";
 import { ReviewsSchema, BreadcrumbSchema } from "@/app/schema";
 import type { Metadata } from "next";
 
@@ -14,14 +15,15 @@ export const metadata: Metadata = {
     "Learn about Stratton Security Group — our mission, values, and commitment to protecting people, assets, and peace of mind across Los Angeles and California.",
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const barkReviews = await getBarkReviews();
   return (
     <>
       <BreadcrumbSchema items={[
         { name: "Home", url: "https://strattonsecuritygroup.com" },
         { name: "About", url: "https://strattonsecuritygroup.com/about" },
       ]} />
-      <ReviewsSchema reviews={BARK_REVIEWS} />
+      <ReviewsSchema reviews={barkReviews} />
       <Navigation />
       <main>
         {/* Full-bleed deep-navy page hero — serif headline, eyebrow, accent line, silver intro */}
@@ -62,7 +64,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <AboutContent />
+        <AboutContent barkReviews={barkReviews} />
 
         <CTASection />
       </main>

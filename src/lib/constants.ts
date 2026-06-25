@@ -721,99 +721,14 @@ export const STATS = [
   { value: 5, suffix: "★", label: "Bark.com Rated" },
 ];
 
-export const TESTIMONIALS = [
-  {
-    quote:
-      "Since Stratton Security began its patrol, my company and the neighbors around have felt a decrease in crime. Really, thank you.",
-    author: "Margot M.",
-    company: "Commercial Property Client",
-    initials: "MM",
-    stars: 5,
-  },
-  {
-    quote:
-      "Staffed by both current and former LAPD officers, Stratton Security is skilled and prestigiously high class.",
-    author: "Phillip Webb",
-    company: "Los Angeles",
-    initials: "PW",
-    stars: 5,
-  },
-  {
-    quote:
-      "Their patrol vehicles are always visible, and the officers are always greeting my clients with a smile. Everyone always feels safe and happy.",
-    author: "Natasha Chevalier",
-    company: "Business Owner",
-    initials: "NC",
-    stars: 5,
-  },
-  {
-    quote:
-      "On short notice within a week, Stratton Security Group set up armed security guard service for my brother's multiple locations across California — delivered beyond our big expectations.",
-    author: "Derek M.",
-    company: "Multi-Location Business",
-    initials: "DM",
-    stars: 5,
-  },
-  {
-    quote:
-      "Any hour of any given night and weekend I've been able to reach the supervisor — which certainly couldn't be said about other companies.",
-    author: "Luminous Stays",
-    company: "Hospitality Client",
-    initials: "LS",
-    stars: 5,
-  },
-  {
-    quote:
-      "Their team is incredibly professional and responsive. Considering how dangerous it has become out here in Los Angeles, I genuinely don't know how my business would function without them.",
-    author: "Rohan Johnson",
-    company: "Los Angeles Business Owner",
-    initials: "RJ",
-    stars: 5,
-  },
-  {
-    quote:
-      "I recently hired Stratton Security Group and couldn't be happier with their service — responsive, professional, and genuinely invested in protecting our property.",
-    author: "Cobalt Infinite",
-    company: "Commercial Client",
-    initials: "CI",
-    stars: 5,
-  },
-  {
-    quote:
-      "The Stratton team is constantly available and always prepared to help. That kind of reliability is exactly what you want in a security partner.",
-    author: "Nicholas Johansson",
-    company: "Los Angeles",
-    initials: "NJ",
-    stars: 5,
-  },
-];
-
-export const BARK_REVIEWS = [
-  {
-    quote:
-      "Their team has truly set the bar when it comes to providing security services.",
-    author: "Genevieve",
-    role: "Head Manager, Beverly Hills Condominium Complex",
-    date: "April 2025",
-    stars: 5,
-  },
-  {
-    quote:
-      "Security officers so far made my life easier with their quick and descriptive responses.",
-    author: "Sanela",
-    role: "Community Manager",
-    date: "September 2024",
-    stars: 5,
-  },
-  {
-    quote:
-      "Ten gentlemen with their two supervisors were superb — absolutely professional.",
-    author: "Munir",
-    role: "Event Organizer, 300-Person Event",
-    date: "August 2024",
-    stars: 5,
-  },
-];
+// Testimonials and Bark.com reviews are now CMS-managed (edit at /keystatic →
+// Testimonials / Bark.com Reviews). Content lives in src/content/testimonials/*
+// and src/content/bark-reviews/*, read via src/lib/content.ts.
+//
+// REVIEW_COUNT feeds the Organization aggregateRating JSON-LD. It's a static
+// total (not auto-derived from the CMS) — bump it if the review volume changes
+// significantly.
+export const REVIEW_COUNT = 11;
 
 export const FAQS = [
   {

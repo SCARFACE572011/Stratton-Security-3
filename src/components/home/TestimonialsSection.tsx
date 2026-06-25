@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
-import { TESTIMONIALS, BARK_REVIEWS } from "@/lib/constants";
+import type { Testimonial, BarkReview } from "@/lib/content";
 import ClientsMarquee from "./ClientsMarquee";
 import { cn } from "@/lib/utils";
 
@@ -19,7 +19,13 @@ function StarRating({ count = 5, size = 14 }: { count?: number; size?: number })
   );
 }
 
-export default function TestimonialsSection() {
+export default function TestimonialsSection({
+  testimonials,
+  barkReviews,
+}: {
+  testimonials: Testimonial[];
+  barkReviews: BarkReview[];
+}) {
   const shouldReduceMotion = useReducedMotion();
 
   const [per, setPer] = useState(1);
@@ -28,7 +34,7 @@ export default function TestimonialsSection() {
   const [liveMsg, setLiveMsg] = useState("");
   const startX = useRef(0);
 
-  const total = TESTIMONIALS.length;
+  const total = testimonials.length;
   const pages = Math.max(1, Math.ceil(total / per));
   // Leftmost slide for the current page, clamped so the last page sits flush.
   const start = Math.max(0, Math.min(page * per, total - per));
@@ -136,7 +142,7 @@ export default function TestimonialsSection() {
               className="testi-track -mx-3"
               style={{ ["--page" as string]: page, ["--count" as string]: total }}
             >
-              {TESTIMONIALS.map((item, i) => {
+              {testimonials.map((item, i) => {
                 const offscreen = i < start || i >= start + per;
                 return (
                   <div
@@ -231,7 +237,7 @@ export default function TestimonialsSection() {
             <span className="accent-line" />
           </div>
           <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
-            {BARK_REVIEWS.map((review, i) => (
+            {barkReviews.map((review, i) => (
               <motion.div
                 key={i}
                 initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}

@@ -2,7 +2,8 @@
 
 import { Shield, Eye, Scale, ShieldCheck, Star } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
-import { SITE_CONFIG, DIFFERENTIATORS, BARK_REVIEWS } from "@/lib/constants";
+import { SITE_CONFIG, DIFFERENTIATORS } from "@/lib/constants";
+import type { BarkReview } from "@/lib/content";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -13,7 +14,7 @@ const VALUE_ICON: Record<string, typeof Shield> = {
   Integrity: Scale,
 };
 
-export default function AboutContent() {
+export default function AboutContent({ barkReviews }: { barkReviews: BarkReview[] }) {
   const shouldReduceMotion = useReducedMotion();
 
   const reveal = (delay = 0) => ({
@@ -172,7 +173,7 @@ export default function AboutContent() {
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {BARK_REVIEWS.map((review, i) => (
+            {barkReviews.map((review, i) => (
               <motion.div
                 key={i}
                 {...reveal(i * 0.08)}

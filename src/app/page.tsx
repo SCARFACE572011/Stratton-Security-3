@@ -12,7 +12,8 @@ import TestimonialsSection from "@/components/home/TestimonialsSection";
 import ValuesSection from "@/components/home/ValuesSection";
 import CTASection from "@/components/home/CTASection";
 import ImageStrip from "@/components/home/ImageStrip";
-import { SITE_CONFIG, TESTIMONIALS } from "@/lib/constants";
+import { SITE_CONFIG } from "@/lib/constants";
+import { getTestimonials, getBarkReviews } from "@/lib/content";
 import { ReviewsSchema } from "@/app/schema";
 import type { Metadata } from "next";
 
@@ -39,7 +40,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [testimonials, barkReviews] = await Promise.all([
+    getTestimonials(),
+    getBarkReviews(),
+  ]);
+
   return (
     <>
       {/* Skip to main content for accessibility */}
@@ -53,7 +59,7 @@ export default function HomePage() {
       <Navigation />
 
       <ReviewsSchema
-        reviews={TESTIMONIALS.map((t) => ({
+        reviews={testimonials.map((t) => ({
           author: t.author,
           quote: t.quote,
           stars: t.stars,
@@ -93,7 +99,7 @@ export default function HomePage() {
         <ValuesSection />
 
         {/* 8. Testimonials + Bark reviews */}
-        <TestimonialsSection />
+        <TestimonialsSection testimonials={testimonials} barkReviews={barkReviews} />
 
         {/* 9. Final CTA */}
         <CTASection />
