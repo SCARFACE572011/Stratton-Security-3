@@ -1,4 +1,6 @@
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, TESTIMONIALS, BARK_REVIEWS } from "@/lib/constants";
+
+const REVIEW_COUNT = TESTIMONIALS.length + BARK_REVIEWS.length;
 
 export function OrganizationSchema() {
   const schema = {
@@ -57,8 +59,8 @@ export function OrganizationSchema() {
       "@type": "AggregateRating",
       ratingValue: "5",
       bestRating: "5",
-      ratingCount: "6",
-      reviewCount: "6",
+      ratingCount: String(REVIEW_COUNT),
+      reviewCount: String(REVIEW_COUNT),
     },
     hasCredential: {
       "@type": "EducationalOccupationalCredential",

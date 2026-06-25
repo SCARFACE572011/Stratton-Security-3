@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { ArrowRight, CheckCircle, Phone, Loader2 } from "lucide-react";
 import { SITE_CONFIG, SERVICES } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 
 const schema = z.object({
   propertyType: z.string().min(1, "Please select a property type."),
@@ -78,6 +79,11 @@ export default function ContactForm() {
       if (!res.ok || json?.ok === false) {
         throw new Error(json?.error ?? "Submission failed.");
       }
+      trackEvent("generate_lead", {
+        form_type: "contact",
+        service: data.serviceType,
+        property_type: data.propertyType,
+      });
       setSubmitted(true);
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : "Something went wrong. Please try again.");

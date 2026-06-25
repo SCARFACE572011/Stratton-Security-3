@@ -57,6 +57,22 @@ function applicationHtml(data: z.infer<typeof schema>, resumeNote: string): stri
   `;
 }
 
+function applicantConfirmationHtml(name: string, position: string): string {
+  return `
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#0a0a0a">
+      <div style="background:#040d1e;padding:24px 32px;border-bottom:3px solid #1a3a6b">
+        <h1 style="color:#ffffff;margin:0;font-size:20px;letter-spacing:1px">STRATTON SECURITY GROUP</h1>
+      </div>
+      <div style="padding:32px">
+        <p style="font-size:15px">Hi ${esc(name)},</p>
+        <p style="font-size:14px;color:#4b5563;line-height:1.6">Thank you for applying to Stratton Security Group${position ? ` for the <strong>${esc(position)}</strong> role` : ""}. We&rsquo;ve received your application and our operations team will review it and follow up within 2&ndash;3 business days.</p>
+        <p style="font-size:14px;color:#4b5563">Questions in the meantime? Call us at <a href="tel:+14244405554" style="color:#1a3a6b">(424) 440-5554</a>.</p>
+        <p style="font-size:13px;color:#6b7280;margin-top:32px">Excellence In Protection &middot; CA PPO License #122163</p>
+      </div>
+    </div>
+  `;
+}
+
 export async function POST(req: NextRequest) {
   // Applications are sent as multipart/form-data so the resume file rides along.
   let form: FormData;
@@ -138,6 +154,14 @@ export async function POST(req: NextRequest) {
     if (res.error) {
       throw new Error(res.error.message);
     }
+
+    // Applicant confirmation is best-effort; don't fail the request if it bounces.
+    await resend.emails.send({
+      from: FROM,
+      to: data.email,
+      subject: "We received your application — Stratton Security Group",
+      html: applicantConfirmationHtml(data.name, data.position),
+    });
 
     return NextResponse.json({ ok: true });
   } catch (err) {

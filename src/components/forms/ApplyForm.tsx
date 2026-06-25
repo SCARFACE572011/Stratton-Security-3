@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { ArrowLeft, ArrowRight, Upload, CheckCircle, Loader2 } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 import { useState } from "react";
 
 const schema = z.object({
@@ -89,6 +90,11 @@ export default function ApplyForm() {
       if (!res.ok || json?.ok === false) {
         throw new Error(json?.error ?? "Submission failed.");
       }
+      trackEvent("generate_lead", {
+        form_type: "job_application",
+        position: data.position,
+        has_resume: !!resumeFile,
+      });
       setSubmitted(true);
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
