@@ -16,6 +16,7 @@ const schema = z.object({
   phone: z.string().min(1, "Phone number is required."),
   message: z.string().optional(),
   hearAbout: z.string().optional(),
+  website: z.string().optional(), // honeypot — must stay empty
 });
 
 type FormData = z.infer<typeof schema>;
@@ -142,6 +143,15 @@ export default function ContactForm() {
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        {/* Honeypot — hidden from real users; bots that fill it are dropped server-side */}
+        <input
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          {...register("website")}
+          style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }}
+        />
         <div className="p-6 md:p-8">
           {/* Step 1 */}
           {step === 1 && (

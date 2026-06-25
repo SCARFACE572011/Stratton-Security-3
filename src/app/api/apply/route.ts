@@ -4,7 +4,7 @@ import { z } from "zod";
 
 export const dynamic = "force-dynamic";
 
-const TO = process.env.CONTACT_TO_EMAIL || process.env.CONTACT_EMAIL || "Info@StrattonSecurityGroup.com";
+const TO = process.env.CONTACT_TO_EMAIL || process.env.CONTACT_EMAIL || "rami@strattonsecuritygroup.com";
 const FROM = process.env.CONTACT_FROM_EMAIL || "Stratton Security <onboarding@resend.dev>";
 
 const MAX_RESUME_BYTES = 5 * 1024 * 1024; // 5 MB
@@ -64,6 +64,11 @@ export async function POST(req: NextRequest) {
     form = await req.formData();
   } catch {
     return NextResponse.json({ ok: false, error: "Invalid form submission." }, { status: 400 });
+  }
+
+  // Honeypot: a filled hidden "website" field means a bot — accept silently, send nothing.
+  if (form.get("website")) {
+    return NextResponse.json({ ok: true });
   }
 
   const fields = {

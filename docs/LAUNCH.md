@@ -14,7 +14,7 @@ After changing env vars in Vercel you must **redeploy** for them to take effect.
 | Variable | Purpose | Example |
 |---|---|---|
 | `RESEND_API_KEY` | Activates email for the contact + apply forms. Until set, forms run in "demo mode" (submissions are logged server-side, **not emailed**). | `re_xxxxxxxxxxxxxxxxxxxx` |
-| `CONTACT_EMAIL` | Inbox that receives contact + application emails. | `Info@StrattonSecurityGroup.com` |
+| `CONTACT_EMAIL` | Inbox that receives contact + application submissions. Defaults to `rami@strattonsecuritygroup.com`. (Info@ stays the public-facing address shown on the site.) | `rami@strattonsecuritygroup.com` |
 | `CONTACT_FROM_EMAIL` | Verified "from" sender. Defaults to Resend's test sender until set. | `Stratton Security <noreply@strattonsecuritygroup.com>` |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics 4 Measurement ID. GA is a no-op until set. | `G-XXXXXXXXXX` |
 | `GOOGLE_SITE_VERIFICATION` | Google Search Console verification token (emits the `<meta>` tag). | `abc123…` |

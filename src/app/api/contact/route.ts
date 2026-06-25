@@ -4,7 +4,7 @@ import { z } from "zod";
 
 export const dynamic = "force-dynamic";
 
-const TO = process.env.CONTACT_TO_EMAIL || process.env.CONTACT_EMAIL || "Info@StrattonSecurityGroup.com";
+const TO = process.env.CONTACT_TO_EMAIL || process.env.CONTACT_EMAIL || "rami@strattonsecuritygroup.com";
 const FROM = process.env.CONTACT_FROM_EMAIL || "Stratton Security <onboarding@resend.dev>";
 
 const schema = z.object({
@@ -78,6 +78,12 @@ export async function POST(req: NextRequest) {
     raw = await req.json();
   } catch {
     return NextResponse.json({ ok: false, error: "Invalid JSON body." }, { status: 400 });
+  }
+
+  // Honeypot: real users never fill the hidden "website" field — bots do.
+  // Silently accept so the bot thinks it succeeded, but send nothing.
+  if (raw && typeof raw === "object" && (raw as Record<string, unknown>).website) {
+    return NextResponse.json({ ok: true });
   }
 
   const parsed = schema.safeParse(raw);

@@ -16,6 +16,7 @@ const schema = z.object({
   guardCard: z.string().min(1, "Guard Card number is required."),
   experience: z.string().optional(),
   message: z.string().optional(),
+  website: z.string().optional(), // honeypot — must stay empty
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -121,6 +122,15 @@ export default function ApplyForm() {
       <div className="container-wide">
         <div className="grid lg:grid-cols-12 gap-12">
           <form onSubmit={handleSubmit(onSubmit)} className="lg:col-span-7 space-y-5" noValidate>
+            {/* Honeypot — hidden from real users; bots that fill it are dropped server-side */}
+            <input
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              {...register("website")}
+              style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }}
+            />
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="apply-name" className={labelClass}>
