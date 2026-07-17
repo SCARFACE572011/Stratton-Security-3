@@ -169,7 +169,7 @@ export default function ServicesPageContent() {
                     </p>
 
                     <span className="mt-8 inline-flex items-center gap-2 text-[0.75rem] font-bold uppercase tracking-[0.16em] text-[#1a3a6b]">
-                      Learn More
+                      See Coverage &amp; Pricing
                       <ArrowRight
                         size={16}
                         className="transition-transform group-hover:translate-x-1.5"

@@ -120,7 +120,7 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 1, ease: [0.22, 1, 0.36, 1] }}
         >
           <Link href="/contact" className="btn-light group">
-            Request a Security Assessment
+            Request a Free Assessment
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </Link>
           <a href={`tel:${SITE_CONFIG.phoneE164}`} className="btn-on-dark">
@@ -128,6 +128,19 @@ export default function HeroSection() {
             {SITE_CONFIG.phone}
           </a>
         </motion.div>
+
+        {/* Response-time promise — the strongest conversion lever, kept beside the CTAs.
+            Every claim traces to canonical copy: free/complimentary assessment (CTASection),
+            one-business-day response (contact page + form success), 72h "typically"
+            deployment (FAQ). Don't strengthen these without client sign-off. */}
+        <motion.p
+          className="mt-6 text-center text-[0.8125rem] text-silver/90 tracking-[0.02em]"
+          initial={prefersReduced ? {} : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, delay: 1.15 }}
+        >
+          Free on-site assessment · Response within one business day · Coverage typically within 72 hours
+        </motion.p>
       </div>
 
       {/* Command-center status readout (HUD corner) */}

@@ -5,20 +5,32 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { ArrowLeft, ArrowRight, Upload, CheckCircle, Loader2 } from "lucide-react";
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, GENERAL_INQUIRY_POSITION } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 import { useState } from "react";
 
-const schema = z.object({
-  name: z.string().min(1, "Full name is required."),
-  email: z.string().min(1, "Email is required.").email("Valid email required."),
-  phone: z.string().min(1, "Phone number is required."),
-  position: z.string().min(1, "Please select a position."),
-  guardCard: z.string().min(1, "Guard Card number is required."),
-  experience: z.string().optional(),
-  message: z.string().optional(),
-  website: z.string().optional(), // honeypot — must stay empty
-});
+const schema = z
+  .object({
+    name: z.string().min(1, "Full name is required."),
+    email: z.string().min(1, "Email is required.").email("Valid email required."),
+    phone: z.string().min(1, "Phone number is required."),
+    position: z.string().min(1, "Please select a position."),
+    // Officer roles require a BSIS Guard Card; general inquiries shouldn't be
+    // blocked by it (office/dispatch applicants, people with questions).
+    guardCard: z.string().optional(),
+    experience: z.string().optional(),
+    message: z.string().optional(),
+    website: z.string().optional(), // honeypot — must stay empty
+  })
+  .superRefine((data, ctx) => {
+    if (data.position !== GENERAL_INQUIRY_POSITION && !data.guardCard?.trim()) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["guardCard"],
+        message: "Guard Card number is required for officer positions.",
+      });
+    }
+  });
 
 type FormValues = z.infer<typeof schema>;
 
@@ -27,7 +39,7 @@ const POSITIONS = [
   "Armed Security Officer",
   "Mobile Patrol Officer",
   "Concierge / Lobby Officer",
-  "Other / General Inquiry",
+  GENERAL_INQUIRY_POSITION,
 ];
 
 const MAX_RESUME_BYTES = 5 * 1024 * 1024; // 5 MB
@@ -51,8 +63,10 @@ export default function ApplyForm() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
+  const isGeneralInquiry = watch("position") === GENERAL_INQUIRY_POSITION;
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFileError("");
@@ -192,7 +206,7 @@ export default function ApplyForm() {
               </label>
               <select
                 id="apply-position"
-                {...register("position")}
+                {...register("position", { deps: ["guardCard"] })}
                 className={`${inputClass} appearance-none cursor-pointer`}
                 aria-invalid={!!errors.position}
               >
@@ -207,7 +221,12 @@ export default function ApplyForm() {
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="apply-guard-card" className={labelClass}>
-                  CA Guard Card # <span className="text-accent">*</span>
+                  CA Guard Card #{" "}
+                  {isGeneralInquiry ? (
+                    <span className="normal-case tracking-normal">(optional)</span>
+                  ) : (
+                    <span className="text-accent">*</span>
+                  )}
                 </label>
                 <input
                   id="apply-guard-card"

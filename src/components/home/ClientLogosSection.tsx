@@ -198,15 +198,6 @@ export default function ClientLogosSection() {
           </Link>
         </motion.div>
 
-        <motion.p
-          className="mt-12 text-center text-[0.6875rem] uppercase tracking-[0.2em] text-[#6b7280] font-[var(--font-sans)]"
-          initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, ease: EASE }}
-        >
-          Client identities withheld for confidentiality · Representative sectors shown
-        </motion.p>
       </div>
     </section>
   );

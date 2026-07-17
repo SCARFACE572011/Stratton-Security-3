@@ -35,6 +35,9 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: "#040d1e",
+  // Required for env(safe-area-inset-*) to be non-zero on iPhones — the mobile
+  // sticky bar pads itself above the home indicator.
+  viewportFit: "cover",
 };
 
 export const metadata: Metadata = {

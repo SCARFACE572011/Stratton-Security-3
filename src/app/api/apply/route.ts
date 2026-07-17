@@ -1,21 +1,33 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { sendMail, mailerConfigured, MAIL_TO } from "@/lib/mailer";
+import { GENERAL_INQUIRY_POSITION } from "@/lib/constants";
 
 export const dynamic = "force-dynamic";
 
 const MAX_RESUME_BYTES = 5 * 1024 * 1024; // 5 MB
 const ACCEPTED_EXT = [".pdf", ".doc", ".docx"];
 
-const schema = z.object({
-  name: z.string().min(1, "Full name is required."),
-  email: z.email("Valid email required."),
-  phone: z.string().min(1, "Phone number is required."),
-  position: z.string().min(1, "Please select a position."),
-  guardCard: z.string().min(1, "Guard Card number is required."),
-  experience: z.string().optional(),
-  message: z.string().optional(),
-});
+const schema = z
+  .object({
+    name: z.string().min(1, "Full name is required."),
+    email: z.email("Valid email required."),
+    phone: z.string().min(1, "Phone number is required."),
+    position: z.string().min(1, "Please select a position."),
+    // Mirrors the client rule: required for officer roles, optional for inquiries.
+    guardCard: z.string().optional(),
+    experience: z.string().optional(),
+    message: z.string().optional(),
+  })
+  .superRefine((data, ctx) => {
+    if (data.position !== GENERAL_INQUIRY_POSITION && !data.guardCard?.trim()) {
+      ctx.addIssue({
+        code: "custom",
+        path: ["guardCard"],
+        message: "Guard Card number is required for officer positions.",
+      });
+    }
+  });
 
 // Escape user-supplied values before interpolating into the HTML email.
 function esc(value: string): string {
@@ -41,7 +53,7 @@ function applicationHtml(data: z.infer<typeof schema>, resumeNote: string): stri
           <tr><td style="padding:8px 0;color:#6b7280">Name</td><td style="padding:8px 0;font-weight:600">${esc(name)}</td></tr>
           <tr><td style="padding:8px 0;color:#6b7280">Email</td><td style="padding:8px 0"><a href="mailto:${esc(email)}" style="color:#1a3a6b">${esc(email)}</a></td></tr>
           <tr><td style="padding:8px 0;color:#6b7280">Phone</td><td style="padding:8px 0"><a href="tel:${esc(phone)}" style="color:#1a3a6b">${esc(phone)}</a></td></tr>
-          <tr><td style="padding:8px 0;color:#6b7280">Guard Card #</td><td style="padding:8px 0;font-weight:600">${esc(guardCard)}</td></tr>
+          <tr><td style="padding:8px 0;color:#6b7280">Guard Card #</td><td style="padding:8px 0;font-weight:600">${esc(guardCard?.trim() || "Not provided")}</td></tr>
           ${experience ? `<tr><td style="padding:8px 0;color:#6b7280">Experience</td><td style="padding:8px 0">${esc(experience)}</td></tr>` : ""}
           <tr><td style="padding:8px 0;color:#6b7280">Resume</td><td style="padding:8px 0;font-weight:600">${esc(resumeNote)}</td></tr>
           ${message ? `<tr><td style="padding:8px 0;color:#6b7280;vertical-align:top">Notes</td><td style="padding:8px 0">${esc(message).replace(/\n/g, "<br>")}</td></tr>` : ""}

@@ -43,6 +43,10 @@ export const SITE_CONFIG = {
   heroPosterImage: "/images/hero-poster.svg", // TODO: replace with high-res photographic poster
 };
 
+// The careers apply form + its API route both exempt this position from the
+// Guard Card requirement — single source so client/server validation can't drift.
+export const GENERAL_INQUIRY_POSITION = "Other / General Inquiry";
+
 // Real clients shown in the "Worked With & Trusted By" marquee. Logos sourced
 // from strattonsecuritygroup.com and hosted locally in /public/brand/clients.
 export const CLIENT_LOGOS = [

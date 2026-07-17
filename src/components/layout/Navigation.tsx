@@ -128,7 +128,7 @@ export default function Navigation() {
                         setActiveDropdown(activeDropdown === item.label ? null : item.label)
                       }
                       className={cn(
-                        "flex items-center gap-1 px-3.5 py-2 text-[0.78rem] font-semibold tracking-[0.06em] uppercase transition-colors",
+                        "flex items-center gap-1 px-1.5 xl:px-2.5 py-2 text-[0.78rem] font-semibold tracking-[0.06em] uppercase transition-colors",
                         isActive(item.href) ? "text-white" : "text-silver hover:text-white"
                       )}
                       aria-expanded={activeDropdown === item.label}
@@ -147,7 +147,7 @@ export default function Navigation() {
                     <Link
                       href={item.href}
                       className={cn(
-                        "group px-3 py-2 text-[0.82rem] font-medium tracking-[0.02em] whitespace-nowrap block relative transition-colors",
+                        "group px-1.5 xl:px-2.5 py-2 text-[0.82rem] font-medium tracking-[0.02em] whitespace-nowrap block relative transition-colors",
                         isActive(item.href) ? "text-white" : "text-silver hover:text-white"
                       )}
                       aria-current={isActive(item.href) ? "page" : undefined}
@@ -155,7 +155,7 @@ export default function Navigation() {
                       {item.label}
                       <span
                         className={cn(
-                          "absolute bottom-0 left-3 right-3 h-px bg-[#3f6bb0] origin-center transition-transform duration-300 ease-out",
+                          "absolute bottom-0 left-1.5 right-1.5 xl:left-2.5 xl:right-2.5 h-px bg-[#3f6bb0] origin-center transition-transform duration-300 ease-out",
                           isActive(item.href) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                         )}
                         aria-hidden="true"
@@ -190,7 +190,7 @@ export default function Navigation() {
             </nav>
 
             {/* CTA + Mobile Toggle */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 xl:gap-3">
               <a
                 href={`tel:${SITE_CONFIG.phoneE164}`}
                 className="hidden xl:flex items-center gap-2 text-silver hover:text-white text-[0.82rem] font-medium tracking-[0.01em] whitespace-nowrap transition-colors"
@@ -200,10 +200,20 @@ export default function Navigation() {
               </a>
               <Link
                 href="/contact"
-                className="hidden md:inline-flex btn-light text-[0.75rem] px-5 py-3"
+                className="hidden md:inline-flex btn-light text-[0.75rem] px-4 xl:px-5 py-3 whitespace-nowrap"
               >
-                Request Assessment
+                Get Free Assessment
               </Link>
+              {/* Below xl the header phone text is hidden — keep a one-tap call button
+                  visible above the fold (the #1 conversion action on mobile), compact
+                  enough that the 1024-1280px header row doesn't overflow. */}
+              <a
+                href={`tel:${SITE_CONFIG.phoneE164}`}
+                aria-label={`Call ${SITE_CONFIG.phone}`}
+                className="xl:hidden p-2 text-silver hover:text-white transition-colors"
+              >
+                <Phone size={20} />
+              </a>
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
                 className="lg:hidden p-2 text-silver hover:text-white transition-colors"
@@ -345,7 +355,7 @@ export default function Navigation() {
                 onClick={() => setMobileOpen(false)}
                 className="btn-light w-full"
               >
-                Request Assessment
+                Request Free Assessment
               </Link>
             </div>
           </motion.div>

@@ -123,7 +123,7 @@ export default function Footer() {
               href="/contact"
               className="group mt-7 inline-flex items-center gap-2 text-[0.78rem] font-bold uppercase tracking-[0.14em] text-[#6f9bd8] transition-colors hover:text-white"
             >
-              Request Assessment
+              Request Free Assessment
               <ArrowRight
                 size={15}
                 className="transition-transform duration-300 group-hover:translate-x-1"

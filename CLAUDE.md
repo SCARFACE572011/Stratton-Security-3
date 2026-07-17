@@ -33,7 +33,7 @@ Do NOT create a tailwind.config.ts — Tailwind v4 uses CSS-first configuration.
 - `src/components/layout/Navigation.tsx` — Sticky nav with dropdown + mobile drawer
 - `src/components/layout/Footer.tsx` — Full premium footer
 - `src/components/home/HeroSection.tsx` — Video hero section
-- `src/components/forms/ContactForm.tsx` — Multi-step 3-step contact form
+- `src/components/forms/ContactForm.tsx` — Two-step contact form (native submit disabled on purpose — see in-file comment before "simplifying")
 
 ## Content TODO (needs client input before launch)
 1. **Video:** Homepage video — obtain MP4 from Squarespace CDN or client.

@@ -9,7 +9,7 @@ export default function MobileStickyBar() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 300);
+    const onScroll = () => setVisible(window.scrollY > 120);
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
@@ -22,7 +22,7 @@ export default function MobileStickyBar() {
       }`}
       aria-label="Quick contact"
     >
-      <div className="flex border-t border-[rgba(192,200,212,0.16)] bg-[#040d1e]">
+      <div className="flex border-t border-[rgba(192,200,212,0.16)] bg-[#040d1e] pb-[env(safe-area-inset-bottom)]">
         <a
           href={`tel:${SITE_CONFIG.phoneE164}`}
           className="flex-1 flex items-center justify-center gap-2 py-3.5 text-[0.75rem] font-bold uppercase tracking-[0.08em] text-white border-r border-[rgba(192,200,212,0.16)] hover:bg-[#11264a] transition-colors"
@@ -35,7 +35,7 @@ export default function MobileStickyBar() {
           className="flex-1 flex items-center justify-center gap-2 py-3.5 text-[0.75rem] font-bold uppercase tracking-[0.08em] bg-[#1a3a6b] text-white hover:bg-[#224a86] transition-colors"
         >
           <MessageSquare size={15} />
-          Request Assessment
+          Free Assessment
         </Link>
       </div>
     </div>

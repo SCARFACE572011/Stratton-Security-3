@@ -40,7 +40,6 @@ export default function ClientsMarquee() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.7, ease: EASE }}
-      className="mb-16 md:mb-20"
       role="region"
       aria-label="Worked with and trusted by"
     >

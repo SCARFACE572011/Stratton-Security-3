@@ -14,8 +14,12 @@ function AnimatedCounter({
   isVisible: boolean;
 }) {
   const shouldReduceMotion = useReducedMotion();
-  const [count, setCount] = useState(0);
+  // Start at the real value so server HTML (and no-JS/crawler views) shows
+  // "500+" instead of "0 +"; the count-up still runs from 0 once scrolled into view.
+  const [count, setCount] = useState(value);
   const hasAnimated = useRef(false);
+  const mountedAt = useRef(0);
+  if (!mountedAt.current) mountedAt.current = performance.now();
 
   useEffect(() => {
     if (!isVisible || hasAnimated.current || shouldReduceMotion) {
@@ -23,6 +27,9 @@ function AnimatedCounter({
       return;
     }
     hasAnimated.current = true;
+    // Already on screen at page load (deep link / tall viewport): keep the real
+    // value instead of visibly snapping back to 0 and re-counting.
+    if (performance.now() - mountedAt.current < 800) return;
     const duration = 2000;
     const startTime = performance.now();
     const step = (currentTime: number) => {

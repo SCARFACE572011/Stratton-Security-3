@@ -155,15 +155,30 @@ export default function ServiceDetailContent({
                 <h3 className="display-sm text-[1.5rem] text-white mb-4">
                   Request a Consultation
                 </h3>
-                <p className="text-[0.9375rem] text-silver leading-relaxed mb-8">
+                <p className="text-[0.9375rem] text-silver leading-relaxed mb-6">
                   Talk with a Stratton advisor about a tailored program for your
                   property.
                 </p>
+                {/* Answer "what does it cost / how fast" at the decision point.
+                    Claims trace to the pricing FAQ (rate drivers, written proposal)
+                    and deployment FAQ (72h typical from signing / sub-24h urgent). */}
+                <div className="mb-8 space-y-2.5 text-[0.8125rem] text-silver leading-relaxed">
+                  <p className="flex gap-2.5">
+                    <span className="text-[#6f9bd8] font-bold shrink-0">Pricing</span>
+                    Hourly rates based on coverage hours, armed vs. unarmed, and site
+                    requirements — free walkthrough, then a clear written proposal.
+                  </p>
+                  <p className="flex gap-2.5">
+                    <span className="text-[#6f9bd8] font-bold shrink-0">Timing</span>
+                    Coverage typically begins within 72 hours of signing — teams have
+                    mobilized in under 24 for urgent needs.
+                  </p>
+                </div>
                 <Link
                   href="/contact"
                   className="btn-light w-full justify-center group"
                 >
-                  Start Your Assessment
+                  Get a Free Quote
                   <ArrowRight
                     size={15}
                     className="transition-transform group-hover:translate-x-1"

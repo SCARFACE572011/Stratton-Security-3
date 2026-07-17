@@ -241,17 +241,15 @@ export default function CareersContent() {
               Ready to Apply?
             </h2>
             <p className="text-[#4b5563] text-lg mb-10 leading-relaxed">
-              Send your resume and California Guard Card details to our operations
-              team. We&apos;ll follow up promptly to discuss next steps.
+              Apply online in minutes — upload your resume and California Guard Card
+              details, and our operations team will follow up promptly to discuss
+              next steps.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href={`mailto:${SITE_CONFIG.email}?subject=Career Application`}
-                className="btn-primary group text-sm"
-              >
-                Email Your Application
+              <Link href="/careers/apply" className="btn-primary group text-sm">
+                Apply Online Now
                 <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-              </a>
+              </Link>
               <a href={`tel:${SITE_CONFIG.phoneE164}`} className="btn-secondary text-sm">
                 Call Us
               </a>

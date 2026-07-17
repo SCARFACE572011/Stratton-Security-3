@@ -21,7 +21,7 @@ const schema = z.object({
 });
 
 type FormData = z.infer<typeof schema>;
-type FormStep = 1 | 2 | 3;
+type FormStep = 1 | 2;
 
 const PROPERTY_TYPES = [
   "Commercial Property",
@@ -35,7 +35,9 @@ const PROPERTY_TYPES = [
   "Other",
 ];
 
-const STEP_LABELS = ["Property & Service", "Your Information", "Details & Submit"];
+// Two steps only: an optional-fields-only third screen measurably delayed
+// ready-to-submit leads, so message/hearAbout now live at the end of step 2.
+const STEP_LABELS = ["Property & Service", "Contact & Submit"];
 
 const inputClass =
   "w-full bg-platinum-50 border border-platinum text-[#040d1e] text-sm px-4 py-3 focus:border-[#1a3a6b] focus:ring-1 focus:ring-[#1a3a6b] focus:outline-none transition-colors placeholder:text-steel";
@@ -58,13 +60,8 @@ export default function ContactForm() {
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
   const advanceStep = async () => {
-    const stepFields: Record<FormStep, (keyof FormData)[]> = {
-      1: ["propertyType", "serviceType"],
-      2: ["name", "email", "phone"],
-      3: [],
-    };
-    const valid = await trigger(stepFields[step]);
-    if (valid) setStep((s) => (s + 1) as FormStep);
+    const valid = await trigger(["propertyType", "serviceType"]);
+    if (valid) setStep(2);
   };
 
   const onSubmit = async (data: FormData) => {
@@ -117,8 +114,6 @@ export default function ContactForm() {
     );
   }
 
-  const values = getValues();
-
   return (
     <div className="card">
       {/* Step progress */}
@@ -148,17 +143,18 @@ export default function ContactForm() {
         </div>
       </div>
 
-      {/* Native submission is disabled: React reuses the Continue/Submit button node
-          across the step-2→3 re-render, so a single click on Continue could morph into
-          a submit mid-click and skip step 3 entirely. Submission only ever runs from
-          the explicit onClick on the step-3 button (or Enter on step 3). */}
+      {/* Native submission is disabled: React would otherwise reuse the Continue/Submit
+          button DOM node across the step-1→2 re-render, letting a single click on
+          Continue morph into a submit mid-click (the distinct key props below guard the
+          same hazard). Submission only ever runs from the explicit onClick on the
+          step-2 Submit button — Enter advances step 1 and is inert on step 2, so a
+          stray Enter (or a select's Enter-to-open) can never fire an early submit. */}
       <form
         onSubmit={(e) => e.preventDefault()}
         onKeyDown={(e) => {
           if (e.key === "Enter" && !(e.target instanceof HTMLTextAreaElement)) {
             e.preventDefault();
-            if (step < 3) void advanceStep();
-            else void handleSubmit(onSubmit)();
+            if (step < 2) void advanceStep();
           }
         }}
         noValidate
@@ -279,26 +275,6 @@ export default function ContactForm() {
                 />
                 {errors.phone && <p className={errorClass} role="alert">{errors.phone.message}</p>}
               </div>
-            </div>
-          )}
-
-          {/* Step 3 */}
-          {step === 3 && (
-            <div className="space-y-5">
-              <div className="bg-platinum-50 border border-platinum p-4 text-[0.8125rem]">
-                <p>
-                  <span className="text-steel uppercase tracking-wide text-[0.6875rem]">Property: </span>
-                  <span className="text-[#040d1e]">{values.propertyType}</span>
-                </p>
-                <p className="mt-1">
-                  <span className="text-steel uppercase tracking-wide text-[0.6875rem]">Service: </span>
-                  <span className="text-[#040d1e]">{values.serviceType}</span>
-                </p>
-                <p className="mt-1">
-                  <span className="text-steel uppercase tracking-wide text-[0.6875rem]">Contact: </span>
-                  <span className="text-[#040d1e]">{values.name} — {values.email}</span>
-                </p>
-              </div>
               <div>
                 <label htmlFor="message" className={labelClass}>Additional Details</label>
                 <textarea
@@ -349,7 +325,7 @@ export default function ContactForm() {
             <div />
           )}
 
-          {step < 3 ? (
+          {step < 2 ? (
             <button key="step-continue" type="button" onClick={advanceStep} className="btn-primary text-xs">
               Continue
               <ArrowRight size={13} />

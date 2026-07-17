@@ -126,7 +126,7 @@ export default async function ResourceArticlePage({
                 assessment — no obligation, just a senior advisor and a plan.
               </p>
               <Link href="/contact" className="btn-light group">
-                Request a Security Assessment
+                Request a Free Assessment
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </Link>
             </div>

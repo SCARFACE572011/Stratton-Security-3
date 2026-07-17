@@ -147,7 +147,7 @@ export default function ContactContent() {
                   &ldquo;Their team has truly set the bar when it comes to providing security services.&rdquo;
                 </p>
                 <p className="text-[0.75rem] text-steel tracking-wide">
-                  Verified on Bark.com · 6 reviews
+                  Verified client reviews on Bark.com
                 </p>
               </div>
             </motion.div>

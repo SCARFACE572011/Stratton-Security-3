@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import type { Testimonial, BarkReview } from "@/lib/content";
-import ClientsMarquee from "./ClientsMarquee";
 import { cn } from "@/lib/utils";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -109,8 +108,6 @@ export default function TestimonialsSection({
           </p>
         </motion.div>
 
-        {/* Worked With & Trusted By — client logo marquee */}
-        <ClientsMarquee />
 
         {/* Testimonials carousel */}
         <motion.div

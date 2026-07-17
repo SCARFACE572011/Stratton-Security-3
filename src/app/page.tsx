@@ -12,6 +12,7 @@ import TestimonialsSection from "@/components/home/TestimonialsSection";
 import ValuesSection from "@/components/home/ValuesSection";
 import CTASection from "@/components/home/CTASection";
 import ImageStrip from "@/components/home/ImageStrip";
+import ClientsMarquee from "@/components/home/ClientsMarquee";
 import { SITE_CONFIG } from "@/lib/constants";
 import { getTestimonials, getBarkReviews } from "@/lib/content";
 import type { Metadata } from "next";
@@ -64,7 +65,15 @@ export default async function HomePage() {
         {/* 2. Immediate trust indicators */}
         <TrustBar />
 
-        {/* 3. Client logos / trusted by */}
+        {/* 3. Real client logos (LAX, Hilton, Caruso…) — strongest social proof,
+            kept high on the page instead of buried near the footer */}
+        <section className="section-light py-16 md:py-20">
+          <div className="container-wide">
+            <ClientsMarquee />
+          </div>
+        </section>
+
+        {/* 4. Industries served */}
         <ClientLogosSection />
 
         {/* 4. Services overview */}
