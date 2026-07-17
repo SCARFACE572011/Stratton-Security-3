@@ -5,6 +5,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { RESOURCES } from "@/lib/constants";
+import { metaDescription } from "@/lib/utils";
 import { BreadcrumbSchema } from "@/app/schema";
 import type { Metadata } from "next";
 
@@ -22,8 +23,8 @@ export async function generateMetadata({
   if (!article) return { title: "Guide Not Found" };
   return {
     alternates: { canonical: `/resources/${article.slug}` },
-    title: `${article.title} | Stratton Security Group`,
-    description: article.excerpt,
+    title: article.title,
+    description: metaDescription(article.excerpt),
   };
 }
 

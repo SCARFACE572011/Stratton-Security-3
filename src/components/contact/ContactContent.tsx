@@ -91,7 +91,7 @@ export default function ContactContent() {
                 </a>
 
                 <a
-                  href="https://maps.google.com/?q=2029+Century+Park+E+Suite+400+Los+Angeles+CA+90067"
+                  href={SITE_CONFIG.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="card group flex items-center gap-5 p-6"

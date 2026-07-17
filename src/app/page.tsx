@@ -14,7 +14,6 @@ import CTASection from "@/components/home/CTASection";
 import ImageStrip from "@/components/home/ImageStrip";
 import { SITE_CONFIG } from "@/lib/constants";
 import { getTestimonials, getBarkReviews } from "@/lib/content";
-import { ReviewsSchema } from "@/app/schema";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -57,15 +56,6 @@ export default async function HomePage() {
       </a>
 
       <Navigation />
-
-      <ReviewsSchema
-        reviews={testimonials.map((t) => ({
-          author: t.author,
-          quote: t.quote,
-          stars: t.stars,
-          date: "",
-        }))}
-      />
 
       <main id="main-content">
         {/* 1. Cinematic hero with video */}

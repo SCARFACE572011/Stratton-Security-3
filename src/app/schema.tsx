@@ -1,4 +1,4 @@
-import { SITE_CONFIG, REVIEW_COUNT } from "@/lib/constants";
+import { SITE_CONFIG } from "@/lib/constants";
 
 export function OrganizationSchema() {
   const schema = {
@@ -6,7 +6,9 @@ export function OrganizationSchema() {
     "@type": ["Organization", "LocalBusiness", "SecurityService"],
     name: SITE_CONFIG.name,
     url: "https://strattonsecuritygroup.com",
-    logo: "https://strattonsecuritygroup.com/images/logo.png",
+    // seal.png = full-color variant; Google composites org logos onto white surfaces,
+    // where the white-on-transparent seal variants disappear.
+    logo: "https://strattonsecuritygroup.com/brand/seal.png",
     description: SITE_CONFIG.brand_promise,
     telephone: SITE_CONFIG.phone,
     email: SITE_CONFIG.email,
@@ -20,8 +22,8 @@ export function OrganizationSchema() {
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 34.0589,
-      longitude: -118.4156,
+      latitude: SITE_CONFIG.geo.latitude,
+      longitude: SITE_CONFIG.geo.longitude,
     },
     areaServed: [
       {
@@ -53,13 +55,8 @@ export function OrganizationSchema() {
       SITE_CONFIG.social.facebook,
       SITE_CONFIG.social.twitter,
     ].filter(Boolean),
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5",
-      bestRating: "5",
-      ratingCount: String(REVIEW_COUNT),
-      reviewCount: String(REVIEW_COUNT),
-    },
+    // No aggregateRating/Review markup here: Google treats self-serving review
+    // schema on LocalBusiness as spam (stars only render from third-party sources).
     hasCredential: {
       "@type": "EducationalOccupationalCredential",
       credentialCategory: "California Private Patrol Operator License",
@@ -69,42 +66,6 @@ export function OrganizationSchema() {
       },
       identifier: `PPO #${SITE_CONFIG.licenseNumber}`,
     },
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
-}
-
-export function ReviewsSchema({
-  reviews,
-}: {
-  reviews: Array<{ author: string; quote: string; stars: number; date: string }>;
-}) {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    itemListElement: reviews.map((review, i) => ({
-      "@type": "Review",
-      position: i + 1,
-      reviewBody: review.quote,
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: review.stars,
-        bestRating: 5,
-      },
-      author: {
-        "@type": "Person",
-        name: review.author,
-      },
-      itemReviewed: {
-        "@type": "LocalBusiness",
-        name: SITE_CONFIG.name,
-      },
-    })),
   };
 
   return (

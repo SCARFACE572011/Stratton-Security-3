@@ -27,7 +27,7 @@ export default function OGImage() {
         <div style={{ position: "absolute", inset: 0, opacity: 0.05, backgroundImage: "linear-gradient(rgba(192,200,212,1) 1px, transparent 1px), linear-gradient(90deg, rgba(192,200,212,1) 1px, transparent 1px)", backgroundSize: "80px 80px" }} />
 
         {/* Large shield watermark */}
-        <div style={{ position: "absolute", right: "60px", top: "50%", transform: "translateY(-50%)", opacity: 0.06 }}>
+        <div style={{ position: "absolute", right: "60px", top: "50%", transform: "translateY(-50%)", opacity: 0.06, display: "flex" }}>
           <svg width="320" height="320" viewBox="0 0 24 24" fill="none" stroke="#c0c8d4" strokeWidth="0.4">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
           </svg>

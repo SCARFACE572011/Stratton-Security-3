@@ -6,8 +6,9 @@ import { Phone, ArrowRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { SITE_CONFIG } from "@/lib/constants";
 
+// Wall of CCTV cameras — reads as dark security texture under the navy overlay.
 const CTA_BG =
-  "https://images.unsplash.com/photo-1595079676601-f1adf5be5dee?auto=format&fit=crop&w=1920&q=80";
+  "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=1920&q=80";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 

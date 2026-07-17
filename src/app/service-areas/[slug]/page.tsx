@@ -6,6 +6,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { SERVICE_AREAS, SERVICES } from "@/lib/constants";
+import { metaDescription } from "@/lib/utils";
 import { BreadcrumbSchema } from "@/app/schema";
 import type { Metadata } from "next";
 
@@ -23,8 +24,8 @@ export async function generateMetadata({
   if (!area) return { title: "Area Not Found" };
   return {
     alternates: { canonical: `/service-areas/${area.slug}` },
-    title: `${area.name} Security Services | Stratton Security Group`,
-    description: area.summary,
+    title: `${area.name} Security Services`,
+    description: metaDescription(area.summary),
   };
 }
 

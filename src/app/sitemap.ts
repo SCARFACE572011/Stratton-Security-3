@@ -1,9 +1,13 @@
 import { MetadataRoute } from "next";
 import { SERVICES, INDUSTRIES, SERVICE_AREAS, RESOURCES } from "@/lib/constants";
+import { IS_INDEXABLE } from "@/lib/utils";
 
 const BASE_URL = "https://strattonsecuritygroup.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  // No URL inventory until the real domain is live (see IS_INDEXABLE).
+  if (!IS_INDEXABLE) return [];
+
   const now = new Date();
 
   const servicePages = SERVICES.map((service) => ({

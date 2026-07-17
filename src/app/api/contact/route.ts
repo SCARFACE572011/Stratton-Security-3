@@ -1,11 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Resend } from "resend";
 import { z } from "zod";
+import { sendMail, mailerConfigured, MAIL_TO } from "@/lib/mailer";
 
 export const dynamic = "force-dynamic";
-
-const TO = process.env.CONTACT_TO_EMAIL || process.env.CONTACT_EMAIL || "rami@strattonsecuritygroup.com";
-const FROM = process.env.CONTACT_FROM_EMAIL || "Stratton Security <onboarding@resend.dev>";
 
 const schema = z.object({
   propertyType: z.string().min(1, "Please select a property type."),
@@ -95,37 +92,31 @@ export async function POST(req: NextRequest) {
   }
   const data = parsed.data;
 
-  // Graceful fallback: with no real API key (missing or placeholder), log the lead
+  // Graceful fallback: with no Gmail credentials configured, log the lead
   // server-side so dev/demo still "works" instead of 500-ing every visitor.
-  const resendKey = process.env.RESEND_API_KEY;
-  const resendConfigured =
-    !!resendKey && resendKey.startsWith("re_") && resendKey.length > 20 && !resendKey.includes("your_api_key");
-  if (!resendConfigured) {
-    console.log("[contact route] RESEND_API_KEY not configured — submission logged instead of emailed:", data);
+  if (!mailerConfigured) {
+    console.log("[contact route] GMAIL_USER/GMAIL_APP_PASSWORD not configured — submission logged instead of emailed:", data);
     return NextResponse.json({ ok: true });
   }
 
   try {
-    const resend = new Resend(resendKey);
-
-    const teamRes = await resend.emails.send({
-      from: FROM,
-      to: TO,
+    await sendMail({
+      to: MAIL_TO,
       replyTo: data.email,
       subject: `New Security Inquiry — ${data.serviceType} (${data.propertyType})`,
       html: teamHtml(data),
     });
-    if (teamRes.error) {
-      throw new Error(teamRes.error.message);
-    }
 
-    // Applicant confirmation is best-effort; don't fail the request if it bounces.
-    await resend.emails.send({
-      from: FROM,
-      to: data.email,
-      subject: "We received your inquiry — Stratton Security Group",
-      html: confirmationHtml(data),
-    });
+    // Visitor confirmation is best-effort; don't fail the request if it bounces.
+    try {
+      await sendMail({
+        to: data.email,
+        subject: "We received your inquiry — Stratton Security Group",
+        html: confirmationHtml(data),
+      });
+    } catch (confirmErr) {
+      console.warn("[contact route] confirmation email failed:", confirmErr);
+    }
 
     return NextResponse.json({ ok: true });
   } catch (err) {

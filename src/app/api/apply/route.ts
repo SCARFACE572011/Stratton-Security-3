@@ -1,11 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Resend } from "resend";
 import { z } from "zod";
+import { sendMail, mailerConfigured, MAIL_TO } from "@/lib/mailer";
 
 export const dynamic = "force-dynamic";
-
-const TO = process.env.CONTACT_TO_EMAIL || process.env.CONTACT_EMAIL || "rami@strattonsecuritygroup.com";
-const FROM = process.env.CONTACT_FROM_EMAIL || "Stratton Security <onboarding@resend.dev>";
 
 const MAX_RESUME_BYTES = 5 * 1024 * 1024; // 5 MB
 const ACCEPTED_EXT = [".pdf", ".doc", ".docx"];
@@ -126,13 +123,10 @@ export async function POST(req: NextRequest) {
     ? `Attached — ${resumeName} (${Math.round((resumeBuffer?.length ?? 0) / 1024)} KB)`
     : "No resume attached";
 
-  // Graceful fallback: with no real API key (missing or placeholder), log the
+  // Graceful fallback: with no Gmail credentials configured, log the
   // application server-side so dev/demo still "works" instead of 500-ing.
-  const resendKey = process.env.RESEND_API_KEY;
-  const resendConfigured =
-    !!resendKey && resendKey.startsWith("re_") && resendKey.length > 20 && !resendKey.includes("your_api_key");
-  if (!resendConfigured) {
-    console.log("[apply route] RESEND_API_KEY not configured — application logged instead of emailed:", {
+  if (!mailerConfigured) {
+    console.log("[apply route] GMAIL_USER/GMAIL_APP_PASSWORD not configured — application logged instead of emailed:", {
       ...data,
       resume: resumeName || "(none)",
       resumeBytes: resumeBuffer?.length ?? 0,
@@ -141,27 +135,24 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const resend = new Resend(resendKey);
-
-    const res = await resend.emails.send({
-      from: FROM,
-      to: TO,
+    await sendMail({
+      to: MAIL_TO,
       replyTo: data.email,
       subject: `New Job Application — ${data.position}`,
       html: applicationHtml(data, resumeNote),
       attachments: resumeBuffer ? [{ filename: resumeName, content: resumeBuffer }] : undefined,
     });
-    if (res.error) {
-      throw new Error(res.error.message);
-    }
 
     // Applicant confirmation is best-effort; don't fail the request if it bounces.
-    await resend.emails.send({
-      from: FROM,
-      to: data.email,
-      subject: "We received your application — Stratton Security Group",
-      html: applicantConfirmationHtml(data.name, data.position),
-    });
+    try {
+      await sendMail({
+        to: data.email,
+        subject: "We received your application — Stratton Security Group",
+        html: applicantConfirmationHtml(data.name, data.position),
+      });
+    } catch (confirmErr) {
+      console.warn("[apply route] confirmation email failed:", confirmErr);
+    }
 
     return NextResponse.json({ ok: true });
   } catch (err) {

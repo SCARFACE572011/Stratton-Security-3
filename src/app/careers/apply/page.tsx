@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/careers/apply" },
-  title: "Apply | Join Stratton Security Group",
+  title: "Apply | Security Officer Positions",
   description:
     "Apply to join Stratton Security Group. We're hiring licensed, professional security officers in Los Angeles and Southern California. Submit your application today.",
 };

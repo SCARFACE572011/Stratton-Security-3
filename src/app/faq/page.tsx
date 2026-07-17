@@ -9,7 +9,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/faq" },
-  title: "Frequently Asked Questions | Stratton Security Group",
+  title: "Frequently Asked Questions",
   description:
     "Answers to common questions about Stratton Security Group — licensing, service areas, officer training, deployment timing, armed vs unarmed, and more.",
 };

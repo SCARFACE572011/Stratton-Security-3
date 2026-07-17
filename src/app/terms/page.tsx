@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/terms" },
-  title: "Terms of Service | Stratton Security Group",
+  title: "Terms of Service",
   description: "Terms of Service for Stratton Security Group — governing use of this website.",
 };
 

@@ -32,6 +32,7 @@
   --color-silver: #c0c8d4;      /* accents / text on dark */
   --color-steel: #6b7280;       /* secondary body copy */
   --color-steel-700: #4b5563;   /* body copy on white */
+  --color-error-on-dark: #f0b8b8; /* form validation/error text on dark surfaces (≥8:1) */
 
   /* ── Semantic tokens ─────────────────────────────────────────── */
   --color-background: #ffffff;
@@ -199,9 +200,17 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  /* --on-dark-accent: ≥5:1 on every dark surface (accent navy was 1.3-1.7:1,
+     invisible to keyboard users — WCAG 2.4.7/1.4.11). */
+  outline: 2px solid var(--on-dark-accent);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
+}
+
+/* Keystatic admin renders on light surfaces where the light-blue ring fails 3:1 —
+   scope it back to the dark accent there. */
+.keystatic-scope :focus-visible {
+  outline-color: var(--color-accent);
 }
 
 ::selection {

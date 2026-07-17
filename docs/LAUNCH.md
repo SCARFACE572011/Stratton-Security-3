@@ -13,9 +13,10 @@ After changing env vars in Vercel you must **redeploy** for them to take effect.
 
 | Variable | Purpose | Example |
 |---|---|---|
-| `RESEND_API_KEY` | Activates email for the contact + apply forms. Until set, forms run in "demo mode" (submissions are logged server-side, **not emailed**). | `re_xxxxxxxxxxxxxxxxxxxx` |
-| `CONTACT_EMAIL` | Inbox that receives contact + application submissions. Defaults to `rami@strattonsecuritygroup.com`. (Info@ stays the public-facing address shown on the site.) | `rami@strattonsecuritygroup.com` |
-| `CONTACT_FROM_EMAIL` | Verified "from" sender. Defaults to Resend's test sender until set. | `Stratton Security <noreply@strattonsecuritygroup.com>` |
+| `GMAIL_USER` | Google account that *sends* the form emails (Gmail SMTP). Until set (with the app password), forms run in "demo mode" (submissions are logged server-side, **not emailed**). | `rami@strattonsecuritygroup.com` |
+| `GMAIL_APP_PASSWORD` | 16-char Google App Password for `GMAIL_USER` (myaccount.google.com/apppasswords — requires 2-Step Verification; never the real password). | `abcdefghijklmnop` |
+| `CONTACT_TO_EMAIL` | Inbox that receives contact + application submissions. Defaults to `rami@strattonsecuritygroup.com`. (Info@ stays the public-facing address shown on the site.) | `rami@strattonsecuritygroup.com` |
+| `NEXT_PUBLIC_INDEXABLE` | Set to `true` at domain cutover (fresh build required) — until then every host serves noindex + empty sitemap. See §4.5. | `true` |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics 4 Measurement ID. GA is a no-op until set. | `G-XXXXXXXXXX` |
 | `GOOGLE_SITE_VERIFICATION` | Google Search Console verification token (emits the `<meta>` tag). | `abc123…` |
 | `KEYSTATIC_STORAGE_REPO` | Switches the `/keystatic` CMS to GitHub mode so edits persist in production. With its GitHub App vars (see §7). | `owner/stratton` |
@@ -24,21 +25,30 @@ After changing env vars in Vercel you must **redeploy** for them to take effect.
 
 ## 2. Email — make the forms actually send (Item #1)
 
-Both forms (`/contact` and `/careers/apply`) are wired to [Resend](https://resend.com)
-and are currently in **demo mode** (no key = submissions logged, never emailed).
+Both forms (`/contact` and `/careers/apply`) send via **Gmail SMTP** (`src/lib/mailer.ts`)
+and deliver to **rami@strattonsecuritygroup.com** (override with `CONTACT_TO_EMAIL`).
+Without credentials they run in **demo mode** (submissions logged, never emailed).
 
-1. Create a free Resend account.
-2. **Add & verify the sending domain** `strattonsecuritygroup.com` (Resend gives you
-   DNS records — SPF/DKIM — to add at the registrar). This must be done **after** the
-   domain transfer (Item #4), or verify a subdomain you control.
-3. Create an API key (starts with `re_`).
-4. In Vercel, set `RESEND_API_KEY`, `CONTACT_EMAIL`, and `CONTACT_FROM_EMAIL`
-   (the from-address must be on the verified domain).
-5. Redeploy.
-6. **Test both forms** and confirm the emails arrive at `CONTACT_EMAIL`.
+1. Pick the Google account that will *send* the mail (e.g. rami@'s own account).
+   It must have **2-Step Verification** enabled.
+2. On that account, create an **App Password**: https://myaccount.google.com/apppasswords
+   → name it "Stratton website" → copy the 16-character code. (Revocable anytime;
+   never use the real account password.)
+3. In Vercel (Production), set `GMAIL_USER` (the full address) and
+   `GMAIL_APP_PASSWORD` (the 16-char code). Same two lines in `.env.local` for dev.
+4. Redeploy (env vars only apply to new deployments).
+5. **Test both forms** and confirm the emails arrive at rami@ (resume attached for
+   applications; visitors/applicants also get a confirmation email).
 
-> Routes: `src/app/api/contact/route.ts`, `src/app/api/apply/route.ts`.
-> Both validate input (zod), escape HTML, and fall back to logging if the key is absent.
+> Routes: `src/app/api/contact/route.ts`, `src/app/api/apply/route.ts`; transport in
+> `src/lib/mailer.ts`. Both validate input (zod), escape HTML, honeypot bots, and fall
+> back to logging if credentials are absent. Gmail limit: ~500 recipients/day — far
+> above expected lead volume.
+>
+> Note: a Resend marketplace integration is also installed on the Vercel project
+> (provisions `RESEND_API_KEY`, currently unused by code). If the domain's DNS is ever
+> verified with Resend, switching back to branded-domain sending is a small change —
+> see git history of the two routes.
 
 ---
 
@@ -48,8 +58,9 @@ and are currently in **demo mode** (no key = submissions logged, never emailed).
 resume is **attached to the application email** sent to `CONTACT_EMAIL`. So once email
 is live (Item #2), each application email arrives with the applicant's resume attached.
 
-- In demo mode (no Resend key) the upload is accepted and logged (filename + size) but
-  not stored — you'll only receive resumes once `RESEND_API_KEY` is set.
+- In demo mode (no Gmail credentials) the upload is accepted and logged (filename +
+  size) but not stored — you'll only receive resumes once `GMAIL_USER` /
+  `GMAIL_APP_PASSWORD` are set.
 - Files: `src/components/forms/ApplyForm.tsx`, `src/app/api/apply/route.ts`.
 - If you later want resumes archived in a bucket (not just email), add Vercel Blob and
   store the file there in the apply route, then include the link in the email.
@@ -65,6 +76,16 @@ is live (Item #2), each application email arrives with the applicant's resume at
 3. Wait for propagation + SSL issuance.
 4. `robots.ts` and `sitemap.ts` already reference `https://strattonsecuritygroup.com`,
    so they become correct automatically once the domain is live.
+5. **Set `NEXT_PUBLIC_INDEXABLE=true` in Vercel (Production), then trigger a FRESH
+   BUILD** (`vercel --prod` or a new git push — NOT "promote existing deployment" or an
+   instant rollback, and not a redeploy with build cache for these routes). The flag is
+   inlined at build time: until a build runs with it set, every host serves
+   `<meta robots noindex>` and an empty sitemap, so the temporary vercel.app host never
+   gets indexed. Crawling itself stays allowed so Google can *see* the noindex.
+   ⚠️ Any later rollback to a pre-flag build silently reverts production to noindex.
+   **Verify after cutover:** `curl -s https://strattonsecuritygroup.com | grep robots`
+   should show `index, follow`, and `/sitemap.xml` should list all URLs.
+   (Flag lives in `src/lib/utils.ts`; used by layout.tsx, robots.ts, sitemap.ts.)
 
 ---
 

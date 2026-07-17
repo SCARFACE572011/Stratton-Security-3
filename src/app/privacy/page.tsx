@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
-  title: "Privacy Policy | Stratton Security Group",
+  title: "Privacy Policy",
   description: "Privacy Policy for Stratton Security Group — how we collect, use, and protect your information.",
 };
 

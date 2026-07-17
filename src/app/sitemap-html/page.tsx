@@ -4,7 +4,7 @@ import SitemapContent from "@/components/sitemap/SitemapContent";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Sitemap | Stratton Security Group",
+  title: "Sitemap",
   description: "Full sitemap for the Stratton Security Group website.",
   robots: { index: false, follow: true },
 };

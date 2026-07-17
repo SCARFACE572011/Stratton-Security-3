@@ -93,7 +93,7 @@ export default function OGImage() {
           <div style={{ fontSize: "72px", fontWeight: 800, color: "#ffffff", lineHeight: 0.9, textTransform: "uppercase", letterSpacing: "-0.01em" }}>
             Excellence
           </div>
-          <div style={{ fontSize: "72px", fontWeight: 800, color: "transparent", lineHeight: 0.9, textTransform: "uppercase", letterSpacing: "-0.01em", WebkitTextStroke: "1.5px rgba(192, 200, 212, 0.5)" }}>
+          <div style={{ fontSize: "72px", fontWeight: 800, color: "transparent", lineHeight: 0.9, textTransform: "uppercase", letterSpacing: "-0.01em", WebkitTextStroke: "1.5px rgba(192,200,212,0.5)" }}>
             In Protection
           </div>
         </div>

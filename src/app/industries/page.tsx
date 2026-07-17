@@ -25,8 +25,8 @@ export default function IndustriesPage() {
         {/* Deep-navy page hero */}
         <div className="page-hero">
           <Image
-            src="https://images.unsplash.com/photo-1563788850-bdd5b04e1832?auto=format&fit=crop&w=1920&q=80"
-            alt="Urban cityscape at night"
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80"
+            alt="Dark glass corporate towers seen from street level"
             fill
             className="object-cover object-center"
             priority

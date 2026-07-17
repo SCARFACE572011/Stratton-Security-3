@@ -5,12 +5,12 @@ import AboutContent from "@/components/about/AboutContent";
 import Image from "next/image";
 import { SITE_CONFIG } from "@/lib/constants";
 import { getBarkReviews } from "@/lib/content";
-import { ReviewsSchema, BreadcrumbSchema } from "@/app/schema";
+import { BreadcrumbSchema } from "@/app/schema";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/about" },
-  title: "About Stratton Security Group | Our Mission & Values",
+  title: "About Us | Our Mission & Values",
   description:
     "Learn about Stratton Security Group — our mission, values, and commitment to protecting people, assets, and peace of mind across Los Angeles and California.",
 };
@@ -23,7 +23,6 @@ export default async function AboutPage() {
         { name: "Home", url: "https://strattonsecuritygroup.com" },
         { name: "About", url: "https://strattonsecuritygroup.com/about" },
       ]} />
-      <ReviewsSchema reviews={barkReviews} />
       <Navigation />
       <main>
         {/* Full-bleed deep-navy page hero — serif headline, eyebrow, accent line, silver intro */}

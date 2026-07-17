@@ -9,7 +9,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/resources" },
-  title: "Security Guides & Insights | Stratton Security Group",
+  title: "Security Guides & Insights",
   description:
     "Practical guides on choosing a private security company, armed vs. unarmed officers, California PPO/BSIS licensing, and what to expect from a security assessment.",
 };

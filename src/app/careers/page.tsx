@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/careers" },
-  title: "Careers | Join Stratton Security Group",
+  title: "Careers | Join Our Team",
   description:
     "Join Stratton Security Group. We're looking for licensed, professional security officers in Los Angeles and Southern California. Apply today.",
 };
@@ -54,7 +54,7 @@ function JobPostingsSchema() {
       "@type": "Organization",
       name: SITE_CONFIG.name,
       sameAs: "https://strattonsecuritygroup.com",
-      logo: "https://strattonsecuritygroup.com/images/logo.png",
+      logo: "https://strattonsecuritygroup.com/brand/seal.png",
     },
     jobLocation: {
       "@type": "Place",

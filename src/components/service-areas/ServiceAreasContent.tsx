@@ -23,7 +23,13 @@ type ConsoleMarker = {
   y: number; // % top
 };
 
-const HQ_MARKER = { label: "HQ — Los Angeles", coord: "34.05°N 118.24°W", x: 50, y: 50 };
+const HQ_MARKER = {
+  label: "HQ — Los Angeles",
+  // Readout derives from the canonical office location so it can never contradict it.
+  coord: `${SITE_CONFIG.geo.latitude.toFixed(2)}°N ${Math.abs(SITE_CONFIG.geo.longitude).toFixed(2)}°W`,
+  x: 50,
+  y: 50,
+};
 
 const AREA_MARKERS: ConsoleMarker[] = [
   { label: "Beverly Hills", coord: "34.07°N 118.40°W", x: 24, y: 28 },
@@ -55,7 +61,7 @@ export default function ServiceAreasContent({
       {/* Full-bleed page hero */}
       <section className="page-hero" aria-label="Service areas hero">
         <Image
-          src="https://images.unsplash.com/photo-1562701226-f0cfe6d6a68c?auto=format&fit=crop&w=1920&q=80"
+          src="https://images.unsplash.com/photo-1444723121867-7a241cacace9?auto=format&fit=crop&w=1920&q=80"
           alt="Los Angeles skyline at night"
           fill
           className="object-cover object-center"

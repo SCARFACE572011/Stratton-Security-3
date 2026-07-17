@@ -7,6 +7,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { INDUSTRIES, SERVICES } from "@/lib/constants";
+import { metaDescription } from "@/lib/utils";
 import { BreadcrumbSchema } from "@/app/schema";
 import type { Metadata } from "next";
 
@@ -24,10 +25,11 @@ export async function generateMetadata({
   if (!industry) return { title: "Industry Not Found" };
   return {
     alternates: { canonical: `/industries/${industry.slug}` },
-    title: `${industry.label} Security | Stratton Security Group`,
-    description:
+    title: `${industry.label} Security`,
+    description: metaDescription(
       industry.summary ??
-      `Professional security services for ${industry.label} across Los Angeles and Southern California.`,
+        `Professional security services for ${industry.label} across Los Angeles and Southern California.`,
+    ),
   };
 }
 
@@ -57,7 +59,7 @@ export default async function IndustryDetailPage({
         {/* Page hero — deep-navy band, serif headline */}
         <div className="page-hero" style={{ minHeight: "60vh" }}>
           <Image
-            src="https://images.unsplash.com/photo-1563788850-bdd5b04e1832?auto=format&fit=crop&w=1920&q=80"
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80"
             alt={`${industry.label} security`}
             fill
             className="object-cover object-center"

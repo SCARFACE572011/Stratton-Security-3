@@ -6,5 +6,7 @@ export const metadata: Metadata = {
 };
 
 export default function KeystaticLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  // keystatic-scope: restores a dark focus ring on the admin's light surfaces
+  // (the global :focus-visible ring is tuned for the dark marketing site).
+  return <div className="keystatic-scope contents">{children}</div>;
 }

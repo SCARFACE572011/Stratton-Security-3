@@ -4,6 +4,7 @@ import CTASection from "@/components/home/CTASection";
 import ServiceDetailContent from "@/components/services/ServiceDetailContent";
 import { notFound } from "next/navigation";
 import { SERVICES, INDUSTRIES } from "@/lib/constants";
+import { metaDescription } from "@/lib/utils";
 import { BreadcrumbSchema, ServiceSchema } from "@/app/schema";
 import type { Metadata } from "next";
 
@@ -21,8 +22,8 @@ export async function generateMetadata({
   if (!service) return { title: "Service Not Found" };
   return {
     alternates: { canonical: `/services/${service.slug}` },
-    title: `${service.title} | Stratton Security Group`,
-    description: service.shortDescription,
+    title: service.title,
+    description: metaDescription(service.shortDescription),
   };
 }
 

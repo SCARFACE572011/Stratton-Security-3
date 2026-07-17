@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Rajdhani, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { OrganizationSchema } from "./schema";
+import { IS_INDEXABLE } from "@/lib/utils";
 import SiteChrome from "@/components/layout/SiteChrome";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import { Analytics } from "@vercel/analytics/react";
@@ -56,31 +57,31 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Stratton Security Group" }],
   creator: "Stratton Security Group",
+  // No og/twitter title, description, or url here: leaving them unset lets every
+  // page's own <title>/description/canonical flow into its social card instead of
+  // all subpages sharing the homepage's card text.
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://strattonsecuritygroup.com",
     siteName: "Stratton Security Group",
-    title: "Stratton Security Group | Professional Security Services",
-    description:
-      "Professional security services protecting businesses, properties, and communities. 24/7 availability.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Stratton Security Group",
-    description: "Professional security services. 24/7 availability.",
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+  // noindex everywhere until the real domain is live — see IS_INDEXABLE in lib/utils.
+  robots: IS_INDEXABLE
+    ? {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-video-preview": -1,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+        },
+      }
+    : { index: false, follow: false },
   // Google Search Console: set GOOGLE_SITE_VERIFICATION in the environment to
   // emit the verification <meta> tag. Omitted automatically when unset.
   verification: { google: process.env.GOOGLE_SITE_VERIFICATION },

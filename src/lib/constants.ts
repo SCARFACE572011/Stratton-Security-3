@@ -3,6 +3,9 @@
    Fields marked // VERIFY need client confirmation before launch.
 ──────────────────────────────────────────────────────────────────────────── */
 
+// Single source for the office address — maps link derives from it (see SITE_CONFIG).
+const FULL_ADDRESS = "10940 Wilshire Blvd, Suite 1720, Los Angeles, CA 90024";
+
 export const SITE_CONFIG = {
   name: "Stratton Security Group",
   tagline: "Strength. Vigilance. Integrity.",
@@ -16,11 +19,16 @@ export const SITE_CONFIG = {
   phoneRaw: "4244405554",
   phoneE164: "+14244405554",
   email: "Info@StrattonSecurityGroup.com",
+  // VERIFY: confirm current office with client — project docs previously listed
+  // 2029 Century Park E, Suite 400, LA 90067. Maps link + JSON-LD geo derive
+  // from these fields, so they must all describe the SAME building.
   address: "10940 Wilshire Blvd, Suite 1720",
   city: "Los Angeles",
   state: "CA",
   zip: "90024",
-  fullAddress: "10940 Wilshire Blvd, Suite 1720, Los Angeles, CA 90024",
+  fullAddress: FULL_ADDRESS,
+  mapsUrl: `https://maps.google.com/?q=${encodeURIComponent(FULL_ADDRESS)}`,
+  geo: { latitude: 34.0603, longitude: -118.4448 }, // 10940 Wilshire Blvd
   serviceAreas: ["Los Angeles", "Beverly Hills", "Southern California", "California"],
   hours: "24 Hours / 7 Days a Week / 365 Days a Year",
   licenseNumber: "122163", // CA PPO License #122163
@@ -724,11 +732,6 @@ export const STATS = [
 // Testimonials and Bark.com reviews are now CMS-managed (edit at /keystatic →
 // Testimonials / Bark.com Reviews). Content lives in src/content/testimonials/*
 // and src/content/bark-reviews/*, read via src/lib/content.ts.
-//
-// REVIEW_COUNT feeds the Organization aggregateRating JSON-LD. It's a static
-// total (not auto-derived from the CMS) — bump it if the review volume changes
-// significantly.
-export const REVIEW_COUNT = 11;
 
 export const FAQS = [
   {

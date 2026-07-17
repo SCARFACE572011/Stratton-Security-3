@@ -45,11 +45,12 @@ export default function OGImage() {
           <div style={{ fontSize: "64px", fontWeight: 800, color: "#ffffff", lineHeight: 0.9, textTransform: "uppercase", letterSpacing: "-0.02em" }}>
             REQUEST A FREE
           </div>
-          <div style={{ fontSize: "64px", fontWeight: 800, lineHeight: 0.9, textTransform: "uppercase", letterSpacing: "-0.02em", WebkitTextStroke: "1px rgba(192, 200, 212, 0.5)", color: "transparent" }}>
+          <div style={{ fontSize: "64px", fontWeight: 800, lineHeight: 0.9, textTransform: "uppercase", letterSpacing: "-0.02em", WebkitTextStroke: "1px rgba(192,200,212,0.5)", color: "transparent" }}>
             SECURITY ASSESSMENT
           </div>
           <div style={{ fontSize: "18px", color: "#c0c8d4", lineHeight: 1.5, maxWidth: "680px", marginTop: "8px" }}>
-            A senior Stratton advisor will respond within one business day. Available 24/7 — {SITE_CONFIG.phone}.
+            {/* Single text child: Satori rejects mixed text/expression children without display:flex */}
+            {`A senior Stratton advisor will respond within one business day. Available 24/7 — ${SITE_CONFIG.phone}.`}
           </div>
         </div>
 

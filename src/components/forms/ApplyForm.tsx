@@ -283,7 +283,7 @@ export default function ApplyForm() {
             </div>
 
             {submitError && (
-              <p className="text-[0.75rem] text-steel-700" role="alert">{submitError}</p>
+              <p className="text-[0.75rem] text-error-on-dark" role="alert">{submitError}</p>
             )}
 
             <button

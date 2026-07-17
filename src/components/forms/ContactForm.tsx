@@ -42,7 +42,7 @@ const inputClass =
 const labelClass =
   "block text-[0.75rem] text-[#4b5563] tracking-widest uppercase mb-2";
 const errorClass =
-  "text-[0.75rem] text-steel-700 mt-1.5";
+  "text-[0.75rem] text-error-on-dark mt-1.5";
 
 export default function ContactForm() {
   const [step, setStep] = useState<FormStep>(1);
@@ -148,7 +148,21 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      {/* Native submission is disabled: React reuses the Continue/Submit button node
+          across the step-2→3 re-render, so a single click on Continue could morph into
+          a submit mid-click and skip step 3 entirely. Submission only ever runs from
+          the explicit onClick on the step-3 button (or Enter on step 3). */}
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" && !(e.target instanceof HTMLTextAreaElement)) {
+            e.preventDefault();
+            if (step < 3) void advanceStep();
+            else void handleSubmit(onSubmit)();
+          }
+        }}
+        noValidate
+      >
         {/* Honeypot — hidden from real users; bots that fill it are dropped server-side */}
         <input
           type="text"
@@ -319,7 +333,7 @@ export default function ContactForm() {
         </div>
 
         {submitError && (
-          <p className="mx-6 md:mx-8 mb-2 text-[0.75rem] text-steel-700" role="alert">{submitError}</p>
+          <p className="mx-6 md:mx-8 mb-2 text-[0.75rem] text-error-on-dark" role="alert">{submitError}</p>
         )}
 
         <div className="px-6 md:px-8 pb-6 md:pb-8 flex items-center justify-between gap-4">
@@ -336,13 +350,15 @@ export default function ContactForm() {
           )}
 
           {step < 3 ? (
-            <button type="button" onClick={advanceStep} className="btn-primary text-xs">
+            <button key="step-continue" type="button" onClick={advanceStep} className="btn-primary text-xs">
               Continue
               <ArrowRight size={13} />
             </button>
           ) : (
             <button
-              type="submit"
+              key="step-submit"
+              type="button"
+              onClick={handleSubmit(onSubmit)}
               disabled={isSubmitting}
               className="btn-primary text-xs disabled:opacity-70 disabled:cursor-not-allowed"
             >
