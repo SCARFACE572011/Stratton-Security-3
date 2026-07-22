@@ -104,17 +104,6 @@
   50% { transform: translateY(-10px); }
 }
 
-/* Preloader: rotating radar sweep + scanning bar */
-@keyframes preloader-sweep {
-  to { transform: rotate(360deg); }
-}
-@keyframes preloader-scan {
-  0% { transform: translateY(-120%); opacity: 0; }
-  12% { opacity: 1; }
-  88% { opacity: 1; }
-  100% { transform: translateY(120%); opacity: 0; }
-}
-
 /* ─── CAROUSEL / MARQUEE ─────────────────────────────────────────────────────── */
 
 /* Continuous client-logo marquee. Track holds the list twice; -50% = one set. */
@@ -193,10 +182,35 @@ body {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0s !important; /* entrance delays must not hide content */
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ── CSS-driven entrance animations ─────────────────────────────────
+   Above-the-fold reveals run from CSS (not framer-motion) so the hero
+   paints as soon as styles load — before any JS downloads or hydrates.
+   `both` keeps the from-state during a delay and the end-state after;
+   the reduced-motion block above collapses them to an instant reveal. */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+/* (fade-in keyframes already defined above with the other page animations) */
+@keyframes word-up {
+  from { transform: translateY(115%); }
+  to { transform: none; }
+}
+@utility anim-rise {
+  animation: rise-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@utility anim-fade {
+  animation: fade-in 0.9s ease both;
+}
+@utility anim-word {
+  animation: word-up 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 :focus-visible {

@@ -15,7 +15,7 @@ import {
   Briefcase,
   Check,
 } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { SITE_CONFIG } from "@/lib/constants";
 
 const ICON_MAP = {
@@ -81,7 +81,7 @@ export default function ServiceDetailContent({
         <div className="absolute inset-0 bg-gradient-to-r from-[#040d1e]/85 to-transparent" />
 
         <div className="relative z-10 container-wide pb-20 pt-36 w-full">
-          <motion.div
+          <m.div
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE }}
@@ -93,9 +93,9 @@ export default function ServiceDetailContent({
               <ArrowLeft size={13} />
               All Services
             </Link>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             className="flex items-center gap-4 mb-7"
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -105,9 +105,9 @@ export default function ServiceDetailContent({
               <IconComponent size={24} strokeWidth={1.5} />
             </span>
             <p className="label-overline-light">Service Line</p>
-          </motion.div>
+          </m.div>
 
-          <motion.h1
+          <m.h1
             className="display-hero text-white max-w-4xl"
             style={{ fontSize: "clamp(2.75rem, 6vw, 5rem)" }}
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 24 }}
@@ -115,9 +115,9 @@ export default function ServiceDetailContent({
             transition={{ duration: 0.8, delay: 0.14, ease: EASE }}
           >
             {service.title}
-          </motion.h1>
+          </m.h1>
 
-          <motion.span
+          <m.span
             className="accent-line mt-8 mb-8"
             style={{ background: "#3f6bb0" }}
             aria-hidden="true"
@@ -126,14 +126,14 @@ export default function ServiceDetailContent({
             transition={{ duration: 0.6, delay: 0.24, ease: EASE }}
           />
 
-          <motion.p
+          <m.p
             className="text-silver text-[1.15rem] leading-relaxed max-w-2xl"
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3, ease: EASE }}
           >
             {service.shortDescription}
-          </motion.p>
+          </m.p>
         </div>
       </div>
 
@@ -141,15 +141,15 @@ export default function ServiceDetailContent({
       <section className="section-padding bg-white">
         <div className="container-wide">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            <motion.div {...reveal()} className="lg:col-span-7">
+            <m.div {...reveal()} className="lg:col-span-7">
               <p className="label-overline mb-6">Overview</p>
               <span className="accent-line mb-8" aria-hidden="true" />
               <p className="text-[#4b5563] text-[1.0625rem] leading-relaxed">
                 {service.longDescription}
               </p>
-            </motion.div>
+            </m.div>
 
-            <motion.div {...reveal(0.1)} className="lg:col-span-5">
+            <m.div {...reveal(0.1)} className="lg:col-span-5">
               <div className="card-dark p-8 md:p-10 sticky top-28">
                 <p className="label-overline-light mb-4">Get Started</p>
                 <h3 className="display-sm text-[1.5rem] text-white mb-4">
@@ -194,7 +194,7 @@ export default function ServiceDetailContent({
                   </a>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </section>
@@ -202,7 +202,7 @@ export default function ServiceDetailContent({
       {/* ── Benefits ─────────────────────────────────────────── */}
       <section className="section-padding bg-platinum-50">
         <div className="container-wide">
-          <motion.div
+          <m.div
             {...reveal()}
             className="max-w-2xl mx-auto text-center mb-16 md:mb-20"
           >
@@ -214,11 +214,11 @@ export default function ServiceDetailContent({
             >
               Core Program Benefits
             </h2>
-          </motion.div>
+          </m.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             {service.benefits.map((benefit, i) => (
-              <motion.div
+              <m.div
                 key={benefit.title}
                 {...reveal(i * 0.08)}
                 className="card flex flex-col h-full p-8"
@@ -232,7 +232,7 @@ export default function ServiceDetailContent({
                 <p className="text-[0.9375rem] text-[#4b5563] leading-relaxed">
                   {benefit.description}
                 </p>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -242,7 +242,7 @@ export default function ServiceDetailContent({
       <section className="section-padding bg-white">
         <div className="container-wide">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            <motion.div {...reveal()} className="lg:col-span-5">
+            <m.div {...reveal()} className="lg:col-span-5">
               <p className="label-overline mb-6">Capabilities</p>
               <span className="accent-line mb-8" aria-hidden="true" />
               <h2
@@ -255,11 +255,11 @@ export default function ServiceDetailContent({
                 Stratton programs are modular — combine the components that match
                 your property&apos;s risk profile and operational requirements.
               </p>
-            </motion.div>
+            </m.div>
 
             <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
               {service.capabilities.map((capability, i) => (
-                <motion.div
+                <m.div
                   key={capability}
                   {...reveal(i * 0.06)}
                   className="card flex items-center gap-4 p-6"
@@ -270,7 +270,7 @@ export default function ServiceDetailContent({
                   <span className="text-[0.9375rem] text-[#4b5563] leading-snug">
                     {capability}
                   </span>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>
@@ -281,7 +281,7 @@ export default function ServiceDetailContent({
       {relatedIndustries.length > 0 && (
         <section className="section-padding bg-platinum-50">
           <div className="container-wide">
-            <motion.div
+            <m.div
               {...reveal()}
               className="max-w-2xl mx-auto text-center mb-16 md:mb-20"
             >
@@ -293,11 +293,11 @@ export default function ServiceDetailContent({
               >
                 Industries We Serve With This Program
               </h2>
-            </motion.div>
+            </m.div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {relatedIndustries.map((industry, i) => (
-                <motion.div key={industry.slug} {...reveal(i * 0.08)}>
+                <m.div key={industry.slug} {...reveal(i * 0.08)}>
                   <Link
                     href={`/industries/${industry.slug}`}
                     className="card group flex items-center justify-between p-8 h-full"
@@ -310,7 +310,7 @@ export default function ServiceDetailContent({
                       className="text-steel group-hover:text-accent group-hover:translate-x-1.5 transition-all shrink-0"
                     />
                   </Link>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>
@@ -320,7 +320,7 @@ export default function ServiceDetailContent({
       {/* ── Other services ───────────────────────────────────── */}
       <section className="section-padding bg-white">
         <div className="container-wide">
-          <motion.div
+          <m.div
             {...reveal()}
             className="max-w-2xl mx-auto text-center mb-16 md:mb-20"
           >
@@ -332,13 +332,13 @@ export default function ServiceDetailContent({
             >
               Other Service Lines
             </h2>
-          </motion.div>
+          </m.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {otherServices.map((s, i) => {
               const Icon = ICON_MAP[s.icon as keyof typeof ICON_MAP] ?? Shield;
               return (
-                <motion.div key={s.slug} {...reveal(i * 0.08)}>
+                <m.div key={s.slug} {...reveal(i * 0.08)}>
                   <Link
                     href={`/services/${s.slug}`}
                     className="card group flex flex-col h-full p-8"
@@ -357,7 +357,7 @@ export default function ServiceDetailContent({
                       />
                     </span>
                   </Link>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>

@@ -23,7 +23,23 @@ const nextConfig: NextConfig = {
     ],
   },
   async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
+    return [
+      { source: "/:path*", headers: securityHeaders },
+      // Brand/image assets shipped with max-age=0 (revalidated on every view).
+      // NOT immutable: several are placeholders that will be replaced in place
+      // under the same filename (hero poster, client logos) — a day of caching
+      // plus a week of stale-while-revalidate keeps repeat views fast without
+      // pinning stale assets for a year.
+      {
+        source: "/:dir(brand|images)/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
+          },
+        ],
+      },
+    ];
   },
 };
 

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, CheckCircle, Shield } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { SITE_CONFIG } from "@/lib/constants";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -81,15 +81,15 @@ export default function CareersContent() {
         <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#3f6bb0]/50 to-transparent" />
 
         <div className="relative z-10 container-wide pb-20 pt-32">
-          <motion.p
+          <m.p
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASE }}
             className="label-overline-light mb-6"
           >
             Join Our Team
-          </motion.p>
-          <motion.h1
+          </m.p>
+          <m.h1
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, delay: 0.1, ease: EASE }}
@@ -99,8 +99,8 @@ export default function CareersContent() {
             Careers at
             <br />
             Stratton Security
-          </motion.h1>
-          <motion.span
+          </m.h1>
+          <m.span
             initial={shouldReduceMotion ? {} : { opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
             transition={{ duration: 0.7, delay: 0.3, ease: EASE }}
@@ -108,7 +108,7 @@ export default function CareersContent() {
             style={{ background: "#3f6bb0" }}
             aria-hidden="true"
           />
-          <motion.p
+          <m.p
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: EASE }}
@@ -117,7 +117,7 @@ export default function CareersContent() {
             We&apos;re looking for disciplined, professional security officers to join
             our growing team. If you hold a California Guard Card and take pride in
             your work, we want to hear from you.
-          </motion.p>
+          </m.p>
         </div>
       </div>
 
@@ -125,7 +125,7 @@ export default function CareersContent() {
       <section className="section-padding bg-white" aria-labelledby="openings-heading">
         <div className="container-wide">
           {/* Centered editorial header */}
-          <motion.div
+          <m.div
             {...reveal()}
             className="max-w-3xl mx-auto text-center mb-16 md:mb-20"
           >
@@ -142,12 +142,12 @@ export default function CareersContent() {
               Build your career protecting the people, properties, and operations
               that depend on disciplined, professional security.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* Position cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {OPEN_POSITIONS.map((position, i) => (
-              <motion.div key={position.title} {...reveal(i * 0.08)}>
+              <m.div key={position.title} {...reveal(i * 0.08)}>
                 <div className="card group relative flex h-full flex-col p-8 md:p-10">
                   <div className="mb-7 inline-flex w-14 h-14 items-center justify-center rounded-xl border border-platinum bg-[#f4f6f9] text-accent transition-colors group-hover:border-[#1a3a6b]/40">
                     <Shield size={24} strokeWidth={1.5} />
@@ -176,7 +176,7 @@ export default function CareersContent() {
                     />
                   </Link>
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -187,7 +187,7 @@ export default function CareersContent() {
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-10">
             {/* Why Stratton */}
-            <motion.div {...reveal()} className="card p-8 md:p-10">
+            <m.div {...reveal()} className="card p-8 md:p-10">
               <div className="mb-7 inline-flex w-14 h-14 items-center justify-center rounded-xl border border-platinum bg-platinum-50 text-accent">
                 <CheckCircle size={26} strokeWidth={1.75} />
               </div>
@@ -203,10 +203,10 @@ export default function CareersContent() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Requirements */}
-            <motion.div {...reveal(0.1)} className="card p-8 md:p-10">
+            <m.div {...reveal(0.1)} className="card p-8 md:p-10">
               <div className="mb-7 inline-flex w-14 h-14 items-center justify-center rounded-xl border border-platinum bg-platinum-50 text-accent">
                 <Shield size={26} strokeWidth={1.75} />
               </div>
@@ -222,7 +222,7 @@ export default function CareersContent() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </section>
@@ -230,7 +230,7 @@ export default function CareersContent() {
       {/* ── APPLY CTA ────────────────────────────────────────────────── */}
       <section className="section-padding bg-white" aria-labelledby="apply-heading">
         <div className="container-wide">
-          <motion.div {...reveal()} className="max-w-2xl mx-auto text-center">
+          <m.div {...reveal()} className="max-w-2xl mx-auto text-center">
             <p className="label-overline mb-6">Next Steps</p>
             <span className="accent-line mx-auto mb-8" aria-hidden="true" />
             <h2
@@ -254,7 +254,7 @@ export default function CareersContent() {
                 Call Us
               </a>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
     </main>

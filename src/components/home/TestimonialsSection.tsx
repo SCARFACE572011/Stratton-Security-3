@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import type { Testimonial, BarkReview } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
@@ -85,7 +85,7 @@ export default function TestimonialsSection({
     <section className="section-padding bg-white" aria-labelledby="testimonials-heading">
       <div className="container-wide">
         {/* Centered editorial header */}
-        <motion.div
+        <m.div
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
@@ -106,11 +106,11 @@ export default function TestimonialsSection({
             disciplined, dependable protection — and rate us 5.0 on Bark.com across
             verified reviews.
           </p>
-        </motion.div>
+        </m.div>
 
 
         {/* Testimonials carousel */}
-        <motion.div
+        <m.div
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
@@ -216,10 +216,10 @@ export default function TestimonialsSection({
               <ChevronRight size={20} />
             </button>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Bark.com verified strip */}
-        <motion.div
+        <m.div
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
@@ -235,7 +235,7 @@ export default function TestimonialsSection({
           </div>
           <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
             {barkReviews.map((review, i) => (
-              <motion.div
+              <m.div
                 key={i}
                 initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -250,10 +250,10 @@ export default function TestimonialsSection({
                   <p className="text-[0.8125rem] text-[#6b7280]">{review.role}</p>
                   <p className="text-[0.75rem] text-[#c0c8d4] mt-0.5">{review.date}</p>
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useSpring } from "framer-motion";
+import { m, useScroll, useSpring } from "framer-motion";
 
 /** Thin HUD-style scroll-progress bar fixed to the very top of the viewport. */
 export default function ScrollProgress() {
@@ -8,7 +8,7 @@ export default function ScrollProgress() {
   const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.3 });
 
   return (
-    <motion.div
+    <m.div
       aria-hidden="true"
       className="fixed top-0 left-0 right-0 z-[60] h-[2px] origin-left"
       style={{

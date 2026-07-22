@@ -2,7 +2,7 @@
 
 import ContactForm from "@/components/forms/ContactForm";
 import { Phone, Mail, MapPin, Clock, Shield, Star } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { SITE_CONFIG } from "@/lib/constants";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -28,7 +28,7 @@ export default function ContactContent() {
     <section className="section-padding bg-white" aria-labelledby="contact-heading">
       <div className="container-wide">
         {/* Centered editorial header */}
-        <motion.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
+        <m.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
           <p className="label-overline mb-6">Start the Conversation</p>
           <span className="accent-line mx-auto mb-8" aria-hidden="true" />
           <h2
@@ -42,18 +42,18 @@ export default function ContactContent() {
             Share a few details about your property and security needs. A senior
             Stratton advisor will respond within one business day.
           </p>
-        </motion.div>
+        </m.div>
 
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           {/* Left — Form */}
-          <motion.div {...reveal()} className="lg:col-span-7">
+          <m.div {...reveal()} className="lg:col-span-7">
             <ContactForm />
-          </motion.div>
+          </m.div>
 
           {/* Right — Contact details (light surface cards) */}
           <div className="lg:col-span-5 space-y-12">
             {/* Direct contact */}
-            <motion.div {...reveal(0.08)}>
+            <m.div {...reveal(0.08)}>
               <p className="label-overline mb-6">Direct Contact</p>
               <div className="space-y-4">
                 <a
@@ -112,10 +112,10 @@ export default function ContactContent() {
                   </div>
                 </a>
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Hours */}
-            <motion.div {...reveal(0.12)}>
+            <m.div {...reveal(0.12)}>
               <p className="label-overline mb-6">Operations Hours</p>
               <div className="card flex items-center gap-5 p-6">
                 <div className="w-12 h-12 rounded-xl border border-platinum bg-[#f4f6f9] flex items-center justify-center shrink-0">
@@ -131,10 +131,10 @@ export default function ContactContent() {
                   <p className="text-[#0a0a0a] text-base font-medium">{SITE_CONFIG.hours}</p>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Reviews */}
-            <motion.div {...reveal(0.16)}>
+            <m.div {...reveal(0.16)}>
               <p className="label-overline mb-6">Verified Reviews</p>
               <div className="card p-8">
                 <div className="flex items-center gap-1 mb-4">
@@ -150,10 +150,10 @@ export default function ContactContent() {
                   Verified client reviews on Bark.com
                 </p>
               </div>
-            </motion.div>
+            </m.div>
 
             {/* License */}
-            <motion.div {...reveal(0.2)}>
+            <m.div {...reveal(0.2)}>
               <p className="label-overline mb-6">Credentials</p>
               <div className="card p-8">
                 <div className="flex items-start gap-4 mb-6">
@@ -178,7 +178,7 @@ export default function ContactContent() {
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </div>

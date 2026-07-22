@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { ClipboardCheck, PencilRuler, ShieldCheck, FileBarChart } from "lucide-react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -56,7 +56,7 @@ export default function DeploymentProtocol() {
 
       <div className="relative z-10 container-wide">
         {/* header */}
-        <motion.div
+        <m.div
           className="mx-auto max-w-2xl text-center"
           initial={prefersReduced ? {} : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -76,7 +76,7 @@ export default function DeploymentProtocol() {
             A disciplined, four-stage process — the same one we run for a single
             estate or a multi-site portfolio.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* steps */}
         <div className="relative mt-16 md:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
@@ -88,7 +88,7 @@ export default function DeploymentProtocol() {
           {STEPS.map((step, i) => {
             const Icon = step.icon;
             return (
-              <motion.div
+              <m.div
                 key={step.no}
                 className="relative z-10 flex flex-col items-center text-center"
                 initial={prefersReduced ? {} : { opacity: 0, y: 28 }}
@@ -108,7 +108,7 @@ export default function DeploymentProtocol() {
                 <p className="mt-3 text-[0.875rem] leading-relaxed text-silver font-[var(--font-sans)] max-w-[15rem]">
                   {step.blurb}
                 </p>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>

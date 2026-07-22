@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -57,7 +57,7 @@ export default function ApplyHero() {
 
         {/* Hero copy */}
         <div className="container-wide pt-16 pb-20 md:pt-24 md:pb-28">
-          <motion.div {...reveal()} className="max-w-2xl">
+          <m.div {...reveal()} className="max-w-2xl">
             <p className="label-overline-light mb-7">Join Our Team</p>
             <span className="accent-line bg-[#3f6bb0] mb-8" aria-hidden="true" />
             <h1
@@ -70,7 +70,7 @@ export default function ApplyHero() {
               Fill out the form below. Have your California Guard Card number
               ready. We&apos;ll follow up within 2&ndash;3 business days.
             </p>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </header>

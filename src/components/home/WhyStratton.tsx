@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, Clock, Shield, Settings2, Award, FileText } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { DIFFERENTIATORS } from "@/lib/constants";
 
 const ICON_MAP = { BadgeCheck, Clock, Shield, Settings2, Award, FileText } as const;
@@ -18,7 +18,7 @@ export default function WhyStratton() {
         <div className="grid lg:grid-cols-12 gap-14 lg:gap-20 items-start">
 
           {/* Left column — editorial intro + image, sticky */}
-          <motion.div
+          <m.div
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
@@ -44,14 +44,14 @@ export default function WhyStratton() {
               About Stratton
               <ArrowRight size={14} />
             </Link>
-          </motion.div>
+          </m.div>
 
           {/* Right column — differentiators with accent-blue icon chips */}
           <div className="lg:col-span-7 grid sm:grid-cols-2 gap-6 lg:gap-8">
             {DIFFERENTIATORS.map((item, i) => {
               const IconComponent = ICON_MAP[item.icon as keyof typeof ICON_MAP] ?? BadgeCheck;
               return (
-                <motion.div
+                <m.div
                   key={i}
                   initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -68,7 +68,7 @@ export default function WhyStratton() {
                   <p className="text-[0.9375rem] text-[#4b5563] leading-relaxed">
                     {item.description}
                   </p>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>

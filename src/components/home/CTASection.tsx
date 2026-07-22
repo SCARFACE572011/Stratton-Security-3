@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, ArrowRight } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { SITE_CONFIG } from "@/lib/constants";
 
 // Wall of CCTV cameras — reads as dark security texture under the navy overlay.
@@ -67,26 +67,26 @@ export default function CTASection() {
       <div className="relative z-10 section-padding">
         <div className="container-wide flex flex-col items-center text-center">
           {/* Eyebrow */}
-          <motion.p
+          <m.p
             {...reveal(0)}
             className="label-overline-light mb-8 flex items-center justify-center gap-3"
           >
             <span className="inline-block w-8 h-px bg-[#3f6bb0]" />
             Get Protected Today
             <span className="inline-block w-8 h-px bg-[#3f6bb0]" />
-          </motion.p>
+          </m.p>
 
           {/* Headline */}
-          <motion.h2
+          <m.h2
             {...reveal(0.08)}
             className="display-title text-white max-w-3xl mx-auto"
             style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)" }}
           >
             Ready to secure your property?
-          </motion.h2>
+          </m.h2>
 
           {/* Accent line under title */}
-          <motion.span
+          <m.span
             {...reveal(0.14)}
             className="accent-line mx-auto mt-8"
             style={{ background: "#3f6bb0" }}
@@ -94,17 +94,17 @@ export default function CTASection() {
           />
 
           {/* Lede */}
-          <motion.p
+          <m.p
             {...reveal(0.2)}
             className="text-silver text-[1.15rem] leading-relaxed mt-8 max-w-2xl mx-auto"
           >
             Request a complimentary security assessment and speak with a
             Stratton senior advisor. We&apos;ll build a program that fits your
             property, risk profile, and budget.
-          </motion.p>
+          </m.p>
 
           {/* CTAs */}
-          <motion.div
+          <m.div
             {...reveal(0.28)}
             className="flex flex-col sm:flex-row gap-4 mt-11 justify-center"
           >
@@ -119,10 +119,10 @@ export default function CTASection() {
               <Phone size={16} />
               {SITE_CONFIG.phone}
             </a>
-          </motion.div>
+          </m.div>
 
           {/* Credential strip */}
-          <motion.div
+          <m.div
             {...reveal(0.36)}
             className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-14 text-[0.6875rem] tracking-wide text-steel"
           >
@@ -131,7 +131,7 @@ export default function CTASection() {
             <span>24/7 · 365 Availability</span>
             <span className="text-silver/30">·</span>
             <span>Licensed · Bonded · Insured</span>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

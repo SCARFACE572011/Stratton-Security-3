@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Phone, ArrowRight } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { SITE_CONFIG } from "@/lib/constants";
 
 export default function MidPageCTA() {
@@ -29,7 +29,7 @@ export default function MidPageCTA() {
       </div>
 
       <div className="relative z-10 container-wide section-padding">
-        <motion.div
+        <m.div
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
@@ -70,7 +70,7 @@ export default function MidPageCTA() {
               {SITE_CONFIG.phone}
             </a>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

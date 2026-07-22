@@ -24,7 +24,7 @@ export default function Footer() {
             <Link href="/" className="mb-6 flex items-center gap-3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/brand/seal-white.png"
+                src="/brand/seal-white-240.png"
                 alt="Stratton Security Group seal"
                 width={48}
                 height={48}

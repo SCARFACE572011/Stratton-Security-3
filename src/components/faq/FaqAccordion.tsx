@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Plus } from "lucide-react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -30,7 +30,7 @@ export default function FaqAccordion({ faqs, phone, phoneE164 }: FaqAccordionPro
     <section className="section-padding bg-white" aria-labelledby="faq-heading">
       <div className="container-wide">
         {/* Centered editorial header */}
-        <motion.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
+        <m.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
           <p className="label-overline mb-6">Common Questions</p>
           <span className="accent-line mx-auto mb-8" aria-hidden="true" />
           <h2
@@ -44,7 +44,7 @@ export default function FaqAccordion({ faqs, phone, phoneE164 }: FaqAccordionPro
             Licensing, training, deployment, and coverage — the questions clients
             ask most before partnering with Stratton.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Accordion */}
         <div className="max-w-3xl mx-auto flex flex-col gap-4">
@@ -53,7 +53,7 @@ export default function FaqAccordion({ faqs, phone, phoneE164 }: FaqAccordionPro
             const panelId = `faq-panel-${i}`;
             const buttonId = `faq-button-${i}`;
             return (
-              <motion.div
+              <m.div
                 key={i}
                 {...reveal(Math.min(i, 6) * 0.06)}
                 className={`card overflow-hidden ${isOpen ? "border-[#1a3a6b]/40" : ""}`}
@@ -78,20 +78,20 @@ export default function FaqAccordion({ faqs, phone, phoneE164 }: FaqAccordionPro
                           : "border-platinum bg-[#f4f6f9] text-[#1a3a6b]"
                       }`}
                     >
-                      <motion.span
+                      <m.span
                         animate={shouldReduceMotion ? {} : { rotate: isOpen ? 45 : 0 }}
                         transition={{ duration: 0.3, ease: EASE }}
                         className="flex"
                       >
                         <Plus size={18} strokeWidth={2} />
-                      </motion.span>
+                      </m.span>
                     </span>
                   </button>
                 </h3>
 
                 <AnimatePresence initial={false}>
                   {isOpen && (
-                    <motion.div
+                    <m.div
                       id={panelId}
                       role="region"
                       aria-labelledby={buttonId}
@@ -104,16 +104,16 @@ export default function FaqAccordion({ faqs, phone, phoneE164 }: FaqAccordionPro
                       <p className="px-7 md:px-8 pb-7 md:pb-8 -mt-1 text-[0.9375rem] md:text-base text-[#4b5563] leading-relaxed">
                         {item.a}
                       </p>
-                    </motion.div>
+                    </m.div>
                   )}
                 </AnimatePresence>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>
 
         {/* Still have questions — advisor card */}
-        <motion.div
+        <m.div
           {...reveal(0.1)}
           className="max-w-3xl mx-auto mt-12 md:mt-16 card-dark p-8 md:p-10 text-center"
         >
@@ -134,7 +134,7 @@ export default function FaqAccordion({ faqs, phone, phoneE164 }: FaqAccordionPro
               Call {phone}
             </a>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

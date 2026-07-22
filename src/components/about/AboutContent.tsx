@@ -1,7 +1,7 @@
 "use client";
 
 import { Shield, Eye, Scale, ShieldCheck, Star } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { SITE_CONFIG, DIFFERENTIATORS } from "@/lib/constants";
 import type { BarkReview } from "@/lib/content";
 
@@ -30,7 +30,7 @@ export default function AboutContent({ barkReviews }: { barkReviews: BarkReview[
       <section className="section-padding bg-white" aria-labelledby="mission-heading">
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
-            <motion.div {...reveal()}>
+            <m.div {...reveal()}>
               <p className="label-overline mb-6">Our Mission</p>
               <span className="accent-line mb-8" aria-hidden="true" />
               <h2
@@ -46,9 +46,9 @@ export default function AboutContent({ barkReviews }: { barkReviews: BarkReview[
                 specific risk profile, property type, and operational requirements —
                 delivered by licensed, trained professionals committed to your safety.
               </p>
-            </motion.div>
+            </m.div>
 
-            <motion.div {...reveal(0.1)}>
+            <m.div {...reveal(0.1)}>
               <p className="label-overline mb-6">Our Vision</p>
               <span className="accent-line mb-8" aria-hidden="true" />
               <h2
@@ -66,7 +66,7 @@ export default function AboutContent({ barkReviews }: { barkReviews: BarkReview[
                   to in every assignment, every patrol, every interaction.
                 </p>
               </blockquote>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </section>
@@ -74,7 +74,7 @@ export default function AboutContent({ barkReviews }: { barkReviews: BarkReview[
       {/* Core Values — centered editorial header + modern white cards */}
       <section className="section-padding bg-platinum-50" aria-labelledby="values-heading">
         <div className="container-wide">
-          <motion.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
+          <m.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
             <p className="label-overline mb-6">Our Core Values</p>
             <span className="accent-line mx-auto mb-8" aria-hidden="true" />
             <h2
@@ -87,13 +87,13 @@ export default function AboutContent({ barkReviews }: { barkReviews: BarkReview[
             <p className="text-[#4b5563] text-lg leading-relaxed mt-7 max-w-2xl mx-auto">
               The principles that govern every post we hold and every officer we deploy.
             </p>
-          </motion.div>
+          </m.div>
 
           <div className="grid sm:grid-cols-3 gap-8 md:gap-10">
             {SITE_CONFIG.values.map((value, i) => {
               const Icon = VALUE_ICON[value] ?? Shield;
               return (
-                <motion.div
+                <m.div
                   key={value}
                   {...reveal(i * 0.08)}
                   className="card flex flex-col items-center text-center p-8 md:p-10"
@@ -107,7 +107,7 @@ export default function AboutContent({ barkReviews }: { barkReviews: BarkReview[
                   <h3 className="font-[var(--font-display)] text-2xl text-[#0a0a0a]">
                     {value}
                   </h3>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>
@@ -117,7 +117,7 @@ export default function AboutContent({ barkReviews }: { barkReviews: BarkReview[
       {/* Differentiators — centered editorial header + modern white cards */}
       <section className="section-padding bg-white" aria-labelledby="why-heading">
         <div className="container-wide">
-          <motion.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
+          <m.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
             <p className="label-overline mb-6">Our Commitment</p>
             <span className="accent-line mx-auto mb-8" aria-hidden="true" />
             <h2
@@ -130,11 +130,11 @@ export default function AboutContent({ barkReviews }: { barkReviews: BarkReview[
             <p className="text-[#4b5563] text-lg leading-relaxed mt-7 max-w-2xl mx-auto">
               What sets our protective service apart — from credentials to conduct.
             </p>
-          </motion.div>
+          </m.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {DIFFERENTIATORS.map((item, i) => (
-              <motion.div
+              <m.div
                 key={i}
                 {...reveal(i * 0.08)}
                 className="card flex flex-col h-full p-8"
@@ -148,7 +148,7 @@ export default function AboutContent({ barkReviews }: { barkReviews: BarkReview[
                 <p className="text-[0.9375rem] text-[#4b5563] leading-relaxed">
                   {item.description}
                 </p>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -157,7 +157,7 @@ export default function AboutContent({ barkReviews }: { barkReviews: BarkReview[
       {/* Verified reviews — centered editorial header + modern white cards */}
       <section className="section-padding bg-white" aria-labelledby="reviews-heading">
         <div className="container-wide">
-          <motion.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
+          <m.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
             <p className="label-overline mb-6">Client Feedback</p>
             <span className="accent-line mx-auto mb-8" aria-hidden="true" />
             <h2
@@ -170,11 +170,11 @@ export default function AboutContent({ barkReviews }: { barkReviews: BarkReview[
             <p className="text-[#4b5563] text-lg leading-relaxed mt-7 max-w-2xl mx-auto">
               Independent, verified feedback from the clients we protect.
             </p>
-          </motion.div>
+          </m.div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {barkReviews.map((review, i) => (
-              <motion.div
+              <m.div
                 key={i}
                 {...reveal(i * 0.08)}
                 className="card flex flex-col h-full p-8"
@@ -192,7 +192,7 @@ export default function AboutContent({ barkReviews }: { barkReviews: BarkReview[
                   <p className="text-[0.75rem] text-steel mt-0.5">{review.role}</p>
                   <p className="text-[0.6875rem] text-silver mt-0.5">{review.date}</p>
                 </div>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>

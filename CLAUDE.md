@@ -9,7 +9,12 @@ Original site was on Squarespace. New site is custom Next.js + Tailwind v4 + Fra
 ## Tech Stack
 - **Framework:** Next.js 16 (App Router, TypeScript)
 - **Styling:** Tailwind CSS v4 (CSS-first config via `@theme` in globals.css — no tailwind.config.ts)
-- **Animation:** Framer Motion v12
+- **Animation:** Framer Motion v12 under **LazyMotion strict** (`SiteChrome.tsx`).
+  Import `m` (never `motion`) from framer-motion — `motion.*` compiles fine but
+  **throws at runtime** inside the strict LazyMotion tree. Only `domAnimation`
+  features are loaded (no drag/layout/layoutId/Reorder). Above-the-fold hero
+  entrances are CSS-driven (`anim-rise`/`anim-fade`/`anim-word` utilities in
+  globals.css) so the headline paints before any JS; keep it that way.
 - **Icons:** Lucide React
 - **Fonts:** Barlow Semi Condensed (display) + Barlow (headings) + IBM Plex Sans (body)
 

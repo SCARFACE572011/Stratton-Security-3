@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { SERVICES, INDUSTRIES } from "@/lib/constants";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -92,15 +92,15 @@ export default function SitemapContent() {
         <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#3f6bb0]/50 to-transparent" />
 
         <div className="relative z-10 container-wide pb-20 pt-32">
-          <motion.p
+          <m.p
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASE }}
             className="label-overline-light mb-6"
           >
             Navigation
-          </motion.p>
-          <motion.span
+          </m.p>
+          <m.span
             initial={shouldReduceMotion ? {} : { opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
             transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
@@ -108,7 +108,7 @@ export default function SitemapContent() {
             style={{ background: "#3f6bb0" }}
             aria-hidden="true"
           />
-          <motion.h1
+          <m.h1
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15, ease: EASE }}
@@ -116,8 +116,8 @@ export default function SitemapContent() {
             style={{ fontSize: "clamp(2.75rem, 6.5vw, 5rem)" }}
           >
             Site Map
-          </motion.h1>
-          <motion.p
+          </m.h1>
+          <m.p
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: EASE }}
@@ -125,7 +125,7 @@ export default function SitemapContent() {
           >
             Every page across Stratton Security Group, organized in one place —
             services, industries, careers, and the resources you need to reach us.
-          </motion.p>
+          </m.p>
         </div>
       </div>
 
@@ -133,7 +133,7 @@ export default function SitemapContent() {
       <section className="section-padding bg-white" aria-labelledby="sitemap-heading">
         <div className="container-wide">
           {/* Centered editorial header */}
-          <motion.div
+          <m.div
             {...reveal()}
             className="max-w-2xl mx-auto text-center mb-16 md:mb-20"
           >
@@ -150,12 +150,12 @@ export default function SitemapContent() {
               A complete directory of every public page, grouped by section for
               quick navigation.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* Columns */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
             {SITE_SECTIONS.map((section, i) => (
-              <motion.div
+              <m.div
                 key={section.title}
                 {...reveal(i * 0.08)}
                 className="card flex flex-col p-8"
@@ -180,7 +180,7 @@ export default function SitemapContent() {
                     </li>
                   ))}
                 </ul>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>

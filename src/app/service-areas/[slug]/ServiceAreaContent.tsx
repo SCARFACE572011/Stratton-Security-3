@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight, AlertTriangle, MapPin } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import type { ServiceArea, ServiceDetail } from "@/lib/constants";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -30,7 +30,7 @@ export default function ServiceAreaContent({
       {/* Local risk profile + coverage + CTA */}
       <section className="section-padding bg-white" aria-labelledby="local-heading">
         <div className="container-wide">
-          <motion.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
+          <m.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
             <p className="label-overline mb-6">Local Coverage</p>
             <span className="accent-line mx-auto mb-8" aria-hidden="true" />
             <h2
@@ -44,11 +44,11 @@ export default function ServiceAreaContent({
               We build {area.name} programs around the way this market actually
               operates — its properties, its risks, and its rhythm.
             </p>
-          </motion.div>
+          </m.div>
 
           <div className="grid lg:grid-cols-12 gap-8 md:gap-10 items-start">
             {/* Local risk profile */}
-            <motion.div {...reveal(0.05)} className="lg:col-span-4">
+            <m.div {...reveal(0.05)} className="lg:col-span-4">
               <div className="card flex flex-col h-full p-8">
                 <span className="inline-flex items-center justify-center w-14 h-14 rounded-xl border border-platinum bg-[#f4f6f9] text-accent mb-7">
                   <AlertTriangle size={24} strokeWidth={1.5} />
@@ -64,10 +64,10 @@ export default function ServiceAreaContent({
                   ))}
                 </ul>
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Coverage + neighborhoods */}
-            <motion.div {...reveal(0.12)} className="lg:col-span-5">
+            <m.div {...reveal(0.12)} className="lg:col-span-5">
               <div className="card flex flex-col h-full p-8 md:p-10">
                 <span className="inline-flex items-center justify-center w-14 h-14 rounded-xl border border-platinum bg-[#f4f6f9] text-accent mb-7">
                   <MapPin size={24} strokeWidth={1.5} />
@@ -88,10 +88,10 @@ export default function ServiceAreaContent({
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </m.div>
 
             {/* CTA */}
-            <motion.div {...reveal(0.18)} className="lg:col-span-3">
+            <m.div {...reveal(0.18)} className="lg:col-span-3">
               <div className="card-dark flex flex-col h-full p-8 sticky top-24">
                 <p className="label-overline-light mb-3">{area.region}</p>
                 <h3 className="display-sm text-[1.25rem] text-white mb-4">
@@ -106,7 +106,7 @@ export default function ServiceAreaContent({
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </section>
@@ -115,7 +115,7 @@ export default function ServiceAreaContent({
       {relatedServices.length > 0 && (
         <section className="section-padding bg-platinum-50" aria-labelledby="area-services-heading">
           <div className="container-wide">
-            <motion.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
+            <m.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
               <p className="label-overline mb-6">Recommended For This Market</p>
               <span className="accent-line mx-auto mb-8" aria-hidden="true" />
               <h2
@@ -125,11 +125,11 @@ export default function ServiceAreaContent({
               >
                 Services Across {area.name}
               </h2>
-            </motion.div>
+            </m.div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {relatedServices.map((service, i) => (
-                <motion.div key={service.slug} {...reveal(i * 0.08)}>
+                <m.div key={service.slug} {...reveal(i * 0.08)}>
                   <Link
                     href={`/services/${service.slug}`}
                     className="card group relative flex flex-col h-full rounded-xl p-8 md:p-10"
@@ -143,7 +143,7 @@ export default function ServiceAreaContent({
                       <ArrowRight size={16} className="transition-transform group-hover:translate-x-1.5" />
                     </span>
                   </Link>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>
@@ -153,7 +153,7 @@ export default function ServiceAreaContent({
       {/* Other areas */}
       <section className="section-padding bg-white" aria-labelledby="other-areas-heading">
         <div className="container-wide">
-          <motion.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
+          <m.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
             <p className="label-overline mb-6">Explore More</p>
             <span className="accent-line mx-auto mb-8" aria-hidden="true" />
             <h2
@@ -163,11 +163,11 @@ export default function ServiceAreaContent({
             >
               Other Areas We Serve
             </h2>
-          </motion.div>
+          </m.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {otherAreas.map((a, i) => (
-              <motion.div key={a.slug} {...reveal(i * 0.06)}>
+              <m.div key={a.slug} {...reveal(i * 0.06)}>
                 <Link
                   href={`/service-areas/${a.slug}`}
                   className="card group relative flex items-center justify-between gap-4 rounded-xl p-8"
@@ -181,7 +181,7 @@ export default function ServiceAreaContent({
                     className="shrink-0 text-[#1a3a6b] transition-transform group-hover:translate-x-1.5"
                   />
                 </Link>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>

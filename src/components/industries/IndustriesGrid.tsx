@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight, Building2 } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { INDUSTRIES } from "@/lib/constants";
 
 const INDUSTRY_DESCRIPTIONS: Record<string, string> = {
@@ -45,7 +45,7 @@ export default function IndustriesGrid() {
     <section className="bg-white" aria-labelledby="industries-grid-heading">
       <div className="container-wide section-padding">
         {/* Centered editorial header */}
-        <motion.div
+        <m.div
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
@@ -66,12 +66,12 @@ export default function IndustriesGrid() {
             programs around the specific threats, operations, and people of each
             industry we serve.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Industry cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
           {INDUSTRIES.map((industry, i) => (
-            <motion.div
+            <m.div
               key={industry.slug}
               initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -112,7 +112,7 @@ export default function IndustriesGrid() {
                   />
                 </span>
               </Link>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

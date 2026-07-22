@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -26,7 +26,7 @@ export default function TermsContent({
     <section className="section-padding bg-white" aria-label="Terms of Service">
       <div className="container-wide">
         {/* Centered editorial intro */}
-        <motion.div
+        <m.div
           {...reveal()}
           className="max-w-3xl mx-auto text-center mb-16 md:mb-20"
         >
@@ -41,12 +41,12 @@ export default function TermsContent({
           <p className="text-[#4b5563] text-lg leading-relaxed mt-7 max-w-2xl mx-auto">
             {intro}
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Reading column — serif section headings, generous measure */}
         <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
           {sections.map((section, i) => (
-            <motion.article
+            <m.article
               key={section.title}
               {...reveal(i * 0.06)}
               className="card p-8 md:p-10"
@@ -62,7 +62,7 @@ export default function TermsContent({
               <p className="text-[0.9375rem] md:text-base text-[#4b5563] leading-relaxed pl-0 sm:pl-[calc(0.8125rem+1rem)]">
                 {section.body}
               </p>
-            </motion.article>
+            </m.article>
           ))}
         </div>
       </div>

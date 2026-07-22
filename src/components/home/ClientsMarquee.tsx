@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { CLIENT_LOGOS } from "@/lib/constants";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -35,7 +35,7 @@ export default function ClientsMarquee() {
   const reduce = mounted && shouldReduceMotion;
 
   return (
-    <motion.div
+    <m.div
       initial={shouldReduceMotion ? {} : { opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
@@ -75,6 +75,6 @@ export default function ClientsMarquee() {
       <p className="mt-8 text-center text-[0.6875rem] uppercase tracking-[0.2em] text-[#6b7280] font-[var(--font-sans)]">
         A selection of the brands and properties Stratton is trusted to protect
       </p>
-    </motion.div>
+    </m.div>
   );
 }

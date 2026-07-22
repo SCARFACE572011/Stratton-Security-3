@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Award, Check } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import CTASection from "@/components/home/CTASection";
 
 const TRAINING_TOPICS = [
@@ -72,16 +72,16 @@ export default function TrainingContent() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#040d1e]/85 to-transparent" />
 
         <div className="relative z-10 container-wide pb-20 pt-36 md:pb-24 md:pt-40">
-          <motion.p
+          <m.p
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASE }}
             className="label-overline-light mb-7"
           >
             Professional Development
-          </motion.p>
+          </m.p>
 
-          <motion.h1
+          <m.h1
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, delay: 0.1, ease: EASE }}
@@ -89,9 +89,9 @@ export default function TrainingContent() {
             style={{ fontSize: "clamp(2.75rem, 6.5vw, 5rem)" }}
           >
             Training &amp; Certification Programs
-          </motion.h1>
+          </m.h1>
 
-          <motion.span
+          <m.span
             initial={shouldReduceMotion ? {} : { opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
             transition={{ duration: 0.7, delay: 0.3, ease: EASE }}
@@ -100,7 +100,7 @@ export default function TrainingContent() {
             aria-hidden="true"
           />
 
-          <motion.p
+          <m.p
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35, ease: EASE }}
@@ -108,7 +108,7 @@ export default function TrainingContent() {
           >
             Stratton Security Group offers professional security training workshops
             for organizations and security personnel across Los Angeles.
-          </motion.p>
+          </m.p>
         </div>
       </section>
 
@@ -116,7 +116,7 @@ export default function TrainingContent() {
       <section className="section-padding bg-white" aria-labelledby="certifications-heading">
         <div className="container-wide">
           {/* Centered editorial header */}
-          <motion.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
+          <m.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
             <p className="label-overline mb-6">Our Certifications</p>
             <span className="accent-line mx-auto mb-8" aria-hidden="true" />
             <h2
@@ -131,12 +131,12 @@ export default function TrainingContent() {
               California-compliant programs — the foundation of disciplined,
               professional protection.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* Modern cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             {TRAINING_TOPICS.map((topic, i) => (
-              <motion.div
+              <m.div
                 key={topic.title}
                 {...reveal(i * 0.08)}
                 className="card group flex flex-col h-full rounded-xl p-8 md:p-10"
@@ -155,7 +155,7 @@ export default function TrainingContent() {
                 <p className="text-[0.9375rem] text-[#4b5563] leading-relaxed flex-1">
                   {topic.description}
                 </p>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>
@@ -166,7 +166,7 @@ export default function TrainingContent() {
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Two-column split — bigger serif type + motion */}
-            <motion.div {...reveal()}>
+            <m.div {...reveal()}>
               <p className="label-overline mb-6">Workshop Curriculum</p>
               <span className="accent-line mb-8" aria-hidden="true" />
               <h2
@@ -185,9 +185,9 @@ export default function TrainingContent() {
                 Inquire About Workshops
                 <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
               </Link>
-            </motion.div>
+            </m.div>
 
-            <motion.div {...reveal(0.1)} className="card rounded-xl p-8 md:p-10">
+            <m.div {...reveal(0.1)} className="card rounded-xl p-8 md:p-10">
               <div className="grid sm:grid-cols-2 gap-x-8 gap-y-1">
                 {WORKSHOP_AREAS.map((area) => (
                   <div
@@ -201,7 +201,7 @@ export default function TrainingContent() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </section>

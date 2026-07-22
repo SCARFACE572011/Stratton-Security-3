@@ -13,7 +13,7 @@ import {
   Briefcase,
   Star,
 } from "lucide-react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import { SERVICES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
@@ -44,7 +44,7 @@ export default function ServicesSection() {
     <section className="bg-white" aria-labelledby="services-heading">
       <div className="container-wide section-padding">
         {/* Centered editorial header */}
-        <motion.div
+        <m.div
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
@@ -64,10 +64,10 @@ export default function ServicesSection() {
             Specialized security solutions engineered for the people, properties,
             and operations that demand uncompromising protection.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Protection Programs — single animated card linking to all services */}
-        <motion.div
+        <m.div
           className="mx-auto max-w-4xl"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -132,7 +132,7 @@ export default function ServicesSection() {
                 {/* cycling icon + title + description */}
                 <div className="relative flex h-[150px] items-start gap-5">
                   <AnimatePresence mode="wait">
-                    <motion.div
+                    <m.div
                       key={idx}
                       initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -151,7 +151,7 @@ export default function ServicesSection() {
                           {active.desc}
                         </div>
                       </div>
-                    </motion.div>
+                    </m.div>
                   </AnimatePresence>
                 </div>
 
@@ -170,7 +170,7 @@ export default function ServicesSection() {
               </div>
             </div>
           </Link>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

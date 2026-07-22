@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { Shield, Clock, Award, Star } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
 
@@ -23,7 +23,7 @@ export default function TrustBar() {
           {TRUST_ITEMS.map((item, i) => {
             const Icon = item.icon;
             return (
-              <motion.div
+              <m.div
                 key={item.value}
                 initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -51,7 +51,7 @@ export default function TrustBar() {
                 <div className="text-[0.75rem] leading-snug text-[#4b5563] max-w-[14rem]">
                   {item.sub}
                 </div>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>

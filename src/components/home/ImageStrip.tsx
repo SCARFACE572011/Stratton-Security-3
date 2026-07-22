@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 
 const STRIP_IMAGES = [
   {
@@ -42,7 +42,7 @@ export default function ImageStrip() {
     <section className="section-padding bg-deep-navy text-white" aria-label="Operations">
       <div className="container-wide">
         {/* Centered editorial header */}
-        <motion.div
+        <m.div
           className="mx-auto max-w-2xl text-center mb-16 md:mb-20"
           initial={prefersReduced ? undefined : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -61,12 +61,12 @@ export default function ImageStrip() {
             From daylight patrols to overnight operations and live command
             oversight, our officers maintain a constant, disciplined presence.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Image tiles */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8" aria-hidden="true">
           {STRIP_IMAGES.map((img, i) => (
-            <motion.figure
+            <m.figure
               key={img.caption}
               className="group relative h-[280px] md:h-[420px] overflow-hidden rounded-xl border border-[rgba(192,200,212,0.16)]"
               initial={prefersReduced ? undefined : { opacity: 0, y: 28 }}
@@ -96,7 +96,7 @@ export default function ImageStrip() {
               <figcaption className="absolute inset-x-0 bottom-0 p-6 md:p-8">
                 <span className="label-overline-light">{img.caption}</span>
               </figcaption>
-            </motion.figure>
+            </m.figure>
           ))}
         </div>
       </div>

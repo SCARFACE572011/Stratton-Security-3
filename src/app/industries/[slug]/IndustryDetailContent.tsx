@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight, AlertTriangle, Target } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import type { Industry, ServiceDetail } from "@/lib/constants";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -31,7 +31,7 @@ export default function IndustryDetailContent({
       <section className="section-padding bg-white" aria-labelledby="program-heading">
         <div className="container-wide">
           {/* Centered editorial header */}
-          <motion.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
+          <m.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
             <p className="label-overline mb-6">Risk &amp; Response</p>
             <span className="accent-line mx-auto mb-8" aria-hidden="true" />
             <h2
@@ -45,12 +45,12 @@ export default function IndustryDetailContent({
               Every deployment begins with a risk assessment specific to your
               industry&apos;s threat profile and operational requirements.
             </p>
-          </motion.div>
+          </m.div>
 
           <div className="grid lg:grid-cols-12 gap-8 md:gap-10 items-start">
             {/* Threats */}
             {industry.threats && industry.threats.length > 0 && (
-              <motion.div {...reveal(0.05)} className="lg:col-span-4">
+              <m.div {...reveal(0.05)} className="lg:col-span-4">
                 <div className="card flex flex-col h-full p-8">
                   <span className="inline-flex items-center justify-center w-14 h-14 rounded-xl border border-platinum bg-[#f4f6f9] text-accent mb-7">
                     <AlertTriangle size={24} strokeWidth={1.5} />
@@ -73,12 +73,12 @@ export default function IndustryDetailContent({
                     ))}
                   </ul>
                 </div>
-              </motion.div>
+              </m.div>
             )}
 
             {/* Approach */}
             {industry.approach && (
-              <motion.div {...reveal(0.12)} className="lg:col-span-5">
+              <m.div {...reveal(0.12)} className="lg:col-span-5">
                 <div className="card flex flex-col h-full p-8 md:p-10">
                   <span className="inline-flex items-center justify-center w-14 h-14 rounded-xl border border-platinum bg-[#f4f6f9] text-accent mb-7">
                     <Target size={24} strokeWidth={1.5} />
@@ -91,11 +91,11 @@ export default function IndustryDetailContent({
                     {industry.approach}
                   </p>
                 </div>
-              </motion.div>
+              </m.div>
             )}
 
             {/* Tailored program CTA */}
-            <motion.div {...reveal(0.18)} className="lg:col-span-3">
+            <m.div {...reveal(0.18)} className="lg:col-span-3">
               <div className="card-dark flex flex-col h-full p-8 sticky top-24">
                 <p className="label-overline-light mb-3">Tailored Program</p>
                 <h3 className="display-sm text-[1.25rem] text-white mb-4">
@@ -113,7 +113,7 @@ export default function IndustryDetailContent({
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </section>
@@ -122,7 +122,7 @@ export default function IndustryDetailContent({
       {relatedServices.length > 0 && (
         <section className="section-padding bg-platinum-50" aria-labelledby="services-heading">
           <div className="container-wide">
-            <motion.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
+            <m.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
               <p className="label-overline mb-6">Applicable Services</p>
               <span className="accent-line mx-auto mb-8" aria-hidden="true" />
               <h2
@@ -136,11 +136,11 @@ export default function IndustryDetailContent({
                 The protection programs most often deployed to defend{" "}
                 {industry.label.toLowerCase()} operations.
               </p>
-            </motion.div>
+            </m.div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {relatedServices.map((service, i) => (
-                <motion.div key={service.slug} {...reveal(i * 0.08)}>
+                <m.div key={service.slug} {...reveal(i * 0.08)}>
                   <Link
                     href={`/services/${service.slug}`}
                     className="card group relative flex flex-col h-full rounded-xl p-8 md:p-10"
@@ -159,7 +159,7 @@ export default function IndustryDetailContent({
                       />
                     </span>
                   </Link>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>
@@ -169,7 +169,7 @@ export default function IndustryDetailContent({
       {/* Other industries */}
       <section className="section-padding bg-white" aria-labelledby="other-heading">
         <div className="container-wide">
-          <motion.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
+          <m.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
             <p className="label-overline mb-6">Explore More</p>
             <span className="accent-line mx-auto mb-8" aria-hidden="true" />
             <h2
@@ -179,11 +179,11 @@ export default function IndustryDetailContent({
             >
               Other Industries We Protect
             </h2>
-          </motion.div>
+          </m.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {otherIndustries.map((ind, i) => (
-              <motion.div key={ind.slug} {...reveal(i * 0.06)}>
+              <m.div key={ind.slug} {...reveal(i * 0.06)}>
                 <Link
                   href={`/industries/${ind.slug}`}
                   className="card group relative flex items-center justify-between gap-4 rounded-xl p-8"
@@ -196,7 +196,7 @@ export default function IndustryDetailContent({
                     className="shrink-0 text-[#1a3a6b] transition-transform group-hover:translate-x-1.5"
                   />
                 </Link>
-              </motion.div>
+              </m.div>
             ))}
           </div>
         </div>

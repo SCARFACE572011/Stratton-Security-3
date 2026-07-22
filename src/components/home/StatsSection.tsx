@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { STATS } from "@/lib/constants";
 
 function AnimatedCounter({
@@ -80,7 +80,7 @@ export default function StatsSection() {
     >
       <div className="container-wide">
         {/* Centered editorial header */}
-        <motion.div
+        <m.div
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
@@ -100,12 +100,12 @@ export default function StatsSection() {
             commitment to readiness — the figures behind Stratton&apos;s
             reputation for protection.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Numerals */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-14 lg:gap-y-0 lg:divide-x lg:divide-platinum">
           {STATS.map((stat, i) => (
-            <motion.div
+            <m.div
               key={i}
               initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -138,7 +138,7 @@ export default function StatsSection() {
               <p className="text-[0.6875rem] font-semibold tracking-[0.22em] uppercase text-[#6b7280] group-hover:text-[#4b5563] transition-colors duration-300">
                 {stat.label}
               </p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

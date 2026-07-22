@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import { SITE_CONFIG, NAV_ITEMS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
@@ -12,7 +12,7 @@ function SealMark({ className = "" }: { className?: string }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src="/brand/seal-white.png"
+      src="/brand/seal-white-240.png"
       alt="Stratton Security Group seal"
       className={className}
       width={44}
@@ -165,7 +165,7 @@ export default function Navigation() {
 
                   <AnimatePresence>
                     {item.children && activeDropdown === item.label && (
-                      <motion.div
+                      <m.div
                         initial={{ opacity: 0, y: 6 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 6 }}
@@ -182,7 +182,7 @@ export default function Navigation() {
                             {child.label}
                           </Link>
                         ))}
-                      </motion.div>
+                      </m.div>
                     )}
                   </AnimatePresence>
                 </div>
@@ -230,7 +230,7 @@ export default function Navigation() {
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
@@ -262,7 +262,7 @@ export default function Navigation() {
                 const hasChildren = !!item.children;
                 const isOpen = mobileExpanded === item.label;
                 return (
-                  <motion.div
+                  <m.div
                     key={item.label}
                     initial={{ opacity: 0, x: 16 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -291,7 +291,7 @@ export default function Navigation() {
                         </button>
                         <AnimatePresence initial={false}>
                           {isOpen && (
-                            <motion.div
+                            <m.div
                               initial={{ height: 0, opacity: 0 }}
                               animate={{ height: "auto", opacity: 1 }}
                               exit={{ height: 0, opacity: 0 }}
@@ -318,7 +318,7 @@ export default function Navigation() {
                                   );
                                 })}
                               </div>
-                            </motion.div>
+                            </m.div>
                           )}
                         </AnimatePresence>
                       </>
@@ -337,7 +337,7 @@ export default function Navigation() {
                         {item.label}
                       </Link>
                     )}
-                  </motion.div>
+                  </m.div>
                 );
               })}
             </nav>
@@ -358,7 +358,7 @@ export default function Navigation() {
                 Request Free Assessment
               </Link>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, MapPin, Building2, Check } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { SITE_CONFIG, SERVICE_AREAS } from "@/lib/constants";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -72,7 +72,7 @@ export default function ServiceAreasContent({
         <div className="absolute inset-0 bg-gradient-to-r from-[#040d1e]/80 to-transparent" />
 
         <div className="relative z-10 container-wide pb-20 pt-36 md:pb-24 md:pt-40">
-          <motion.div
+          <m.div
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: EASE }}
@@ -93,7 +93,7 @@ export default function ServiceAreasContent({
               security programs across Los Angeles, Beverly Hills, and Southern
               California — from the coast to the San Gabriel Valley.
             </p>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
@@ -103,7 +103,7 @@ export default function ServiceAreasContent({
         aria-labelledby="tactical-coverage-heading"
       >
         <div className="container-wide section-padding">
-          <motion.div
+          <m.div
             {...reveal()}
             className="max-w-2xl mx-auto text-center mb-14 md:mb-16"
           >
@@ -123,9 +123,9 @@ export default function ServiceAreasContent({
               projected across Southern California — every sector monitored,
               every post covered, around the clock.
             </p>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             {...reveal(0.1)}
             className="hud-corners-4 relative overflow-hidden rounded-xl bg-deep-navy ring-1 ring-white/5"
             style={{ "--hud-c": "rgba(192, 200, 212, 0.35)" } as React.CSSProperties}
@@ -178,13 +178,13 @@ export default function ServiceAreasContent({
                 preserveAspectRatio="none"
                 viewBox="0 0 100 100"
               >
-                {AREA_MARKERS.map((m) => (
+                {AREA_MARKERS.map((marker) => (
                   <line
-                    key={m.label}
+                    key={marker.label}
                     x1={HQ_MARKER.x}
                     y1={HQ_MARKER.y}
-                    x2={m.x}
-                    y2={m.y}
+                    x2={marker.x}
+                    y2={marker.y}
                     stroke="rgba(192,200,212,0.22)"
                     strokeWidth={0.18}
                     vectorEffect="non-scaling-stroke"
@@ -210,7 +210,7 @@ export default function ServiceAreasContent({
                         }}
                       />
                     ) : (
-                      <motion.span
+                      <m.span
                         key={i}
                         aria-hidden="true"
                         className="absolute rounded-full border border-[#3f6bb0]/40"
@@ -240,15 +240,15 @@ export default function ServiceAreasContent({
               </div>
 
               {/* Area markers */}
-              {AREA_MARKERS.map((m, i) => (
-                <motion.div
-                  key={m.label}
+              {AREA_MARKERS.map((marker, i) => (
+                <m.div
+                  key={marker.label}
                   initial={shouldReduceMotion ? {} : { opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.5, delay: 0.2 + i * 0.08, ease: EASE }}
                   className="absolute z-10 -translate-x-1/2 -translate-y-1/2"
-                  style={{ left: `${m.x}%`, top: `${m.y}%` }}
+                  style={{ left: `${marker.x}%`, top: `${marker.y}%` }}
                 >
                   <div className="flex flex-col items-center">
                     <span className="relative flex h-2.5 w-2.5 items-center justify-center">
@@ -256,23 +256,23 @@ export default function ServiceAreasContent({
                       <span className="h-1.5 w-1.5 rounded-full bg-silver" />
                     </span>
                     <span className="mono-tag mt-2 block whitespace-nowrap text-[0.625rem] text-platinum">
-                      {m.label}
+                      {marker.label}
                     </span>
                     <span className="mono-tag block whitespace-nowrap text-[0.5625rem] text-steel">
-                      {m.coord}
+                      {marker.coord}
                     </span>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
 
       {/* Coverage grid — white surface, centered editorial header */}
       <section className="bg-white" aria-labelledby="coverage-heading">
         <div className="container-wide section-padding">
-          <motion.div
+          <m.div
             {...reveal()}
             className="max-w-3xl mx-auto text-center mb-16 md:mb-20"
           >
@@ -290,11 +290,11 @@ export default function ServiceAreasContent({
               most demanding markets — protecting people, properties, and
               operations around the clock.
             </p>
-          </motion.div>
+          </m.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {SERVICE_AREAS.map((area, i) => (
-              <motion.div key={area.slug} {...reveal(i * 0.06)}>
+              <m.div key={area.slug} {...reveal(i * 0.06)}>
                 <Link
                   href={`/service-areas/${area.slug}`}
                   className="card group flex flex-col h-full rounded-xl p-8"
@@ -326,7 +326,7 @@ export default function ServiceAreasContent({
                     ))}
                   </div>
                 </Link>
-              </motion.div>
+              </m.div>
             ))}
           </div>
 
@@ -336,12 +336,12 @@ export default function ServiceAreasContent({
               (p) => !SERVICE_AREAS.some((s) => s.name === p.name),
             );
             return extra.length ? (
-              <motion.div {...reveal(0.1)} className="mt-14 text-center max-w-3xl mx-auto">
+              <m.div {...reveal(0.1)} className="mt-14 text-center max-w-3xl mx-auto">
                 <p className="label-overline mb-4">Also Serving</p>
                 <p className="text-[0.9375rem] text-[#4b5563] leading-relaxed">
                   {extra.map((p) => p.name).join(" · ")} — and communities across Southern California.
                 </p>
-              </motion.div>
+              </m.div>
             ) : null;
           })()}
         </div>
@@ -351,7 +351,7 @@ export default function ServiceAreasContent({
       <section className="section-tint" aria-labelledby="property-types-heading">
         <div className="container-wide section-padding">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-            <motion.div {...reveal()}>
+            <m.div {...reveal()}>
               <p className="label-overline mb-6">Property Types</p>
               <span className="accent-line mb-8" aria-hidden="true" />
               <h2
@@ -370,7 +370,7 @@ export default function ServiceAreasContent({
               </p>
               <div>
                 {propertyTypes.map((type, i) => (
-                  <motion.div
+                  <m.div
                     key={type}
                     {...reveal(i * 0.04)}
                     className="flex items-center gap-4 py-3.5 border-b border-platinum last:border-0"
@@ -379,13 +379,13 @@ export default function ServiceAreasContent({
                       <Check size={15} strokeWidth={2} />
                     </span>
                     <span className="text-[0.9375rem] text-[#4b5563]">{type}</span>
-                  </motion.div>
+                  </m.div>
                 ))}
               </div>
-            </motion.div>
+            </m.div>
 
             <div className="space-y-8 lg:sticky lg:top-28">
-              <motion.div
+              <m.div
                 {...reveal(0.08)}
                 className="card group rounded-xl p-8 md:p-10"
               >
@@ -408,9 +408,9 @@ export default function ServiceAreasContent({
                     className="transition-transform group-hover/btn:translate-x-1"
                   />
                 </Link>
-              </motion.div>
+              </m.div>
 
-              <motion.div
+              <m.div
                 {...reveal(0.16)}
                 className="card group rounded-xl p-8 md:p-10"
               >
@@ -432,7 +432,7 @@ export default function ServiceAreasContent({
                     Los Angeles, California
                   </p>
                 </address>
-              </motion.div>
+              </m.div>
             </div>
           </div>
         </div>

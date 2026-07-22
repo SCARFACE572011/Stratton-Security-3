@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { Shield, Eye, Scale, ShieldCheck } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
 
@@ -34,7 +34,7 @@ export default function ValuesSection() {
     <section className="section-padding bg-platinum-50" aria-label="Our values and certifications">
       <div className="container-wide">
         {/* Centered editorial header */}
-        <motion.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
+        <m.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
           <p className="label-overline mb-6">Our Foundation</p>
           <span className="accent-line mx-auto mb-8" />
           <h2
@@ -46,7 +46,7 @@ export default function ValuesSection() {
           <p className="text-[#4b5563] text-lg leading-relaxed mt-7 max-w-2xl mx-auto">
             {SITE_CONFIG.brand_promise}
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Core values — evenly spaced, elegant centered items */}
         <div className="grid sm:grid-cols-3 gap-8 md:gap-10 mb-16 md:mb-20">
@@ -54,7 +54,7 @@ export default function ValuesSection() {
             const meta = VALUE_META[value] ?? { Icon: Shield, line: "" };
             const Icon = meta.Icon;
             return (
-              <motion.div
+              <m.div
                 key={value}
                 {...reveal(i * 0.08)}
                 className="card flex flex-col items-center text-center p-8 md:p-10"
@@ -71,28 +71,28 @@ export default function ValuesSection() {
                 <p className="text-[#4b5563] text-[0.9375rem] leading-relaxed">
                   {meta.line}
                 </p>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>
 
         {/* Vision line */}
-        <motion.p
+        <m.p
           {...reveal()}
           className="max-w-2xl mx-auto text-center font-[var(--font-display)] text-xl md:text-2xl leading-snug text-[#040d1e] mb-16 md:mb-20"
         >
           &ldquo;{SITE_CONFIG.vision}&rdquo;
-        </motion.p>
+        </m.p>
 
         {/* Credentials — centered subheader + modern white cards */}
-        <motion.div {...reveal()} className="max-w-2xl mx-auto text-center mb-12">
+        <m.div {...reveal()} className="max-w-2xl mx-auto text-center mb-12">
           <p className="label-overline mb-6">Credentials &amp; Compliance</p>
           <span className="accent-line mx-auto" />
-        </motion.div>
+        </m.div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
           {CERTIFICATIONS.map((cert, i) => (
-            <motion.div
+            <m.div
               key={cert.title}
               {...reveal(i * 0.08)}
               className="card flex flex-col p-8"
@@ -103,12 +103,12 @@ export default function ValuesSection() {
               <p className="text-[0.6875rem] text-steel tracking-[0.18em] uppercase mb-2">{cert.title}</p>
               <p className="font-[var(--font-display)] text-2xl text-white mb-3">{cert.value}</p>
               <p className="text-[0.8125rem] text-[#4b5563] leading-relaxed">{cert.sub}</p>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 
         {/* Insurance / compliance note — compact bar with icon */}
-        <motion.div
+        <m.div
           {...reveal(0.1)}
           className="card max-w-4xl mx-auto mt-8 p-6 md:p-7 flex items-start gap-4 md:gap-5 text-left border-l-2 border-l-[#3f6bb0]"
         >
@@ -123,7 +123,7 @@ export default function ValuesSection() {
               workers&apos; compensation coverage across every operation.
             </p>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
   Home,
   Building2,
@@ -67,7 +67,7 @@ export default function ClientLogosSection() {
     <section className="section-tint section-padding" aria-labelledby="clients-heading">
       <div className="container-wide">
         {/* Centered editorial header */}
-        <motion.div
+        <m.div
           className="mx-auto max-w-2xl text-center"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -89,10 +89,10 @@ export default function ClientLogosSection() {
             distribution. Whatever your sector, we build a program around its
             specific risk landscape.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Industries Served — single animated card cycling all 14 verticals */}
-        <motion.div
+        <m.div
           className="mx-auto max-w-4xl mt-14 md:mt-20"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -158,7 +158,7 @@ export default function ClientLogosSection() {
                 {/* cycling icon + name + blurb */}
                 <div className="relative flex h-[104px] items-center gap-5">
                   <AnimatePresence mode="wait">
-                    <motion.div
+                    <m.div
                       key={idx}
                       initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -177,7 +177,7 @@ export default function ClientLogosSection() {
                           {active.blurb}
                         </div>
                       </div>
-                    </motion.div>
+                    </m.div>
                   </AnimatePresence>
                 </div>
 
@@ -196,7 +196,7 @@ export default function ClientLogosSection() {
               </div>
             </div>
           </Link>
-        </motion.div>
+        </m.div>
 
       </div>
     </section>

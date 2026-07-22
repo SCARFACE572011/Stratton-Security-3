@@ -13,7 +13,7 @@ import {
   HardHat,
   Briefcase,
 } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { SERVICES } from "@/lib/constants";
 
 const ICON_MAP = {
@@ -70,16 +70,16 @@ export default function ServicesPageContent() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#040d1e]/80 to-transparent" />
 
         <div className="relative z-10 container-wide pb-20 pt-32">
-          <motion.p
+          <m.p
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASE }}
             className="label-overline-light mb-6"
           >
             What We Provide
-          </motion.p>
+          </m.p>
 
-          <motion.h1
+          <m.h1
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, delay: 0.08, ease: EASE }}
@@ -87,9 +87,9 @@ export default function ServicesPageContent() {
             style={{ fontSize: "clamp(2.75rem, 6.5vw, 5rem)" }}
           >
             Security Services Across Every Sector
-          </motion.h1>
+          </m.h1>
 
-          <motion.span
+          <m.span
             initial={shouldReduceMotion ? {} : { opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
             transition={{ duration: 0.7, delay: 0.2, ease: EASE }}
@@ -98,7 +98,7 @@ export default function ServicesPageContent() {
             aria-hidden="true"
           />
 
-          <motion.p
+          <m.p
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.28, ease: EASE }}
@@ -107,7 +107,7 @@ export default function ServicesPageContent() {
             From mobile patrol and armed guard services to specialized executive
             protection and event security, Stratton delivers tailored programs
             for every property type and risk environment.
-          </motion.p>
+          </m.p>
         </div>
       </div>
 
@@ -115,7 +115,7 @@ export default function ServicesPageContent() {
       <section className="section-padding bg-white" aria-labelledby="core-services-heading">
         <div className="container-wide">
           {/* Centered editorial header */}
-          <motion.div
+          <m.div
             {...reveal()}
             className="max-w-3xl mx-auto text-center mb-16 md:mb-20"
           >
@@ -132,7 +132,7 @@ export default function ServicesPageContent() {
               Specialized security solutions engineered for the people,
               properties, and operations that demand uncompromising protection.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -140,7 +140,7 @@ export default function ServicesPageContent() {
               const IconComponent =
                 ICON_MAP[service.icon as keyof typeof ICON_MAP] ?? Shield;
               return (
-                <motion.div
+                <m.div
                   key={service.id}
                   initial={shouldReduceMotion ? {} : { opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -176,7 +176,7 @@ export default function ServicesPageContent() {
                       />
                     </span>
                   </Link>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>
@@ -188,7 +188,7 @@ export default function ServicesPageContent() {
         <div className="container-wide">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             {/* Left — editorial intro */}
-            <motion.div {...reveal()} className="lg:col-span-5">
+            <m.div {...reveal()} className="lg:col-span-5">
               <p className="label-overline mb-6">Specialized Services</p>
               <span className="accent-line mb-8" aria-hidden="true" />
               <h2
@@ -208,12 +208,12 @@ export default function ServicesPageContent() {
                 Request a Consultation
                 <ArrowRight size={14} />
               </Link>
-            </motion.div>
+            </m.div>
 
             {/* Right — specialized list as a card grid */}
             <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
               {SPECIALIZED_SERVICES.map((service, i) => (
-                <motion.div
+                <m.div
                   key={service}
                   initial={shouldReduceMotion ? {} : { opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -227,7 +227,7 @@ export default function ServicesPageContent() {
                   <span className="text-[0.875rem] text-[#4b5563] leading-snug">
                     {service}
                   </span>
-                </motion.div>
+                </m.div>
               ))}
             </div>
           </div>
