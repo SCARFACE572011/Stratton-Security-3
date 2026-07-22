@@ -47,6 +47,14 @@ export default function Navigation() {
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
+  // A parent is "active" when the route matches it OR any of its children — so
+  // /faq and /training light up (and pre-expand) their "Resources" parent even
+  // though those routes don't start with /resources.
+  const isItemActive = (item: (typeof NAV_ITEMS)[number]) =>
+    isActive(item.href) ||
+    (item.children?.some((c) => c.href !== item.href && isActive(c.href)) ??
+      false);
+
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -82,7 +90,7 @@ export default function Navigation() {
       return;
     }
     const activeParent = NAV_ITEMS.find(
-      (n) => n.children && n.href !== "/" && pathname.startsWith(n.href)
+      (n) => n.children && n.href !== "/" && isItemActive(n)
     );
     setMobileExpanded(activeParent?.label ?? null);
   }, [mobileOpen, pathname]);
@@ -117,7 +125,7 @@ export default function Navigation() {
             {/* Desktop Nav */}
             <nav
               ref={dropdownRef}
-              className="hidden lg:flex items-center gap-0.5"
+              className="hidden xl:flex items-center gap-0.5"
               aria-label="Main navigation"
             >
               {NAV_ITEMS.map((item) => (
@@ -129,7 +137,7 @@ export default function Navigation() {
                       }
                       className={cn(
                         "flex items-center gap-1 px-1.5 xl:px-2.5 py-2 text-[0.78rem] font-semibold tracking-[0.06em] uppercase transition-colors",
-                        isActive(item.href) ? "text-white" : "text-silver hover:text-white"
+                        isItemActive(item) ? "text-white" : "text-silver hover:text-white"
                       )}
                       aria-expanded={activeDropdown === item.label}
                       aria-current={isActive(item.href) ? "page" : undefined}
@@ -193,7 +201,7 @@ export default function Navigation() {
             <div className="flex items-center gap-2 xl:gap-3">
               <a
                 href={`tel:${SITE_CONFIG.phoneE164}`}
-                className="hidden xl:flex items-center gap-2 text-silver hover:text-white text-[0.82rem] font-medium tracking-[0.01em] whitespace-nowrap transition-colors"
+                className="hidden min-[1400px]:flex items-center gap-2 text-silver hover:text-white text-[0.82rem] font-medium tracking-[0.01em] whitespace-nowrap transition-colors"
               >
                 <Phone size={15} />
                 {SITE_CONFIG.phone}
@@ -204,19 +212,19 @@ export default function Navigation() {
               >
                 Get Free Assessment
               </Link>
-              {/* Below xl the header phone text is hidden — keep a one-tap call button
-                  visible above the fold (the #1 conversion action on mobile), compact
-                  enough that the 1024-1280px header row doesn't overflow. */}
+              {/* Below 1400px the header phone text is hidden — keep a one-tap call
+                  button visible above the fold (the #1 conversion action on mobile),
+                  compact enough that the header row never overflows. */}
               <a
                 href={`tel:${SITE_CONFIG.phoneE164}`}
                 aria-label={`Call ${SITE_CONFIG.phone}`}
-                className="xl:hidden p-2 text-silver hover:text-white transition-colors"
+                className="min-[1400px]:hidden p-2 text-silver hover:text-white transition-colors"
               >
                 <Phone size={20} />
               </a>
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="lg:hidden p-2 text-silver hover:text-white transition-colors"
+                className="xl:hidden p-2 text-silver hover:text-white transition-colors"
                 aria-label={mobileOpen ? "Close menu" : "Open menu"}
                 aria-expanded={mobileOpen}
               >
@@ -277,7 +285,7 @@ export default function Navigation() {
                           aria-expanded={isOpen}
                           className={cn(
                             "flex w-full items-center justify-between px-5 py-[1.05rem] text-[0.95rem] font-semibold uppercase tracking-[0.05em] transition-colors",
-                            isOpen || isActive(item.href) ? "text-white" : "text-silver hover:text-white"
+                            isOpen || isItemActive(item) ? "text-white" : "text-silver hover:text-white"
                           )}
                         >
                           {item.label}

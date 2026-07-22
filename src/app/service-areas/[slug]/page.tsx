@@ -2,12 +2,11 @@ import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import CTASection from "@/components/home/CTASection";
 import ServiceAreaContent from "./ServiceAreaContent";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
 import { SERVICE_AREAS, SERVICES } from "@/lib/constants";
 import { metaDescription } from "@/lib/utils";
 import { BreadcrumbSchema } from "@/app/schema";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import type { Metadata } from "next";
 
 export function generateStaticParams() {
@@ -73,13 +72,13 @@ export default async function ServiceAreaPage({
           />
 
           <div className="relative z-10 container-wide pb-16 pt-32">
-            <Link
-              href="/service-areas"
-              className="inline-flex items-center gap-2 text-silver hover:text-white text-[0.8125rem] tracking-[0.04em] mb-8 transition-colors"
-            >
-              <ArrowLeft size={15} />
-              All Service Areas
-            </Link>
+            <Breadcrumbs
+              items={[
+                { name: "Home", href: "/" },
+                { name: "Service Areas", href: "/service-areas" },
+                { name: area.name },
+              ]}
+            />
             <p className="label-overline-light mb-6">Service Area · {area.region}</p>
             <span className="accent-line mb-7" style={{ background: "#3f6bb0" }} aria-hidden="true" />
             <h1

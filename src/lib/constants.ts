@@ -9,7 +9,7 @@ const FULL_ADDRESS = "10940 Wilshire Blvd, Suite 1720, Los Angeles, CA 90024";
 export const SITE_CONFIG = {
   name: "Stratton Security Group",
   tagline: "Strength. Vigilance. Integrity.",
-  shortTagline: "California's Premier Private Security",
+  shortTagline: "Los Angeles Security Guard & Patrol Services",
   heroBrand: "Strength. Vigilance. Integrity.",
   brand_promise:
     "We place only qualified, background-checked, rigorously trained professionals at your property — carrying the discipline of military and law-enforcement service, personalized to your needs.",
@@ -77,6 +77,7 @@ export const NAV_ITEMS = [
     children: [
       { label: "Security Patrol", href: "/services/patrol" },
       { label: "Armed & Unarmed Officers", href: "/services/guard-services" },
+      { label: "Fire Watch", href: "/services/fire-watch" },
       { label: "Commercial Real Estate", href: "/services/commercial-real-estate" },
       { label: "Residential & Community", href: "/services/residential" },
       { label: "Hotel & Hospitality", href: "/services/hospitality" },
@@ -87,18 +88,41 @@ export const NAV_ITEMS = [
       { label: "View All Services →", href: "/services" },
     ],
   },
+  {
+    label: "Locations",
+    href: "/service-areas",
+    children: [
+      { label: "Beverly Hills", href: "/service-areas/beverly-hills" },
+      { label: "Santa Monica", href: "/service-areas/santa-monica" },
+      { label: "Century City", href: "/service-areas/century-city" },
+      { label: "West Hollywood", href: "/service-areas/west-hollywood" },
+      { label: "Downtown Los Angeles", href: "/service-areas/downtown-los-angeles" },
+      { label: "Pasadena", href: "/service-areas/pasadena" },
+      { label: "Malibu", href: "/service-areas/malibu" },
+      { label: "Hollywood", href: "/service-areas/hollywood" },
+      { label: "All Service Areas →", href: "/service-areas" },
+    ],
+  },
   { label: "Industries", href: "/industries" },
   { label: "About", href: "/about" },
-  { label: "Training", href: "/training" },
-  { label: "Guides", href: "/resources" },
+  {
+    label: "Resources",
+    href: "/resources",
+    children: [
+      { label: "Guides & Insights", href: "/resources" },
+      { label: "FAQ", href: "/faq" },
+      { label: "Training & Workshops", href: "/training" },
+    ],
+  },
   { label: "Careers", href: "/careers" },
-  { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
 ];
 
 export type ServiceDetail = {
   id: string;
   title: string;
+  // Keyword-bearing <title>/H1 for the detail page (cards/nav keep `title`).
+  seoTitle: string;
   slug: string;
   shortDescription: string;
   longDescription: string;
@@ -112,6 +136,7 @@ export type ServiceDetail = {
 export const SERVICES: ServiceDetail[] = [
   {
     id: "patrol",
+    seoTitle: "Security Patrol Services Los Angeles",
     title: "Security Patrol",
     slug: "patrol",
     shortDescription:
@@ -154,6 +179,7 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     id: "guard",
+    seoTitle: "Armed & Unarmed Security Guards Los Angeles",
     title: "Armed & Unarmed Officers",
     slug: "guard-services",
     shortDescription:
@@ -196,6 +222,7 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     id: "commercial",
+    seoTitle: "Commercial Property Security Services Los Angeles",
     title: "Commercial Real Estate",
     slug: "commercial-real-estate",
     shortDescription:
@@ -238,6 +265,7 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     id: "residential",
+    seoTitle: "Residential & HOA Security Services Los Angeles",
     title: "Residential & Community",
     slug: "residential",
     shortDescription:
@@ -280,6 +308,7 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     id: "hospitality",
+    seoTitle: "Hotel & Hospitality Security Los Angeles",
     title: "Hotel & Hospitality",
     slug: "hospitality",
     shortDescription:
@@ -322,6 +351,7 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     id: "retail",
+    seoTitle: "Retail & Shopping Center Security Los Angeles",
     title: "Retail & Shopping Centers",
     slug: "retail",
     shortDescription:
@@ -364,6 +394,7 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     id: "construction",
+    seoTitle: "Construction Site Security Guards Los Angeles",
     title: "Construction & Job Sites",
     slug: "construction",
     shortDescription:
@@ -406,6 +437,7 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     id: "events",
+    seoTitle: "Event Security Services Los Angeles",
     title: "Event Security",
     slug: "events",
     shortDescription:
@@ -448,6 +480,7 @@ export const SERVICES: ServiceDetail[] = [
   },
   {
     id: "corporate",
+    seoTitle: "Executive Protection & Corporate Security Los Angeles",
     title: "Corporate & Executive",
     slug: "corporate",
     shortDescription:
@@ -487,6 +520,50 @@ export const SERVICES: ServiceDetail[] = [
     relatedIndustries: ["financial", "estates", "commercial-real-estate"],
     icon: "Briefcase",
     color: "gold",
+  },
+  {
+    id: "fire-watch",
+    title: "Fire Watch",
+    seoTitle: "Fire Watch Security Guards Los Angeles",
+    slug: "fire-watch",
+    shortDescription:
+      "Trained fire watch officers deployed fast when sprinkler or alarm systems are down — timed patrol rounds and the documented logs your fire authority expects, until the system is restored.",
+    longDescription:
+      "When a fire protection system is impaired — a sprinkler line shut down for repair, an alarm panel offline, hot work underway on a construction site — fire code requires a dedicated fire watch until the system is restored. It is one of the most time-critical services in security: the requirement usually lands with no warning, and every uncovered hour is a compliance exposure. Stratton deploys trained fire watch officers who patrol on the required intervals, maintain the written log the fire department expects to see, know how to activate manual notification if something ignites, and stay on post until the impairment is formally cleared. We coordinate with your contractor, property team, and the local fire authority so the paper trail is as solid as the patrol.",
+    benefits: [
+      {
+        title: "Fast, Urgent Deployment",
+        description:
+          "Fire watch needs rarely arrive on a schedule. Urgent requests are prioritized — we have mobilized teams in under 24 hours, and move as fast as staging allows.",
+      },
+      {
+        title: "Code-Compliant Logs",
+        description:
+          "Officers keep timed, written patrol logs in the format fire authorities expect, so your compliance record survives scrutiny.",
+      },
+      {
+        title: "Trained for the Assignment",
+        description:
+          "Fire watch is not standing around — officers are briefed on patrol intervals, ignition risks, manual alarm activation, and evacuation triggers.",
+      },
+      {
+        title: "Insurance & Liability Cover",
+        description:
+          "A documented, professional fire watch protects your insurance position while a required protection system is out of service.",
+      },
+    ],
+    capabilities: [
+      "Impaired sprinkler & alarm system coverage",
+      "Hot work / welding fire watch",
+      "Post-fire and post-incident watch",
+      "Timed patrol rounds with written logs",
+      "Coordination with fire authority requirements",
+      "Construction & occupied-building coverage",
+      "Utility outage and generator-failure response",
+    ],
+    relatedIndustries: ["construction", "commercial-real-estate", "industrial", "hospitality"],
+    icon: "ShieldCheck",
+    color: "blue",
   },
 ];
 
@@ -940,6 +1017,56 @@ export type Resource = {
 };
 
 export const RESOURCES: Resource[] = [
+  {
+    slug: "how-much-do-security-guards-cost-in-los-angeles",
+    title: "How Much Do Security Guards Cost in Los Angeles?",
+    category: "Pricing Guide",
+    excerpt:
+      "Real Los Angeles market rates for armed and unarmed guards, the six factors that move your hourly bill, and how to compare quotes without getting burned by the cheapest one.",
+    readTime: "9 min read",
+    sections: [
+      {
+        heading: "What Security Guards Cost in Los Angeles Right Now",
+        body: [
+          "Security guard service in Los Angeles is billed by the hour, and the billed rate is not the officer's wage \u2014 it covers the guard's pay, payroll taxes, workers' compensation, liability insurance, training, supervision, scheduling, and the company's margin. That distinction matters, because it explains most of the price spread you'll see when you collect quotes. As of this writing, most reputable, properly licensed Los Angeles firms bill unarmed officers somewhere in the low-$20s to high-$30s per hour, and armed officers from the mid-$30s to $60 or more, depending on the assignment. Specialized posts \u2014 executive protection, high-risk sites, off-duty-officer details \u2014 run higher still.",
+          "Treat any quote dramatically below that band as a warning rather than a bargain. An unarmed rate in the teens does not leave room to pay a guard legally in Los Angeles, carry real insurance, and supervise the post \u2014 something has to give, and it is usually the officer's wages, the insurance, or both. The Los Angeles market also moves with California's wage laws and insurance costs, so published numbers age quickly; use the ranges here to sanity-check proposals, not as a substitute for a written quote on your actual property.",
+          "One structural note that surprises many first-time buyers: there is usually no per-guard equipment or setup fee for a standard post \u2014 the hourly rate is the price. Where you will see additional line items is in patrol vehicles, dedicated site vehicles, or technology add-ons like camera monitoring, and a good proposal will price those separately and transparently.",
+        ],
+      },
+      {
+        heading: "The Six Factors That Actually Move Your Rate",
+        body: [
+          "First: armed versus unarmed. An armed officer carries additional BSIS permitting, firearm qualification requirements, and substantially higher insurance exposure for the company \u2014 which is why the armed premium is real and universal across the industry. Many properties that assume they need armed coverage are better served by well-run unarmed officers with strong patrol discipline; an honest vendor will walk through that decision with you rather than upsell the higher rate.",
+          "Second and third: hours and consistency. Total weekly volume is the biggest lever on rate \u2014 a 24/7 post (168 hours a week) earns meaningfully better pricing than eight hours every Saturday night, because it lets the company build stable schedules and assign consistent officers. Predictable, long-term schedules also price better than fluctuating on-call coverage. Fourth: the site itself. A quiet lobby post and a site with a history of break-ins, transient activity, or crowd exposure are not the same assignment, and post orders that demand more of the officer justify \u2014 and should get \u2014 a more experienced, better-paid guard.",
+          "Fifth: officer profile. Training beyond the state minimum, prior law-enforcement or military experience, and specialized certifications all move the wage that attracts and keeps that caliber of officer. Sixth: contract structure. Most firms have hourly minimums per shift (commonly four hours), and short-notice or holiday coverage typically carries a premium. None of these factors are unique to any one company \u2014 what varies is whether a vendor explains them up front or buries them in the invoice.",
+        ],
+      },
+      {
+        heading: "Why the Cheapest Bid Usually Costs the Most",
+        body: [
+          "When a quote undercuts the market by a third, the savings are coming out of something you would have paid for on purpose. The most common casualties: officer wages (which drives the turnover and no-show rates that plague low-cost operators), insurance coverage (verify the certificate \u2014 and confirm armed operations are actually covered if you're buying armed), training (state-minimum-only guards handling situations that demand de-escalation skill), and supervision (nobody checking that the 2 a.m. guard is awake, on post, and writing reports).",
+          "The verification steps take minutes and are worth doing on every bid: confirm the company's Private Patrol Operator license is active on the BSIS public lookup (Stratton operates under California PPO #122163, and any legitimate firm will hand you its number without being asked twice), request a current Certificate of Insurance naming you as additional insured, and ask what the officer on your post will actually be paid. That last question makes low-cost vendors visibly uncomfortable \u2014 which is precisely the point.",
+          "There is also a liability arithmetic to the cheap bid. If an under-insured company's guard injures someone or fails to act on your property, the claim doesn't stay the vendor's problem. The few dollars an hour you saved can be dwarfed by a single incident that lands on your own policy \u2014 or your own balance sheet.",
+        ],
+      },
+      {
+        heading: "Patrol Service: The Budget Alternative to a 24/7 Post",
+        body: [
+          "If a dedicated round-the-clock guard is more coverage than your risk profile demands, mobile patrol is the standard cost-managed alternative. Instead of paying for 168 hours of standing presence, you pay for scheduled (and intentionally randomized) visits \u2014 a marked vehicle and uniformed officer who checks your property several times a night, documents each visit with GPS-verified scans, and responds to alarms in between. Because a patrol route is shared across nearby properties, the per-property cost is a fraction of a dedicated post.",
+          "Patrol pricing is typically quoted per visit or as a flat monthly rate for an agreed visit schedule, with alarm response billed per event or bundled. For many HOAs, retail centers, office buildings, and construction sites, a patrol program plus good lighting and cameras delivers most of the deterrence of a standing guard at a stark fraction of the price \u2014 and the honest answer from a security advisor is often a hybrid: standing coverage for high-risk hours, patrol for the rest.",
+          "The right structure depends on your property's actual incident pattern, which is exactly what a walkthrough is for. Beware any vendor who quotes a 24/7 post without asking what problem you're trying to solve.",
+        ],
+      },
+      {
+        heading: "How to Get an Exact Number for Your Property",
+        body: [
+          "Market ranges bound the problem, but your rate comes from your property: the hours you need, armed or unarmed, the post orders, and the site's risk picture. Any serious Los Angeles firm will put a number in writing after a walkthrough \u2014 at Stratton the walkthrough and assessment are free, and what comes back is a clear written proposal, not a teaser rate that grows once you've signed.",
+          "To make any vendor's quote faster and sharper, have three things ready: the coverage window you think you need (be honest about whether it's peace-of-mind coverage or a response to specific incidents), any incident history \u2014 police reports, HOA complaints, break-in dates \u2014 and site logistics like parking, access, and where a guard or patrol vehicle would actually be positioned. Ten minutes of preparation turns a generic bid into a program design.",
+          "Then compare proposals on the whole picture: the billed rate, the officer wage behind it, the insurance certificate, the training standard, the supervision model, and the contract's minimums and exit terms. The cheapest number on the page is easy to find. The best value \u2014 the program that actually prevents the incident \u2014 takes one more phone call to identify. Reach us at (424) 440-5554 or through the Contact page and we'll give you a real number for your property within one business day of the walkthrough.",
+        ],
+      },
+    ],
+  },
   {
     slug: "how-to-choose-a-private-security-company-in-los-angeles",
     title: "How to Choose a Private Security Company in Los Angeles",

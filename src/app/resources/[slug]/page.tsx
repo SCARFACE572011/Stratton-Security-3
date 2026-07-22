@@ -3,10 +3,11 @@ import Footer from "@/components/layout/Footer";
 import CTASection from "@/components/home/CTASection";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { RESOURCES } from "@/lib/constants";
 import { metaDescription } from "@/lib/utils";
 import { BreadcrumbSchema } from "@/app/schema";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import type { Metadata } from "next";
 
 export function generateStaticParams() {
@@ -81,13 +82,13 @@ export default async function ResourceArticlePage({
             }}
           />
           <div className="relative z-10 container-narrow">
-            <Link
-              href="/resources"
-              className="inline-flex items-center gap-2 text-silver hover:text-white text-[0.8125rem] tracking-[0.04em] mb-8 transition-colors"
-            >
-              <ArrowLeft size={15} />
-              All Guides
-            </Link>
+            <Breadcrumbs
+              items={[
+                { name: "Home", href: "/" },
+                { name: "Guides", href: "/resources" },
+                { name: article.title },
+              ]}
+            />
             <p className="label-overline-light mb-5">
               {article.category} · {article.readTime}
             </p>

@@ -3,12 +3,11 @@ import Footer from "@/components/layout/Footer";
 import CTASection from "@/components/home/CTASection";
 import IndustryDetailContent from "./IndustryDetailContent";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
 import { INDUSTRIES, SERVICES } from "@/lib/constants";
 import { metaDescription } from "@/lib/utils";
 import { BreadcrumbSchema } from "@/app/schema";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import type { Metadata } from "next";
 
 export function generateStaticParams() {
@@ -71,20 +70,20 @@ export default async function IndustryDetailPage({
           <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[rgba(192,200,212,0.3)] to-transparent" />
 
           <div className="relative z-10 container-wide pb-20 pt-36 w-full">
-            <Link
-              href="/industries"
-              className="inline-flex items-center gap-2 text-[0.75rem] text-silver hover:text-[#3f6bb0] uppercase tracking-[0.16em] transition-colors mb-9"
-            >
-              <ArrowLeft size={12} />
-              All Industries
-            </Link>
+            <Breadcrumbs
+              items={[
+                { name: "Home", href: "/" },
+                { name: "Industries", href: "/industries" },
+                { name: industry.label },
+              ]}
+            />
             <p className="label-overline-light mb-6">Industry Vertical</p>
             <span className="accent-line mb-8" aria-hidden="true" />
             <h1
               className="display-hero text-white max-w-3xl"
               style={{ fontSize: "clamp(2.75rem, 6vw, 5rem)" }}
             >
-              {industry.label}
+              {industry.label} Security
             </h1>
             {industry.summary && (
               <p className="text-silver text-[1.15rem] leading-relaxed max-w-2xl mt-8">

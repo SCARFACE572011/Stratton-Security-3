@@ -22,7 +22,7 @@ export async function generateMetadata({
   if (!service) return { title: "Service Not Found" };
   return {
     alternates: { canonical: `/services/${service.slug}` },
-    title: service.title,
+    title: service.seoTitle,
     description: metaDescription(service.shortDescription),
   };
 }

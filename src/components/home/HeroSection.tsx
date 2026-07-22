@@ -70,18 +70,20 @@ export default function HeroSection() {
           />
         </div>
 
-        {/* Eyebrow */}
-        <p
+        {/* H1 carries the commercial keywords (styled as the eyebrow line);
+            the display motto below is intentionally NOT the H1 — it says
+            nothing about what the company does or where. */}
+        <h1
           className="label-overline-light mb-8 flex items-center justify-center gap-3 anim-rise"
           style={{ animationDelay: "0.15s" }}
         >
-          <span className="inline-block w-8 h-px bg-[#3f6bb0]" />
-          California&apos;s Premier Private Security
-          <span className="inline-block w-8 h-px bg-[#3f6bb0]" />
-        </p>
+          <span className="inline-block w-8 h-px bg-[#3f6bb0]" aria-hidden="true" />
+          Los Angeles Security Guard &amp; Patrol Services
+          <span className="inline-block w-8 h-px bg-[#3f6bb0]" aria-hidden="true" />
+        </h1>
 
-        {/* Headline */}
-        <h1
+        {/* Display motto */}
+        <p
           className="display-hero text-white"
           style={{ fontSize: "clamp(3.25rem, 8.5vw, 7rem)" }}
         >
@@ -95,7 +97,7 @@ export default function HeroSection() {
               </span>
             </span>
           ))}
-        </h1>
+        </p>
 
         {/* Sub */}
         <p

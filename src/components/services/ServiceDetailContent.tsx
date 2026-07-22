@@ -16,7 +16,8 @@ import {
   Check,
 } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
-import { SITE_CONFIG } from "@/lib/constants";
+import { SITE_CONFIG, SERVICE_AREAS } from "@/lib/constants";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 
 const ICON_MAP = {
   Shield,
@@ -33,6 +34,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 type Service = {
   title: string;
+  seoTitle: string;
   slug: string;
   shortDescription: string;
   longDescription: string;
@@ -86,13 +88,13 @@ export default function ServiceDetailContent({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE }}
           >
-            <Link
-              href="/services"
-              className="inline-flex items-center gap-2 text-[0.6875rem] font-bold text-silver hover:text-[#3f6bb0] uppercase tracking-[0.18em] transition-colors mb-10"
-            >
-              <ArrowLeft size={13} />
-              All Services
-            </Link>
+            <Breadcrumbs
+              items={[
+                { name: "Home", href: "/" },
+                { name: "Services", href: "/services" },
+                { name: service.title },
+              ]}
+            />
           </m.div>
 
           <m.div
@@ -109,12 +111,12 @@ export default function ServiceDetailContent({
 
           <m.h1
             className="display-hero text-white max-w-4xl"
-            style={{ fontSize: "clamp(2.75rem, 6vw, 5rem)" }}
+            style={{ fontSize: "clamp(2.5rem, 5.5vw, 4.5rem)" }}
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.14, ease: EASE }}
           >
-            {service.title}
+            {service.seoTitle}
           </m.h1>
 
           <m.span
@@ -361,6 +363,36 @@ export default function ServiceDetailContent({
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* ── Service areas (contextual internal links to the city pages) ── */}
+      <section className="section-padding bg-platinum-50">
+        <div className="container-wide">
+          <m.div
+            {...reveal()}
+            className="max-w-2xl mx-auto text-center mb-12 md:mb-16"
+          >
+            <p className="label-overline mb-6">Coverage</p>
+            <span className="accent-line mx-auto mb-8" aria-hidden="true" />
+            <h2
+              className="display-title text-[#040d1e]"
+              style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}
+            >
+              Where We Deliver This Program
+            </h2>
+          </m.div>
+          <m.div {...reveal(0.08)} className="flex flex-wrap justify-center gap-3">
+            {SERVICE_AREAS.map((area) => (
+              <Link
+                key={area.slug}
+                href={`/service-areas/${area.slug}`}
+                className="card px-5 py-3 text-[0.875rem] text-[#4b5563] hover:text-[#0a0a0a] transition-colors"
+              >
+                {service.title} in {area.name}
+              </Link>
+            ))}
+          </m.div>
         </div>
       </section>
     </main>

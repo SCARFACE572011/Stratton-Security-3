@@ -61,7 +61,7 @@ export default function Footer() {
           <nav className="lg:col-span-3" aria-label="Footer — services">
             <p className="label-overline-light mb-6">Services</p>
             <ul className="space-y-3">
-              {SERVICES.slice(0, 8).map((service) => (
+              {SERVICES.map((service) => (
                 <li key={service.id}>
                   <Link
                     href={`/services/${service.slug}`}

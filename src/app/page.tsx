@@ -19,9 +19,9 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
-  title: "Stratton Security Group | Professional Security Services — Los Angeles",
+  title: "Los Angeles Security Guard Company | Stratton Security Group",
   description:
-    `Stratton Security Group delivers professional patrol, guard, and security management services across Los Angeles and Southern California. CA PPO #${SITE_CONFIG.licenseNumber}. 24/7 availability.`,
+    `Licensed armed & unarmed security guards, mobile patrol, and fire watch across Los Angeles. CA PPO #${SITE_CONFIG.licenseNumber} · free on-site assessment · 24/7 dispatch.`,
   keywords: [
     "security services Los Angeles",
     "private security company Los Angeles",
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
     "PPO security company California",
   ],
   openGraph: {
-    title: "Stratton Security Group | Excellence In Protection",
+    title: "Los Angeles Security Guards & Patrol | Stratton Security Group",
     description:
-      "Professional security services protecting businesses, communities, and assets across Los Angeles and Southern California. 24/7/365.",
+      "Licensed armed & unarmed security guards, mobile patrol, and fire watch across Los Angeles. Free on-site assessment · 24/7 dispatch.",
     type: "website",
   },
 };
