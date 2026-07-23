@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import { LazyMotion, domAnimation } from "framer-motion";
-import Preloader from "@/components/layout/Preloader";
 import ScrollProgress from "@/components/layout/ScrollProgress";
 import MobileStickyBar from "@/components/layout/MobileStickyBar";
 import BackToTop from "@/components/layout/BackToTop";
@@ -28,7 +27,6 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
 
   return (
     <LazyMotion features={domAnimation} strict>
-      <Preloader />
       <ScrollProgress />
       <LenisProvider>
         {children}

@@ -104,6 +104,61 @@
   50% { transform: translateY(-10px); }
 }
 
+/* ─── HOMEPAGE BRAND INTRO ────────────────────────────────────────────────────
+   Server-rendered overlay (BrandIntro.tsx) with a pure-CSS timeline, so it is
+   on screen at first paint and cannot depend on — or be delayed by — JS.
+   Timeline: seal held 0.75s → fades → doors split 0.9s → hidden for good at
+   1.5s. `visibility:hidden` at the end also removes it from hit-testing.
+   Keep it opaque (pointer-events default) while up so a click during the
+   intro can't land on content the visitor can't see yet. */
+@keyframes intro-door-up { to { transform: translateY(-100%); } }
+@keyframes intro-door-down { to { transform: translateY(100%); } }
+@keyframes intro-hide-center { to { opacity: 0; } }
+@keyframes intro-clear { to { visibility: hidden; } }
+
+#brand-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  overflow: hidden;
+  animation: intro-clear 0s linear 1.5s forwards;
+}
+#brand-intro .intro-door {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background-color: #040d1e;
+  background-image:
+    linear-gradient(rgba(192, 200, 212, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(192, 200, 212, 0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+#brand-intro .intro-door-top {
+  top: 0;
+  border-bottom: 1px solid rgba(192, 200, 212, 0.12);
+  animation: intro-door-up 0.6s cubic-bezier(0.76, 0, 0.24, 1) 0.9s forwards;
+}
+#brand-intro .intro-door-bottom {
+  bottom: 0;
+  border-top: 1px solid rgba(192, 200, 212, 0.12);
+  animation: intro-door-down 0.6s cubic-bezier(0.76, 0, 0.24, 1) 0.9s forwards;
+}
+#brand-intro .intro-center {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: intro-hide-center 0.3s ease 0.75s forwards;
+}
+/* No intro for reduced-motion users, and none once it has played this session. */
+@media (prefers-reduced-motion: reduce) {
+  #brand-intro { display: none; }
+}
+
 /* ─── CAROUSEL / MARQUEE ─────────────────────────────────────────────────────── */
 
 /* Continuous client-logo marquee. Track holds the list twice; -50% = one set. */

@@ -13,6 +13,7 @@ import ValuesSection from "@/components/home/ValuesSection";
 import CTASection from "@/components/home/CTASection";
 import ImageStrip from "@/components/home/ImageStrip";
 import ClientsMarquee from "@/components/home/ClientsMarquee";
+import BrandIntro from "@/components/layout/BrandIntro";
 import { SITE_CONFIG } from "@/lib/constants";
 import { getTestimonials, getBarkReviews } from "@/lib/content";
 import type { Metadata } from "next";
@@ -48,6 +49,9 @@ export default async function HomePage() {
 
   return (
     <>
+      {/* Brand intro — homepage only, once per session (see BrandIntro.tsx) */}
+      <BrandIntro />
+
       {/* Skip to main content for accessibility */}
       <a
         href="#main-content"
