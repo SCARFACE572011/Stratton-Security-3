@@ -105,23 +105,58 @@
 }
 
 /* ─── HOMEPAGE BRAND INTRO ────────────────────────────────────────────────────
-   Server-rendered overlay (BrandIntro.tsx) with a pure-CSS timeline, so it is
-   on screen at first paint and cannot depend on — or be delayed by — JS.
-   Timeline: seal held 0.75s → fades → doors split 0.9s → hidden for good at
-   1.5s. `visibility:hidden` at the end also removes it from hit-testing.
-   Keep it opaque (pointer-events default) while up so a click during the
-   intro can't land on content the visitor can't see yet. */
+   Server-rendered overlay (BrandIntro.tsx) driven entirely by CSS, so the full
+   sequence is on screen at first paint and never depends on JS loading.
+
+   Timeline (mirrors the original preloader exactly):
+     0–2.10s  radar sweeps, status readout cycles 4 messages, progress 0→100%
+     2.15s    "Access Granted · Secure"
+     2.45s    center content fades
+     2.60s    blast doors split apart
+     3.25s    overlay hidden for good (visibility, so it stops hit-testing)
+
+   It stays opaque and click-swallowing while up, so a tap during the intro
+   can't activate content the visitor can't see yet. */
+@property --intro-pct {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
 @keyframes intro-door-up { to { transform: translateY(-100%); } }
 @keyframes intro-door-down { to { transform: translateY(100%); } }
-@keyframes intro-hide-center { to { opacity: 0; } }
+@keyframes intro-fade-out { to { opacity: 0; } }
+@keyframes intro-fade-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes intro-clear { to { visibility: hidden; } }
+@keyframes intro-sweep { to { transform: rotate(360deg); } }
+@keyframes intro-count { to { --intro-pct: 100; } }
+@keyframes intro-progress { from { width: 0%; } to { width: 100%; } }
+@keyframes intro-seal-in {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes intro-rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes intro-scan {
+  0% { transform: translateY(-120%); opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translateY(120%); opacity: 0; }
+}
+/* Each status line owns one quarter of the 2.1s window. */
+@keyframes intro-s1 { 0%, 24.9% { opacity: 1; } 25%, 100% { opacity: 0; } }
+@keyframes intro-s2 { 0%, 24.9% { opacity: 0; } 25%, 49.9% { opacity: 1; } 50%, 100% { opacity: 0; } }
+@keyframes intro-s3 { 0%, 49.9% { opacity: 0; } 50%, 74.9% { opacity: 1; } 75%, 100% { opacity: 0; } }
+@keyframes intro-s4 { 0%, 74.9% { opacity: 0; } 75%, 100% { opacity: 1; } }
 
 #brand-intro {
   position: fixed;
   inset: 0;
   z-index: 120;
   overflow: hidden;
-  animation: intro-clear 0s linear 1.5s forwards;
+  animation: intro-clear 0s linear 3.25s forwards;
 }
 #brand-intro .intro-door {
   position: absolute;
@@ -137,12 +172,12 @@
 #brand-intro .intro-door-top {
   top: 0;
   border-bottom: 1px solid rgba(192, 200, 212, 0.12);
-  animation: intro-door-up 0.6s cubic-bezier(0.76, 0, 0.24, 1) 0.9s forwards;
+  animation: intro-door-up 0.75s cubic-bezier(0.76, 0, 0.24, 1) 2.6s forwards;
 }
 #brand-intro .intro-door-bottom {
   bottom: 0;
   border-top: 1px solid rgba(192, 200, 212, 0.12);
-  animation: intro-door-down 0.6s cubic-bezier(0.76, 0, 0.24, 1) 0.9s forwards;
+  animation: intro-door-down 0.75s cubic-bezier(0.76, 0, 0.24, 1) 2.6s forwards;
 }
 #brand-intro .intro-center {
   position: absolute;
@@ -152,9 +187,122 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  animation: intro-hide-center 0.3s ease 0.75s forwards;
+  animation: intro-fade-out 0.3s ease 2.45s forwards;
 }
-/* No intro for reduced-motion users, and none once it has played this session. */
+#brand-intro .intro-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 640px;
+  max-height: 640px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(26, 58, 107, 0.5) 0%, transparent 60%);
+}
+#brand-intro .intro-seal-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+#brand-intro .intro-radar {
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 250deg,
+    rgba(63, 107, 176, 0.12) 320deg,
+    rgba(63, 107, 176, 0.55) 360deg
+  );
+  mask-image: radial-gradient(circle, #000 62%, transparent 64%);
+  -webkit-mask-image: radial-gradient(circle, #000 62%, transparent 64%);
+  animation: intro-sweep 1.9s linear infinite;
+}
+#brand-intro .intro-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(192, 200, 212, 0.16);
+}
+#brand-intro .intro-ring-outer { width: 230px; height: 230px; }
+#brand-intro .intro-ring-inner { width: 186px; height: 186px; border-color: rgba(192, 200, 212, 0.1); }
+#brand-intro .intro-seal { position: relative; animation: intro-seal-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both; }
+#brand-intro .intro-wordmark { animation: intro-rise 0.6s ease 0.5s both; }
+#brand-intro .intro-status {
+  position: relative;
+  height: 1.25rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#brand-intro .intro-status > span {
+  position: absolute;
+  white-space: nowrap;
+  opacity: 0;
+  animation-duration: 2.1s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+#brand-intro .intro-status > span:nth-of-type(1) { animation-name: intro-s1; }
+#brand-intro .intro-status > span:nth-of-type(2) { animation-name: intro-s2; }
+#brand-intro .intro-status > span:nth-of-type(3) { animation-name: intro-s3; }
+/* Last line clears immediately at 2.1s so it never overlaps "Access Granted". */
+#brand-intro .intro-status > span:nth-of-type(4) {
+  animation-name: intro-s4, intro-fade-out;
+  animation-duration: 2.1s, 0.05s;
+  animation-delay: 0s, 2.1s;
+}
+#brand-intro .intro-granted {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  white-space: nowrap;
+  opacity: 0;
+  animation: intro-fade-in 0.3s ease 2.15s forwards;
+}
+#brand-intro .intro-bar-track {
+  width: min(260px, 60vw);
+  height: 1px;
+  background: rgba(192, 200, 212, 0.16);
+  overflow: hidden;
+}
+#brand-intro .intro-bar-fill {
+  height: 100%;
+  width: 0;
+  background: #3f6bb0;
+  animation: intro-progress 2.1s linear forwards;
+}
+#brand-intro .intro-meta {
+  width: min(260px, 60vw);
+  margin-top: 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#brand-intro .intro-pct {
+  animation: intro-count 2.1s linear forwards;
+  counter-reset: introPct var(--intro-pct);
+}
+#brand-intro .intro-pct::after { content: counter(introPct) "%"; }
+#brand-intro .intro-scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(63, 107, 176, 0.4), transparent);
+  animation: intro-scan 2.4s ease-in-out infinite;
+}
+/* No intro for reduced-motion users; repeat views are hidden by the inline
+   script in BrandIntro.tsx before first paint. */
 @media (prefers-reduced-motion: reduce) {
   #brand-intro { display: none; }
 }
