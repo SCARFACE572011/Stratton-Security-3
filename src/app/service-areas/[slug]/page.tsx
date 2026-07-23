@@ -40,6 +40,17 @@ export default async function ServiceAreaPage({
   const relatedServices = SERVICES.filter((s) => area.services.includes(s.slug));
   const otherAreas = SERVICE_AREAS.filter((a) => a.slug !== area.slug).slice(0, 6);
 
+  // FAQPage schema from the area's local FAQs — eligible for FAQ rich results.
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: area.faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
   return (
     <>
       <BreadcrumbSchema
@@ -49,6 +60,12 @@ export default async function ServiceAreaPage({
           { name: area.name, url: `https://strattonsecuritygroup.com/service-areas/${area.slug}` },
         ]}
       />
+      {area.faqs.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
+      )}
       <Navigation />
       <main>
         {/* Deep-navy hero */}

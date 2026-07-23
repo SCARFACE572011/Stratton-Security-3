@@ -76,7 +76,11 @@ export default function ServiceAreaContent({
                 <h3 className="display-sm text-[1.375rem] text-[#0a0a0a] mb-6">
                   Across {area.name}
                 </h3>
-                <p className="text-[1.0625rem] text-[#4b5563] leading-relaxed mb-7">{area.summary}</p>
+                <p className="text-[1.0625rem] text-[#4b5563] leading-relaxed mb-7">
+                  Programs cover the corridors, blocks, and property types that
+                  define {area.name} — from busy commercial frontage to residential
+                  and estate pockets.
+                </p>
                 <div className="flex flex-wrap gap-2.5 mt-auto">
                   {area.neighborhoods.map((n) => (
                     <span
@@ -111,6 +115,36 @@ export default function ServiceAreaContent({
         </div>
       </section>
 
+      {/* How we protect {name} — deep local content */}
+      {area.localContext.length > 0 && (
+        <section className="section-padding bg-platinum-50" aria-labelledby="how-heading">
+          <div className="container-wide">
+            <m.div {...reveal()} className="max-w-3xl mx-auto text-center mb-14 md:mb-16">
+              <p className="label-overline mb-6">On the Ground</p>
+              <span className="accent-line mx-auto mb-8" aria-hidden="true" />
+              <h2
+                id="how-heading"
+                className="display-title text-[#040d1e]"
+                style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}
+              >
+                How We Protect {area.name}
+              </h2>
+            </m.div>
+            <div className="mx-auto max-w-3xl space-y-6">
+              {area.localContext.map((para, i) => (
+                <m.p
+                  key={i}
+                  {...reveal(i * 0.06)}
+                  className="text-[1.0625rem] leading-relaxed text-[#4b5563]"
+                >
+                  {para}
+                </m.p>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Recommended services */}
       {relatedServices.length > 0 && (
         <section className="section-padding bg-platinum-50" aria-labelledby="area-services-heading">
@@ -139,10 +173,39 @@ export default function ServiceAreaContent({
                       {service.shortDescription}
                     </p>
                     <span className="mt-8 inline-flex items-center gap-2 text-[0.75rem] font-bold uppercase tracking-[0.16em] text-[#1a3a6b]">
-                      Learn More
+                      See Coverage &amp; Pricing
                       <ArrowRight size={16} className="transition-transform group-hover:translate-x-1.5" />
                     </span>
                   </Link>
+                </m.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Local FAQ — mirrors the FAQPage schema emitted from the page */}
+      {area.faqs.length > 0 && (
+        <section className="section-padding bg-white" aria-labelledby="area-faq-heading">
+          <div className="container-wide">
+            <m.div {...reveal()} className="max-w-3xl mx-auto text-center mb-14 md:mb-16">
+              <p className="label-overline mb-6">Common Questions</p>
+              <span className="accent-line mx-auto mb-8" aria-hidden="true" />
+              <h2
+                id="area-faq-heading"
+                className="display-title text-[#040d1e]"
+                style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}
+              >
+                Security in {area.name} — FAQ
+              </h2>
+            </m.div>
+            <div className="mx-auto max-w-3xl divide-y divide-platinum">
+              {area.faqs.map((f, i) => (
+                <m.div key={i} {...reveal(i * 0.05)} className="py-7 first:pt-0">
+                  <h3 className="display-sm text-[1.1875rem] text-[#0a0a0a] mb-3">
+                    {f.q}
+                  </h3>
+                  <p className="text-[1rem] leading-relaxed text-[#4b5563]">{f.a}</p>
                 </m.div>
               ))}
             </div>
