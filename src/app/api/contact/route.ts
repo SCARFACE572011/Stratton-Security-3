@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { sendMail, mailerConfigured, MAIL_TO } from "@/lib/mailer";
+import { sendMail, mailerConfigured, CONTACT_TO } from "@/lib/mailer";
 
 export const dynamic = "force-dynamic";
 
@@ -101,7 +101,7 @@ export async function POST(req: NextRequest) {
 
   try {
     await sendMail({
-      to: MAIL_TO,
+      to: CONTACT_TO,
       replyTo: data.email,
       subject: `New Security Inquiry — ${data.serviceType} (${data.propertyType})`,
       html: teamHtml(data),

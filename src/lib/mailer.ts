@@ -9,15 +9,23 @@ import nodemailer from "nodemailer";
  *                         (needs 2-Step Verification enabled)
  *   GMAIL_APP_PASSWORD  — 16-char App Password from myaccount.google.com/apppasswords
  *                         (NOT the account password; revocable anytime)
- * Optional:
- *   CONTACT_TO_EMAIL    — override the delivery inbox (defaults to rami@)
+ * Optional overrides (defaults below are the live routing):
+ *   CONTACT_TO_EMAIL    — where customer inquiries land (default omar@)
+ *   CAREERS_TO_EMAIL    — where job applications land (default Careers@)
+ *
+ * NOTE: both delivery addresses must exist as real mailboxes/aliases/groups in
+ * Google Workspace, or mail to them bounces. Confirmed via test send at launch.
  */
 const GMAIL_USER = process.env.GMAIL_USER;
 // Google displays app passwords with spaces ("abcd efgh ijkl mnop") — strip them.
 const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD?.replace(/\s+/g, "");
 
-export const MAIL_TO =
-  process.env.CONTACT_TO_EMAIL || process.env.CONTACT_EMAIL || "rami@strattonsecuritygroup.com";
+/** Customer inquiries (contact form). */
+export const CONTACT_TO =
+  process.env.CONTACT_TO_EMAIL || "omar@strattonsecuritygroup.com";
+/** Job applications + resumes (careers form). */
+export const CAREERS_TO =
+  process.env.CAREERS_TO_EMAIL || "Careers@strattonsecuritygroup.com";
 
 export const mailerConfigured = !!(GMAIL_USER && GMAIL_APP_PASSWORD && GMAIL_APP_PASSWORD.length >= 16);
 

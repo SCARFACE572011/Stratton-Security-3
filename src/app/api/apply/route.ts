@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { sendMail, mailerConfigured, MAIL_TO } from "@/lib/mailer";
+import { sendMail, mailerConfigured, CAREERS_TO } from "@/lib/mailer";
 import { GENERAL_INQUIRY_POSITION } from "@/lib/constants";
 
 export const dynamic = "force-dynamic";
@@ -148,7 +148,7 @@ export async function POST(req: NextRequest) {
 
   try {
     await sendMail({
-      to: MAIL_TO,
+      to: CAREERS_TO,
       replyTo: data.email,
       subject: `New Job Application — ${data.position}`,
       html: applicationHtml(data, resumeNote),
