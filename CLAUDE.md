@@ -21,7 +21,7 @@ Original site was on Squarespace. New site is custom Next.js + Tailwind v4 + Fra
 ## Client Info (verified from site audit)
 - **Phone:** (424) 440-5554
 - **Email:** Info@StrattonSecurityGroup.com
-- **Address:** 10940 Wilshire Blvd, Suite 1720, Los Angeles, CA 90024 (single source: `SITE_CONFIG` in constants.ts — CONFIRM with client; older records said 2029 Century Park E, Suite 400, LA 90067)
+- **Address:** 10940 Wilshire Blvd, Suite 1720, Los Angeles, CA 90024 (single source: `SITE_CONFIG` in constants.ts — CONFIRMED by client 2026-07-23)
 - **PPO License:** #122163 (CA Bureau of Security and Investigative Services)
 - **Hours:** 24/7/365
 - **Tagline:** "Excellence In Protection" / "Always Vigilant"

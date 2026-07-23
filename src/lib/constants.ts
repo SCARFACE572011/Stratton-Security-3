@@ -19,9 +19,8 @@ export const SITE_CONFIG = {
   phoneRaw: "4244405554",
   phoneE164: "+14244405554",
   email: "Info@StrattonSecurityGroup.com",
-  // VERIFY: confirm current office with client — project docs previously listed
-  // 2029 Century Park E, Suite 400, LA 90067. Maps link + JSON-LD geo derive
-  // from these fields, so they must all describe the SAME building.
+  // Office address CONFIRMED by client 2026-07-23. Maps link + JSON-LD geo
+  // derive from these fields, so keep them describing the SAME building.
   address: "10940 Wilshire Blvd, Suite 1720",
   city: "Los Angeles",
   state: "CA",
