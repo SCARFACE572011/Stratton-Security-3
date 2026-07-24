@@ -197,13 +197,19 @@ export default function TestimonialsSection({
                   onClick={() => goTo(i)}
                   aria-current={page === i}
                   aria-label={`Go to slide ${i + 1} of ${pages}`}
-                  className={cn(
-                    "h-1.5 rounded-full transition-all duration-300",
-                    page === i
-                      ? "w-6 bg-[#6f9bd8]"
-                      : "w-1.5 bg-[rgba(192,200,212,0.45)] hover:bg-[rgba(192,200,212,0.7)]",
-                  )}
-                />
+                  // Padding gives a ~32px tap target (WCAG 2.5.8) while the
+                  // visual pill inside stays small.
+                  className="flex items-center justify-center p-2.5 -m-2.5"
+                >
+                  <span
+                    className={cn(
+                      "block h-1.5 rounded-full transition-all duration-300",
+                      page === i
+                        ? "w-6 bg-[#6f9bd8]"
+                        : "w-1.5 bg-[rgba(192,200,212,0.45)]",
+                    )}
+                  />
+                </button>
               ))}
             </div>
 

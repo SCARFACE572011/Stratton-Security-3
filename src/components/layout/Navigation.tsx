@@ -67,8 +67,29 @@ export default function Navigation() {
         setActiveDropdown(null);
       }
     };
+    // Keyboard parity with the outside-click behavior: Escape closes the open
+    // dropdown, and tabbing focus out of the nav subtree closes it too (so an
+    // open panel never floats orphaned over the page for keyboard users).
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActiveDropdown(null);
+    };
+    const handleFocusOut = (e: FocusEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.relatedTarget as Node)
+      ) {
+        setActiveDropdown(null);
+      }
+    };
+    const nav = dropdownRef.current;
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+    nav?.addEventListener("focusout", handleFocusOut);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+      nav?.removeEventListener("focusout", handleFocusOut);
+    };
   }, []);
 
   useEffect(() => {

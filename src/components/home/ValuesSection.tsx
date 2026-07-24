@@ -57,7 +57,7 @@ export default function ValuesSection() {
               <m.div
                 key={value}
                 {...reveal(i * 0.08)}
-                className="card flex flex-col items-center text-center p-8 md:p-10"
+                className="card card-static flex flex-col items-center text-center p-8 md:p-10"
               >
                 <span className="inline-flex items-center justify-center w-14 h-14 rounded-xl border border-platinum bg-platinum-50 text-accent mb-7">
                   <Icon size={26} strokeWidth={1.75} />
@@ -95,7 +95,7 @@ export default function ValuesSection() {
             <m.div
               key={cert.title}
               {...reveal(i * 0.08)}
-              className="card flex flex-col p-8"
+              className="card card-static flex flex-col p-8"
             >
               <span className="inline-flex items-center justify-center w-12 h-12 rounded-xl border border-platinum bg-platinum-50 text-accent mb-6">
                 <ShieldCheck size={22} strokeWidth={1.75} />
@@ -110,7 +110,7 @@ export default function ValuesSection() {
         {/* Insurance / compliance note — compact bar with icon */}
         <m.div
           {...reveal(0.1)}
-          className="card max-w-4xl mx-auto mt-8 p-6 md:p-7 flex items-start gap-4 md:gap-5 text-left border-l-2 border-l-[#3f6bb0]"
+          className="card card-static max-w-4xl mx-auto mt-8 p-6 md:p-7 flex items-start gap-4 md:gap-5 text-left border-l-2 border-l-[#3f6bb0]"
         >
           <span className="shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-xl border border-platinum bg-platinum-50 text-accent">
             <ShieldCheck size={20} strokeWidth={1.75} />

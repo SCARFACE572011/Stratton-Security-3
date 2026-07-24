@@ -168,7 +168,14 @@ export default function ContactForm() {
           {...register("website")}
           style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }}
         />
-        <div className="p-6 md:p-8">
+        {/* key={step} remounts on advance so the incoming step animates in —
+            a deliberate step forward instead of a hard jump-cut. Global
+            reduced-motion rules collapse the animation to instant. */}
+        <div
+          key={step}
+          className="p-6 md:p-8"
+          style={{ animation: "rise-in 0.28s cubic-bezier(0.22,1,0.36,1) both" }}
+        >
           {/* Step 1 */}
           {step === 1 && (
             <div className="space-y-5">

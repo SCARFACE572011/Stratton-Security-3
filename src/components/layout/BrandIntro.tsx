@@ -79,13 +79,20 @@ export default function BrandIntro() {
       </div>
 
       {/* Runs during parse, before first paint: hides the intro instantly on
-          repeat views in the same session (no flash), and marks it as seen. */}
+          repeat views in the same session (no flash) and marks it seen; on a
+          first view, the first tap/scroll/keypress fast-fades it out so a ready
+          visitor (esp. on mobile) is never locked out for the full sequence. */}
       <script
         dangerouslySetInnerHTML={{
           __html:
             "try{var e=document.getElementById('brand-intro');" +
             "if(sessionStorage.getItem('ssg-intro-seen')){e.style.display='none'}" +
-            "else{sessionStorage.setItem('ssg-intro-seen','1')}}catch(x){}",
+            "else{sessionStorage.setItem('ssg-intro-seen','1');" +
+            "var ev=['pointerdown','touchstart','keydown','wheel'];" +
+            "var done=function(){ev.forEach(function(t){window.removeEventListener(t,skip)})};" +
+            "var skip=function(){e.classList.add('intro-skip');setTimeout(function(){e.style.display='none'},280);done()};" +
+            "ev.forEach(function(t){window.addEventListener(t,skip,{once:true,passive:true})});" +
+            "setTimeout(done,3300)}}catch(x){}",
         }}
       />
     </>
