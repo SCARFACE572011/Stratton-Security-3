@@ -61,7 +61,7 @@ export default function MidPageCTA() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 mt-12 justify-center">
-            <Link href="/contact" className="btn-light group">
+            <Link href="/contact#request-form" className="btn-light group">
               Request Free Assessment
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>

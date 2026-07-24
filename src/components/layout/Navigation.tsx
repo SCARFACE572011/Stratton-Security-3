@@ -228,7 +228,7 @@ export default function Navigation() {
                 {SITE_CONFIG.phone}
               </a>
               <Link
-                href="/contact"
+                href="/contact#request-form"
                 className="hidden md:inline-flex btn-light text-[0.75rem] px-4 xl:px-5 py-3 whitespace-nowrap"
               >
                 Get Free Assessment
@@ -380,7 +380,7 @@ export default function Navigation() {
                 {SITE_CONFIG.phone}
               </a>
               <Link
-                href="/contact"
+                href="/contact#request-form"
                 onClick={() => setMobileOpen(false)}
                 className="btn-light w-full"
               >

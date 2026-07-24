@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -39,8 +40,10 @@ const PROPERTY_TYPES = [
 // ready-to-submit leads, so message/hearAbout now live at the end of step 2.
 const STEP_LABELS = ["Property & Service", "Contact & Submit"];
 
+// text-base (16px) on mobile stops iOS Safari auto-zooming on field focus;
+// text-sm restores the tighter desktop size from md up.
 const inputClass =
-  "w-full bg-platinum-50 border border-platinum text-[#040d1e] text-sm px-4 py-3 focus:border-[#1a3a6b] focus:ring-1 focus:ring-[#1a3a6b] focus:outline-none transition-colors placeholder:text-steel";
+  "w-full bg-platinum-50 border border-platinum text-[#040d1e] text-base md:text-sm px-4 py-3 focus:border-[#1a3a6b] focus:ring-1 focus:ring-[#1a3a6b] focus:outline-none transition-colors placeholder:text-steel";
 const labelClass =
   "block text-[0.75rem] text-[#4b5563] tracking-widest uppercase mb-2";
 const errorClass =
@@ -50,14 +53,43 @@ export default function ContactForm() {
   const [step, setStep] = useState<FormStep>(1);
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [showOptional, setShowOptional] = useState(false);
 
   const {
     register,
     handleSubmit,
     trigger,
     getValues,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
+
+  // Prefill from the URL so a visitor who already declared intent on a service,
+  // area, or industry page doesn't have to repeat it. Read from window (not
+  // useSearchParams) to avoid forcing a Suspense boundary / dynamic rendering.
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search);
+    const svc = p.get("service");
+    if (svc) {
+      const match = SERVICES.find((s) => s.slug === svc);
+      if (match) setValue("serviceType", match.title);
+    }
+    const prop = p.get("property");
+    if (prop && PROPERTY_TYPES.includes(prop)) setValue("propertyType", prop);
+    const area = p.get("area");
+    const industry = p.get("industry");
+    const ref = p.get("ref");
+    if (area) {
+      setValue("message", `Regarding security coverage in ${area}.`);
+      setShowOptional(true);
+    } else if (industry) {
+      setValue("message", `Regarding ${industry} security.`);
+      setShowOptional(true);
+    } else if (ref) {
+      setValue("message", `Regarding: ${ref}.`);
+      setShowOptional(true);
+    }
+  }, [setValue]);
 
   const advanceStep = async () => {
     const valid = await trigger(["propertyType", "serviceType"]);
@@ -104,11 +136,26 @@ export default function ContactForm() {
           <p className="text-[0.75rem] text-steel mb-3">For immediate assistance:</p>
           <a
             href={`tel:${SITE_CONFIG.phoneE164}`}
-            className="inline-flex items-center gap-2 text-accent font-medium text-sm hover:text-[#224a86] transition-colors"
+            className="inline-flex items-center gap-2 text-accent font-medium text-sm hover:text-accent-600 transition-colors"
           >
             <Phone size={14} />
             {SITE_CONFIG.phone}
           </a>
+        </div>
+        {/* Keep engaged visitors on-site while they wait for the callback. */}
+        <div className="border-t border-platinum mt-6 pt-6">
+          <p className="text-[0.75rem] text-steel mb-3">While you wait:</p>
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-[0.8125rem]">
+            <Link href="/services" className="text-accent hover:text-accent-600 transition-colors">
+              Browse our services
+            </Link>
+            <Link href="/resources/how-much-do-security-guards-cost-in-los-angeles" className="text-accent hover:text-accent-600 transition-colors">
+              What security costs in LA
+            </Link>
+            <Link href="/about" className="text-accent hover:text-accent-600 transition-colors">
+              Why Stratton
+            </Link>
+          </div>
         </div>
       </div>
     );
@@ -221,36 +268,25 @@ export default function ContactForm() {
             </div>
           )}
 
-          {/* Step 2 */}
+          {/* Step 2 — required-to-convert fields first; optional context is
+              tucked behind a toggle so this screen reads as 3 fields + submit,
+              matching the lightness Step 1 sets up. */}
           {step === 2 && (
             <div className="space-y-5">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="name" className={labelClass}>
-                    Full Name <span className="text-accent">*</span>
-                  </label>
-                  <input
-                    id="name"
-                    type="text"
-                    {...register("name")}
-                    placeholder="John Smith"
-                    autoComplete="name"
-                    className={inputClass}
-                    aria-invalid={!!errors.name}
-                  />
-                  {errors.name && <p className={errorClass} role="alert">{errors.name.message}</p>}
-                </div>
-                <div>
-                  <label htmlFor="company" className={labelClass}>Company / Property</label>
-                  <input
-                    id="company"
-                    type="text"
-                    {...register("company")}
-                    placeholder="Company name (optional)"
-                    autoComplete="organization"
-                    className={inputClass}
-                  />
-                </div>
+              <div>
+                <label htmlFor="name" className={labelClass}>
+                  Full Name <span className="text-accent">*</span>
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  {...register("name")}
+                  placeholder="John Smith"
+                  autoComplete="name"
+                  className={inputClass}
+                  aria-invalid={!!errors.name}
+                />
+                {errors.name && <p className={errorClass} role="alert">{errors.name.message}</p>}
               </div>
               <div>
                 <label htmlFor="email" className={labelClass}>
@@ -282,32 +318,59 @@ export default function ContactForm() {
                 />
                 {errors.phone && <p className={errorClass} role="alert">{errors.phone.message}</p>}
               </div>
-              <div>
-                <label htmlFor="message" className={labelClass}>Additional Details</label>
-                <textarea
-                  id="message"
-                  {...register("message")}
-                  rows={4}
-                  placeholder="Describe your property, number of locations, current security concerns..."
-                  className={`${inputClass} resize-none`}
-                />
-              </div>
-              <div>
-                <label htmlFor="hearAbout" className={labelClass}>How Did You Hear About Us?</label>
-                <select
-                  id="hearAbout"
-                  {...register("hearAbout")}
-                  className={`${inputClass} appearance-none cursor-pointer`}
+
+              {/* Optional context — collapsed by default */}
+              {!showOptional ? (
+                <button
+                  type="button"
+                  onClick={() => setShowOptional(true)}
+                  className="text-[0.8125rem] text-accent hover:text-accent-600 font-medium inline-flex items-center gap-1.5 transition-colors"
                 >
-                  <option value="">Select one...</option>
-                  <option>Google Search</option>
-                  <option>Referral from a colleague</option>
-                  <option>Social Media</option>
-                  <option>Bark.com / Yelp</option>
-                  <option>Direct mail / marketing</option>
-                  <option>Other</option>
-                </select>
-              </div>
+                  + Add more detail{" "}
+                  <span className="text-steel font-normal">(optional)</span>
+                </button>
+              ) : (
+                <div className="space-y-5 anim-fade" style={{ animationDuration: "0.25s" }}>
+                  <div>
+                    <label htmlFor="company" className={labelClass}>Company / Property</label>
+                    <input
+                      id="company"
+                      type="text"
+                      {...register("company")}
+                      placeholder="Company name"
+                      autoComplete="organization"
+                      className={inputClass}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="message" className={labelClass}>Additional Details</label>
+                    <textarea
+                      id="message"
+                      {...register("message")}
+                      rows={4}
+                      placeholder="Describe your property, number of locations, current security concerns..."
+                      className={`${inputClass} resize-none`}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="hearAbout" className={labelClass}>How Did You Hear About Us?</label>
+                    <select
+                      id="hearAbout"
+                      {...register("hearAbout")}
+                      className={`${inputClass} appearance-none cursor-pointer`}
+                    >
+                      <option value="">Select one...</option>
+                      <option>Google Search</option>
+                      <option>Referral from a colleague</option>
+                      <option>Social Media</option>
+                      <option>Bark.com / Yelp</option>
+                      <option>Direct mail / marketing</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                </div>
+              )}
+
               <p className="text-[0.6875rem] text-steel leading-relaxed">
                 Your information is kept confidential and will only be used to contact you regarding your security inquiry. We do not share client information with third parties.
               </p>

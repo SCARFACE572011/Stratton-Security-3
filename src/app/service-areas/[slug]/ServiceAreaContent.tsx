@@ -105,8 +105,11 @@ export default function ServiceAreaContent({
                   Talk to a Stratton advisor about a security program tailored to your
                   {" "}{area.name} property — typically deployable within 72 hours.
                 </p>
-                <Link href="/contact" className="btn-light group mt-auto w-full justify-center">
-                  Request an Assessment
+                <Link
+                  href={`/contact?area=${encodeURIComponent(area.name)}#request-form`}
+                  className="btn-light group mt-auto w-full justify-center"
+                >
+                  Request a Free Assessment
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>

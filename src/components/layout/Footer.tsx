@@ -120,7 +120,7 @@ export default function Footer() {
             </ul>
 
             <Link
-              href="/contact"
+              href="/contact#request-form"
               className="group mt-7 inline-flex items-center gap-2 text-[0.78rem] font-bold uppercase tracking-[0.14em] text-[#6f9bd8] transition-colors hover:text-white"
             >
               Request Free Assessment

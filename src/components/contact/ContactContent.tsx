@@ -45,13 +45,20 @@ export default function ContactContent() {
         </m.div>
 
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          {/* Left — Form */}
-          <m.div {...reveal()} className="lg:col-span-7">
+          {/* Left — Form. id is the scroll target for every "/contact#request-form"
+              CTA; scroll-mt clears the sticky nav. */}
+          <m.div
+            {...reveal()}
+            id="request-form"
+            className="lg:col-span-7 scroll-mt-28"
+          >
             <ContactForm />
           </m.div>
 
-          {/* Right — Contact details (light surface cards) */}
-          <div className="lg:col-span-5 space-y-12">
+          {/* Right — Contact details. Sticky so the phone/hours/reviews stay
+              in view while the form is filled, instead of leaving a dead void
+              beside a short first step. */}
+          <div className="lg:col-span-5 space-y-12 lg:sticky lg:top-28 self-start">
             {/* Direct contact */}
             <m.div {...reveal(0.08)}>
               <p className="label-overline mb-6">Direct Contact</p>

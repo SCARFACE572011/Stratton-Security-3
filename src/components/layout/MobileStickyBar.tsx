@@ -31,7 +31,7 @@ export default function MobileStickyBar() {
           Call Now
         </a>
         <Link
-          href="/contact"
+          href="/contact#request-form"
           className="flex-1 flex items-center justify-center gap-2 py-3.5 text-[0.75rem] font-bold uppercase tracking-[0.08em] bg-[#1a3a6b] text-white hover:bg-[#224a86] transition-colors"
         >
           <MessageSquare size={15} />

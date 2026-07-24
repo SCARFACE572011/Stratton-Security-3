@@ -177,10 +177,10 @@ export default function ServiceDetailContent({
                   </p>
                 </div>
                 <Link
-                  href="/contact"
+                  href={`/contact?service=${service.slug}#request-form`}
                   className="btn-light w-full justify-center group"
                 >
-                  Get a Free Quote
+                  Request a Free Assessment
                   <ArrowRight
                     size={15}
                     className="transition-transform group-hover:translate-x-1"

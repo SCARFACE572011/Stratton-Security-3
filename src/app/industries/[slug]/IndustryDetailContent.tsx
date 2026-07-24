@@ -106,10 +106,10 @@ export default function IndustryDetailContent({
                   operational requirements — never off the shelf.
                 </p>
                 <Link
-                  href="/contact"
+                  href={`/contact?industry=${encodeURIComponent(industry.label)}#request-form`}
                   className="btn-light group mt-auto w-full justify-center"
                 >
-                  Request an Assessment
+                  Request a Free Assessment
                   <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>

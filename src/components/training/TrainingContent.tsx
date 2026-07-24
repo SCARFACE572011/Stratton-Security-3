@@ -181,7 +181,7 @@ export default function TrainingContent() {
                 and businesses seeking to upskill their security teams. Our curriculum
                 is built on real operational experience and California compliance standards.
               </p>
-              <Link href="/contact" className="btn-primary group">
+              <Link href="/contact#request-form" className="btn-primary group">
                 Inquire About Workshops
                 <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
               </Link>

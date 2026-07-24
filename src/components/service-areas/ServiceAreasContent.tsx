@@ -401,7 +401,7 @@ export default function ServiceAreasContent({
                   outside our listed service areas, contact us — we may still be
                   able to serve you, or connect you with a vetted partner.
                 </p>
-                <Link href="/contact" className="btn-primary group/btn">
+                <Link href="/contact#request-form" className="btn-primary group/btn">
                   Discuss Your Location
                   <ArrowRight
                     size={16}

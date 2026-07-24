@@ -108,7 +108,7 @@ export default function CTASection() {
             {...reveal(0.28)}
             className="flex flex-col sm:flex-row gap-4 mt-11 justify-center"
           >
-            <Link href="/contact" className="btn-light group">
+            <Link href="/contact#request-form" className="btn-light group">
               Request a Free Assessment
               <ArrowRight
                 size={16}

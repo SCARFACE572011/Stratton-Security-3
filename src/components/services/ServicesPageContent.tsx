@@ -27,20 +27,25 @@ const ICON_MAP = {
   Briefcase,
 } as const;
 
-const SPECIALIZED_SERVICES = [
-  "Executive Protection & Bodyguard Services",
-  "Corporate Security Programs",
-  "Concierge & Lobby Ambassador Services",
-  "Loss Prevention",
-  "Firewatch Security",
-  "Access Control Implementation",
-  "CCTV & Surveillance Monitoring",
-  "K9 / Canine Detection Teams",
-  "Plain Clothed Security Officers",
-  "Chauffeur Services",
-  "Door-to-Door Escort Services",
-  "Security Consulting & Post Analysis",
-];
+// Each specialized service links somewhere real: ones with a detail page go
+// there; the rest open the contact form with the service pre-noted (?ref=…).
+const SPECIALIZED_SERVICES: { label: string; href: string }[] = [
+  { label: "Executive Protection & Bodyguard Services", href: "/services/corporate" },
+  { label: "Corporate Security Programs", href: "/services/corporate" },
+  { label: "Concierge & Lobby Ambassador Services", href: "" },
+  { label: "Loss Prevention", href: "/services/retail" },
+  { label: "Firewatch Security", href: "/services/fire-watch" },
+  { label: "Access Control Implementation", href: "" },
+  { label: "CCTV & Surveillance Monitoring", href: "" },
+  { label: "K9 / Canine Detection Teams", href: "" },
+  { label: "Plain Clothed Security Officers", href: "" },
+  { label: "Chauffeur Services", href: "" },
+  { label: "Door-to-Door Escort Services", href: "" },
+  { label: "Security Consulting & Post Analysis", href: "" },
+].map((s) => ({
+  ...s,
+  href: s.href || `/contact?ref=${encodeURIComponent(s.label)}#request-form`,
+}));
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -204,29 +209,37 @@ export default function ServicesPageContent() {
                 executive protection and K9 detection to access control and CCTV
                 monitoring.
               </p>
-              <Link href="/contact" className="btn-primary">
-                Request a Consultation
+              <Link href="/contact#request-form" className="btn-primary">
+                Request a Free Assessment
                 <ArrowRight size={14} />
               </Link>
             </m.div>
 
-            {/* Right — specialized list as a card grid */}
+            {/* Right — specialized list as a clickable card grid */}
             <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
               {SPECIALIZED_SERVICES.map((service, i) => (
                 <m.div
-                  key={service}
+                  key={service.label}
                   initial={shouldReduceMotion ? {} : { opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ delay: i * 0.05, duration: 0.55, ease: EASE }}
-                  className="card group flex items-center gap-4 rounded-xl p-5"
                 >
-                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-platinum bg-white text-[#1a3a6b] shrink-0 transition-colors group-hover:border-[#1a3a6b]/40">
-                    <ShieldCheck size={18} strokeWidth={1.75} />
-                  </span>
-                  <span className="text-[0.875rem] text-[#4b5563] leading-snug">
-                    {service}
-                  </span>
+                  <Link
+                    href={service.href}
+                    className="card group flex items-center gap-4 rounded-xl p-5 h-full"
+                  >
+                    <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-platinum bg-white text-[#1a3a6b] shrink-0 transition-colors group-hover:border-[#1a3a6b]/40">
+                      <ShieldCheck size={18} strokeWidth={1.75} />
+                    </span>
+                    <span className="text-[0.875rem] text-[#4b5563] leading-snug flex-1">
+                      {service.label}
+                    </span>
+                    <ArrowRight
+                      size={16}
+                      className="text-steel shrink-0 transition-transform group-hover:translate-x-1 group-hover:text-accent"
+                    />
+                  </Link>
                 </m.div>
               ))}
             </div>

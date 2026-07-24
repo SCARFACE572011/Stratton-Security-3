@@ -114,7 +114,7 @@ export default function HeroSection() {
           className="flex flex-col sm:flex-row gap-4 mt-11 justify-center anim-rise"
           style={{ animationDelay: "0.6s" }}
         >
-          <Link href="/contact" className="btn-light group">
+          <Link href="/contact#request-form" className="btn-light group">
             Request a Free Assessment
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </Link>

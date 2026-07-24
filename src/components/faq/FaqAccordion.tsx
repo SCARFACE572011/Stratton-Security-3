@@ -126,8 +126,8 @@ export default function FaqAccordion({ faqs, phone, phoneE164 }: FaqAccordionPro
             risk assessment, and scope a program that fits your property.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
-            <Link href="/contact" className="btn-light group">
-              Request a Consultation
+            <Link href="/contact#request-form" className="btn-light group">
+              Request a Free Assessment
               <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
             </Link>
             <a href={`tel:${phoneE164}`} className="btn-on-dark">
