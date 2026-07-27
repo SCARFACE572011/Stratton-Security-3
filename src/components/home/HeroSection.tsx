@@ -57,9 +57,11 @@ export default function HeroSection() {
       </m.div>
 
       {/* Content */}
-      <div className="relative z-10 container-wide w-full pt-32 pb-28 flex flex-col items-center">
+      {/* lg:* overrides tighten desktop vertical rhythm so the CTAs clear the
+          fold at 1440×900 without disturbing the mobile spacing scale. */}
+      <div className="relative z-10 container-wide w-full pt-32 pb-28 lg:pt-24 lg:pb-24 flex flex-col items-center">
         {/* Seal in HUD targeting frame */}
-        <div className="hud-corners-4 p-5 mb-9 anim-rise">
+        <div className="hud-corners-4 p-5 mb-9 lg:mb-6 anim-rise">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/brand/seal-white-240.png"
@@ -74,7 +76,7 @@ export default function HeroSection() {
             the display motto below is intentionally NOT the H1 — it says
             nothing about what the company does or where. */}
         <h1
-          className="label-overline-light mb-8 flex items-center justify-center gap-3 anim-rise"
+          className="label-overline-light mb-8 lg:mb-6 flex items-center justify-center gap-3 anim-rise"
           style={{ animationDelay: "0.15s" }}
         >
           <span className="inline-block w-8 h-px bg-[#3f6bb0]" aria-hidden="true" />
@@ -101,7 +103,7 @@ export default function HeroSection() {
 
         {/* Sub */}
         <p
-          className="text-silver max-w-2xl text-[1.15rem] leading-relaxed mt-9 mx-auto anim-rise"
+          className="text-silver max-w-2xl text-[1.15rem] leading-relaxed mt-9 lg:mt-7 mx-auto anim-rise"
           style={{ animationDelay: "0.5s" }}
         >
           We place only qualified, background-checked, rigorously trained
@@ -111,7 +113,7 @@ export default function HeroSection() {
 
         {/* CTAs */}
         <div
-          className="flex flex-col sm:flex-row gap-4 mt-11 justify-center anim-rise"
+          className="flex flex-col sm:flex-row gap-4 mt-11 lg:mt-8 justify-center anim-rise"
           style={{ animationDelay: "0.6s" }}
         >
           <Link href="/contact#request-form" className="btn-light group">

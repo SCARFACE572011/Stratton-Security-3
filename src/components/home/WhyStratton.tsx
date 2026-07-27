@@ -32,7 +32,7 @@ export default function WhyStratton() {
               className="display-title text-[#040d1e] mb-7"
               style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)" }}
             >
-              The Standard of Protective Excellence
+              Protection Built Around You
             </h2>
             <p className="text-[#4b5563] text-lg leading-relaxed mb-10 max-w-md">
               We don&apos;t offer generic security templates. Every Stratton program

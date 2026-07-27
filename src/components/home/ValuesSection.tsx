@@ -4,13 +4,6 @@ import { m, useReducedMotion } from "framer-motion";
 import { Shield, Eye, Scale, ShieldCheck } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
 
-const CERTIFICATIONS = [
-  { title: "CA PPO License", value: `#${SITE_CONFIG.licenseNumber}`, sub: "Bureau of Security & Investigative Services" },
-  { title: "TEAM Certified", value: "BSIS", sub: "Techniques for Effective Alcohol Management" },
-  { title: "First Aid & CPR", value: "Certified", sub: "All active officers" },
-  { title: "Power to Arrest", value: "Certified", sub: "Full compliance program" },
-];
-
 // Pair each core value with an icon + descriptor, keyed off SITE_CONFIG.values.
 const VALUE_META: Record<string, { Icon: typeof Shield; line: string }> = {
   Strength: { Icon: Shield, line: "The presence and resolve of officers drawn from military and law-enforcement service." },
@@ -31,7 +24,7 @@ export default function ValuesSection() {
   });
 
   return (
-    <section className="section-padding bg-platinum-50" aria-label="Our values and certifications">
+    <section className="section-padding bg-platinum-50" aria-label="Our values and compliance">
       <div className="container-wide">
         {/* Centered editorial header */}
         <m.div {...reveal()} className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
@@ -44,7 +37,8 @@ export default function ValuesSection() {
             {SITE_CONFIG.mission}
           </h2>
           <p className="text-[#4b5563] text-lg leading-relaxed mt-7 max-w-2xl mx-auto">
-            {SITE_CONFIG.brand_promise}
+            Three principles shape every officer we deploy and every call made on
+            post — the foundation beneath the way Stratton protects.
           </p>
         </m.div>
 
@@ -84,33 +78,14 @@ export default function ValuesSection() {
           &ldquo;{SITE_CONFIG.vision}&rdquo;
         </m.p>
 
-        {/* Credentials — centered subheader + modern white cards */}
-        <m.div {...reveal()} className="max-w-2xl mx-auto text-center mb-12">
-          <p className="label-overline mb-6">Credentials &amp; Compliance</p>
-          <span className="accent-line mx-auto" />
-        </m.div>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
-          {CERTIFICATIONS.map((cert, i) => (
-            <m.div
-              key={cert.title}
-              {...reveal(i * 0.08)}
-              className="card card-static flex flex-col p-8"
-            >
-              <span className="inline-flex items-center justify-center w-12 h-12 rounded-xl border border-platinum bg-platinum-50 text-accent mb-6">
-                <ShieldCheck size={22} strokeWidth={1.75} />
-              </span>
-              <p className="text-[0.6875rem] text-steel tracking-[0.18em] uppercase mb-2">{cert.title}</p>
-              <p className="font-[var(--font-display)] text-2xl text-white mb-3">{cert.value}</p>
-              <p className="text-[0.8125rem] text-[#4b5563] leading-relaxed">{cert.sub}</p>
-            </m.div>
-          ))}
-        </div>
-
-        {/* Insurance / compliance note — compact bar with icon */}
+        {/* Insurance / compliance note — compact bar with icon.
+            Detailed training credentials (TEAM/BSIS, First Aid & CPR, Power to
+            Arrest) live on the /training page; the homepage already carries
+            proof in TrustBar + StatsSection, so this keeps a single, specific
+            compliance line instead of a third stat grid. */}
         <m.div
           {...reveal(0.1)}
-          className="card card-static max-w-4xl mx-auto mt-8 p-6 md:p-7 flex items-start gap-4 md:gap-5 text-left border-l-2 border-l-[#3f6bb0]"
+          className="card card-static max-w-4xl mx-auto p-6 md:p-7 flex items-start gap-4 md:gap-5 text-left border-l-2 border-l-[#3f6bb0]"
         >
           <span className="shrink-0 inline-flex items-center justify-center w-11 h-11 rounded-xl border border-platinum bg-platinum-50 text-accent">
             <ShieldCheck size={20} strokeWidth={1.75} />
