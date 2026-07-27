@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Phone, MessageSquare } from "lucide-react";
-import { SITE_CONFIG } from "@/lib/constants";
 import CallLink from "@/components/shared/CallLink";
 
 export default function MobileStickyBar() {
