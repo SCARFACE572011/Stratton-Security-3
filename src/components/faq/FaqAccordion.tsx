@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Plus } from "lucide-react";
-import { AnimatePresence, m, useReducedMotion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -89,24 +89,23 @@ export default function FaqAccordion({ faqs, phone, phoneE164 }: FaqAccordionPro
                   </button>
                 </h3>
 
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <m.div
-                      id={panelId}
-                      role="region"
-                      aria-labelledby={buttonId}
-                      initial={shouldReduceMotion ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={shouldReduceMotion ? { height: "auto", opacity: 0 } : { height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: EASE }}
-                      className="overflow-hidden"
-                    >
-                      <p className="px-7 md:px-8 pb-7 md:pb-8 -mt-1 text-[0.9375rem] md:text-base text-[#4b5563] leading-relaxed">
-                        {item.a}
-                      </p>
-                    </m.div>
-                  )}
-                </AnimatePresence>
+                {/* The answer stays MOUNTED and collapses via grid-template-rows
+                    0fr→1fr. A conditional mount kept 15 of 16 answers out of the
+                    server HTML while the page's FAQPage JSON-LD asserted all of
+                    them — a schema/DOM mismatch. Same fix as ServiceAreaContent. */}
+                <div
+                  id={panelId}
+                  role="region"
+                  aria-labelledby={buttonId}
+                  className="grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
+                  style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+                >
+                  <div className="overflow-hidden">
+                    <p className="px-7 md:px-8 pb-7 md:pb-8 -mt-1 text-[0.9375rem] md:text-base text-[#4b5563] leading-relaxed">
+                      {item.a}
+                    </p>
+                  </div>
+                </div>
               </m.div>
             );
           })}

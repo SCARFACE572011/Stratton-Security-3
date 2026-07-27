@@ -12,6 +12,18 @@ const securityHeaders = [
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), browsing-topics=()" },
 ];
 
+// 301s from the previous Squarespace site (DNS cutover 2026-07-22). Any old URL
+// left 404ing throws away the backlinks and residual index entries pointing at
+// it — costly on a domain this new. Paths below were recovered from the Wayback
+// CDX index and each was confirmed returning 404 on the live site.
+// To extend: Search Console -> Pages -> "Not found (404)" lists any others real
+// users/crawlers still hit. Never bulk-redirect unknown paths to "/" — Google
+// treats that as a soft 404.
+const legacyRedirects = [
+  { source: "/contact-us", destination: "/contact", permanent: true },
+  { source: "/estate-security", destination: "/industries/estates", permanent: true },
+];
+
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
@@ -21,6 +33,11 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 2678400,
+  },
+  async redirects() {
+    return legacyRedirects;
   },
   async headers() {
     return [

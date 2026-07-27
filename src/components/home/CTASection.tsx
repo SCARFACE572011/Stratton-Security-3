@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Phone, ArrowRight } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
 import { SITE_CONFIG } from "@/lib/constants";
+import CallLink from "@/components/shared/CallLink";
 
 // Wall of CCTV cameras — reads as dark security texture under the navy overlay.
 const CTA_BG =
@@ -126,10 +127,10 @@ export default function CTASection({
                 className="transition-transform group-hover:translate-x-1"
               />
             </Link>
-            <a href={`tel:${SITE_CONFIG.phoneE164}`} className="btn-on-dark">
+            <CallLink location="closing-cta" className="btn-on-dark">
               <Phone size={16} />
               {SITE_CONFIG.phone}
-            </a>
+            </CallLink>
           </m.div>
 
           {/* Credential strip */}

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Phone, MessageSquare } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
+import CallLink from "@/components/shared/CallLink";
 
 export default function MobileStickyBar() {
   const [visible, setVisible] = useState(false);
@@ -23,13 +24,13 @@ export default function MobileStickyBar() {
       aria-label="Quick contact"
     >
       <div className="flex border-t border-[rgba(192,200,212,0.16)] bg-[#040d1e] pb-[env(safe-area-inset-bottom)]">
-        <a
-          href={`tel:${SITE_CONFIG.phoneE164}`}
+        <CallLink
+          location="mobile-sticky-bar"
           className="flex-1 flex items-center justify-center gap-2 py-3.5 text-[0.75rem] font-bold uppercase tracking-[0.08em] text-white border-r border-[rgba(192,200,212,0.16)] hover:bg-[#11264a] transition-colors"
         >
           <Phone size={15} className="text-[#3f6bb0]" />
           Call Now
-        </a>
+        </CallLink>
         <Link
           href="/contact#request-form"
           className="flex-1 flex items-center justify-center gap-2 py-3.5 text-[0.75rem] font-bold uppercase tracking-[0.08em] bg-[#1a3a6b] text-white hover:bg-[#224a86] transition-colors"

@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { Phone, Mail, MapPin, ArrowRight, ShieldCheck } from "lucide-react";
-import { SITE_CONFIG, SERVICES } from "@/lib/constants";
+import {
+  SITE_CONFIG,
+  SERVICES,
+  SERVICE_AREAS,
+  INDUSTRIES,
+  RESOURCES,
+} from "@/lib/constants";
 
 const COMPANY_LINKS = [
   { label: "About Us", href: "/about" },
@@ -8,6 +14,7 @@ const COMPANY_LINKS = [
   { label: "Industries", href: "/industries" },
   { label: "Service Areas", href: "/service-areas" },
   { label: "Training", href: "/training" },
+  { label: "Guides & Insights", href: "/resources" },
   { label: "Contact", href: "/contact" },
   { label: "FAQ", href: "/faq" },
 ];
@@ -130,6 +137,62 @@ export default function Footer() {
               />
             </Link>
           </div>
+        </div>
+      </div>
+
+      {/* Coverage band — every city, industry and guide linked from every page.
+          The desktop nav renders these inside a JS-mounted dropdown, so they are
+          absent from the server HTML; AI crawlers in particular often don't run
+          JS. This band is the crawlable, always-visible link graph. */}
+      <div className="border-t border-[rgba(192,200,212,0.12)]">
+        <div className="container-wide py-10 md:py-12 space-y-8">
+          <nav aria-label="Footer — service areas">
+            <p className="label-overline-light mb-4">Security Services By Area</p>
+            <ul className="flex flex-wrap gap-x-5 gap-y-2">
+              {SERVICE_AREAS.map((area) => (
+                <li key={area.slug}>
+                  <Link
+                    href={`/service-areas/${area.slug}`}
+                    className="text-[0.8125rem] text-silver transition-colors hover:text-white"
+                  >
+                    Security in {area.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav aria-label="Footer — industries">
+            <p className="label-overline-light mb-4">Industries We Protect</p>
+            <ul className="flex flex-wrap gap-x-5 gap-y-2">
+              {INDUSTRIES.map((industry) => (
+                <li key={industry.slug}>
+                  <Link
+                    href={`/industries/${industry.slug}`}
+                    className="text-[0.8125rem] text-silver transition-colors hover:text-white"
+                  >
+                    {industry.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav aria-label="Footer — guides">
+            <p className="label-overline-light mb-4">Guides &amp; Insights</p>
+            <ul className="flex flex-wrap gap-x-5 gap-y-2">
+              {RESOURCES.map((resource) => (
+                <li key={resource.slug}>
+                  <Link
+                    href={`/resources/${resource.slug}`}
+                    className="text-[0.8125rem] text-silver transition-colors hover:text-white"
+                  >
+                    {resource.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </div>
 

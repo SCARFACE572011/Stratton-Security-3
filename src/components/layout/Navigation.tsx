@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { m, AnimatePresence, useReducedMotion } from "framer-motion";
 import { SITE_CONFIG, NAV_ITEMS } from "@/lib/constants";
+import CallLink from "@/components/shared/CallLink";
 import { cn } from "@/lib/utils";
 
 function SealMark({ className = "" }: { className?: string }) {
@@ -215,13 +216,13 @@ export default function Navigation() {
 
             {/* CTA + Mobile Toggle */}
             <div className="flex items-center gap-2 xl:gap-3">
-              <a
-                href={`tel:${SITE_CONFIG.phoneE164}`}
+              <CallLink
+                location="header"
                 className="hidden min-[1400px]:flex items-center gap-2 text-silver hover:text-white text-[0.82rem] font-medium tracking-[0.01em] whitespace-nowrap transition-colors"
               >
                 <Phone size={15} />
                 {SITE_CONFIG.phone}
-              </a>
+              </CallLink>
               <Link
                 href="/contact#request-form"
                 className="hidden md:inline-flex btn-light text-[0.75rem] px-4 xl:px-5 py-3 whitespace-nowrap"
@@ -231,13 +232,13 @@ export default function Navigation() {
               {/* Below 1400px the header phone text is hidden — keep a one-tap call
                   button visible above the fold (the #1 conversion action on mobile),
                   compact enough that the header row never overflows. */}
-              <a
-                href={`tel:${SITE_CONFIG.phoneE164}`}
+              <CallLink
+                location="header-icon"
                 aria-label={`Call ${SITE_CONFIG.phone}`}
                 className="min-[1400px]:hidden p-2 text-silver hover:text-white transition-colors"
               >
                 <Phone size={20} />
-              </a>
+              </CallLink>
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
                 className="xl:hidden p-2 text-silver hover:text-white transition-colors"

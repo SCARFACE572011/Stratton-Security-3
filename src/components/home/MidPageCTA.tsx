@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Phone, ArrowRight, ShieldCheck } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
 import { SITE_CONFIG } from "@/lib/constants";
+import CallLink from "@/components/shared/CallLink";
 
 /**
  * Mid-page nudge — deliberately a LIGHT, compact strip, not a second hero.
@@ -45,10 +46,10 @@ export default function MidPageCTA() {
               Request Free Assessment
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
-            <a href={`tel:${SITE_CONFIG.phoneE164}`} className="btn-on-dark">
+            <CallLink location="mid-page-cta" className="btn-on-dark">
               <Phone size={16} />
               {SITE_CONFIG.phone}
-            </a>
+            </CallLink>
           </div>
         </m.div>
       </div>

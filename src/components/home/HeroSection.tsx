@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
 import { m, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { SITE_CONFIG } from "@/lib/constants";
+import CallLink from "@/components/shared/CallLink";
 
 const HEADLINE = ["Strength.", "Vigilance.", "Integrity."];
 
@@ -120,10 +121,10 @@ export default function HeroSection() {
             Request a Free Assessment
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </Link>
-          <a href={`tel:${SITE_CONFIG.phoneE164}`} className="btn-on-dark">
+          <CallLink location="hero" className="btn-on-dark">
             <Phone size={16} />
             {SITE_CONFIG.phone}
-          </a>
+          </CallLink>
         </div>
 
         {/* Response-time promise — the strongest conversion lever, kept beside the CTAs.
