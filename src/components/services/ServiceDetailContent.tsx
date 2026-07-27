@@ -15,8 +15,9 @@ import {
   Check,
 } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
-import { SITE_CONFIG, SERVICE_AREAS } from "@/lib/constants";
+import { SITE_CONFIG, SERVICE_AREAS, FACTS } from "@/lib/constants";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import KeyFacts from "@/components/shared/KeyFacts";
 
 const ICON_MAP = {
   Shield,
@@ -85,6 +86,17 @@ export default function ServiceDetailContent({
     viewport: { once: true, margin: "-80px" },
     transition: { duration: 0.7, delay: shouldReduceMotion ? 0 : delay, ease: EASE },
   });
+
+  // Answer-first facts: 2 service-specific capabilities blended with the shared,
+  // extractable FACTS an AI answer engine looks for (deploy speed, licensing,
+  // 24/7 ops). Kept out of a framer reveal so it's in the static HTML.
+  const keyFacts = [
+    `${service.title} for Los Angeles & Southern California properties`,
+    ...service.capabilities.slice(0, 2),
+    FACTS.deployStandard,
+    `${FACTS.compliance} — ${FACTS.license}`,
+    FACTS.opsCenter,
+  ];
 
   return (
     <main>
@@ -160,6 +172,11 @@ export default function ServiceDetailContent({
       {/* ── Long description + consultation sidebar ──────────── */}
       <section className="section-padding bg-white">
         <div className="container-wide">
+          {/* Answer-first "at a glance" box — first extractable block after the
+              hero, for AI answer engines and skimmers. */}
+          <div className="mx-auto mb-14 max-w-3xl md:mb-16">
+            <KeyFacts facts={keyFacts} title={`${service.title} — at a glance`} />
+          </div>
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             <m.div {...reveal()} className="lg:col-span-7">
               <p className="label-overline mb-6">Overview</p>

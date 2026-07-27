@@ -35,12 +35,37 @@ export const SITE_CONFIG = {
     instagram: "https://www.instagram.com/stratton.security/",
     facebook: "https://www.facebook.com/p/Stratton-Security-100067025670413",
     twitter: "https://x.com/STRATTONSCGROUP",
-    linkedin: "", // TODO: confirm LinkedIn URL
+    // Entity `sameAs` links. Empty ones are filtered out of the schema, so they
+    // are safe to leave blank — but every one that IS set must be Stratton's own
+    // verified profile (a wrong sameAs points Google/LLMs at the wrong entity).
+    linkedin: "", // TODO client: LinkedIn company page URL
+    yelp: "", // TODO client: Yelp business URL
+    gbp: "", // TODO client: Google Business Profile share link (g.page / maps short URL)
+    bbb: "", // TODO client: BBB profile URL
+    bark: "", // TODO client: Bark.com profile URL
   },
   values: ["Strength", "Vigilance", "Integrity"],
   heroVideoSrc: "", // TODO: obtain direct video URL from Squarespace CDN or client
   heroPosterImage: "/images/hero-poster.svg", // TODO: replace with high-res photographic poster
 };
+
+/* ─── AEO / answer-engine facts ─────────────────────────────────────────────
+   Single source for the load-bearing, extractable facts that LLM answer engines
+   (ChatGPT/Perplexity/AI Overviews) and buyers look for. Every page's copy must
+   stay consistent with these — factual drift is what makes an answer engine
+   distrust and skip a source. Rates are LA MARKET ranges, never Stratton's own
+   quoted rates (kept identical to the cost guide). */
+export const FACTS = {
+  license: `CA PPO #${SITE_CONFIG.licenseNumber}`,
+  compliance: "Licensed, bonded & insured",
+  deployStandard: "Coverage typically live within 72 hours of signing",
+  deployUrgent: "Urgent deployments mobilized in under 24 hours",
+  advisorResponse: "Advisor response within one business day",
+  freeAssessment: "Free on-site security assessment",
+  opsCenter: "24/7/365 live operations center & supervision",
+  marketRateUnarmed: "$22–38/hour",
+  marketRateArmed: "$35–60+/hour",
+} as const;
 
 // The careers apply form + its API route both exempt this position from the
 // Guard Card requirement — single source so client/server validation can't drift.
