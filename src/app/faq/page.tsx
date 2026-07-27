@@ -85,7 +85,11 @@ export default async function FaqPage() {
         {/* FAQ accordion + advisor card */}
         <FaqAccordion faqs={FAQS} phone={SITE_CONFIG.phone} phoneE164={SITE_CONFIG.phoneE164} />
 
-        <CTASection />
+        <CTASection
+          eyebrow="Still Have Questions?"
+          title="Talk to a Stratton advisor"
+          lede="If your question isn't answered here, reach out directly — we'll walk you through licensing, pricing, deployment timing, and how a program would work for your property."
+        />
       </main>
       <Footer />
     </>

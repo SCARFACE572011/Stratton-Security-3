@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowRight, AlertTriangle, Target } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
+import { SERVICE_AREAS } from "@/lib/constants";
 import type { Industry, ServiceDetail } from "@/lib/constants";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -199,6 +200,30 @@ export default function IndustryDetailContent({
               </m.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Coverage strip — cross-link into the location pillar so industries
+          and service areas interlink (SEO + navigation). Compact by design. ── */}
+      <section className="bg-platinum-50">
+        <div className="container-wide py-14 md:py-16">
+          <m.div {...reveal()} className="text-center mb-8">
+            <p className="label-overline mb-3">Coverage</p>
+            <p className="text-[#4b5563] text-[1.0625rem]">
+              {industry.label} security across greater Los Angeles
+            </p>
+          </m.div>
+          <m.div {...reveal(0.08)} className="flex flex-wrap justify-center gap-2.5">
+            {SERVICE_AREAS.map((area) => (
+              <Link
+                key={area.slug}
+                href={`/service-areas/${area.slug}`}
+                className="card px-4 py-2 text-[0.8125rem] text-[#4b5563] transition-colors"
+              >
+                {area.name}
+              </Link>
+            ))}
+          </m.div>
         </div>
       </section>
     </>

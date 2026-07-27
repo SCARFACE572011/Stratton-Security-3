@@ -12,7 +12,20 @@ const CTA_BG =
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-export default function CTASection() {
+/**
+ * Closing CTA band. Copy is prop-driven so each page can end on a line that
+ * fits its context instead of the identical generic block everywhere; the
+ * defaults preserve the original homepage copy for any caller that omits them.
+ */
+export default function CTASection({
+  eyebrow = "Get Protected Today",
+  title = "Ready to secure your property?",
+  lede = "Request a complimentary security assessment and speak with a Stratton senior advisor. We'll build a program that fits your property, risk profile, and budget.",
+}: {
+  eyebrow?: string;
+  title?: string;
+  lede?: string;
+} = {}) {
   const shouldReduceMotion = useReducedMotion();
 
   const reveal = (delay: number) => ({
@@ -72,7 +85,7 @@ export default function CTASection() {
             className="label-overline-light mb-8 flex items-center justify-center gap-3"
           >
             <span className="inline-block w-8 h-px bg-[#3f6bb0]" />
-            Get Protected Today
+            {eyebrow}
             <span className="inline-block w-8 h-px bg-[#3f6bb0]" />
           </m.p>
 
@@ -82,7 +95,7 @@ export default function CTASection() {
             className="display-title text-white max-w-3xl mx-auto"
             style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.75rem)" }}
           >
-            Ready to secure your property?
+            {title}
           </m.h2>
 
           {/* Accent line under title */}
@@ -98,9 +111,7 @@ export default function CTASection() {
             {...reveal(0.2)}
             className="text-silver text-[1.15rem] leading-relaxed mt-8 max-w-2xl mx-auto"
           >
-            Request a complimentary security assessment and speak with a
-            Stratton senior advisor. We&apos;ll build a program that fits your
-            property, risk profile, and budget.
+            {lede}
           </m.p>
 
           {/* CTAs */}

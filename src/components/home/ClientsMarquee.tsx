@@ -11,12 +11,15 @@ const EDGE_FADE =
 
 function LogoTile({ name, file }: { name: string; file: string }) {
   return (
-    <div className="flex h-[88px] w-[200px] shrink-0 items-center justify-center rounded-2xl border border-black/5 bg-white px-7 shadow-[0_6px_20px_rgba(0,0,0,0.18)]">
+    <div className="group flex h-[88px] w-[200px] shrink-0 items-center justify-center rounded-2xl border border-black/5 bg-white px-7 shadow-[0_6px_20px_rgba(0,0,0,0.18)]">
+      {/* Grayscale (full opacity, so it stays legible on touch where there is
+          no hover) for a uniform, premium wall; true brand color returns on
+          hover so a logo is still recognizable on interaction. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={file}
         alt={name}
-        className="max-h-11 max-w-[150px] w-auto object-contain"
+        className="max-h-11 max-w-[150px] w-auto object-contain grayscale transition duration-300 group-hover:grayscale-0"
         loading="eager"
         decoding="async"
       />

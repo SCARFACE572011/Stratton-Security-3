@@ -100,7 +100,11 @@ export default async function IndustryDetailPage({
           otherIndustries={otherIndustries}
         />
 
-        <CTASection />
+        <CTASection
+          eyebrow="Get Protected"
+          title={`Security built for ${industry.label}.`}
+          lede={`Talk with a Stratton advisor about a protection program designed around the ${industry.label} sector and the specific risks it faces.`}
+        />
       </main>
       <Footer />
     </>

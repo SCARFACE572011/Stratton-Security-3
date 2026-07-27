@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  ArrowLeft,
   ArrowRight,
   Shield,
   ShieldCheck,
@@ -31,6 +30,25 @@ const ICON_MAP = {
 } as const;
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+
+// Interim per-service hero imagery (distinct stock, keyed by slug) so the
+// service pages stop sharing one identical photo. Every ID is already used
+// elsewhere in the repo, so all are known-good — no 404 risk. Slugs not listed
+// fall back to the neutral operations photo. TODO: replace with client
+// photography when it lands (see launch checklist).
+const DEFAULT_HERO = "photo-1557804506-669a67965ba0";
+const HERO_BY_SLUG: Record<string, string> = {
+  patrol: "photo-1558618666-fcd25c85cd64", // officer on patrol
+  "guard-services": "photo-1541888946425-d81bb19240f5", // security professional on duty
+  "fire-watch": "photo-1557597774-9d273605dfa9", // CCTV / continuous monitoring
+  "commercial-real-estate": "photo-1486406146926-c627a92ad1ab", // dark glass corporate towers
+  residential: "photo-1444723121867-7a241cacace9", // LA skyline at night
+  hospitality: "photo-1486325212027-8081e485255e", // city skyline at night
+  corporate: "photo-1550751827-4bd374c3f58b", // professional protective team
+  events: "photo-1526374965328-7f61d4dc18c5", // crowd / people
+};
+const heroUrl = (slug: string) =>
+  `https://images.unsplash.com/${HERO_BY_SLUG[slug] ?? DEFAULT_HERO}?auto=format&fit=crop&w=1920&q=80`;
 
 type Service = {
   title: string;
@@ -73,7 +91,7 @@ export default function ServiceDetailContent({
       {/* ── Hero ─────────────────────────────────────────────── */}
       <div className="page-hero" style={{ minHeight: "62vh" }}>
         <Image
-          src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1920&q=80"
+          src={heroUrl(service.slug)}
           alt={service.title}
           fill
           className="object-cover object-center"
@@ -366,28 +384,23 @@ export default function ServiceDetailContent({
         </div>
       </section>
 
-      {/* ── Service areas (contextual internal links to the city pages) ── */}
-      <section className="section-padding bg-platinum-50">
-        <div className="container-wide">
-          <m.div
-            {...reveal()}
-            className="max-w-2xl mx-auto text-center mb-12 md:mb-16"
-          >
-            <p className="label-overline mb-6">Coverage</p>
-            <span className="accent-line mx-auto mb-8" aria-hidden="true" />
-            <h2
-              className="display-title text-[#040d1e]"
-              style={{ fontSize: "clamp(2rem, 4vw, 3.25rem)" }}
-            >
-              Where We Deliver This Program
-            </h2>
+      {/* ── Coverage strip — compact internal links to the city pages (SEO).
+          Deliberately a light band, not a full section-padding block, so the
+          page tail doesn't stack four hero-height sections before the CTA. ── */}
+      <section className="bg-platinum-50">
+        <div className="container-wide py-14 md:py-16">
+          <m.div {...reveal()} className="text-center mb-8">
+            <p className="label-overline mb-3">Coverage</p>
+            <p className="text-[#4b5563] text-[1.0625rem]">
+              {service.title} across greater Los Angeles
+            </p>
           </m.div>
-          <m.div {...reveal(0.08)} className="flex flex-wrap justify-center gap-3">
+          <m.div {...reveal(0.08)} className="flex flex-wrap justify-center gap-2.5">
             {SERVICE_AREAS.map((area) => (
               <Link
                 key={area.slug}
                 href={`/service-areas/${area.slug}`}
-                className="card px-5 py-3 text-[0.875rem] text-[#4b5563] hover:text-[#0a0a0a] transition-colors"
+                className="card px-4 py-2 text-[0.8125rem] text-[#4b5563] transition-colors"
               >
                 {service.title} in {area.name}
               </Link>

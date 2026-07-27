@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, MapPin, Building2, Check } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
 import { SITE_CONFIG, SERVICE_AREAS } from "@/lib/constants";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -78,6 +79,7 @@ export default function ServiceAreasContent({
             transition={{ duration: 0.8, ease: EASE }}
             className="max-w-3xl"
           >
+            <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Service Areas" }]} />
             <p className="label-overline-light mb-6">Where We Operate</p>
             <h1
               className="display-hero text-white"

@@ -152,7 +152,7 @@ export default function Navigation() {
                         setActiveDropdown(activeDropdown === item.label ? null : item.label)
                       }
                       className={cn(
-                        "flex items-center gap-1 px-1.5 xl:px-2.5 py-2 text-[0.78rem] font-semibold tracking-[0.06em] uppercase transition-colors",
+                        "flex items-center gap-1 px-1.5 xl:px-2.5 py-2 text-[0.78rem] font-semibold tracking-[0.06em] uppercase whitespace-nowrap transition-colors",
                         isItemActive(item) ? "text-white" : "text-silver hover:text-white"
                       )}
                       aria-expanded={activeDropdown === item.label}

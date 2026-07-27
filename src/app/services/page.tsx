@@ -21,7 +21,11 @@ export default function ServicesPage() {
       ]} />
       <Navigation />
       <ServicesPageContent />
-      <CTASection />
+      <CTASection
+        eyebrow="Start Your Program"
+        title="Ready to build your security program?"
+        lede="Tell us about your property and a Stratton advisor will recommend the right mix of officers, patrol, and coverage — free assessment, no obligation."
+      />
       <Footer />
     </>
   );

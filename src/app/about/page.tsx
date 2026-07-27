@@ -65,7 +65,11 @@ export default async function AboutPage() {
 
         <AboutContent barkReviews={barkReviews} />
 
-        <CTASection />
+        <CTASection
+          eyebrow="Work With Us"
+          title="Ready to work with Stratton?"
+          lede="Partner with a Los Angeles security team built on discipline, vigilance, and integrity. Request a free assessment and speak with a senior advisor."
+        />
       </main>
       <Footer />
     </>

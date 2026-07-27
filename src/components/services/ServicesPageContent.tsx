@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
 import { SERVICES } from "@/lib/constants";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 
 const ICON_MAP = {
   Shield,
@@ -75,6 +76,7 @@ export default function ServicesPageContent() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#040d1e]/80 to-transparent" />
 
         <div className="relative z-10 container-wide pb-20 pt-32">
+          <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Services" }]} />
           <m.p
             initial={shouldReduceMotion ? {} : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}

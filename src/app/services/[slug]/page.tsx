@@ -59,7 +59,11 @@ export default async function ServiceDetailPage({
         relatedIndustries={relatedIndustries}
         otherServices={otherServices}
       />
-      <CTASection />
+      <CTASection
+        eyebrow="Get Started"
+        title={`Ready to deploy ${service.title}?`}
+        lede={`Request a free assessment and speak with a Stratton advisor about a ${service.title} program tailored to your property, risk profile, and budget.`}
+      />
       <Footer />
     </>
   );

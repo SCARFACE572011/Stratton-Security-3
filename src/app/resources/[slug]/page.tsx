@@ -166,7 +166,11 @@ export default async function ResourceArticlePage({
           </section>
         )}
 
-        <CTASection />
+        <CTASection
+          eyebrow="Put It Into Practice"
+          title="Ready to put this into practice?"
+          lede="Move from reading to a real plan — request a free assessment and a Stratton advisor will apply it to your property."
+        />
       </main>
       <Footer />
     </>

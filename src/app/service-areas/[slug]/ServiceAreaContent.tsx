@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, AlertTriangle, MapPin, Plus } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
+import { INDUSTRIES } from "@/lib/constants";
 import type { ServiceArea, ServiceDetail } from "@/lib/constants";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -306,6 +307,30 @@ export default function ServiceAreaContent({
               </m.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Industries strip — cross-link into the industry pillar so service
+          areas and industries interlink (SEO + navigation). Compact by design. ── */}
+      <section className="bg-platinum-50">
+        <div className="container-wide py-14 md:py-16">
+          <m.div {...reveal()} className="text-center mb-8">
+            <p className="label-overline mb-3">Sectors</p>
+            <p className="text-[#4b5563] text-[1.0625rem]">
+              Industries we protect in {area.name}
+            </p>
+          </m.div>
+          <m.div {...reveal(0.08)} className="flex flex-wrap justify-center gap-2.5">
+            {INDUSTRIES.map((industry) => (
+              <Link
+                key={industry.slug}
+                href={`/industries/${industry.slug}`}
+                className="card px-4 py-2 text-[0.8125rem] text-[#4b5563] transition-colors"
+              >
+                {industry.label}
+              </Link>
+            ))}
+          </m.div>
         </div>
       </section>
     </>

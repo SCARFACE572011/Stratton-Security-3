@@ -2,6 +2,7 @@ import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import CTASection from "@/components/home/CTASection";
 import IndustriesGrid from "@/components/industries/IndustriesGrid";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import Image from "next/image";
 import { BreadcrumbSchema } from "@/app/schema";
 import type { Metadata } from "next";
@@ -35,6 +36,7 @@ export default function IndustriesPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#040d1e]/75 to-transparent" />
 
           <div className="relative z-10 container-wide pb-20 pt-32">
+            <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Industries" }]} />
             <p className="label-overline-light mb-6">Industry Expertise</p>
             <span className="accent-line mb-7" style={{ background: "#3f6bb0" }} aria-hidden="true" />
             <h1
@@ -54,7 +56,10 @@ export default function IndustriesPage() {
         {/* Industry grid (white) */}
         <IndustriesGrid />
 
-        <CTASection />
+        <CTASection
+          title="Protecting every sector — including yours."
+          lede="Whatever your industry, Stratton builds a program around its specific risk landscape. Request a free assessment and speak with a senior advisor."
+        />
       </main>
       <Footer />
     </>

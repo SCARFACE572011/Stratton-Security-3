@@ -4,6 +4,7 @@ import CTASection from "@/components/home/CTASection";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { RESOURCES } from "@/lib/constants";
+import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import { BreadcrumbSchema } from "@/app/schema";
 import type { Metadata } from "next";
 
@@ -45,6 +46,7 @@ export default function ResourcesPage() {
           </div>
           <div className="relative z-10 container-wide">
             <div className="max-w-3xl">
+              <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Guides" }]} />
               <p className="label-overline-light mb-6">Guides &amp; Insights</p>
               <h1 className="display-hero text-white" style={{ fontSize: "clamp(2.75rem, 6.5vw, 5rem)" }}>
                 Security Guides &amp; Insights
@@ -84,7 +86,11 @@ export default function ResourcesPage() {
           </div>
         </section>
 
-        <CTASection />
+        <CTASection
+          eyebrow="Put It Into Practice"
+          title="Ready to put this into practice?"
+          lede="Move from reading to a real plan — request a free assessment and a Stratton advisor will apply it to your property."
+        />
       </main>
       <Footer />
     </>

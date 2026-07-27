@@ -88,7 +88,7 @@ export const NAV_ITEMS = [
     ],
   },
   {
-    label: "Locations",
+    label: "Service Areas",
     href: "/service-areas",
     children: [
       { label: "Beverly Hills", href: "/service-areas/beverly-hills" },

@@ -111,7 +111,11 @@ export default async function ServiceAreaPage({
         </div>
 
         <ServiceAreaContent area={area} relatedServices={relatedServices} otherAreas={otherAreas} />
-        <CTASection />
+        <CTASection
+          eyebrow="Local Coverage"
+          title={`Ready for security in ${area.name}?`}
+          lede={`Request a free on-site assessment and a Stratton advisor will build a program for your ${area.name} property — with response within one business day.`}
+        />
       </main>
       <Footer />
     </>
