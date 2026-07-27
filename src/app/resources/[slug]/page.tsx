@@ -8,6 +8,7 @@ import { RESOURCES } from "@/lib/constants";
 import { metaDescription } from "@/lib/utils";
 import { BreadcrumbSchema } from "@/app/schema";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import KeyFacts from "@/components/shared/KeyFacts";
 import type { Metadata } from "next";
 
 export function generateStaticParams() {
@@ -53,7 +54,24 @@ export default async function ResourceArticlePage({
       logo: { "@type": "ImageObject", url: "https://strattonsecuritygroup.com/brand/seal.png" },
     },
     mainEntityOfPage: `https://strattonsecuritygroup.com/resources/${article.slug}`,
+    // Answer engines and AI Overviews favour dated, maintained content.
+    ...(article.datePublished ? { datePublished: article.datePublished } : {}),
+    ...(article.dateModified ? { dateModified: article.dateModified } : {}),
   };
+
+  // FAQPage LD mirrors the visible Q&A block below — the answers must stay in
+  // the server-rendered HTML for the markup/DOM contract to hold.
+  const faqLd = article.faqs?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: article.faqs.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      }
+    : null;
 
   return (
     <>
@@ -67,6 +85,9 @@ export default async function ResourceArticlePage({
       <Navigation />
       <main>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }} />
+        {faqLd && (
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+        )}
 
         {/* Hero */}
         <section className="relative bg-deep-navy overflow-hidden border-b border-[rgba(192,200,212,0.16)] pt-32 pb-16 md:pt-40 md:pb-20">
@@ -103,7 +124,16 @@ export default async function ResourceArticlePage({
         <article className="section-padding bg-white">
           <div className="container-narrow">
             <p className="text-[1.15rem] leading-relaxed text-[#b7c2d1] mb-12 md:mb-16">{article.excerpt}</p>
-            {article.sections.map((s) => (
+
+            {/* Answer-first key takeaways — leads with the answer for readers
+                and for the answer engines that quote this page. */}
+            {article.tldr?.length ? (
+              <div className="mb-12 md:mb-16">
+                <KeyFacts facts={article.tldr} title="Key takeaways" />
+              </div>
+            ) : null}
+
+            {article.sections.map((s, si) => (
               <section key={s.heading} className="mb-12 md:mb-14">
                 <h2 className="display-sm text-[1.5rem] md:text-[1.75rem] text-[#0a0a0a] mb-5">{s.heading}</h2>
                 <div className="space-y-5">
@@ -113,8 +143,102 @@ export default async function ResourceArticlePage({
                     </p>
                   ))}
                 </div>
+                {s.table && (
+                  /* Real <table> markup — LLMs extract tabular data far more
+                     reliably than prose. The caption sits OUTSIDE the scroll
+                     container (a <caption> takes the table's full width, so on
+                     mobile its text would be clipped inside the scroller) and is
+                     wired to the table via aria-labelledby. The scroller is
+                     focusable so keyboard users can reach the off-screen
+                     columns (axe: scrollable-region-focusable). */
+                  <div className="mt-8">
+                    {s.table.caption && (
+                      <p
+                        id={`tbl-${si}`}
+                        className="mb-4 text-[0.8125rem] leading-relaxed text-steel"
+                      >
+                        {s.table.caption}
+                      </p>
+                    )}
+                    <div
+                      tabIndex={0}
+                      role="region"
+                      aria-label={s.table.caption ? undefined : `${s.heading} table`}
+                      aria-labelledby={s.table.caption ? `tbl-${si}` : undefined}
+                      className="overflow-x-auto"
+                    >
+                      <table className="w-full min-w-[34rem] border-collapse text-left text-[0.9375rem]">
+                        <thead>
+                          <tr>
+                            {s.table.headers.map((h, hi) =>
+                              /* An empty header string is a spacer above the row-header
+                                 column — emit <td>, not an empty <th> (axe: empty-table-header). */
+                              h ? (
+                                <th
+                                  key={h}
+                                  scope="col"
+                                  className="border-b border-platinum px-4 py-3 align-bottom font-display text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-[#0a0a0a]"
+                                >
+                                  {h}
+                                </th>
+                              ) : (
+                                <td key={`sp-${hi}`} className="border-b border-platinum px-4 py-3" />
+                              )
+                            )}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {s.table.rows.map((row) => (
+                            <tr key={row[0]}>
+                              {row.map((cell, ci) =>
+                                /* First cell is the row header — <th scope="row"> so a
+                                   screen reader announces row context with each value. */
+                                ci === 0 ? (
+                                  <th
+                                    key={ci}
+                                    scope="row"
+                                    className="border-b border-platinum px-4 py-3.5 text-left align-top font-semibold text-[#0a0a0a]"
+                                  >
+                                    {cell}
+                                  </th>
+                                ) : (
+                                  <td
+                                    key={ci}
+                                    className="border-b border-platinum px-4 py-3.5 align-top leading-relaxed text-[#4b5563]"
+                                  >
+                                    {cell}
+                                  </td>
+                                )
+                              )}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                )}
               </section>
             ))}
+
+            {/* Visible Q&A — mirrors the FAQPage JSON-LD above. Always rendered
+                open in the HTML so the markup and the DOM agree. */}
+            {article.faqs?.length ? (
+              <section className="mb-12 md:mb-14">
+                <h2 className="display-sm text-[1.5rem] md:text-[1.75rem] text-[#0a0a0a] mb-7">
+                  Frequently Asked Questions
+                </h2>
+                <div className="space-y-8">
+                  {article.faqs.map((f) => (
+                    <div key={f.q}>
+                      <h3 className="text-[1.0625rem] font-semibold text-[#0a0a0a] mb-2.5">
+                        {f.q}
+                      </h3>
+                      <p className="text-[1.0625rem] leading-relaxed text-[#4b5563]">{f.a}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            ) : null}
 
             {/* inline CTA */}
             <div className="card-dark rounded-xl p-8 md:p-10 mt-16">

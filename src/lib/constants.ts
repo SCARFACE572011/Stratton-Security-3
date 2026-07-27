@@ -1123,13 +1123,31 @@ export const SERVICE_AREAS: ServiceArea[] = [
 ];
 
 /* ─── RESOURCES / GUIDES (evergreen articles) ─────────────────────────────── */
+// A comparison table inside a guide section. Rendered as real <table> markup —
+// answer engines extract tabular data at far higher fidelity than prose.
+export type ResourceTable = {
+  caption?: string;
+  headers: string[];
+  rows: string[][];
+};
+
 export type Resource = {
   slug: string;
   title: string;
   category: string;
   excerpt: string;
   readTime: string;
-  sections: { heading: string; body: string[] }[];
+  // AEO: answer-first key-takeaways, rendered above the body so the page leads
+  // with the answer rather than burying it.
+  tldr?: string[];
+  // Article JSON-LD dates. Answer engines and AI Overviews favour dated,
+  // maintained content — bump dateModified whenever figures are refreshed.
+  datePublished?: string;
+  dateModified?: string;
+  sections: { heading: string; body: string[]; table?: ResourceTable }[];
+  // Rendered as a visible Q&A block AND emitted as FAQPage JSON-LD, so the
+  // question/answer pairs are extractable by LLMs and search engines.
+  faqs?: { q: string; a: string }[];
 };
 
 export const RESOURCES: Resource[] = [
@@ -1138,8 +1156,40 @@ export const RESOURCES: Resource[] = [
     title: "How Much Do Security Guards Cost in Los Angeles?",
     category: "Pricing Guide",
     excerpt:
-      "Real Los Angeles market rates for armed and unarmed guards, the six factors that move your hourly bill, and how to compare quotes without getting burned by the cheapest one.",
-    readTime: "9 min read",
+      "Los Angeles market rates for armed and unarmed guards, what 24/7 coverage really costs per month, the most budget-friendly ways to secure a property, and how to compare quotes.",
+    readTime: "13 min read",
+    datePublished: "2026-07-22",
+    dateModified: "2026-07-27",
+    tldr: [
+      "Los Angeles market rates: unarmed officers typically $22–38/hour, armed officers $35–60+/hour.",
+      "The billed rate is not the guard's wage — it covers pay, payroll taxes, workers' comp, liability insurance, training, and supervision.",
+      "A 24/7 standing post is roughly 730 hours a month, so unarmed round-the-clock coverage lands near $16,000–27,700/month at market rates.",
+      "The most budget-friendly real option is usually mobile patrol — scheduled visits shared across a route cost a fraction of a standing post.",
+      "A quote far below market is a warning, not a bargain: something has to give, and it is usually wages, insurance, or supervision.",
+      "Exact pricing comes from a walkthrough. Stratton's on-site assessment is free and the proposal comes in writing.",
+    ],
+    faqs: [
+      {
+        q: "How much does a security guard cost per hour in Los Angeles?",
+        a: "Most reputable, properly licensed Los Angeles firms bill unarmed officers in the low-$20s to high-$30s per hour (roughly $22–38) and armed officers from the mid-$30s to $60 or more. Specialized assignments — executive protection, high-risk sites, off-duty-officer details — run higher. The billed rate covers the officer's wage plus payroll taxes, workers' compensation, liability insurance, training, and supervision, which is why it is meaningfully above the guard's take-home pay.",
+      },
+      {
+        q: "How much does 24/7 security cost per month in Los Angeles?",
+        a: "Round-the-clock coverage is 168 hours a week, or about 730 hours a month. At Los Angeles market rates that puts a 24/7 unarmed post near $16,000–27,700 per month, and a 24/7 armed post near $25,500–43,800. Those are market ranges to sanity-check proposals against, not a quote — your number depends on hours, post orders, and site risk.",
+      },
+      {
+        q: "What is the cheapest way to secure a business in Los Angeles?",
+        a: "The cheapest safe approach is right-sizing coverage rather than underpaying a guard. For most properties that means mobile patrol — a marked vehicle and uniformed officer making scheduled, randomized checks — combined with good lighting and cameras. Because a patrol route is shared across nearby properties, the per-property cost is a fraction of a dedicated post, and you still get documented visits and alarm response. Many properties add a part-time standing post only for their genuinely high-risk hours.",
+      },
+      {
+        q: "Why are some security quotes so much cheaper than others?",
+        a: "When a bid undercuts the market by a third, the savings come out of something you would have paid for on purpose: officer wages (which drives the turnover and no-show rates that plague low-cost operators), insurance coverage, training beyond the state minimum, or supervision. Verify the Private Patrol Operator license on the BSIS public lookup, request a Certificate of Insurance naming you as additional insured, and ask what the officer on your post will actually be paid.",
+      },
+      {
+        q: "Is mobile patrol worth it compared to cameras alone?",
+        a: "They solve different problems: cameras record an incident, patrols deter and respond to one. Footage is invaluable after the fact, but it does not stop a break-in in progress or walk a staff member to their car. Most well-designed budgets do both — cameras and lighting for coverage and evidence, patrol for physical presence and response.",
+      },
+    ],
     sections: [
       {
         heading: "What Security Guards Cost in Los Angeles Right Now",
@@ -1148,6 +1198,28 @@ export const RESOURCES: Resource[] = [
           "Treat any quote dramatically below that band as a warning rather than a bargain. An unarmed rate in the teens does not leave room to pay a guard legally in Los Angeles, carry real insurance, and supervise the post \u2014 something has to give, and it is usually the officer's wages, the insurance, or both. The Los Angeles market also moves with California's wage laws and insurance costs, so published numbers age quickly; use the ranges here to sanity-check proposals, not as a substitute for a written quote on your actual property.",
           "One structural note that surprises many first-time buyers: there is usually no per-guard equipment or setup fee for a standard post \u2014 the hourly rate is the price. Where you will see additional line items is in patrol vehicles, dedicated site vehicles, or technology add-ons like camera monitoring, and a good proposal will price those separately and transparently.",
         ],
+        table: {
+          caption: "Unarmed vs. armed officers at a glance (Los Angeles market)",
+          headers: ["", "Unarmed officer", "Armed officer"],
+          rows: [
+            ["Typical LA rate", "$22\u201338 / hour", "$35\u201360+ / hour"],
+            [
+              "Licensing required",
+              "BSIS guard card",
+              "Guard card plus BSIS Exposed Firearm Permit and firearm qualification",
+            ],
+            [
+              "Insurance impact",
+              "Standard liability exposure",
+              "Substantially higher exposure and premiums for the company",
+            ],
+            [
+              "Typically warranted for",
+              "Deterrence, access control, patrol, reporting \u2014 most commercial and residential property",
+              "Documented elevated threat, cash or high-value assets, specific credible risk",
+            ],
+          ],
+        },
       },
       {
         heading: "The Six Factors That Actually Move Your Rate",
@@ -1164,6 +1236,52 @@ export const RESOURCES: Resource[] = [
           "The verification steps take minutes and are worth doing on every bid: confirm the company's Private Patrol Operator license is active on the BSIS public lookup (Stratton operates under California PPO #122163, and any legitimate firm will hand you its number without being asked twice), request a current Certificate of Insurance naming you as additional insured, and ask what the officer on your post will actually be paid. That last question makes low-cost vendors visibly uncomfortable \u2014 which is precisely the point.",
           "There is also a liability arithmetic to the cheap bid. If an under-insured company's guard injures someone or fails to act on your property, the claim doesn't stay the vendor's problem. The few dollars an hour you saved can be dwarfed by a single incident that lands on your own policy \u2014 or your own balance sheet.",
         ],
+      },
+      {
+        heading: "What's the Most Affordable Way to Get Security in Los Angeles?",
+        body: [
+          "The honest answer is that the cheapest safe security is not a cheaper guard — it is the right amount of coverage. Underpaying for a standing post buys you a guard who is undertrained, unsupervised, and gone in a month. Right-sizing buys you presence where your property is actually exposed. So the first question is never “how low can the hourly rate go,” it is “how many hours do we genuinely need, and when?”",
+          "Think of it as a ladder. Cameras and lighting are the cheapest layer, but they record incidents rather than respond to them. Mobile patrol is the first layer with a human in it: a marked vehicle and uniformed officer making scheduled, deliberately randomized checks, with alarm response in between. Above that sits a part-time post covering only your genuinely high-risk hours, then a dedicated 24/7 unarmed post, and finally 24/7 armed coverage where a documented threat justifies it.",
+          "The table below converts the hourly market ranges above into monthly figures so you can match coverage to a budget. Each standing-post figure is simply the published hourly range multiplied by the hours that post actually works: about 730 hours a month for round-the-clock coverage (168 hours a week), and about 243 hours a month for an eight-hour nightly post. Run that same arithmetic on any proposal you receive — hourly rate times monthly hours — and you will immediately see whether a vendor's monthly number is plausible. One caveat on the part-time row: because total weekly volume is the biggest lever on rate, a lower-hour post typically prices toward the upper end of the hourly band rather than the lower.",
+          "Mobile patrol is quoted differently — per visit, or as a flat monthly rate for an agreed schedule — so it is priced from your visit frequency rather than an hourly headcount, and because the route is shared across nearby properties the per-property cost is a fraction of a standing post. That is why the patrol rows below describe how the billing works instead of quoting a monthly band; an honest figure there depends entirely on how often you want the property checked. Everything here is a market range for sanity-checking bids, not a Stratton quote — your written number comes from the walkthrough.",
+        ],
+        table: {
+          caption:
+            "Security coverage options — Los Angeles market ranges. Standing-post figures are the hourly ranges above multiplied by that post's monthly hours (~730 for 24/7, ~243 for an 8-hour nightly post). Patrol is billed by visit schedule, so its row describes the pricing structure rather than a monthly band.",
+          headers: ["Coverage option", "How it's priced", "Best suited to"],
+          rows: [
+            [
+              "Cameras and lighting only",
+              "Equipment and monitoring cost — no officer hours",
+              "Recording incidents and supporting investigations; no physical response",
+            ],
+            [
+              "Mobile patrol (scheduled nightly visits)",
+              "Quoted per visit or as a flat monthly rate — a fraction of a standing post, since the route is shared",
+              "HOAs, retail strips, office buildings, construction sites, vacant property",
+            ],
+            [
+              "Patrol plus alarm response",
+              "Billed per event or bundled into the patrol rate",
+              "Any property with monitored alarms",
+            ],
+            [
+              "Part-time post (8 hours nightly, unarmed)",
+              "~$5,300–9,300/month (~243 hrs — lower volume tends to price toward the top of the band)",
+              "Properties with defined high-risk hours rather than round-the-clock exposure",
+            ],
+            [
+              "24/7 unarmed post",
+              "~$16,000–27,700/month (~730 hrs)",
+              "Properties that need continuous standing presence",
+            ],
+            [
+              "24/7 armed post",
+              "~$25,500–43,800+/month (~730 hrs)",
+              "Documented elevated threat, cash handling, or high-value assets",
+            ],
+          ],
+        },
       },
       {
         heading: "Patrol Service: The Budget Alternative to a 24/7 Post",
