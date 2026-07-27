@@ -103,17 +103,12 @@ export default function Navigation() {
     };
   }, [mobileOpen]);
 
-  // Collapse submenus when the drawer closes; auto-open the section for the
-  // current route when it opens (e.g. on a /services page).
+  // Always open the drawer with every section collapsed so the full nav map
+  // (Services … Contact) is scannable in one screen. The active section is
+  // highlighted via isItemActive; auto-expanding it used to bury Contact and
+  // the CTA buttons on /services/* pages.
   useEffect(() => {
-    if (!mobileOpen) {
-      setMobileExpanded(null);
-      return;
-    }
-    const activeParent = NAV_ITEMS.find(
-      (n) => n.children && n.href !== "/" && isItemActive(n)
-    );
-    setMobileExpanded(activeParent?.label ?? null);
+    setMobileExpanded(null);
   }, [mobileOpen, pathname]);
 
   return (
@@ -264,9 +259,9 @@ export default function Navigation() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-50 bg-[#040d1e] flex flex-col overflow-y-auto"
+            className="fixed inset-0 z-50 bg-[#040d1e] flex flex-col"
           >
-            <div className="flex items-center justify-between p-4 border-b border-[rgba(192,200,212,0.16)]">
+            <div className="shrink-0 flex items-center justify-between p-4 border-b border-[rgba(192,200,212,0.16)]">
               <Link
                 href="/"
                 onClick={() => setMobileOpen(false)}
@@ -286,7 +281,7 @@ export default function Navigation() {
               </button>
             </div>
 
-            <nav className="flex-1 py-2" aria-label="Mobile navigation">
+            <nav className="flex-1 min-h-0 overflow-y-auto py-2" aria-label="Mobile navigation">
               {NAV_ITEMS.map((item, i) => {
                 const hasChildren = !!item.children;
                 const isOpen = mobileExpanded === item.label;
@@ -371,7 +366,9 @@ export default function Navigation() {
               })}
             </nav>
 
-            <div className="p-5 border-t border-[rgba(192,200,212,0.16)] space-y-3">
+            {/* Pinned below the scrolling nav — the Call / Assessment CTAs stay
+                visible no matter how far the nav list is scrolled. */}
+            <div className="shrink-0 p-5 border-t border-[rgba(192,200,212,0.16)] space-y-3 pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
               <a
                 href={`tel:${SITE_CONFIG.phoneE164}`}
                 className="btn-on-dark w-full"

@@ -60,12 +60,12 @@ export default function Footer() {
           {/* Services */}
           <nav className="lg:col-span-3" aria-label="Footer — services">
             <p className="label-overline-light mb-6">Services</p>
-            <ul className="space-y-3">
+            <ul className="space-y-0.5">
               {SERVICES.map((service) => (
                 <li key={service.id}>
                   <Link
                     href={`/services/${service.slug}`}
-                    className="text-[0.875rem] text-silver transition-colors hover:text-white"
+                    className="block py-2 text-[0.875rem] text-silver transition-colors hover:text-white"
                   >
                     {service.title}
                   </Link>
@@ -77,12 +77,12 @@ export default function Footer() {
           {/* Company */}
           <nav className="lg:col-span-2" aria-label="Footer — company">
             <p className="label-overline-light mb-6">Company</p>
-            <ul className="space-y-3">
+            <ul className="space-y-0.5">
               {COMPANY_LINKS.map((item) => (
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="text-[0.875rem] text-silver transition-colors hover:text-white"
+                    className="block py-2 text-[0.875rem] text-silver transition-colors hover:text-white"
                   >
                     {item.label}
                   </Link>

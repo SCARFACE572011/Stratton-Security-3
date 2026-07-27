@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, AlertTriangle, MapPin } from "lucide-react";
+import { ArrowRight, AlertTriangle, MapPin, Plus } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
 import type { ServiceArea, ServiceDetail } from "@/lib/constants";
 
@@ -17,6 +18,7 @@ export default function ServiceAreaContent({
   otherAreas: ServiceArea[];
 }) {
   const shouldReduceMotion = useReducedMotion();
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const reveal = (delay = 0) => ({
     initial: shouldReduceMotion ? {} : { opacity: 0, y: 28 },
@@ -202,15 +204,69 @@ export default function ServiceAreaContent({
                 Security in {area.name} — FAQ
               </h2>
             </m.div>
-            <div className="mx-auto max-w-3xl divide-y divide-platinum">
-              {area.faqs.map((f, i) => (
-                <m.div key={i} {...reveal(i * 0.05)} className="py-7 first:pt-0">
-                  <h3 className="display-sm text-[1.1875rem] text-[#0a0a0a] mb-3">
-                    {f.q}
-                  </h3>
-                  <p className="text-[1rem] leading-relaxed text-[#4b5563]">{f.a}</p>
-                </m.div>
-              ))}
+            {/* Collapsible — scan questions, expand only what you need. Answers
+                stay in the DOM (visible on expand) and mirror the FAQPage schema. */}
+            <div className="mx-auto max-w-3xl flex flex-col gap-4">
+              {area.faqs.map((f, i) => {
+                const isOpen = openFaq === i;
+                const panelId = `area-faq-panel-${i}`;
+                const buttonId = `area-faq-button-${i}`;
+                return (
+                  <m.div
+                    key={i}
+                    {...reveal(Math.min(i, 6) * 0.05)}
+                    className={`card overflow-hidden ${isOpen ? "border-[#1a3a6b]/40" : ""}`}
+                  >
+                    <h3 className="m-0">
+                      <button
+                        id={buttonId}
+                        type="button"
+                        aria-expanded={isOpen}
+                        aria-controls={panelId}
+                        onClick={() => setOpenFaq(isOpen ? null : i)}
+                        className="w-full flex items-center justify-between gap-6 text-left p-6 md:p-7 cursor-pointer"
+                      >
+                        <span className="display-sm text-[1.0625rem] md:text-[1.1875rem] leading-snug text-[#0a0a0a]">
+                          {f.q}
+                        </span>
+                        <span
+                          aria-hidden="true"
+                          className={`shrink-0 w-9 h-9 rounded-lg border flex items-center justify-center transition-colors ${
+                            isOpen
+                              ? "bg-[#1a3a6b] border-[#1a3a6b] text-white"
+                              : "border-platinum bg-[#f4f6f9] text-[#1a3a6b]"
+                          }`}
+                        >
+                          <m.span
+                            animate={shouldReduceMotion ? {} : { rotate: isOpen ? 45 : 0 }}
+                            transition={{ duration: 0.3, ease: EASE }}
+                            className="flex"
+                          >
+                            <Plus size={18} strokeWidth={2} />
+                          </m.span>
+                        </span>
+                      </button>
+                    </h3>
+                    {/* grid-rows 0fr→1fr collapse: the answer stays mounted (so
+                        it's in the server HTML for the FAQPage schema + crawlers)
+                        while still animating open/closed. Reduced-motion users get
+                        the global instant collapse. */}
+                    <div
+                      id={panelId}
+                      role="region"
+                      aria-labelledby={buttonId}
+                      className="grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                      style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+                    >
+                      <div className="overflow-hidden">
+                        <p className="px-6 md:px-7 pb-6 md:pb-7 text-[0.9375rem] md:text-base leading-relaxed text-[#4b5563]">
+                          {f.a}
+                        </p>
+                      </div>
+                    </div>
+                  </m.div>
+                );
+              })}
             </div>
           </div>
         </section>

@@ -38,7 +38,10 @@ const PROPERTY_TYPES = [
 
 // Two steps only: an optional-fields-only third screen measurably delayed
 // ready-to-submit leads, so message/hearAbout now live at the end of step 2.
+// Full labels for md+, short labels on narrow phones (the full ones wrapped
+// to two lines at 390px and made the 2-step indicator look uneven).
 const STEP_LABELS = ["Property & Service", "Contact & Submit"];
+const STEP_LABELS_SHORT = ["Property", "Contact"];
 
 // text-base (16px) on mobile stops iOS Safari auto-zooming on field focus;
 // text-sm restores the tighter desktop size from md up.
@@ -178,11 +181,13 @@ export default function ContactForm() {
                   }`}
                 />
                 <span
-                  className={`text-[0.6875rem] tracking-widest uppercase transition-colors ${
+                  className={`text-[0.6875rem] tracking-widest uppercase transition-colors whitespace-nowrap ${
                     isActive ? "text-accent" : isComplete ? "text-steel" : "text-silver"
                   }`}
                 >
-                  {i + 1}. {label}
+                  {i + 1}.{" "}
+                  <span className="sm:hidden">{STEP_LABELS_SHORT[i]}</span>
+                  <span className="hidden sm:inline">{label}</span>
                 </span>
               </div>
             );
