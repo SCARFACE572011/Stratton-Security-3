@@ -60,9 +60,17 @@ No test suite exists. Verification is done by building + driving the real site
   the import).
 - **Fonts** (`layout.tsx`, `next/font/google`): **Rajdhani** (display, uppercase
   headings, `--font-rajdhani`, weights 500/600/700 — all three are load-bearing;
-  weight-400 `font-[var(--font-display)]` text font-matches to 500), **Hanken
-  Grotesk** (body, `--font-hanken`), **JetBrains Mono** (tactical micro-labels,
-  `--font-mono-jb`).
+  bare `font-display` text inherits weight 400 and font-matches to the 500 face),
+  **Hanken Grotesk** (body, `--font-hanken`), **JetBrains Mono** (tactical
+  micro-labels, `--font-mono-jb`).
+  **Font-family trap:** apply fonts with the `@theme`-backed utilities
+  `font-display` / `font-sans` / `font-mono`. The arbitrary-value form (`font-`
+  plus a bracketed `var(--font-*)`) does **not** work — Tailwind v4 parses it as
+  a font-*weight* and emits an invalid `font-weight: <font stack>`, applying no
+  family at all. It silently rendered 15 display headings in the body font until
+  it was caught in the compiled CSS. Don't write that literal string anywhere in
+  the repo (including docs) — Tailwind's source scanner picks it up from comments
+  and markdown and compiles the dead rule back into the stylesheet.
 - **Icons:** `lucide-react`. **Smooth scroll:** `lenis` (gated behind
   `prefers-reduced-motion`). **Forms:** `react-hook-form` + `zod`. **Email:**
   `nodemailer`. **CMS:** Keystatic.
