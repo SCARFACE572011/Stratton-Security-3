@@ -1152,6 +1152,174 @@ export type Resource = {
 
 export const RESOURCES: Resource[] = [
   {
+      slug: "best-security-companies-in-los-angeles",
+      title: "How to Find the Best Security Company in Los Angeles",
+      category: "Buyer's Guide",
+      excerpt:
+        "The criteria that separate Los Angeles security companies, how national, local, and LA-focused firms differ, and the questions to ask before you sign.",
+      readTime: "25 min read",
+      datePublished: "2026-07-27",
+      dateModified: "2026-07-27",
+      tldr: [
+        "There is no single best security company in Los Angeles — the right firm depends on your property type, your coverage hours, and whether you need a national footprint or an LA-focused operator.",
+        "Verify the license yourself first: California requires the company to hold an active Private Patrol Operator (PPO) license, free to check on the BSIS public lookup, and every officer to hold a BSIS guard card.",
+        "Compare operating models rather than brand names — national staffing firm, small local operator, LA-focused mid-size firm — because each carries a predictable trade-off in price, consistency, and supervision.",
+        "Sanity-check proposals against Los Angeles market ranges: unarmed officers typically $22–38/hour, armed $35–60+/hour. A bid a third below that band is funded out of wages, insurance, training, or supervision.",
+        "Ask the three operational questions marketing never answers: who supervises the post, who picks up the phone at 3 a.m., and how each visit is documented.",
+        "Shortlist three licensed firms and choose on fit — the operating model that matches your footprint, and demonstrated depth in your property type. A firm can be excellent and still be wrong for your asset class.",
+      ],
+      sections: [
+        {
+          heading: "What Makes a Security Company Worth Hiring in Los Angeles?",
+          body: [
+            "Best is not a property of a security company. It is a property of the match between a company and a property, which is why no ranking survives contact with a real site. What does hold across sites is the list of things worth grading a firm on. Seven of them decide most outcomes, and every one is checkable before you sign.",
+            "One and two are pass/fail and take about ten minutes. The company must hold an active Private Patrol Operator license issued by the Bureau of Security and Investigative Services, and you should verify the number yourself on the free BSIS public lookup rather than trusting a badge on a website. It must carry current general liability and workers' compensation coverage, with your entity named as additional insured and armed operations explicitly covered if armed officers are proposed. The mechanics of both checks are covered step by step in Understanding California PPO Licensing & BSIS Requirements and How to Choose a Private Security Company in Los Angeles. This page is about deciding between the firms that pass them.",
+            "Three is training past the state floor. A BSIS guard card means Power to Arrest training and background clearance through the Department of Justice and the FBI. It says nothing about whether an officer can defuse an intoxicated guest, an angry tenant, or a trespasser without creating a lawsuit. Ask what the internal program covers and how often officers requalify. Four is supervision you can quantify: what you are buying is the officer standing on your post at 3 a.m. and whether anyone verifies he is awake, in uniform, and writing reports. Ask for the field-supervisor-to-post ratio and the after-hours escalation path, then test the line yourself.",
+            "Five is accountability infrastructure — GPS-verified checkpoint scans and timestamped digital incident reports. Without them, we patrolled the property is an assertion; with them it is a record you can audit, and the same record your insurer or attorney will want if an incident goes anywhere. Six is demonstrated depth in your asset class, the one genuine judgment call on the list. A firm that staffs construction sites well is not automatically right for a guest-facing hotel lobby, so ask for named references in your property type rather than a client list.",
+            "Seven is footprint, and most buyers skip it until it costs them. If your properties sit in more than one state, a single contract, a single invoice, and one insurance program across all of them is worth real money, and only a national firm can supply it. Stratton cannot: it is headquartered in Los Angeles and licensed to operate in California, so a multi-state portfolio is a criterion it loses on outright. Weight the seven in the order your situation demands, not the order they are written.",
+          ],
+        },
+        {
+          heading: "National Firms, Local Operators, and Everything Between",
+          body: [
+            "The Los Angeles guard market sorts into three operating models, and a buyer can be disappointed by a perfectly competent company simply because the model was wrong for the property. The comparison below is about how those structures tend to behave under pressure. It is not a ranking — capable operators and careless ones exist in all three, which is why the verification steps matter more than the label.",
+            "National firms win on footprint and infrastructure. If you manage property in four states, want one invoice, or have to satisfy a procurement department's insurance limits and master service agreement, that scale is hard to replicate locally. What you trade is proximity: your site is one of thousands, and escalation runs through a call center rather than someone who has stood on your property. Small operators win on price and owner attention — the person who answers is the person who decides. What they trade is depth: one resignation can leave a post uncovered, and supervision is capped by the owner's bandwidth.",
+            "The LA-focused mid-size firm sits between those and inherits weaknesses from both ends: not enough scale to absorb a large surge or cover a site outside its region, and not enough intimacy for the owner to make a call on your account at midnight. Stratton operates in that middle category, under California PPO #122163, from an office at 10940 Wilshire Blvd. If you need one contract covering sites in several states, a national firm serves you better. If you want the lowest hourly number, a small operator usually has it, and for a single site with a clear scope that can be the right call.",
+          ],
+          table: {
+            caption:
+              "Three operating models in the Los Angeles contract security market. These are generalizations about structure, not ratings — strong and weak firms exist in all three. Disclosure: Stratton sits in the third column, so read that column with the skepticism you would apply to any vendor describing its own category.",
+            headers: [
+              "Comparison factor",
+              "National staffing firm",
+              "Small local operator",
+              "LA-focused mid-size firm",
+            ],
+            rows: [
+              [
+                "Pricing approach",
+                "Standardized rate cards, with little flexibility on a single-site account",
+                "Lowest overhead of the three, which often shows in the bid — worth probing rather than assuming it is a bargain",
+                "Priced per site after a walkthrough, which is more accurate but slower than a rate-card bid",
+              ],
+              [
+                "Officer consistency",
+                "Deep bench, but officers rotate across accounts and your post may change often",
+                "Very consistent — often the same two or three officers; one resignation is felt immediately",
+                "Assigned officers with a relief bench, though consistency depends on what the firm pays",
+              ],
+              [
+                "Supervision depth",
+                "Formal and documented, but the supervisor is regional and rarely on your site",
+                "The owner is the supervisor: attentive with capacity, thin without it",
+                "Field supervisors visit posts, but depth varies widely — ask for the supervisor-to-post ratio",
+              ],
+              [
+                "Flexibility",
+                "Changes route through account management and contract amendment; slow on short notice",
+                "Fastest of the three — one call to the person who decides",
+                "Fast on schedules and post orders, slower than a solo operator on contract changes",
+              ],
+              [
+                "Account attention",
+                "One manager may carry dozens of accounts; attention scales with your spend",
+                "The owner, who is also dispatching, invoicing, and covering shifts",
+                "A named contact with a smaller book, who still cannot approve every exception alone",
+              ],
+              [
+                "Best suited to",
+                "Multi-state portfolios, national procurement requirements, large surge staffing",
+                "Single sites, tight budgets, buyers who value owner attention over infrastructure",
+                "LA portfolios of a few to a few dozen sites needing bench depth and reachable supervision",
+              ],
+            ],
+          },
+        },
+        {
+          heading: "What Best Means for Your Property Type",
+          body: [
+            "Best is defined by what your property fails at when nobody is watching, and a firm with a deep hospitality bench can be mediocre on job sites. The property types below cover most of the Los Angeles market, with the capability that decides the outcome for each. Whether a given post should be armed is a separate decision, worked through in Armed vs. Unarmed Security Officers: How to Decide.",
+            "Retail and shopping centers. The deciding capability is organized retail crime response paired with documentation that survives contact with LAPD and a prosecutor — incident reports with times, descriptions, and photographs, not a line in a logbook. Ask how uniformed presence and plainclothes loss prevention are coordinated, and whether one vendor covers the center or each tenant contracts separately.",
+            "Class-A office and multi-tenant commercial. Tenant experience is the product: lobby officers function as ambassadors, and the failures that cost you leases are vendor and delivery access, after-hours entry, and parking structure incidents. Confirm the firm's insurance limits satisfy your ownership's or landlord's contract requirements before you shortlist — a document check rather than a judgment call, and where smaller operators most often fall out.",
+            "HOAs, condominiums, and gated communities. Consistency beats credentials here. Residents need to recognize the officer, and the officer needs to know which cars belong; a rotating cast undoes both. Ask how officers are assigned, what turnover looks like on comparable accounts, how rules are enforced without confrontation, and what the board receives in writing each month. Mobile patrol covers the hours a manned post cannot justify.",
+            "Construction and job sites. The exposure is after hours — copper, tools, and equipment — plus subcontractor access control during the day. Ask how fast a firm can mobilize, whether it reports to the general contractor or the project manager, and whether it can supply code-compliant fire watch when hot work or an impaired system requires it. Stratton's stated target is coverage typically live within 72 hours of signing, with urgent deployments mobilized in under 24 hours; ask any vendor for its number in writing.",
+            "Events. An event is a staffing problem before it is a security problem: one date, a large team, and no second chance. Ask how many officers a firm can field on your date without borrowing from other accounts, whether officers working alcohol-service venues hold TEAM certification, and how far in advance it plans crowd flow, credentialing, and egress.",
+            "Estates and private residences. Discretion is the entire assignment: low-profile conduct, confidentiality that extends to household staff and vendors, and officers with executive-protection judgment rather than lobby experience. Any firm that names its private residential clients to win your business will name you to win the next one — treat that as disqualifying, however impressive the reference sounds.",
+          ],
+        },
+        {
+          heading: "What It Should Cost, and How to Read a Low Bid",
+          body: [
+            "Los Angeles market rates run roughly $22–38 an hour for unarmed officers and $35–60 or more for armed officers. Those are ranges to sanity-check proposals against, not quotes — your number comes from hours, post orders, and site risk. A 24/7 standing post is about 730 hours a month, which is why round-the-clock coverage is a different conversation from a four-hour evening shift.",
+            "A bid that undercuts that band by a third is not a discount, it is a disclosure: the gap has to be funded out of officer wages, insurance, training, or supervision. How Much Do Security Guards Cost in Los Angeles? works through the arithmetic, the monthly numbers for a 24/7 post, and why mobile patrol is often the cheapest honest answer for a property that does not need a standing guard. Read it before you compare proposals, not after.",
+          ],
+        },
+        {
+          heading: "Red Flags That Predict a Bad Security Vendor",
+          body: [
+            "The first red flag is a quote produced without a site visit. A vendor who prices before walking the property is pricing a body, not a program: whatever they did not see becomes a change order later, or simply never gets covered. Treat it as information rather than an automatic disqualification — ask why, and listen to how the question is answered.",
+            "Credential friction is the second cluster. If the PPO number arrives slowly, or the licensed name does not match the entity that will sign your contract, you may be contracting with a company operating under someone else's license — in which case neither the BSIS accountability nor the insurance you were shown reliably attaches to your site. Stalling on the certificate of insurance predicts the same thing. A broker can issue one in an afternoon, so a week of delay usually means the coverage is thin, lapsed, or quietly excludes the armed operations you were quoted.",
+            "The third cluster is operational. A vendor who cannot say what the officer on your post will be paid either does not know, because the labor is subcontracted, or does not want the number said out loud. Ask who answers after hours, then call at 2 a.m. during the evaluation — voicemail now is voicemail during an incident. Last, vague reporting: if patrol visits are not timestamped and GPS-verified, and incidents are not documented in writing, you are paying on trust and will have no record when a claim arrives.",
+          ],
+        },
+        {
+          heading: "Ten Questions to Ask Before You Sign",
+          body: [
+            "Take these into any vendor meeting. Each maps to one of the seven criteria or to a red flag above, and each is hard to answer smoothly without a real operation behind it. You are listening for a number, a name, a document, or a cadence — not for polish. Note which questions produce a pause; the pattern of pauses tells you more than any single answer does.",
+            "1. What is your PPO number, and what legal name is it issued to? Expect the number on the spot, matching the entity that will sign your contract, which you then verify yourself on the BSIS public lookup. Stratton's is CA PPO #122163.",
+            "2. Will you walk the property before quoting, and what will you look at? Expect a scheduled walkthrough and specifics: access points, lighting, sightlines, incident history, and where a post or patrol vehicle actually sits.",
+            "3. What will the officer assigned to my post be paid per hour? Expect an actual wage figure and a plain explanation of the gap between it and the billed rate.",
+            "4. Can you send a current certificate of insurance naming us as additional insured? Expect it within a day, showing general liability and workers' compensation — and armed operations if armed officers are proposed.",
+            "5. Do the officers assigned to us hold current guard cards, and Exposed Firearm Permits if armed? Expect confirmation at the officer level, with credentials produced on request, not a blanket assurance that everyone is licensed.",
+            "6. Who covers this post when the regular officer calls out? Expect a named relief plan and the standard the backup officer meets.",
+            "7. Who answers at 2 a.m. on a holiday, and what is the escalation path? Expect a live supervisor, a named chain of escalation, and no objection to you testing the line during the evaluation.",
+            "8. What do I receive in writing after each shift, and how quickly? Expect timestamped digital reports, GPS-verified patrol scans, photographs on incidents, and a stated delivery window.",
+            "9. How often does a supervisor inspect the post unannounced, and do I see those records? Expect a defined cadence of field checks and visibility into the log.",
+            "10. What are the shift minimums, premiums, and exit terms? Expect hourly minimums per shift, holiday and short-notice premiums, rate-increase mechanics, and the notice period — in the contract rather than in conversation.",
+          ],
+        },
+        {
+          heading: "Where Stratton Is the Wrong Choice",
+          body: [
+            "This guide is published by Stratton Security Group, which is one of the companies a reader might be evaluating, so treat that as a disclosure and hold Stratton to the same seven criteria as everyone else. Stratton is a Los Angeles-based operator licensed under California PPO #122163, at 10940 Wilshire Blvd, running ongoing contract programs. Verify that license number on the BSIS lookup before taking anything else here at face value. The more useful half of this section is where Stratton is the wrong answer.",
+            "First, price. Stratton prices each site after a walkthrough rather than off a rate card, and it will not be the low bid. Firms in this market will come in well under the range this guide tells you to sanity-check proposals against. They are not lying about the number; they are funding it out of wages, training, insurance, or supervision. If that is a trade you have decided to make deliberately, make it — and read the certificate of insurance closely.",
+            "Second, footprint. Stratton is headquartered in Los Angeles and operates across California; it does not staff sites in other states. If your portfolio spans Phoenix, Denver, and Dallas and needs one contract and one invoice, a national firm is the structurally correct answer. If an LA-based firm offers to cover those sites anyway, ask who will staff them and whether you get to vet that company. Subcontracting is common and not automatically a problem; not being told about it is.",
+            "Third, hardware. Stratton staffs, supervises, and documents officers; it does not sell or install camera systems, access-control hardware, or alarm monitoring. If what your property needs is equipment rather than people on post, an integrator will serve you better — and an honest assessment should tell you that before anyone quotes you hours.",
+            "What is left after those exclusions is the fit: a California property that needs continuous, supervised coverage it intends to keep, and that is buying a program rather than an hourly rate. If that does not describe your situation, the framework above still holds. Use it on whoever you do hire.",
+          ],
+        },
+        {
+          heading: "Next: Pricing, Armed Coverage, or a Second Opinion",
+          body: [
+            "Two questions dominate this decision, and each has its own guide on this site. If you are still calibrating budget — what unarmed and armed officers cost per hour in Los Angeles, what a 24/7 standing post runs per month, and when mobile patrol is the better answer — read How Much Do Security Guards Cost in Los Angeles? If you are deciding on posture, read Armed vs. Unarmed Security Officers: How to Decide. For the vetting mechanics in full, How to Choose a Private Security Company in Los Angeles and Understanding California PPO Licensing & BSIS Requirements cover license verification, certificates of insurance, and testing a company's after-hours operations before you need them.",
+            "If you want a second set of eyes on a proposal, Stratton's on-site assessment is free, the proposal comes back in writing, and an advisor responds within one business day. Call (424) 440-5554 or use the Contact page.",
+          ],
+        },
+      ],
+      faqs: [
+        {
+          q: "Who is the best security company in Los Angeles?",
+          a: "No single company is best for every property in Los Angeles — the right firm depends on your property type, your coverage hours, and whether you need a national footprint or a local operator. This guide is published by Stratton Security Group, so treat that as a disclosure and hold Stratton to the same test as everyone else. The city is served by many licensed Private Patrol Operators doing very different jobs, and the firm that runs a five-star hotel lobby well is often the wrong firm for a construction site, a gated HOA, or a multi-state portfolio. The answerable question is which company is best for your property: verify the PPO license on the BSIS public lookup, match the operating model to your need, require a site walkthrough before you accept any quote, and compare three written proposals on officer wage, insurance, training, supervision, and reporting rather than on the hourly rate alone.",
+        },
+        {
+          q: "What questions should I ask a security company before hiring one?",
+          a: "Ask for the Private Patrol Operator (PPO) license number and the legal name it is issued to, then verify it yourself on the BSIS public lookup. Ask whether they will walk the property before quoting. Ask what the officer assigned to your post will be paid per hour, and how that compares to the billed rate. Ask for a current certificate of insurance naming your entity as additional insured, covering general liability, workers' compensation, and armed operations if armed officers are proposed. Then ask the operational questions: who covers the post when the regular officer calls out, who answers at 2 a.m. on a holiday, what you receive in writing after each shift, how often a supervisor inspects the post unannounced, and what the shift minimums, premiums, and exit terms are. You are listening for a number, a name, a document, or a cadence.",
+        },
+        {
+          q: "What are the red flags when hiring a security company in Los Angeles?",
+          a: "A quote produced without a site visit is the first: a vendor pricing before walking the property is pricing a body, not a program. A bid that undercuts the Los Angeles market band by a third — roughly $22–38 an hour unarmed and $35–60 and up armed — is a disclosure rather than a discount, because the gap comes out of officer wages, insurance, training, or supervision. Other reliable warning signs: slowness in producing a PPO license number, a licensed name that does not match the entity on your contract, a certificate of insurance that takes more than a day to arrive or quietly excludes armed operations, an inability to say what the officer on your post will be paid, an after-hours line that reaches voicemail, and reporting that is not timestamped and GPS-verified.",
+        },
+        {
+          q: "Should I hire a national security company or a local Los Angeles firm?",
+          a: "Neither is better in the abstract; they fail in different ways. A national staffing firm gives you one contract, one invoice, and coverage across states — along with a local branch whose supervision and officer consistency you cannot see from the master agreement. A small local operator gives you the owner's cell number and low overhead, with thinner backup when an officer calls out at 5 a.m. An LA-focused mid-size firm sits between the two and inherits a bit of each failure mode: no footprint outside its region, and enough process that a small change moves slower than one call to an owner. Choose on your constraint — if you have sites outside California, footprint wins; if you have a few Los Angeles properties that need consistent officers and reachable supervision, local depth usually does.",
+        },
+        {
+          q: "How fast can a security company start at my property in Los Angeles?",
+          a: "Ask for a start date in writing, because this is where vague answers turn into unstaffed posts. A licensed firm with real bench depth can typically stand up a routine post within a few days of a signed agreement and move faster for genuine emergencies — Stratton's stated target is coverage typically live within 72 hours of signing, with urgent deployments mobilized in under 24 hours. What takes the time is not paperwork; it is matching officers with the right profile to the assignment and writing real post orders. Be cautious with anyone who promises officers tonight without having seen your property.",
+        },
+      ],
+    },
+  {
     slug: "how-much-do-security-guards-cost-in-los-angeles",
     title: "How Much Do Security Guards Cost in Los Angeles?",
     category: "Pricing Guide",
