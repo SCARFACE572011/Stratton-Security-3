@@ -13,6 +13,10 @@ const schema = z.object({
   phone: z.string().min(1, "Phone number is required."),
   message: z.string().optional(),
   hearAbout: z.string().optional(),
+  // Lead attribution — which page produced this lead, and where the visitor
+  // arrived from. Optional so older/cached clients still validate.
+  sourcePath: z.string().max(512).optional(),
+  sourceReferrer: z.string().max(512).optional(),
 });
 
 // Escape user-supplied values before interpolating into the HTML email.
@@ -26,7 +30,7 @@ function esc(value: string): string {
 }
 
 function teamHtml(data: z.infer<typeof schema>): string {
-  const { propertyType, serviceType, name, company, email, phone, message, hearAbout } = data;
+  const { propertyType, serviceType, name, company, email, phone, message, hearAbout, sourcePath, sourceReferrer } = data;
   return `
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#0a0a0a">
       <div style="background:#040d1e;padding:24px 32px;border-bottom:3px solid #1a3a6b">
@@ -34,6 +38,7 @@ function teamHtml(data: z.infer<typeof schema>): string {
         <p style="color:#c0c8d4;margin:4px 0 0;font-size:13px">New Contact Form Submission</p>
       </div>
       <div style="background:#f4f6f9;padding:32px">
+        ${sourcePath ? `<p style="margin:0 0 20px;padding:10px 14px;background:#e8edf5;border-left:3px solid #1a3a6b;font-size:13px;color:#1a3a6b"><strong>Lead source:</strong> ${esc(sourcePath)}${sourceReferrer ? ` &nbsp;&middot;&nbsp; referred from ${esc(sourceReferrer)}` : ""}</p>` : ""}
         <table style="width:100%;border-collapse:collapse;font-size:14px">
           <tr><td style="padding:8px 0;color:#6b7280;width:140px">Property Type</td><td style="padding:8px 0;font-weight:600">${esc(propertyType)}</td></tr>
           <tr><td style="padding:8px 0;color:#6b7280">Service Needed</td><td style="padding:8px 0;font-weight:600">${esc(serviceType)}</td></tr>
@@ -92,9 +97,22 @@ export async function POST(req: NextRequest) {
   }
   const data = parsed.data;
 
-  // Graceful fallback: with no Gmail credentials configured, log the lead
-  // server-side so dev/demo still "works" instead of 500-ing every visitor.
+  // No mailer credentials. In dev/preview this is the expected demo path: log
+  // the lead and report success so the form is exercisable. In PRODUCTION it
+  // means a real lead is about to vanish (e.g. an env var was rotated), so fail
+  // loudly instead — telling the visitor to call is recoverable; silently
+  // swallowing their inquiry behind a fake success is not.
   if (!mailerConfigured) {
+    if (process.env.VERCEL_ENV === "production") {
+      console.error(
+        "[contact route] CRITICAL: mailer not configured in production — lead NOT delivered:",
+        { name: data.name, email: data.email, phone: data.phone, sourcePath: data.sourcePath },
+      );
+      return NextResponse.json(
+        { ok: false, error: "We couldn't submit your request. Please call us at (424) 440-5554 — we're available 24/7." },
+        { status: 500 },
+      );
+    }
     console.log("[contact route] GMAIL_USER/GMAIL_APP_PASSWORD not configured — submission logged instead of emailed:", data);
     return NextResponse.json({ ok: true });
   }

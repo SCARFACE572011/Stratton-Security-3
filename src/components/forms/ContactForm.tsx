@@ -101,11 +101,21 @@ export default function ContactForm() {
 
   const onSubmit = async (data: FormData) => {
     setSubmitError("");
+    // Lead attribution: which page produced this lead, and what sent the visitor
+    // here. Without it no page can be credited for the calls/quotes it earns, so
+    // the whole content program is unmeasurable. Captured at submit time (not
+    // from useSearchParams) to match how this form reads its prefill params.
+    const sourcePath =
+      typeof window !== "undefined"
+        ? `${window.location.pathname}${window.location.search}`
+        : undefined;
+    const sourceReferrer =
+      typeof document !== "undefined" && document.referrer ? document.referrer : undefined;
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, sourcePath, sourceReferrer }),
       });
       const json = await res.json().catch(() => ({}));
       if (!res.ok || json?.ok === false) {
@@ -115,6 +125,7 @@ export default function ContactForm() {
         form_type: "contact",
         service: data.serviceType,
         property_type: data.propertyType,
+        source_path: sourcePath,
       });
       setSubmitted(true);
     } catch (err) {

@@ -135,9 +135,22 @@ export async function POST(req: NextRequest) {
     ? `Attached — ${resumeName} (${Math.round((resumeBuffer?.length ?? 0) / 1024)} KB)`
     : "No resume attached";
 
-  // Graceful fallback: with no Gmail credentials configured, log the
-  // application server-side so dev/demo still "works" instead of 500-ing.
+  // No mailer credentials. Dev/preview: log and report success so the form is
+  // exercisable. PRODUCTION: a real application (and its resume) would vanish,
+  // so fail loudly — an applicant who sees an error can still email or call; one
+  // who sees a fake success is simply lost.
   if (!mailerConfigured) {
+    if (process.env.VERCEL_ENV === "production") {
+      console.error("[apply route] CRITICAL: mailer not configured in production — application NOT delivered:", {
+        name: data.name,
+        email: data.email,
+        resume: resumeName || "(none)",
+      });
+      return NextResponse.json(
+        { ok: false, error: "We couldn't submit your application. Please email Careers@strattonsecuritygroup.com or call (424) 440-5554." },
+        { status: 500 },
+      );
+    }
     console.log("[apply route] GMAIL_USER/GMAIL_APP_PASSWORD not configured — application logged instead of emailed:", {
       ...data,
       resume: resumeName || "(none)",
