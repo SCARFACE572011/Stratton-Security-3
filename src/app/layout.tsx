@@ -15,11 +15,13 @@ const rajdhani = Rajdhani({
   // Keep 500: display classes set 600/700, but several bare `font-display`
   // usages inherit weight 400 and font-match to the 500 face — dropping it
   // silently bolds them to 600.
-  // NOTE: use the `font-display` / `font-sans` / `font-mono` utilities (backed
-  // by the @theme tokens). Do NOT write `font-[var(--font-display)]` — Tailwind
-  // v4 parses that as a font-WEIGHT, emitting `font-weight: var(--font-display)`,
-  // an invalid value that applies no family at all. That silently rendered 15
-  // display headings in the body font until it was caught.
+  // NOTE: always use the `font-display` / `font-sans` / `font-mono` utilities
+  // (backed by the @theme tokens above). Never use the arbitrary-value form
+  // font-[ var(--font-display) ] — Tailwind v4 parses that as a font-WEIGHT and
+  // emits an invalid `font-weight: <font stack>`, which applies no family at
+  // all. It silently rendered 15 display headings in the body font until caught.
+  // (Spaces inside the brackets above are deliberate: they stop Tailwind's
+  // source scanner from generating that dead rule from this very comment.)
   weight: ["500", "600", "700"],
   display: "swap",
   variable: "--font-rajdhani",
