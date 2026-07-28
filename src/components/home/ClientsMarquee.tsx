@@ -75,7 +75,7 @@ export default function ClientsMarquee() {
         </div>
       )}
 
-      <p className="mt-8 text-center text-[0.6875rem] uppercase tracking-[0.2em] text-[#6b7280] font-[var(--font-sans)]">
+      <p className="mt-8 text-center text-[0.6875rem] uppercase tracking-[0.2em] text-[#6b7280] font-sans">
         A selection of the brands and properties Stratton is trusted to protect
       </p>
     </m.div>

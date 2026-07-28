@@ -335,7 +335,7 @@ export default function ApplyForm() {
                   "Background check and onboarding",
                 ].map((stepText, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <span className="font-[var(--font-display)] text-accent text-[0.8125rem] tracking-wide pt-px shrink-0">
+                    <span className="font-display text-accent text-[0.8125rem] tracking-wide pt-px shrink-0">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span className="text-[0.875rem] text-[#4b5563] leading-relaxed">{stepText}</span>
@@ -346,7 +346,7 @@ export default function ApplyForm() {
             <div className="card p-5 text-[0.8125rem] text-[#4b5563]">
               <p className="text-[#040d1e] font-medium mb-1">Questions about the role?</p>
               <p className="mb-3">Call our operations team directly — we&apos;re available 24/7.</p>
-              <a href={`tel:${SITE_CONFIG.phoneE164}`} className="text-accent font-[var(--font-display)] tracking-wide">
+              <a href={`tel:${SITE_CONFIG.phoneE164}`} className="text-accent font-display tracking-wide">
                 {SITE_CONFIG.phone}
               </a>
             </div>

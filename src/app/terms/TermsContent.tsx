@@ -52,7 +52,7 @@ export default function TermsContent({
               className="card p-8 md:p-10"
             >
               <div className="flex items-baseline gap-4 mb-4">
-                <span className="font-[var(--font-display)] text-[0.8125rem] tracking-[0.24em] text-steel shrink-0 pt-1">
+                <span className="font-display text-[0.8125rem] tracking-[0.24em] text-steel shrink-0 pt-1">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="display-sm text-[1.5rem] md:text-[1.625rem] text-[#0a0a0a]">

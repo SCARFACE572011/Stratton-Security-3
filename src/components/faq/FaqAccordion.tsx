@@ -67,7 +67,7 @@ export default function FaqAccordion({ faqs, phone, phoneE164 }: FaqAccordionPro
                     onClick={() => setOpen(isOpen ? null : i)}
                     className="w-full flex items-center justify-between gap-6 text-left p-7 md:p-8 cursor-pointer"
                   >
-                    <span className="font-[var(--font-display)] text-[1.0625rem] md:text-[1.1875rem] leading-snug text-[#0a0a0a]">
+                    <span className="font-display text-[1.0625rem] md:text-[1.1875rem] leading-snug text-[#0a0a0a]">
                       {item.q}
                     </span>
                     <span
@@ -117,7 +117,7 @@ export default function FaqAccordion({ faqs, phone, phoneE164 }: FaqAccordionPro
           className="max-w-3xl mx-auto mt-12 md:mt-16 card-dark p-8 md:p-10 text-center"
         >
           <p className="label-overline-light mb-4">Still Have Questions?</p>
-          <h3 className="font-[var(--font-display)] display-sm text-[1.5rem] md:text-[1.875rem] text-white mb-4">
+          <h3 className="font-display display-sm text-[1.5rem] md:text-[1.875rem] text-white mb-4">
             Talk With a Security Advisor
           </h3>
           <p className="text-[0.9375rem] md:text-base text-silver leading-relaxed max-w-xl mx-auto mb-8">

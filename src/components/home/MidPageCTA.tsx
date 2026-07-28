@@ -31,7 +31,7 @@ export default function MidPageCTA() {
               <ShieldCheck size={20} strokeWidth={1.75} />
             </span>
             <div>
-              <h2 className="font-[var(--font-display)] text-white text-2xl md:text-[1.75rem] leading-snug">
+              <h2 className="font-display text-white text-2xl md:text-[1.75rem] leading-snug">
                 See how a Stratton program fits your property.
               </h2>
               <p className="text-silver text-[0.9375rem] mt-1.5">

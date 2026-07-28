@@ -87,7 +87,7 @@ export default function IndustriesGrid() {
                   <span className="w-14 h-14 rounded-xl border border-platinum bg-[#f4f6f9] flex items-center justify-center shrink-0 transition-colors group-hover:border-[#1a3a6b]/40">
                     <Building2 size={24} className="text-[#1a3a6b]" strokeWidth={1.5} />
                   </span>
-                  <span className="font-[var(--font-display)] text-[1.75rem] text-platinum font-800 leading-none mt-1">
+                  <span className="font-display text-[1.75rem] text-platinum font-800 leading-none mt-1">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>

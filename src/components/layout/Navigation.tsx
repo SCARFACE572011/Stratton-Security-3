@@ -29,7 +29,7 @@ function Wordmark() {
       <span className="display-sm text-white text-[1.05rem] tracking-[0.005em] whitespace-nowrap">
         Stratton Security Group
       </span>
-      <span className="font-[var(--font-sans)] text-[0.5rem] text-silver tracking-[0.34em] uppercase mt-[5px] whitespace-nowrap">
+      <span className="font-sans text-[0.5rem] text-silver tracking-[0.34em] uppercase mt-[5px] whitespace-nowrap">
         Private Security
       </span>
     </span>

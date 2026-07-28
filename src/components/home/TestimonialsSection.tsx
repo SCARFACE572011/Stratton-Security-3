@@ -150,7 +150,7 @@ export default function TestimonialsSection({
                   >
                     <blockquote className="card flex h-full flex-col gap-5 p-8 lg:p-10">
                       <div
-                        className="font-[var(--font-display)] leading-none select-none -mb-4"
+                        className="font-display leading-none select-none -mb-4"
                         style={{ fontSize: "4rem", color: "rgba(63,107,176,0.22)" }}
                         aria-hidden="true"
                       >
@@ -161,7 +161,7 @@ export default function TestimonialsSection({
                         &ldquo;{item.quote}&rdquo;
                       </p>
                       <footer className="flex items-center gap-4 pt-5 border-t border-platinum">
-                        <div className="w-11 h-11 rounded-full bg-platinum-50 flex items-center justify-center shrink-0 text-[0.8125rem] font-600 text-[#1a3a6b] font-[var(--font-sans)]">
+                        <div className="w-11 h-11 rounded-full bg-platinum-50 flex items-center justify-center shrink-0 text-[0.8125rem] font-600 text-[#1a3a6b] font-sans">
                           {item.initials}
                         </div>
                         <div>

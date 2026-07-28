@@ -72,7 +72,7 @@ export default function DeploymentProtocol() {
           >
             From First Call to Active Post
           </h2>
-          <p className="mt-7 text-[1.0625rem] leading-relaxed text-silver font-[var(--font-sans)]">
+          <p className="mt-7 text-[1.0625rem] leading-relaxed text-silver font-sans">
             A disciplined, four-stage process — the same one we run for a single
             estate or a multi-site portfolio.
           </p>
@@ -98,14 +98,14 @@ export default function DeploymentProtocol() {
               >
                 <span className="relative flex items-center justify-center w-[68px] h-[68px] rounded-full bg-[#040d1e] border border-[rgba(192,200,212,0.18)] text-[#6f9bd8]">
                   <Icon size={26} strokeWidth={1.5} />
-                  <span className="absolute -top-1 -right-1 flex items-center justify-center w-7 h-7 rounded-full bg-[#1a3a6b] text-white font-[var(--font-mono)] text-[0.6875rem] font-semibold">
+                  <span className="absolute -top-1 -right-1 flex items-center justify-center w-7 h-7 rounded-full bg-[#1a3a6b] text-white font-mono text-[0.6875rem] font-semibold">
                     {step.no}
                   </span>
                 </span>
                 <h3 className="display-sm text-white text-[1.15rem] tracking-[0.02em] mt-6">
                   {step.title}
                 </h3>
-                <p className="mt-3 text-[0.875rem] leading-relaxed text-silver font-[var(--font-sans)] max-w-[15rem]">
+                <p className="mt-3 text-[0.875rem] leading-relaxed text-silver font-sans max-w-[15rem]">
                   {step.blurb}
                 </p>
               </m.div>

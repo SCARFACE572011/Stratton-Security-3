@@ -41,7 +41,7 @@ export default function Footer() {
                 <span className="display-sm text-[1rem] tracking-[0.04em] text-white">
                   Stratton Security Group
                 </span>
-                <span className="mt-[3px] font-[var(--font-sans)] text-[0.5rem] uppercase tracking-[0.34em] text-silver">
+                <span className="mt-[3px] font-sans text-[0.5rem] uppercase tracking-[0.34em] text-silver">
                   Private Security
                 </span>
               </span>

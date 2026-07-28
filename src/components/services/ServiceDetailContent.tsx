@@ -225,7 +225,7 @@ export default function ServiceDetailContent({
                   Or call us directly
                   <a
                     href={`tel:${SITE_CONFIG.phoneE164}`}
-                    className="block font-[var(--font-display)] text-[#3f6bb0] text-[1.375rem] mt-2 tracking-tight hover:text-white transition-colors"
+                    className="block font-display text-[#3f6bb0] text-[1.375rem] mt-2 tracking-tight hover:text-white transition-colors"
                   >
                     {SITE_CONFIG.phone}
                   </a>

@@ -12,9 +12,14 @@ import { Analytics } from "@vercel/analytics/react";
 // with the lion seal. Body/UI: Hanken Grotesk — a clean, modern grotesque.
 const rajdhani = Rajdhani({
   subsets: ["latin"],
-  // Keep 500: display classes set 600/700, but several font-[var(--font-display)]
+  // Keep 500: display classes set 600/700, but several bare `font-display`
   // usages inherit weight 400 and font-match to the 500 face — dropping it
   // silently bolds them to 600.
+  // NOTE: use the `font-display` / `font-sans` / `font-mono` utilities (backed
+  // by the @theme tokens). Do NOT write `font-[var(--font-display)]` — Tailwind
+  // v4 parses that as a font-WEIGHT, emitting `font-weight: var(--font-display)`,
+  // an invalid value that applies no family at all. That silently rendered 15
+  // display headings in the body font until it was caught.
   weight: ["500", "600", "700"],
   display: "swap",
   variable: "--font-rajdhani",

@@ -62,7 +62,7 @@ export default function WhyStratton() {
                   <div className="w-12 h-12 rounded-xl border border-platinum bg-platinum-50 flex items-center justify-center mb-6">
                     <IconComponent size={20} className="text-accent" strokeWidth={1.75} />
                   </div>
-                  <h3 className="font-[var(--font-sans)] text-lg font-semibold text-[#0a0a0a] mb-3">
+                  <h3 className="font-sans text-lg font-semibold text-[#0a0a0a] mb-3">
                     {item.title}
                   </h3>
                   <p className="text-[0.9375rem] text-[#4b5563] leading-relaxed">

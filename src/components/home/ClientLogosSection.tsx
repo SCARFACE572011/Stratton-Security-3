@@ -83,7 +83,7 @@ export default function ClientLogosSection() {
           >
             Protecting Every Sector
           </h2>
-          <p className="mt-7 text-[1.0625rem] leading-relaxed text-[#4b5563] font-[var(--font-sans)]">
+          <p className="mt-7 text-[1.0625rem] leading-relaxed text-[#4b5563] font-sans">
             Stratton&apos;s programs span 14+ industry verticals — from luxury
             residential and commercial real estate to healthcare, government, and
             distribution. Whatever your sector, we build a program around its

@@ -101,10 +101,10 @@ export default function AboutContent({ barkReviews }: { barkReviews: BarkReview[
                   <span className="inline-flex items-center justify-center w-14 h-14 rounded-xl border border-platinum bg-platinum-50 text-accent mb-7">
                     <Icon size={26} strokeWidth={1.75} />
                   </span>
-                  <span className="block font-[var(--font-display)] text-[0.6875rem] tracking-[0.24em] text-steel mb-3">
+                  <span className="block font-display text-[0.6875rem] tracking-[0.24em] text-steel mb-3">
                     0{i + 1}
                   </span>
-                  <h3 className="font-[var(--font-display)] text-2xl text-[#0a0a0a]">
+                  <h3 className="font-display text-2xl text-[#0a0a0a]">
                     {value}
                   </h3>
                 </m.div>
