@@ -365,6 +365,190 @@ export const SERVICE_CITY_PAGES: ServiceCityPage[] = [
       },
     ],
   },
+  {
+    service: "guard-services",
+    area: "beverly-hills",
+    metaTitle: "Security Guards in Beverly Hills",
+    metaDescription:
+      "Armed and unarmed officers for Beverly Hills retail, estates and offices — Rodeo Drive, the Golden Triangle, Trousdale. Discreet, BHPD-coordinated, PPO #122163.",
+    atAGlance: [
+      "Armed and unarmed officers for Golden Triangle retail, Wilshire offices and estate properties",
+      "Presentation matched to the property — luxury retail needs an officer who reads as concierge, not perimeter",
+      "Coordination with Beverly Hills PD, which patrols the city at a density most of LA does not have",
+      "Coverage typically live within 72 hours of signing — urgent deployments in under 24",
+      "Licensed, bonded and insured under California PPO #122163, with a live supervisor 24/7",
+    ],
+    intro: [
+      "Beverly Hills is the market where how an officer presents matters as much as what they can do. In the Golden Triangle — Rodeo Drive, Beverly Drive, the blocks between Wilshire and Santa Monica — a guard who reads as a perimeter fixture damages the retail experience the tenant is paying rent for. What works is an officer who looks like part of the house: correct uniform, comfortable greeting a client, and capable of handling a theft attempt or an aggressive visitor without a scene. That balance is a hiring and training question, not a staffing-level one, which is why we scope presentation explicitly during the walkthrough rather than sending whoever is available.",
+      "The exposures split cleanly by property type. High-value retail carries organised theft risk, and the officers who deter it are the ones watching entry behaviour and vehicle movement outside rather than standing at a till. Estate properties in Trousdale, the Flats and the streets north of Sunset are largely a discretion and access problem — deliveries, contractors and household staff arriving on schedules the owner does not personally track. The Wilshire office corridor and the medical buildings around it are conventional access control and lobby work, where the failure mode is an unlogged visitor rather than a break-in. Armed coverage is warranted on some of these and not most; we say which rather than defaulting up.",
+      "One local factor genuinely changes planning here: Beverly Hills funds a police presence at a density most of Los Angeles does not, so response times are short and officers on our posts will interact with BHPD regularly. That is an advantage if the relationship is set up properly — our post orders specify when an officer escalates rather than handles, and what documentation BHPD will want if they arrive. It also means the value we add is not response speed, which the city already provides, but continuous on-property presence and a written record of everything that happened between those responses.",
+    ],
+    riskFactors: [
+      "Organised retail theft targeting high-value Golden Triangle storefronts",
+      "Vehicle-based theft and follow-home reconnaissance around luxury retail and valet lanes",
+      "Unlogged contractor, delivery and household-staff access at estate properties",
+      "Visitor and vendor access gaps in the Wilshire office and medical corridor",
+      "Presentation failures — an officer whose bearing does not fit a luxury environment costs the tenant more than the coverage is worth",
+    ],
+    jurisdictionNote:
+      "Beverly Hills is an independent city with its own Beverly Hills Police Department and its own fire department — not LAPD and not Los Angeles City Fire. The city's police staffing per resident is high by regional standards, which shortens response and means officers on your post will deal with BHPD routinely rather than rarely. Post orders therefore specify clearly when an officer escalates versus handles, and what report detail BHPD will expect. For properties on the city boundary, particularly near the Wilshire corridor and West Hollywood side, we confirm which agency answers each entrance before coverage begins.",
+    faqs: [
+      {
+        q: "Do you provide armed guards in Beverly Hills?",
+        a: "Yes, but not by default. Most Beverly Hills posts — luxury retail, lobbies, estate access — are better served by well-trained unarmed officers, because presentation and judgement matter more than a firearm in those environments. Armed coverage is warranted where there is documented elevated threat or high-value cash and goods handling. An advisor will tell you which applies rather than upselling the higher rate.",
+      },
+      {
+        q: "Can an officer work luxury retail without hurting the customer experience?",
+        a: "That is the core requirement here, and it is a hiring and training question. The officers we place in Golden Triangle retail are comfortable greeting clients and reading entry behaviour rather than standing as a visible barrier. We scope presentation explicitly during the walkthrough — uniform, bearing, and how the officer is expected to interact with customers — because getting that wrong costs a tenant more than the coverage is worth.",
+      },
+      {
+        q: "Beverly Hills PD responds quickly. What does private security add?",
+        a: "Beverly Hills does fund a notably high police presence, so we are not selling faster response. What a post adds is continuous presence between responses, deterrence at the point of entry, access control that police do not perform, and a written record of everything that happened — which is what an insurer or an attorney asks for later. Our post orders specify when an officer escalates to BHPD rather than handling something.",
+      },
+      {
+        q: "How discreet can estate coverage be?",
+        a: "Very. Estate work in Trousdale, the Flats and north of Sunset is usually about access and discretion rather than visible presence — verifying that contractors, deliveries and household staff on site are expected, on randomised timing, with reporting that comes to you privately. The aim is that the property is covered while nothing about it looks unusual from the street.",
+      },
+    ],
+  },
+  {
+    service: "fire-watch",
+    area: "long-beach",
+    metaTitle: "Fire Watch Security in Long Beach",
+    metaDescription:
+      "Fire watch officers for Long Beach when sprinklers or alarms are impaired — downtown towers, port and industrial sites. Timed logs for Long Beach Fire, under 24 hours.",
+    atAGlance: [
+      "Fire watch for downtown high-rises, port and industrial facilities, and older waterfront stock",
+      "Continuous patrol of affected areas with timed written logs kept for the fire authority and your insurer",
+      "Long Beach has its own fire department — expectations here are set by LBFD, not LAFD",
+      "Urgent mobilisation in under 24 hours; impairment watch is rarely scheduled in advance",
+      "Licensed, bonded and insured under California PPO #122163, with a live supervisor 24/7",
+    ],
+    intro: [
+      "When a sprinkler system, standpipe or fire-alarm system is taken out of service in an occupied Long Beach building, the California Fire Code requires a dedicated fire watch for as long as the impairment lasts. The officer's task is narrow: patrol the affected areas on a fixed cycle, watch for smoke, heat and ignition sources, keep egress clear, know where the pull stations and standpipe connections are, and call 911 directly — because the system that would normally make that call is switched off.",
+      "Long Beach makes this a varied assignment because its building stock is unusually mixed. The downtown towers along Ocean and Pine mean vertical patrol with long travel times between floors, so cycle length has to be set against how long a full round actually takes rather than a number picked in advance. The port and the industrial district bring a different problem: large-footprint facilities where the affected area may be a single warehouse bay or a process area, and where combustible storage and hot work raise the stakes of a gap in coverage. Along the waterfront and in Belmont Shore, older mixed-use stock under renovation routinely leaves protection offline in one part of a building while tenants or residents remain in another — the exact scenario the code exists for.",
+      "The documentation is the deliverable as much as the presence. Every round is logged with a timestamp, the areas covered and anything observed, because Long Beach Fire and your insurer will both ask for that record and an assurance after the fact is worth nothing. Officers are briefed on your specific building before the first round — pull-station and standpipe locations, stairwell discharge, which lifts are usable, and who to reach in your organisation at 3 a.m. Coverage runs until the system is restored and signed off, and cycles do not quietly lengthen as a shift wears on.",
+    ],
+    riskFactors: [
+      "Occupied floors or tenancies remaining in service while protection is impaired elsewhere in the building",
+      "Long vertical travel times in downtown Ocean and Pine Avenue towers, which set the achievable cycle length",
+      "Combustible storage and hot work in port and industrial facilities, where a coverage gap carries more consequence",
+      "Renovation of older waterfront and Belmont Shore mixed-use stock with residents still in place",
+      "Incomplete or reconstructed logs, which fail the record the fire authority and insurers actually want",
+    ],
+    jurisdictionNote:
+      "Long Beach runs its own Long Beach Fire Department and its own Long Beach Police Department — one of the largest municipal police forces in the county. For fire watch that distinction is the operative fact: LBFD is the authority having jurisdiction and sets the expectations for an impairment watch here, and its requirements are not interchangeable with the Los Angeles Fire Department's. Port facilities may carry additional federal or terminal-operator requirements layered on top of the city's. Before a watch begins we confirm the authority for your specific site and what it expects in the log rather than assuming it matches another city.",
+    faqs: [
+      {
+        q: "When is a fire watch required in Long Beach?",
+        a: "Whenever a required fire-protection system — sprinklers, standpipes or fire alarm — is out of service in an occupied building, for the duration of the impairment. In practice it is triggered by retrofits, repairs, a valve closed after a leak, or a failed inspection. Long Beach Fire Department is the authority having jurisdiction and will expect a documented, continuous watch rather than occasional walk-throughs.",
+      },
+      {
+        q: "How fast can you start a fire watch?",
+        a: "Under 24 hours in most cases, often same-day. Impairment fire watch is almost never planned — a valve gets closed or an inspection fails and coverage is needed immediately. Call (424) 440-5554 and an advisor will scope the affected areas, the cycle length and the shift pattern over the phone rather than waiting on a walkthrough.",
+      },
+      {
+        q: "Can you cover a port or industrial facility?",
+        a: "Yes. Large-footprint sites change the job — the affected area may be one warehouse bay or a process area rather than a floor, and combustible storage or hot work raises what a gap in coverage costs. We scope the patrol route and cycle against the actual affected area, and confirm whether terminal-operator or federal requirements apply on top of the city's before the watch starts.",
+      },
+      {
+        q: "Will the log satisfy Long Beach Fire and our insurer?",
+        a: "That is its purpose. Each round is recorded with the time, the areas covered and any observations, available to you throughout rather than assembled afterwards. Both the fire authority and your carrier typically ask for that record as evidence the impairment was covered continuously — which is also why cycles are not shortened and shifts do not leave gaps.",
+      },
+    ],
+  },
+  {
+    service: "retail",
+    area: "torrance",
+    metaTitle: "Retail Security in Torrance, CA",
+    metaDescription:
+      "Loss prevention and uniformed retail security in Torrance — Del Amo Fashion Center, the Hawthorne Boulevard corridor and Old Torrance. Torrance PD-coordinated.",
+    atAGlance: [
+      "Uniformed and plainclothes loss-prevention officers for Torrance retail",
+      "Coverage across Del Amo Fashion Center, the Hawthorne Boulevard corridor and Old Torrance",
+      "Organised-retail-theft awareness: entry behaviour, vehicle movement and exit routes, not just the sales floor",
+      "Coverage typically live within 72 hours of signing — urgent deployments in under 24",
+      "Licensed, bonded and insured under California PPO #122163, with a live supervisor 24/7",
+    ],
+    intro: [
+      "Torrance carries more retail square footage than almost anywhere else in the South Bay, and Del Amo Fashion Center — among the largest malls in the country — anchors it. Scale changes the security problem. A regional centre draws from well beyond the city, which means a share of the theft is deliberate and mobile rather than opportunistic: crews that arrive by vehicle, work several stores in one visit, and leave by a route they chose in advance. Officers who only watch the sales floor catch the casual shoplifter and miss that entirely.",
+      "So our retail work here starts outside the door. Officers are trained on entry behaviour, on vehicles circling or parked for exit rather than for shopping, and on the exit routes that matter at a given property — which, at Del Amo and along the Hawthorne Boulevard corridor, means the parking structures and the service and loading areas as much as the mall entrance. Inside, presence is calibrated to the tenant: a uniformed officer at the entrance deters and reassures for most stores, while plainclothes coverage suits higher-value inventory where a visible guard simply moves the theft to a different hour.",
+      "The smaller-format retail in Old Torrance and along the Hawthorne corridor has a different profile. Individual storefronts with roll-down gates, rear alley access and owners who close up themselves are more exposed after hours than during trading, which usually makes patrol with lock-and-unlock support a better fit than a standing post. Where a property genuinely needs both, we scope a post for the high-risk hours and patrol for the rest rather than charging for full-time presence a property does not need. Every incident is documented in a timestamped report, because the value of retail coverage shows up in what you can prove to an insurer or a prosecutor.",
+    ],
+    riskFactors: [
+      "Organised retail theft crews working several stores per visit at regional-draw centres",
+      "Vehicle-based reconnaissance and pre-planned exit routes through parking structures",
+      "Service and loading areas that go unwatched while sales floors are staffed",
+      "Rear and alley access exposure for small-format retail in Old Torrance and along Hawthorne Boulevard",
+      "Staff closing up alone at properties whose after-hours risk exceeds their trading-hours risk",
+    ],
+    jurisdictionNote:
+      "Torrance is an independent city with its own Torrance Police Department and its own fire department — not LASD and not LAPD. For retail that has a practical consequence: organised-theft cases are worked by TPD, and what they can do with an incident depends heavily on the quality of the report and imagery your officer produces. Our post orders specify what gets documented and when an officer escalates versus observes and records, because a well-evidenced report is the difference between a case that proceeds and one that does not. The city also administers its own alarm programme, so patrol-verified alarm response reduces unnecessary dispatches and their charges.",
+    faqs: [
+      {
+        q: "Do you provide loss prevention at Del Amo Fashion Center?",
+        a: "We provide officers to tenants and property managers rather than to the centre's own operation. For an individual store or a group of tenants, coverage is scoped to the unit — entrance presence, sales-floor observation, and awareness of the structure and service routes crews use. A walkthrough establishes whether uniformed, plainclothes, or a mix fits the inventory and the hour.",
+      },
+      {
+        q: "Uniformed or plainclothes for retail?",
+        a: "Uniformed presence deters and reassures, and suits most storefronts and entrances. Plainclothes works where inventory value is high enough that a visible officer just shifts the theft to another hour, and where observing behaviour matters more than announcing presence. Many Torrance retail plans use both across different times of day.",
+      },
+      {
+        q: "Can you cover a small store on the Hawthorne corridor?",
+        a: "Yes, and often the better answer there is patrol rather than a standing post. Small-format retail is usually more exposed after hours than during trading — rear and alley access, roll-down gates, an owner closing up alone. Scheduled patrol with lock-and-unlock support covers that at a fraction of the cost of full-time presence, with a post added only for genuinely high-risk hours.",
+      },
+      {
+        q: "What documentation do we get after an incident?",
+        a: "A timestamped written report covering what happened, what was observed and what action was taken, with imagery where available. That matters more in retail than almost anywhere else: Torrance PD works organised-theft cases, and what they can do with an incident depends on the quality of the report. Our post orders specify what gets documented and when an officer escalates rather than intervenes.",
+      },
+    ],
+  },
+  {
+    service: "patrol",
+    area: "el-segundo",
+    metaTitle: "Security Patrol in El Segundo, CA",
+    metaDescription:
+      "Overnight patrol for El Segundo corporate and aerospace-corridor properties — Smoky Hollow, Continental Boulevard, Plaza El Segundo. GPS-verified rounds.",
+    atAGlance: [
+      "Overnight and weekend patrol for corporate campuses, creative offices and industrial properties",
+      "Coverage across the aerospace corridor, Smoky Hollow, the Continental Boulevard campuses and Plaza El Segundo",
+      "GPS-verified checkpoints with timestamped, photo-documented reports after every round",
+      "Coverage typically live within 72 hours of signing — urgent deployments in under 24",
+      "Licensed, bonded and insured under California PPO #122163, with a live supervisor 24/7",
+    ],
+    intro: [
+      "El Segundo has the highest ratio of commercial to residential space in the county, and that single fact defines patrol here. Most cities have a rhythm — quiet streets that fill and empty. El Segundo has an almost total shift change: the corporate campuses along Continental Boulevard, the aerospace and defence corridor, and the creative and light-industrial blocks of Smoky Hollow hold tens of thousands of people during business hours and then go genuinely empty. There is very little residential population to provide ambient observation overnight, which makes a marked patrol presence one of the few things looking at those properties at 3 a.m.",
+      "Empty and predictable is the combination that gets exploited, so timing is the discipline that matters most here. A patrol that arrives at the same hour every night teaches an observer exactly when the property is unwatched — so rounds are staggered, approach direction varies, and the sequence of stops changes. Coverage concentrates on what is actually vulnerable on these properties: perimeter and gate integrity on the larger campuses, roll-up doors and loading areas in Smoky Hollow, unattended fleet and equipment yards, and the parking structures that sit empty overnight and are the easiest place to work unobserved.",
+      "The commercial mix also means the useful patrol product is often not just deterrence but verification. On a campus with a monitored alarm system, an officer who can investigate and confirm whether an activation is real prevents a chain of unnecessary calls to facilities staff at night — and keeps false-alarm charges under the city's own alarm programme off the account. Around Plaza El Segundo and the Rosecrans retail frontage the job shifts back toward closing-time coverage and structure sweeps. Every round is scanned at a GPS-verified checkpoint and written up with photographs available the next morning.",
+    ],
+    riskFactors: [
+      "Properties that go genuinely empty overnight with almost no residential population nearby to notice activity",
+      "Predictable patrol timing, which on an empty commercial street is the single easiest thing for an observer to learn",
+      "Roll-up doors, loading areas and equipment yards in Smoky Hollow and the industrial blocks",
+      "Perimeter and gate integrity on large Continental Boulevard and aerospace-corridor campuses",
+      "Parking structures that sit unoccupied overnight, offering cover to work unobserved",
+    ],
+    jurisdictionNote:
+      "El Segundo is an independent city with its own El Segundo Police Department — not LAPD and not the Sheriff. Its small geographic footprint and dense commercial base mean response is generally quick, but the flip side is that overnight there are very few members of the public to report anything in the first place, which is precisely the gap a patrol programme fills. The city administers its own alarm programme, so patrol-verified alarm response has a direct financial benefit as well as an operational one. Properties near the Los Angeles boundary along the airport side should have the responding agency for each entrance confirmed and written into the post orders.",
+    faqs: [
+      {
+        q: "Why does El Segundo need overnight patrol specifically?",
+        a: "Because it empties almost completely. El Segundo has the county's highest commercial-to-residential ratio, so unlike most cities there is very little residential population to notice activity around a business at 3 a.m. Response from El Segundo PD is quick, but somebody has to see something first — which overnight is often only a patrol officer.",
+      },
+      {
+        q: "Can you patrol a large corporate campus?",
+        a: "Yes. On larger Continental Boulevard and aerospace-corridor properties the work is perimeter and gate integrity, structure sweeps, and verification of alarm activations, coordinated with your facilities team. Routes are built around the property's actual vulnerable points rather than a fixed loop, and rounds are staggered so the pattern is not learnable.",
+      },
+      {
+        q: "Do you respond to alarms at El Segundo properties?",
+        a: "Yes, and it is often the highest-value part of the programme here. An officer investigates, documents, and escalates to El Segundo PD only when an activation is genuine — which avoids waking facilities staff for a faulty sensor and keeps unnecessary dispatches, and the city's false-alarm charges, off your account.",
+      },
+      {
+        q: "How fast can patrol coverage start?",
+        a: "Standing coverage typically begins within 72 hours of a signed agreement, and teams have mobilised in under 24 hours for urgent needs. The free on-site assessment comes first — an advisor responds within one business day and walks the property, which on a large campus matters because the route has to be built around real access points rather than a map.",
+      },
+    ],
+  },
 ];
 
 /** Look up a written page for a given (area, service) pair. */
