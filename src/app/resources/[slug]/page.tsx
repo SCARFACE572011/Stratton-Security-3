@@ -294,6 +294,7 @@ export default async function ResourceArticlePage({
           eyebrow="Put It Into Practice"
           title="Ready to put this into practice?"
           lede="Move from reading to a real plan — request a free assessment and a Stratton advisor will apply it to your property."
+          href={`/contact?ref=${encodeURIComponent(article.title)}#request-form`}
         />
       </main>
       <Footer />

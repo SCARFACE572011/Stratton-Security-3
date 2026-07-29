@@ -59,6 +59,7 @@ export default function IndustriesPage() {
         <CTASection
           title="Protecting every sector — including yours."
           lede="Whatever your industry, Stratton builds a program around its specific risk landscape. Request a free assessment and speak with a senior advisor."
+          href="/contact?ref=Industries%20overview#request-form"
         />
       </main>
       <Footer />

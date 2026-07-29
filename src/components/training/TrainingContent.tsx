@@ -210,6 +210,7 @@ export default function TrainingContent() {
         eyebrow="Get Started"
         title="Ready to raise your security standard?"
         lede="Whether you need trained officers on site or a program built from the ground up, request a free assessment and we'll take it from there."
+        href="/contact?ref=Training#request-form"
       />
     </main>
   );

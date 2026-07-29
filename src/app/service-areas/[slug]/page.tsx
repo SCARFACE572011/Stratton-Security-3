@@ -115,6 +115,7 @@ export default async function ServiceAreaPage({
           eyebrow="Local Coverage"
           title={`Ready for security in ${area.name}?`}
           lede={`Request a free on-site assessment and a Stratton advisor will build a program for your ${area.name} property — with response within one business day.`}
+          href={`/contact?area=${encodeURIComponent(area.name)}#request-form`}
         />
       </main>
       <Footer />

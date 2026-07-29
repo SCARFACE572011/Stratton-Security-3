@@ -14,18 +14,26 @@ const CTA_BG =
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 /**
- * Closing CTA band. Copy is prop-driven so each page can end on a line that
- * fits its context instead of the identical generic block everywhere; the
- * defaults preserve the original homepage copy for any caller that omits them.
+ * Closing CTA band. Copy AND destination are prop-driven so each page can end on
+ * a line that fits its context instead of the identical generic block everywhere;
+ * the defaults preserve the original homepage copy for any caller that omits them.
+ *
+ * `href` matters more than it looks: ContactForm prefills from ?service= /
+ * ?property= / ?area= / ?industry= / ?ref= (see its useEffect). This band is the
+ * most prominent CTA on 12 page types, and while its headline was contextual its
+ * link was not — so the page's own context was being thrown away at the click.
+ * Pass a contextual href wherever the page knows what the visitor is looking at.
  */
 export default function CTASection({
   eyebrow = "Get Protected Today",
   title = "Ready to secure your property?",
   lede = "Request a complimentary security assessment and speak with a Stratton senior advisor. We'll build a program that fits your property, risk profile, and budget.",
+  href = "/contact#request-form",
 }: {
   eyebrow?: string;
   title?: string;
   lede?: string;
+  href?: string;
 } = {}) {
   const shouldReduceMotion = useReducedMotion();
 
@@ -120,7 +128,7 @@ export default function CTASection({
             {...reveal(0.28)}
             className="flex flex-col sm:flex-row gap-4 mt-11 justify-center"
           >
-            <Link href="/contact#request-form" className="btn-light group">
+            <Link href={href} className="btn-light group">
               Request a Free Assessment
               <ArrowRight
                 size={16}

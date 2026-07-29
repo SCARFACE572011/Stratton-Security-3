@@ -89,6 +89,7 @@ export default async function FaqPage() {
           eyebrow="Still Have Questions?"
           title="Talk to a Stratton advisor"
           lede="If your question isn't answered here, reach out directly — we'll walk you through licensing, pricing, deployment timing, and how a program would work for your property."
+          href="/contact?ref=FAQ#request-form"
         />
       </main>
       <Footer />

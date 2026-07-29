@@ -69,6 +69,7 @@ export default async function AboutPage() {
           eyebrow="Work With Us"
           title="Ready to work with Stratton?"
           lede="Partner with a Los Angeles security team built on discipline, vigilance, and integrity. Request a free assessment and speak with a senior advisor."
+          href="/contact?ref=About#request-form"
         />
       </main>
       <Footer />

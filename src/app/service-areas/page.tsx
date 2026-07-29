@@ -105,6 +105,7 @@ export default function ServiceAreasPage() {
           eyebrow="Local Coverage"
           title="Security coverage across Los Angeles"
           lede="From the coast to the San Gabriel Valley, Stratton deploys tailored security programs city by city. Request a free on-site assessment to get started."
+          href="/contact?ref=Service%20areas#request-form"
         />
       </main>
       <Footer />

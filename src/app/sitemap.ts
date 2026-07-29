@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { SERVICES, INDUSTRIES, SERVICE_AREAS, RESOURCES } from "@/lib/constants";
+import { SERVICE_CITY_PAGES } from "@/lib/service-city";
 import { IS_INDEXABLE } from "@/lib/utils";
 
 const BASE_URL = "https://strattonsecuritygroup.com";
@@ -31,6 +32,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // "{service} in {city}" long-tail pages — only the hand-written ones exist.
+  const serviceCityPages = SERVICE_CITY_PAGES.map((p) => ({
+    url: `${BASE_URL}/service-areas/${p.area}/${p.service}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   const resourcePages = RESOURCES.map((r) => ({
     url: `${BASE_URL}/resources/${r.slug}`,
     lastModified: now,
@@ -55,6 +64,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...servicePages,
     ...industryPages,
     ...areaPages,
+    ...serviceCityPages,
     ...resourcePages,
   ];
 }

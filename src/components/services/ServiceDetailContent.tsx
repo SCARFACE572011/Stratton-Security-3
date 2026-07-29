@@ -18,6 +18,7 @@ import { m, useReducedMotion } from "framer-motion";
 import { SITE_CONFIG, SERVICE_AREAS, FACTS } from "@/lib/constants";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import KeyFacts from "@/components/shared/KeyFacts";
+import { findServiceCityPage } from "@/lib/service-city";
 
 const ICON_MAP = {
   Shield,
@@ -412,16 +413,26 @@ export default function ServiceDetailContent({
               {service.title} across greater Los Angeles
             </p>
           </m.div>
+          {/* Link to the dedicated "{service} in {city}" page when one has been
+              written, else to the city page. Without this the service-city pages
+              would be orphans — reachable only from the sitemap. */}
           <m.div {...reveal(0.08)} className="flex flex-wrap justify-center gap-2.5">
-            {SERVICE_AREAS.map((area) => (
-              <Link
-                key={area.slug}
-                href={`/service-areas/${area.slug}`}
-                className="card px-4 py-2 text-[0.8125rem] text-[#4b5563] transition-colors"
-              >
-                {service.title} in {area.name}
-              </Link>
-            ))}
+            {SERVICE_AREAS.map((area) => {
+              const hasPage = Boolean(findServiceCityPage(area.slug, service.slug));
+              return (
+                <Link
+                  key={area.slug}
+                  href={
+                    hasPage
+                      ? `/service-areas/${area.slug}/${service.slug}`
+                      : `/service-areas/${area.slug}`
+                  }
+                  className="card px-4 py-2 text-[0.8125rem] text-[#4b5563] transition-colors"
+                >
+                  {service.title} in {area.name}
+                </Link>
+              );
+            })}
           </m.div>
         </div>
       </section>

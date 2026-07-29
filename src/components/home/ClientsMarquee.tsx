@@ -20,7 +20,15 @@ function LogoTile({ name, file }: { name: string; file: string }) {
         src={file}
         alt={name}
         className="max-h-11 max-w-[150px] w-auto object-contain grayscale transition duration-300 group-hover:grayscale-0"
+        /* eager + fetchPriority="low", deliberately NOT lazy. These sit below the
+           fold, so lazy looks right — but the marquee track is translated
+           horizontally, and lazy loading keys off viewport intersection, so
+           off-screen tiles never load and the marquee scrolls visible gaps
+           (measured: 6 of 36 loaded). Eager keeps every tile present; low fetch
+           priority keeps them from competing with the LCP element, which on this
+           page is text. */
         loading="eager"
+        fetchPriority="low"
         decoding="async"
       />
     </div>

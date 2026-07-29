@@ -4,7 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, AlertTriangle, MapPin, Plus } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
-import { INDUSTRIES } from "@/lib/constants";
+import { INDUSTRIES, SERVICES } from "@/lib/constants";
+import { serviceCityPagesForArea } from "@/lib/service-city";
 import type { ServiceArea, ServiceDetail } from "@/lib/constants";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -20,6 +21,13 @@ export default function ServiceAreaContent({
 }) {
   const shouldReduceMotion = useReducedMotion();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  // The written "{service} in {city}" pages for this area, so they are linked
+  // from here rather than being reachable only via the sitemap.
+  const localServicePages = serviceCityPagesForArea(area.slug);
+  const SERVICES_BY_SLUG: Record<string, string> = Object.fromEntries(
+    SERVICES.map((s) => [s.slug, s.title])
+  );
 
   const reveal = (delay = 0) => ({
     initial: shouldReduceMotion ? {} : { opacity: 0, y: 28 },
@@ -309,6 +317,36 @@ export default function ServiceAreaContent({
           </div>
         </div>
       </section>
+
+      {/* ── Written "{service} in {city}" pages for this area. These are the
+          long-tail money pages; without a link from here they would be orphans. ── */}
+      {localServicePages.length > 0 && (
+        <section className="bg-white">
+          <div className="container-wide py-14 md:py-16">
+            <m.div {...reveal()} className="text-center mb-8">
+              <p className="label-overline mb-3">Services In This Area</p>
+              <p className="text-[#4b5563] text-[1.0625rem]">
+                Detailed {area.name} program pages
+              </p>
+            </m.div>
+            <m.div {...reveal(0.08)} className="flex flex-wrap justify-center gap-2.5">
+              {localServicePages.map((p) => {
+                const svc = SERVICES_BY_SLUG[p.service];
+                if (!svc) return null;
+                return (
+                  <Link
+                    key={p.service}
+                    href={`/service-areas/${area.slug}/${p.service}`}
+                    className="card px-4 py-2 text-[0.8125rem] text-[#4b5563] transition-colors"
+                  >
+                    {svc} in {area.name}
+                  </Link>
+                );
+              })}
+            </m.div>
+          </div>
+        </section>
+      )}
 
       {/* ── Industries strip — cross-link into the industry pillar so service
           areas and industries interlink (SEO + navigation). Compact by design. ── */}
