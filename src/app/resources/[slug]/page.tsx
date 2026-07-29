@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { RESOURCES } from "@/lib/constants";
 import { metaDescription } from "@/lib/utils";
+import { ES_COSTOS } from "@/lib/content-es";
 import { BreadcrumbSchema } from "@/app/schema";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import KeyFacts from "@/components/shared/KeyFacts";
@@ -24,7 +25,18 @@ export async function generateMetadata({
   const article = RESOURCES.find((r) => r.slug === slug);
   if (!article) return { title: "Guide Not Found" };
   return {
-    alternates: { canonical: `/resources/${article.slug}` },
+    alternates: {
+      canonical: `/resources/${article.slug}`,
+      // The cost guide has a Spanish counterpart; the other guides do not.
+      ...(article.slug === ES_COSTOS.enSlug
+        ? {
+            languages: {
+              "en-US": `/resources/${article.slug}`,
+              "es-US": `/es/${ES_COSTOS.slug}`,
+            },
+          }
+        : {}),
+    },
     title: article.title,
     description: metaDescription(article.excerpt),
   };

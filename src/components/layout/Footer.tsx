@@ -17,6 +17,7 @@ const COMPANY_LINKS = [
   { label: "Guides & Insights", href: "/resources" },
   { label: "Contact", href: "/contact" },
   { label: "FAQ", href: "/faq" },
+  { label: "Español", href: "/es" },
 ];
 
 export default function Footer() {

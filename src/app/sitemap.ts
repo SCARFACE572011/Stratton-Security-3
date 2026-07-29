@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { SERVICES, INDUSTRIES, SERVICE_AREAS, RESOURCES } from "@/lib/constants";
 import { SERVICE_CITY_PAGES } from "@/lib/service-city";
+import { ES_SERVICES, ES_COSTOS } from "@/lib/content-es";
 import { IS_INDEXABLE } from "@/lib/utils";
 
 const BASE_URL = "https://strattonsecuritygroup.com";
@@ -40,6 +41,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // Spanish pages — a separate language front door, each with hreflang to its
+  // English counterpart.
+  const spanishPages = [
+    { url: `${BASE_URL}/es`, priority: 0.8 },
+    { url: `${BASE_URL}/es/contacto`, priority: 0.7 },
+    { url: `${BASE_URL}/es/${ES_COSTOS.slug}`, priority: 0.7 },
+    ...ES_SERVICES.map((s) => ({ url: `${BASE_URL}/es/servicios/${s.slug}`, priority: 0.7 })),
+  ].map((p) => ({
+    url: p.url,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: p.priority,
+  }));
+
   const resourcePages = RESOURCES.map((r) => ({
     url: `${BASE_URL}/resources/${r.slug}`,
     lastModified: now,
@@ -65,6 +80,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...industryPages,
     ...areaPages,
     ...serviceCityPages,
+    ...spanishPages,
     ...resourcePages,
   ];
 }

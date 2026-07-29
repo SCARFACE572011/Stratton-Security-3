@@ -19,7 +19,10 @@ import { getTestimonials, getBarkReviews } from "@/lib/content";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    languages: { "en-US": "/", "es-US": "/es" },
+  },
   title: "Los Angeles Security Guard Company | Stratton Security Group",
   description:
     `Licensed armed & unarmed security guards, mobile patrol, and fire watch across Los Angeles. CA PPO #${SITE_CONFIG.licenseNumber} · free on-site assessment · 24/7 dispatch.`,

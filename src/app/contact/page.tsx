@@ -7,7 +7,10 @@ import { BreadcrumbSchema } from "@/app/schema";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/contact" },
+  alternates: {
+    canonical: "/contact",
+    languages: { "en-US": "/contact", "es-US": "/es/contacto" },
+  },
   title: "Contact Us | Request a Security Assessment",
   description: `Request a free security assessment from Stratton Security Group. Available 24/7 — call ${SITE_CONFIG.phone} or submit an inquiry. Serving Los Angeles and Southern California.`,
 };

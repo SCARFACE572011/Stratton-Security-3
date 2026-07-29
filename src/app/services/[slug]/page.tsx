@@ -5,6 +5,7 @@ import ServiceDetailContent from "@/components/services/ServiceDetailContent";
 import { notFound } from "next/navigation";
 import { SERVICES, INDUSTRIES } from "@/lib/constants";
 import { metaDescription } from "@/lib/utils";
+import { ES_SERVICES } from "@/lib/content-es";
 import { BreadcrumbSchema, ServiceSchema } from "@/app/schema";
 import type { Metadata } from "next";
 
@@ -21,7 +22,18 @@ export async function generateMetadata({
   const service = SERVICES.find((s) => s.slug === slug);
   if (!service) return { title: "Service Not Found" };
   return {
-    alternates: { canonical: `/services/${service.slug}` },
+    alternates: {
+      canonical: `/services/${service.slug}`,
+      // Only the four services with a written Spanish page get an es alternate.
+      ...(ES_SERVICES.find((e) => e.enSlug === service.slug)
+        ? {
+            languages: {
+              "en-US": `/services/${service.slug}`,
+              "es-US": `/es/servicios/${ES_SERVICES.find((e) => e.enSlug === service.slug)!.slug}`,
+            },
+          }
+        : {}),
+    },
     title: service.seoTitle,
     description: metaDescription(service.shortDescription),
   };
