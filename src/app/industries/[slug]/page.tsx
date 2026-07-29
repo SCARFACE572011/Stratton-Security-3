@@ -46,6 +46,20 @@ export default async function IndustryDetailPage({
   );
   const otherIndustries = INDUSTRIES.filter((i) => i.slug !== industry.slug).slice(0, 6);
 
+  // FAQPage from the sector FAQs. IndustryDetailContent renders these open, so the
+  // answers are in the server HTML and the markup matches what the schema asserts.
+  const faqLd = industry.faqs?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: industry.faqs.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      }
+    : null;
+
   return (
     <>
       <BreadcrumbSchema items={[
@@ -53,6 +67,12 @@ export default async function IndustryDetailPage({
         { name: "Industries", url: "https://strattonsecuritygroup.com/industries" },
         { name: industry.label, url: `https://strattonsecuritygroup.com/industries/${industry.slug}` },
       ]} />
+      {faqLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
+      )}
       <Navigation />
       <main>
         {/* Page hero — deep-navy band, serif headline */}

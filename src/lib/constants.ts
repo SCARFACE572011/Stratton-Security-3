@@ -598,6 +598,14 @@ export type Industry = {
   threats?: string[];
   approach?: string;
   relatedServices?: string[];
+  // Deep sector content — the industry-page equivalent of ServiceArea.localContext.
+  // Without it these pages rendered ~320 words, the thinnest on the site, while
+  // targeting real commercial terms ("hotel security Los Angeles" and the like).
+  // Written for the person who actually buys in that sector.
+  sectorContext?: string[];
+  // Rendered as a visible Q&A block AND emitted as FAQPage JSON-LD, so the
+  // answers must stay in the server HTML (see the /faq schema/DOM lesson).
+  faqs?: { q: string; a: string }[];
 };
 
 export const INDUSTRIES: Industry[] = [
@@ -616,6 +624,29 @@ export const INDUSTRIES: Industry[] = [
     approach:
       "Integrated programs combining lobby ambassadors, roving patrols, and access control — built in coordination with property managers, engineers, and leasing teams.",
     relatedServices: ["commercial-real-estate", "patrol", "corporate"],
+    sectorContext: [
+      "Commercial property security has an awkward structure: the person who buys it is rarely the person who experiences it. A property manager signs the contract and answers to ownership on cost and liability, while the people forming an opinion daily are tenants, their employees and their visitors. That split is why so many programs get judged a failure while hitting every metric in the scope — the officer was where the post orders said, and the tenant still felt the lobby was unwelcoming or the garage unsafe. A program that survives renewal has to satisfy both audiences, which means presentation and reporting matter as much as coverage hours.",
+      "The exposures cluster in the places tenants do not think about. Lobbies are staffed and watched; loading docks, freight corridors, stairwells, roof access and the garage are usually not. Vendor and delivery access is the most common real failure — a building with strict visitor policies at the front desk often has a service entrance where a courier holds the door for whoever is behind them. After-hours is the other gap: a tower that is tightly controlled at 2 p.m. may have one officer covering everything at 2 a.m., which is a coverage question but also a routing one, because a single officer cannot be at a dock and a garage simultaneously and the post orders have to say which takes priority.",
+      "What we build for commercial property is therefore less about headcount than about sequencing and evidence. Access control that actually logs vendors rather than waving them through. Patrol routes that treat back-of-house and parking as primary rather than leftover. Reporting that a property manager can hand to ownership or an insurer without editing — timestamped, specific, and consistent month to month. And officers briefed to be service-oriented with tenants while still enforcing policy, because in a multi-tenant building the officer is a visible part of the asset's brand. Where a property needs less than standing coverage, patrol with alarm response and lock-and-unlock is usually the honest recommendation.",
+    ],
+    faqs: [
+      {
+        q: "What should a commercial property security program actually include?",
+        a: "At minimum: access control that logs vendors and visitors rather than waving them through, patrol coverage that treats loading docks, stairwells, roof access and parking as primary rather than leftover, defined after-hours priorities so a single officer knows what takes precedence, and timestamped reporting a property manager can hand to ownership or an insurer unedited. Headcount matters less than whether those four are specified in writing.",
+      },
+      {
+        q: "How do you keep security from hurting the tenant experience?",
+        a: "By treating presentation as part of the scope rather than an afterthought. In a multi-tenant building the officer is a visible part of the asset, so we brief officers to be service-oriented with tenants while still enforcing access policy — and we scope bearing and uniform explicitly during the walkthrough. Most programs that get judged a failure met every metric in the contract; the tenant simply found the lobby unwelcoming.",
+      },
+      {
+        q: "Do we need 24/7 coverage or is patrol enough?",
+        a: "It depends on where your incidents actually happen. Many commercial properties are well covered during business hours and exposed overnight, which patrol addresses at a fraction of a standing post — a marked vehicle making randomised rounds of the garage, docks and perimeter, with alarm response between them. Where a property genuinely needs standing presence, a common answer is a post for high-risk hours plus patrol for the rest. The walkthrough is free and an advisor will say which applies.",
+      },
+      {
+        q: "What reporting should we expect from a security vendor?",
+        a: "Timestamped incident reports with specifics rather than summaries, patrol documentation you can audit — GPS-verified checkpoints where patrol is part of the program — and consistency month to month so ownership can compare periods. Ask to see a sample report before signing. A vendor who cannot produce one, or whose reports read the same regardless of what happened, is telling you something about the supervision behind them.",
+      },
+    ],
   },
   {
     label: "Retail & Shopping Centers",

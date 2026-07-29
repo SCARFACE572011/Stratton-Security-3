@@ -119,6 +119,68 @@ export default function IndustryDetailContent({
         </div>
       </section>
 
+      {/* Deep sector content — the substance that lifted these pages off ~320
+          words. Prose only, no cards, so it reads as an operator explaining the
+          sector rather than a feature list. */}
+      {industry.sectorContext?.length ? (
+        <section className="section-padding bg-platinum-50" aria-labelledby="sector-heading">
+          <div className="container-wide">
+            <m.div {...reveal()} className="mx-auto mb-12 max-w-3xl text-center md:mb-14">
+              <p className="label-overline mb-6">In Practice</p>
+              <span className="accent-line mx-auto mb-8" aria-hidden="true" />
+              <h2
+                id="sector-heading"
+                className="display-title text-[#040d1e]"
+                style={{ fontSize: "clamp(1.75rem, 3.4vw, 2.5rem)" }}
+              >
+                How {industry.label} Security Actually Runs
+              </h2>
+            </m.div>
+            <div className="mx-auto max-w-3xl space-y-6">
+              {industry.sectorContext.map((para, i) => (
+                <m.p
+                  key={i}
+                  {...reveal(i * 0.06)}
+                  className="text-[1.0625rem] leading-relaxed text-[#4b5563]"
+                >
+                  {para}
+                </m.p>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {/* Sector FAQs — mirrors the FAQPage JSON-LD on the page. Rendered open so
+          the answers are in the server HTML and the markup matches the schema. */}
+      {industry.faqs?.length ? (
+        <section className="section-padding bg-white" aria-labelledby="industry-faq">
+          <div className="container-wide">
+            <m.div {...reveal()} className="mx-auto mb-12 max-w-3xl text-center md:mb-14">
+              <p className="label-overline mb-6">Common Questions</p>
+              <span className="accent-line mx-auto mb-8" aria-hidden="true" />
+              <h2
+                id="industry-faq"
+                className="display-title text-[#040d1e]"
+                style={{ fontSize: "clamp(1.75rem, 3.4vw, 2.5rem)" }}
+              >
+                {industry.label} Security — Questions Buyers Ask
+              </h2>
+            </m.div>
+            <div className="mx-auto max-w-3xl space-y-8">
+              {industry.faqs.map((faq, i) => (
+                <m.div key={faq.q} {...reveal(i * 0.05)}>
+                  <h3 className="mb-2.5 text-[1.0625rem] font-semibold text-[#0a0a0a]">
+                    {faq.q}
+                  </h3>
+                  <p className="text-[1.0625rem] leading-relaxed text-[#4b5563]">{faq.a}</p>
+                </m.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       {/* Applicable services */}
       {relatedServices.length > 0 && (
         <section className="section-padding bg-platinum-50" aria-labelledby="services-heading">
