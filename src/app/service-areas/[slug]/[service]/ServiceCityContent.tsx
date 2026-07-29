@@ -32,10 +32,18 @@ export default function ServiceCityContent({
     transition: { duration: 0.7, delay, ease: EASE },
   });
 
-  // Nearby cities for lateral crawl paths, excluding this one.
-  const nearby = SERVICE_AREAS.filter(
+  // Nearby cities for lateral crawl paths, excluding this one. Four regions
+  // currently contain a single city, which would render an empty strip — fall
+  // back to any other area so the block always carries real links.
+  const sameRegion = SERVICE_AREAS.filter(
     (a) => a.slug !== area.slug && a.region === area.region
+  );
+  const nearby = (
+    sameRegion.length > 0
+      ? sameRegion
+      : SERVICE_AREAS.filter((a) => a.slug !== area.slug)
   ).slice(0, 5);
+  const nearbyLabel = sameRegion.length > 0 ? `the ${area.region} area` : "greater Los Angeles";
 
   return (
     <main>
@@ -338,7 +346,7 @@ export default function ServiceCityContent({
           <m.div {...reveal()} className="mb-8 text-center">
             <p className="label-overline mb-3">Nearby</p>
             <p className="text-[1.0625rem] text-[#4b5563]">
-              {service.title} across the {area.region} area
+              {service.title} across {nearbyLabel}
             </p>
           </m.div>
           <m.div {...reveal(0.06)} className="flex flex-wrap justify-center gap-2.5">

@@ -84,7 +84,7 @@ export const SERVICE_CITY_PAGES: ServiceCityPage[] = [
   {
     service: "patrol",
     area: "westwood",
-    metaTitle: "Security Patrol in Westwood, Los Angeles",
+    metaTitle: "Security Patrol in Westwood, LA",
     metaDescription:
       "Marked-vehicle and foot patrols for Westwood Village, the Wilshire Corridor and Westwood Boulevard. Stratton's office is here. GPS-verified rounds, alarm response.",
     atAGlance: [
@@ -130,7 +130,7 @@ export const SERVICE_CITY_PAGES: ServiceCityPage[] = [
   {
     service: "fire-watch",
     area: "downtown-los-angeles",
-    metaTitle: "Fire Watch Security in Downtown Los Angeles",
+    metaTitle: "Fire Watch in Downtown Los Angeles",
     metaDescription:
       "Certified fire watch officers for Downtown LA high-rises when sprinklers or alarms are impaired. Timed written logs, LAFD-ready documentation, mobilised in under 24 hours.",
     atAGlance: [
