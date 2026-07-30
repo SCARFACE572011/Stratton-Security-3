@@ -155,6 +155,14 @@ export type ServiceDetail = {
   relatedIndustries: string[];
   icon: string;
   color: string;
+  // Deep prose for the service, same role sectorContext plays on industries and
+  // localContext plays on areas. These are the most commercially valuable pages on
+  // the site and were rendering ~484 words — thinner than the city pages pointing
+  // at them. longDescription is a single paragraph; this is the substance.
+  inPractice?: string[];
+  // Rendered as a visible Q&A block AND emitted as FAQPage JSON-LD, so answers
+  // must stay in the server HTML.
+  faqs?: { q: string; a: string }[];
 };
 
 export const SERVICES: ServiceDetail[] = [
@@ -200,6 +208,30 @@ export const SERVICES: ServiceDetail[] = [
     relatedIndustries: ["commercial-real-estate", "retail", "condominiums", "construction"],
     icon: "Shield",
     color: "blue",
+    inPractice: [
+      "Patrol is the service most buyers should consider first and usually consider last. The instinct when something happens is to ask for a guard at the door, and for a lot of properties that is more coverage than the risk justifies — 168 hours a week of standing presence to address a problem that occurs between midnight and 5 a.m. Patrol inverts that: you pay for scheduled, deliberately irregular visits rather than continuous presence, and because a route is shared across nearby properties the per-property cost is a fraction of a dedicated post.",
+      "The discipline that makes it work is timing, not frequency. A patrol arriving at 11 p.m. and 3 a.m. every night teaches anyone watching exactly when your property is unobserved — which is worse than no pattern at all, because it manufactures a reliable window. So rounds are staggered, the order of checkpoints changes, and approach direction varies. Where the route goes matters just as much: the frontage is usually the part already visible from the street, while the loading dock, the rear alley, the stairwell and the parking structure are where things actually happen.",
+      "Documentation is what separates patrol from a car driving past. Officers scan GPS-verified checkpoints, photograph anything out of place, and file timestamped reports available the next morning — so if a gate was found open at 2:14 a.m. you know at 8, and you have a record rather than a recollection. That record is also what an insurer or an attorney asks for after an incident, and it is the thing low-cost operators quietly do not produce.",
+      "Most programs end up as a hybrid rather than a pure choice. Patrol handles the overnight and weekend exposure, alarm response covers the events in between, lock-and-unlock takes the opening and closing risk off your staff, and a standing post is added only for the specific hours that genuinely warrant one. If a vendor quotes you a 24/7 post without first asking what problem you are solving, that is worth noticing.",
+    ],
+    faqs: [
+      {
+        q: "How much does mobile patrol cost compared to a security guard?",
+        a: "Substantially less, because the route is shared. A dedicated 24/7 post is roughly 730 hours a month, which at Los Angeles market rates puts it near $16,000–27,700 for unarmed coverage. Patrol is quoted per visit or as a flat monthly rate for an agreed schedule, so a property pays for the visits it needs rather than continuous presence. The free walkthrough produces a written quote, normally within one business day.",
+      },
+      {
+        q: "How often should a patrol check my property?",
+        a: "It depends on where your incidents actually occur, not on a standard package. Some properties need two rounds a night, others need six. What matters more than the count is that the pattern is not predictable and that the route covers the docks, alleys, stairwells and parking rather than only the frontage. An advisor sets frequency against your real exposure — and incident history if you have any — during the assessment.",
+      },
+      {
+        q: "Does patrol include responding to alarms?",
+        a: "Yes, and it is often the highest-value part of the programme. An officer attends, investigates, documents what they find, and escalates to police only when the activation is genuine. That avoids calling your facilities staff out at 3 a.m. for a faulty sensor, and in cities that run their own alarm programmes it keeps false-alarm charges off your account. Response windows are agreed in the post orders rather than left open-ended.",
+      },
+      {
+        q: "How do I know the patrol actually happened?",
+        a: "GPS-verified checkpoint scans and timestamped reports with photographs, available the next morning rather than assembled at month end. Ask any vendor to show you a sample report before signing. If the reports read the same regardless of what happened that night, or cannot be produced on request, that tells you what supervision sits behind the service.",
+      },
+    ],
   },
   {
     id: "guard",
@@ -243,6 +275,30 @@ export const SERVICES: ServiceDetail[] = [
     relatedIndustries: ["hospitality", "financial", "government", "estates"],
     icon: "ShieldCheck",
     color: "gold",
+    inPractice: [
+      "What you are actually buying is not a uniform — it is the officer who will be on your property at 3 a.m., and the system that verifies he is awake, on post and writing reports. That is where vendors genuinely differ, and it is why the useful questions are about wages and supervision rather than about headcount. Ask what the officer assigned to your site will be paid, and ask for the field-supervisor-to-post ratio. Both answers predict service quality better than anything in a capability deck.",
+      "The armed-versus-unarmed decision gets made badly more often than any other. An armed officer carries additional BSIS permitting, firearm qualification and substantially higher insurance exposure for the company, so the premium is real and universal across the industry. Those costs are justified by a documented threat, cash handling or high-value goods — not by a preference for a more imposing presence. Plenty of properties that assume they need armed coverage are better served by well-trained unarmed officers with strong patrol discipline, and an honest advisor will say so even though it is the smaller invoice.",
+      "Capability beyond the state minimum is what determines how the week actually goes. A BSIS guard card means Power to Arrest training and background clearance through the DOJ and FBI; it says nothing about whether an officer can defuse an intoxicated guest, an angry tenant or a trespasser who refuses to leave without creating a liability. Those situations, not burglaries, are what happens routinely — which is why our training emphasises de-escalation, documentation and access control, and why we recruit heavily from military and law-enforcement backgrounds.",
+      "Every post runs on written orders specific to your property: what gets checked and how often, what gets documented, when the officer handles something versus escalates, and who to call in your organisation at 2 a.m. Incident reports come timestamped and specific, because that is the document your insurer or attorney will want later. Coverage typically begins within 72 hours of signing, and teams have mobilised in under 24 for urgent gaps.",
+    ],
+    faqs: [
+      {
+        q: "Do I need armed or unarmed security guards?",
+        a: "Match it to documented risk rather than to how imposing you want the presence to be. Most commercial and residential properties are well served by well-trained unarmed officers. Armed coverage is warranted where there is a specific, verifiable threat, cash handling, or high-value goods — because the armed premium reflects real additional permitting, qualification and insurance exposure. A Stratton advisor will tell you which applies during the free assessment, including when the answer is the less expensive one.",
+      },
+      {
+        q: "What licensing and training do your officers have?",
+        a: "Every officer holds a California BSIS guard card, which requires Power to Arrest training and background clearance through the Department of Justice and the FBI. Armed officers additionally hold a BSIS Exposed Firearm Permit with firearm qualification. Beyond that state minimum we train on de-escalation, incident documentation and access control, because those are the skills the job actually demands week to week. Stratton operates under CA PPO #122163, verifiable on the BSIS public lookup.",
+      },
+      {
+        q: "How do you supervise officers overnight?",
+        a: "Field supervisors visit posts and a live operations centre runs 24/7, so there is someone verifying the officer is on post and reporting rather than trusting that they are. Ask any vendor for the supervisor-to-post ratio and the after-hours escalation path, then test that line yourself before signing. Unsupervised overnight posts are the most common failure in contract security and the hardest thing to detect from a proposal.",
+      },
+      {
+        q: "How much does a security guard cost per hour in Los Angeles?",
+        a: "Market rates run roughly $22–38 per hour for unarmed officers and $35–60+ for armed, with specialised posts higher. Those are market ranges for sanity-checking bids, not a Stratton quote — your rate depends on hours, post orders and site risk. The billed rate covers the officer's wage plus payroll taxes, workers' compensation, liability insurance, training and supervision, which is why it sits well above take-home pay. A quote far below that band means one of those is missing.",
+      },
+    ],
   },
   {
     id: "commercial",
@@ -588,6 +644,30 @@ export const SERVICES: ServiceDetail[] = [
     relatedIndustries: ["construction", "commercial-real-estate", "industrial", "hospitality"],
     icon: "ShieldCheck",
     color: "blue",
+    inPractice: [
+      "Fire watch is a compliance service, not a guard post, and conflating the two is how buildings fail an inspection they thought they had covered. When a required fire-protection system — sprinklers, standpipes or fire alarm — goes out of service in an occupied building, the California Fire Code requires a dedicated fire watch for as long as the impairment lasts. The officer's task is narrow and specific: patrol the affected areas on a fixed cycle, watch for smoke, heat and ignition sources, keep egress clear, know where the pull stations and standpipe connections are, and call 911 directly, because the system that would normally make that call is switched off.",
+      "Almost nobody plans for this. A valve gets closed after a leak, a retrofit takes a riser offline, an inspection is not approved — and coverage is needed the same day. That is why the practical measure of a fire-watch vendor is how fast they answer the phone and how quickly they can scope the job without a site visit. We take those calls at any hour and can usually define the affected areas, the cycle length and the shift pattern on the phone, then confirm details on arrival.",
+      "Cycle length is where inexperienced coverage goes wrong. In a high-rise, a full round can take longer than the interval someone wrote into a plan, which means the cycle was never actually achievable and the log will show it. We set the interval against how long the round genuinely takes for that building and that affected area, and we do not quietly lengthen it as a shift wears on. Officers are briefed on your building before the first round: pull-station and standpipe locations, stairwell discharge points, which lifts are usable, and who to reach in your organisation overnight.",
+      "One detail that trips up multi-property owners: the authority having jurisdiction changes by city. In the City of Los Angeles it is the LAFD, but Burbank, Glendale, Long Beach, Torrance and other independent cities run their own fire departments with requirements that are not interchangeable. We confirm the authority for your specific site and what it expects in the log before the watch begins, rather than assuming it matches another building in your portfolio.",
+    ],
+    faqs: [
+      {
+        q: "When is a fire watch legally required in California?",
+        a: "Whenever a required fire-protection system — sprinklers, standpipes or fire alarm — is out of service in an occupied building, for the full duration of the impairment, under the California Fire Code. In practice it is triggered by retrofits, repairs, a valve closed after a leak, or an inspection that was not approved. The authority having jurisdiction will expect continuous, documented coverage rather than periodic walk-throughs.",
+      },
+      {
+        q: "How fast can you start a fire watch?",
+        a: "Under 24 hours in most cases and frequently the same day, because this is almost never scheduled in advance. Call (424) 440-5554 at any hour and an advisor will scope the affected areas, the cycle length and the shift pattern over the phone rather than waiting on a walkthrough. Details get confirmed on arrival so coverage starts without delay.",
+      },
+      {
+        q: "What is the difference between fire watch and a regular security guard?",
+        a: "Scope and exclusivity. A fire-watch officer is assigned to that task only — patrolling the affected areas on a fixed cycle, watching for smoke and heat, keeping egress clear and calling 911 directly — and is not simultaneously covering a lobby or doing access control. A guard who is also 'keeping an eye out' is not a fire watch, and an inspector will treat it as non-compliant.",
+      },
+      {
+        q: "Will the log satisfy the fire department and our insurer?",
+        a: "That is its purpose. Every round is recorded with the time, the areas covered and any observations, and the log is available to you throughout rather than reconstructed afterwards. Both the authority having jurisdiction and your carrier typically ask for it as evidence the impairment was covered continuously — which is also why cycles are not shortened and shifts do not leave gaps.",
+      },
+    ],
   },
 ];
 

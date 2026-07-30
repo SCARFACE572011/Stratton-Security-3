@@ -53,8 +53,28 @@ export default async function ServiceDetailPage({
   );
   const otherServices = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 4);
 
+  // FAQPage from the service FAQs. ServiceDetailContent renders them open, so the
+  // answers are present in the server HTML and match what the schema asserts.
+  const faqLd = service.faqs?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: service.faqs.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      }
+    : null;
+
   return (
     <>
+      {faqLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
+      )}
       <BreadcrumbSchema items={[
         { name: "Home", url: "https://strattonsecuritygroup.com" },
         { name: "Services", url: "https://strattonsecuritygroup.com/services" },

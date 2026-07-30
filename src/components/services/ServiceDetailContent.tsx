@@ -61,6 +61,11 @@ type Service = {
   benefits: { title: string; description: string }[];
   capabilities: string[];
   icon: string;
+  // Mirrors the optional fields on ServiceDetail in constants.ts. This local type
+  // is deliberately narrowed to what the component renders, so new fields have to
+  // be added here too — tsc catches it if they aren't.
+  inPractice?: string[];
+  faqs?: { q: string; a: string }[];
 };
 
 type Industry = {
@@ -314,6 +319,67 @@ export default function ServiceDetailContent({
           </div>
         </div>
       </section>
+
+      {/* ── In practice — the deep prose that lifted these pages off ~484 words.
+          Prose, not cards: this is where the service is actually explained. ── */}
+      {service.inPractice?.length ? (
+        <section className="section-padding bg-platinum-50" aria-labelledby="in-practice">
+          <div className="container-wide">
+            <m.div {...reveal()} className="mx-auto mb-12 max-w-3xl text-center md:mb-14">
+              <p className="label-overline mb-6">In Practice</p>
+              <span className="accent-line mx-auto mb-8" aria-hidden="true" />
+              <h2
+                id="in-practice"
+                className="display-title text-[#040d1e]"
+                style={{ fontSize: "clamp(1.75rem, 3.4vw, 2.5rem)" }}
+              >
+                How {service.title} Actually Works
+              </h2>
+            </m.div>
+            <div className="mx-auto max-w-3xl space-y-6">
+              {service.inPractice.map((para, i) => (
+                <m.p
+                  key={i}
+                  {...reveal(i * 0.06)}
+                  className="text-[1.0625rem] leading-relaxed text-[#4b5563]"
+                >
+                  {para}
+                </m.p>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {/* ── Service FAQs — mirrors the FAQPage JSON-LD; rendered open so the
+          answers are in the server HTML and markup matches schema. ── */}
+      {service.faqs?.length ? (
+        <section className="section-padding bg-white" aria-labelledby="service-faq">
+          <div className="container-wide">
+            <m.div {...reveal()} className="mx-auto mb-12 max-w-3xl text-center md:mb-14">
+              <p className="label-overline mb-6">Common Questions</p>
+              <span className="accent-line mx-auto mb-8" aria-hidden="true" />
+              <h2
+                id="service-faq"
+                className="display-title text-[#040d1e]"
+                style={{ fontSize: "clamp(1.75rem, 3.4vw, 2.5rem)" }}
+              >
+                {service.title} — Questions Buyers Ask
+              </h2>
+            </m.div>
+            <div className="mx-auto max-w-3xl space-y-8">
+              {service.faqs.map((faq, i) => (
+                <m.div key={faq.q} {...reveal(i * 0.05)}>
+                  <h3 className="mb-2.5 text-[1.0625rem] font-semibold text-[#0a0a0a]">
+                    {faq.q}
+                  </h3>
+                  <p className="text-[1.0625rem] leading-relaxed text-[#4b5563]">{faq.a}</p>
+                </m.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {/* ── Related industries ───────────────────────────────── */}
       {relatedIndustries.length > 0 && (
